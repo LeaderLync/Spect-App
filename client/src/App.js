@@ -3,14 +3,16 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
+import StudentProfile from "./views/StudentProfile/StudentProfile"
 
 
 const App = () => {
   return (
     <div>
-      <Header />
+      <Header/>
       <Switch>
         <Route exact path="/Home" component={Home} />
+        <Route exact path="/studentProfile" component={StudentProfile} />
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
