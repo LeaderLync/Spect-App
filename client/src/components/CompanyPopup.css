@@ -1,0 +1,34 @@
+.paper{
+    position: 'absolute';
+    width: 400;
+    justify-content: center;
+    box-shadow: 0 0 0px 1px black;
+    font-style: italic;
+}
+
+.companyHead{
+    background-color: orange;
+    justify-content: center;
+    height: 100%;
+    display:flex; 
+    flex-direction:row;
+    align-items:center;
+    min-height: 16vh;
+    margin: 0px;
+}
+
+.modalcompanytop{
+    display: flex; 
+    flex-direction: row;
+}
+
+.modalcompanydesc{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modalValueTitle{
+    color: white; 
+    font-size:22px;
+    font-weight:lighter;
+}
