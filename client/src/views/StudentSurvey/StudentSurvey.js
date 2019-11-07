@@ -10,7 +10,7 @@ class StudentSurvey extends React.Component {
           <div className='col'>
             <div className="card shadow-lg p-3 mb-5 bg-white rounded">
               <div className="card-body">
-                <h3>Contact Information</h3>
+                <h3 className="card-title">Contact Information</h3>
                 <form>
                   <div className="form-row">
                     <div className="form-group col">
@@ -33,6 +33,31 @@ class StudentSurvey extends React.Component {
                     </div>
                   </div>
                 </form>
+                <br/>
+                <h3 className="card-title">Professional Interests and Skills</h3>
+                <form>
+                  <div className="form-group">
+                    <label for="selectIndustry">Select the industry that best describes your professional interests:</label>
+                    <select multiple className="form-control" id="selectIndustry" size="10">
+                      <option>Medical/Healthcare</option>
+                      <option>Engineering</option>
+                      <option>Tech</option>
+                      <option>Law</option>
+                      <option>Education</option>
+                      <option>Manufacturing (Food, chemical, textiles, machines, equipment)</option>
+                      <option>Retail</option>
+                      <option>Agriculture</option>
+                      <option>Sports</option>
+                      <option>Media/Entertainment</option>
+                    </select>
+                  </div>
+                </form>
+                <br/>
+                <h3 className="card-title">Self-Assessment Survey</h3>
+                <h6 className="card-subtitle mb-2 text-muted">Please consider completing this additional self-assessment survey:</h6>
+                <div className="embed-responsive embed-responsive-16by9">
+                  <iframe className="embed-responsive-item" src='https://www.surveymonkey.com/r/spectSelfAssessment'></iframe>
+                </div>
               </div>
             </div>
           </div>
