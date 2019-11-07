@@ -1,4 +1,4 @@
-export default firebaseConfig = {
+export default {
     apiKey: "AIzaSyA5Y4iTvOjaSnERkJ0cguzQogysKr5MQwA",
     authDomain: "spect-app.firebaseapp.com",
     databaseURL: "https://spect-app.firebaseio.com",
