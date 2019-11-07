@@ -23,12 +23,22 @@
 }
 
 .modalcompanydesc{
+    margin-bottom:12px;
+    margin-top:12px;
     padding-left: 10px;
     padding-right: 10px;
 }
 
 .modalValueTitle{
     color: white; 
-    font-size:22px;
+    font-size:20px;
     font-weight:lighter;
+}
+
+.modalcloseImg{
+    margin-left:30px;
+    cursor:pointer;
+    float:right;
+    width: 8%;
+    height: 8%;
 }

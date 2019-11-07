@@ -49,26 +49,31 @@ export default function CompanyPopup() {
                         Google img
                         </Paper>
                     </h2>
-                    <h2 id="modalCompany" className="companyHead" Style="background-color:#3074ff;width:65%;flex-direction:column">
-                        <div className="modalValueTitle">
-                            VALUED SOFT SKILLS
+                    <h2 id="modalCompany" className="companyHead" Style="background-color:#5f89ce;
+                                                                        width:65%;
+                                                                        flex-direction:column;
+                                                                        align-items:flex-start; 
+                                                                        padding-left:2vh;">
+                        <div className="modalValueTitle" Style="flex-direction:row;display:flex;">
+                        <p Style="width: 89%;">VALUED SOFT SKILLS</p>
+                        <img src='https://d30y9cdsu7xlg0.cloudfront.net/png/53504-200.png' className="modalcloseImg" onClick={handleClose}/>
                         </div>
                         <div className="modalcompanytop">
-                            <Paper className={classes.root}>
+                            <Paper className={classes.root} Style="margin:5px; min-height:8vh; min-width:8vh;">
                             skill1
                             </Paper>
-                            <Paper className={classes.root}>
+                            <Paper className={classes.root} Style="margin:5px; min-height:8vh; min-width:8vh;">
                             skill2
                             </Paper>
-                            <Paper className={classes.root}>
+                            <Paper className={classes.root} Style="margin:5px; min-height:8vh; min-width:8vh;">
                             skill3
                             </Paper>
                         </div>
                     </h2>
                     </div>
                     <div className="modalcompanydesc">
-                        <h4> About us:</h4>
-                        <p id="AboutUs">
+                        <h4> About us: </h4>
+                        <p id="AboutUs" Style="width:auto;">
                             Our mission is to organize the world’s information and make it universally accessible and useful.
                         </p>
                     </div>
