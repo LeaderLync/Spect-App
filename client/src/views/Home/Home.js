@@ -1,15 +1,24 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
+import auth from '../../config/firebaseauth'
 import ProfileBar from '../../components/ProfileBar'
-
-function Home() {
-    return (
-        <div className="App">
-            <ProfileBar/>
-            <ProfileBar/>
-        </div>
-    );
+import Button from '@material-ui/core/Button'
+class Home extends React.Component {
+    signOut() {
+        auth.signOut().then(()=> {
+            alert('Signed Out')
+        }).catch((error) => {
+            alert('Cant sign out')
+        })
+    }
+    render(){
+        return (
+            <div className="App">
+                <Button onClick={this.signOut}>Sign out</Button>
+            </div>
+        );
+    }
 }
 
 export default Home;

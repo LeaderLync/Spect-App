@@ -43,7 +43,6 @@ class App extends Component {
           <Switch>
             <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/Home" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            {/* <Route exact path="/Home" component={Home} /> */}
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>
