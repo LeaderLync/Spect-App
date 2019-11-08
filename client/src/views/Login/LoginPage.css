@@ -1,0 +1,62 @@
+.login-page {
+    background-color: #f5f7fb;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    margin: auto 0;
+}
+.spect-logo {
+    margin: 0 auto;
+    margin-top: 15px;
+    max-height: 30%;
+    max-width: 30%;
+}
+.login-modal {
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,.15), 0 2px 4px 0 rgba(0,0,0,.12);
+    border: 1px solid #dbe5ec;
+    overflow: hidden;
+    background-clip: padding-box;
+    border-radius: 6px;
+    transition: all .25s ease-in;
+    min-height: 400px;
+    max-height: 800px;
+    width: 400px;
+    margin: 10% auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+.input {
+    padding: 8.85px 13px;
+    margin: 5px 0;
+    font-size: 14px;
+    border-radius: 3px;
+}
+.input:hover {
+    border: 1px solid black;
+}
+.link {
+    text-decoration: none;
+    color: #2986d6;
+    margin: 10px;
+}
+.link:hover {
+    color: #549ede;
+}
+.button-signin, .button-signup {
+    padding: 8.85px 13px;
+    font-size: 14px;
+    margin: 5px auto;
+    width: 100%;
+    color: #ffffff;
+    border-radius: 3px;
+    background: linear-gradient(215deg, #546e7a, #37474f);
+    margin-bottom: 5px;
+}
