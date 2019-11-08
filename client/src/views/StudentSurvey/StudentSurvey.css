@@ -1,5 +1,5 @@
 body {
-  background-color: #E28F41;
+  /* background-color: #E28F41; /*should this be orange, spect-blue,or white?*/
 }
 
 .container {
@@ -7,9 +7,5 @@ body {
 }
 
 .form-control {
-  border: 1px solid #E28F41;
-}
-
-iframe {
   border: 1px solid #E28F41;
 }

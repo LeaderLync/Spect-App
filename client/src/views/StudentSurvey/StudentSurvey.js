@@ -20,7 +20,7 @@ class StudentSurvey extends React.Component {
                     <div className="form-group col">
                       <label for="inputLastName">Last name</label>
                       <input type="text" className="form-control" placeholder="Last name"/>
-                    </div>
+                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-group col">
@@ -38,7 +38,7 @@ class StudentSurvey extends React.Component {
                 <form>
                   <div className="form-group">
                     <label for="selectIndustry">Select the industry that best describes your professional interests:</label>
-                    <select multiple className="form-control" id="selectIndustry" size="10">
+                    <select className="form-control" id="selectIndustry" size="10">
                       <option>Medical/Healthcare</option>
                       <option>Engineering</option>
                       <option>Tech</option>
@@ -56,7 +56,7 @@ class StudentSurvey extends React.Component {
                 <h3 className="card-title">Self-Assessment Survey</h3>
                 <h6 className="card-subtitle mb-2 text-muted">Please consider completing this additional self-assessment survey:</h6>
                 <div className="embed-responsive embed-responsive-16by9">
-                  <iframe className="embed-responsive-item" src='https://www.surveymonkey.com/r/spectSelfAssessment'></iframe>
+                  <iframe className="embed-responsive-item" src='https://www.surveymonkey.com/r/spectSelfAssessment' onLoad="alert('Test');"></iframe>
                 </div>
               </div>
             </div>
