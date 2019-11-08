@@ -4,15 +4,22 @@ var mongoose = require('mongoose'),
 
 /* Create your schema */
 var listingSchema = new Schema({
-  industry: String,
   uid: String,
-  URLtoLogo: String, // if time permits
   name: String,
-  Bio: String,
-  skills: {
+  bio: String,
+  industry: String,
+  //URLtoLogo: String, // if time permits
+  topSkills: {
       skill1: String, 
       skill2: String, 
       skill3: String
+    },
+  jobPost: {
+      jobID: Number,
+      jobTitle: String,
+      jobDescription: String,
+      jobRequirements: String,
+      jobLink: String,
     },
     created_at: Date,
     updated_at: Date,
