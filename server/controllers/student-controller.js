@@ -17,10 +17,10 @@ exports.create = function(req, res) {
 };
 
 // /* Show the current listing */
-// exports.read = function(req, res) {
-//   /* send back the listing as json from the request */
-//   res.json(req.listing);
-// };
+exports.read = function(req, res) {
+  /* send back the listing as json from the request */
+  res.json(req.student);
+};
 
 // /* Update a listing - note the order in which this function is called by the router*/
 // exports.update = function(req, res) {

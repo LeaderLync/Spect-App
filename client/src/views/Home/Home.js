@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
+import CompanyPopup from "../../components/CompanyPopup"
 import auth from '../../config/firebaseauth'
 import ProfileBar from '../../components/ProfileBar'
 import Button from '@material-ui/core/Button'
@@ -15,6 +16,7 @@ class Home extends React.Component {
     render(){
         return (
             <div className="App">
+                <CompanyPopup/>
                 <Button onClick={this.signOut}>Sign out</Button>
             </div>
         );
