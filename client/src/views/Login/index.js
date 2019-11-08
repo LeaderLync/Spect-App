@@ -17,8 +17,8 @@ class LoginContainer extends Component {
 
     }
     render() {
-        return <LoginView isaAdmin={this.props.isaAdmin} onSubmit={this.handleSignin}/>
+        return <LoginView isStudent={this.props.isStudent} onSubmit={this.handleSignin}/>
     }
 }
 
-export default LoginContainer
+export default withRouter(LoginContainer)
