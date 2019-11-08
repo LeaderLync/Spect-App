@@ -52,7 +52,7 @@ class StudentSurvey extends React.Component {
                     </select>
                   </div>
                 </form>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary" Style="margin-bottom: 5vh; margin-top: 3vh;">Submit</button>
                 <h3 className="card-title">Self-Assessment Survey</h3>
                 <h6 className="card-subtitle mb-2 text-muted">Please consider completing this additional self-assessment survey:</h6>
                 <div className="embed-responsive embed-responsive-16by9">
