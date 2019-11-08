@@ -12,15 +12,15 @@ var listingSchema = new Schema({
   topSkills: {
       skill1: String, 
       skill2: String, 
-      skill3: String
+      skill3: String,
     },
-  jobPost: {
+  jobPost: [{
       jobID: Number,
       jobTitle: String,
       jobDescription: String,
       jobRequirements: String,
       jobLink: String,
-    },
+    }],
     created_at: Date,
     updated_at: Date,
 });
