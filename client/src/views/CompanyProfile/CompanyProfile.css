@@ -1,0 +1,54 @@
+.Spect-logo {
+    position: relative;
+    width: 73px;
+    height: 68px;
+    left: 29px;
+    top: 56px;
+    bottom: 56px;
+}
+
+
+/* Information Box Rectangle */
+
+.info-rectangle {
+    position: relative;
+    margin: 0%;
+    height: 12vw;
+    background: rgba(1, 86, 185, 0.77);
+}
+
+.company-name{
+    position: absolute;
+    left: 10vw;
+    top: 26%;
+    font-size: 4vw;
+    color:whitesmoke;
+    text-shadow: black;
+    font-style: bold;
+}
+.topSkills{
+    position: absolute;
+    width: 34vw;
+    height: 9vw;
+    left: 50%;
+    top: 10%;
+    background: whitesmoke;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.logo-border{
+    position: absolute;
+    width: 5vw;
+    height: 5vw;
+    left: 4%;
+    top: 26%;
+
+}
+
+.company-logo {
+    position: relative;
+    width: 73px;
+    height: 68px;
+    left: 29px;
+    top: 43px;
+    bottom: 56px;
+}
