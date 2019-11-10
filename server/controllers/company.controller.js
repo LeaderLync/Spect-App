@@ -1,7 +1,4 @@
-
-/* Dependencies */
-var Student = require('../models/StudentSchema.js')    
-var Auth = require('../models/AuthSchema.js')
+var Company = require('../models/company.model.js')    
 
 
 exports.create = function(req, res) {

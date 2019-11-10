@@ -2,35 +2,10 @@
 var mongoose = require('mongoose'), 
     Schema = mongoose.Schema;
 
-var studentSchema = new Schema({
+var AuthSchema = new Schema({
 
-  idNum: { type: Number, required: true}, 
-  name: { type: String, required: true},
-
-  topSkills: [{
-    topSkillOne: String,
-    topSkillTwo: String,
-    topSkillThree: String
-  }],
-
-  skillsToWork: [{
-    workSkillOne: String, 
-    workSkillTwo: String,
-    workSkillThree: String
-  }],
-
-  matches:[
-      {
-          companyID: Number,
-          companyName: String,
-          companyTopSkills: String,
-          jobDescription: String,
-          jobRequirements: String,
-          jobLink: String
-      },
-  ],
-  
-  industry: String
+  authid: {type: String, required: true},
+  collectionid: {type: String, required: true}
 
 });
 

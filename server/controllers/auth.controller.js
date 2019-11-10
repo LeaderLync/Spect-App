@@ -1,14 +1,11 @@
-
-/* Dependencies */
-var Student = require('../models/StudentSchema.js')    
-var Auth = require('../models/AuthSchema.js')
+var Auth = require('../models/AuthSchema.js')    
 
 
 exports.create = function(req, res) {
 
-  var newStudent = new Student(req.body);
+  var newUser = new Auth(req.body);
   /* Then save the listing */
-  newStudent.save(function(err) {
+  newUser.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
@@ -22,34 +19,34 @@ exports.create = function(req, res) {
 // /* Show the current listing */
 exports.read = function(req, res) {
   /* send back the listing as json from the request */
-  res.json(req.student);
+  res.json(req.body);
 };
 
 // /* Update a listing - note the order in which this function is called by the router*/
-exports.update = function(req, res) {
-  if (!req.body.updatedStudent) {
-    return res.status(400).send({
-      message: "Updated content cannot be empty"
-    })
-  }
-  List
-  var updatedStudent = new Listing(req.body);
-  if(req.results) {
-    updatelisting.coordinates = {
-      latitude: req.results.lat, 
-      longitude: req.results.lng
-    };
-  }
-  updatelisting.save(function(err) {
-    if(err) {
-      console.log(err);
-      res.status(400).send(err);
-    } else {
-      res.json(updatelisting);
-      console.log(updatelisting)
-    }
-  });
-};
+// exports.update = function(req, res) {
+//   if (!req.body.updatedStudent) {
+//     return res.status(400).send({
+//       message: "Updated content cannot be empty"
+//     })
+//   }
+//   List
+//   var updatedStudent = new Listing(req.body);
+//   if(req.results) {
+//     updatelisting.coordinates = {
+//       latitude: req.results.lat, 
+//       longitude: req.results.lng
+//     };
+//   }
+//   updatelisting.save(function(err) {
+//     if(err) {
+//       console.log(err);
+//       res.status(400).send(err);
+//     } else {
+//       res.json(updatelisting);
+//       console.log(updatelisting)
+//     }
+//   });
+// };
 
 // /* Delete a listing */
 // exports.delete = function(req, res) {

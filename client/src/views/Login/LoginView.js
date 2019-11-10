@@ -3,16 +3,33 @@ import './LoginPage.css'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/Black-logo-no-background.png'
 import Button from '@material-ui/core/Button'
-const LoginView = ({onSubmit}) => {
+
+
+class LoginView extends React.Component {
+  constructor(props) {
+    super(props)
+    console.log("ayeee" + this.props.isStudent)
+  }
+  render() {
+
+    var isStudent = (this.props.isStudent) ? 
+    (
+    <div className="top-header">
+        <Button variant="contained" color="primary">Student</Button>
+        <Button onClick={this.props.userUpdate} variant="contained">Admin</Button>
+    </div>
+    ) : (
+      <div className="top-header">
+      <Button onClick={this.props.userUpdate} variant="contained">Student</Button>
+      <Button variant="contained" color="primary">Admin</Button>
+      </div>
+    )
     return (
-        <div className="login-page container-fluid">
-        <div>
-          <Button>Admin</Button>
-          <Button>Student</Button>
-        </div>
+      <div className="login-page container-fluid">
+        {isStudent}
         <div className="login-modal">
             <img className="spect-logo" src={logo}></img>
-            <form onSubmit={onSubmit} className="login-form container">
+            <form onSubmit={this.props.onSubmit} className="login-form container">
              <h3 style={{textAlign: 'left'}}>Email</h3>
               <input
                 className="input"
@@ -41,5 +58,7 @@ const LoginView = ({onSubmit}) => {
         </div>
       </div>
     )
+  }
 }
+
 export default LoginView
