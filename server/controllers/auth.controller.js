@@ -10,8 +10,8 @@ exports.create = function(req, res) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newStudent);
-      console.log(newStudent)
+      res.json(newUser);
+      console.log(newUser)
     }
   });
 };
