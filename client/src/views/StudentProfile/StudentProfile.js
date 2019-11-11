@@ -13,7 +13,7 @@ import Oracle_logo from '../../assets/Oracle_logo.svg';
 import Google_logo from '../../assets/Google_2015_logo.svg';
 import Twitter_logo from '../../assets/Twitter_Logo_Blue.svg';
 import CardActionArea from '@material-ui/core/CardActionArea';
-
+import CompanyPopup from '../../components/CompanyPopup.js'
 
 
 function StudentProfile() {
@@ -32,7 +32,8 @@ function StudentProfile() {
         },
         skillCard: {
             //padding: theme.spacing(2),
-            textAlign: 'center',
+            // textAlign: 'center',
+            // justifyContent: 'center',
             backgroundColor: '#6C9AC3',
             color: 'white',
             //minWidth: 80,
@@ -70,13 +71,14 @@ function StudentProfile() {
                         
                         <Grid container item sm={4} md={2} style={{textAlign: 'center', justifyContent: 'center'}}>
                             <Avatar className={classes.avatar}>A</Avatar>
-                            
                         </Grid>
+
                         <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
                             <Typography variant="h5" style={{color: 'white'}}>
                                 Alberta Gator
                             </Typography>
                         </Grid>
+
                         <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
                             
                                 <Typography style={{color: "white"}} variant="h6" gutterBottom>
@@ -96,7 +98,7 @@ function StudentProfile() {
                                     </Grid>
                                     <Grid item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
-                                            <CardContent>
+                                            <CardContent style={{textAlign: 'center', justifyContent: 'center'}}>
                                                 <Typography>
                                                     Critical Thinking
                                                 </Typography>
@@ -136,7 +138,8 @@ function StudentProfile() {
                             </CardActionArea>
                             </CardContent>
                             <CardActions style={{textAlign: 'center', justifyContent: 'center'}}>
-                                <Button variant="contained" size="large" color="primary">View</Button>
+                                {/* <Button variant="contained" size="large" color="primary">View</Button> */}
+                                <CompanyPopup></CompanyPopup>
                             </CardActions>
                         </Card>
                     </Grid>
