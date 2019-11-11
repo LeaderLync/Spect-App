@@ -1,0 +1,11 @@
+body {
+  /* background-color: #E28F41; /*should this be orange, spect-blue,or white?*/
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.form-control {
+  border: 1px solid #E28F41;
+}
