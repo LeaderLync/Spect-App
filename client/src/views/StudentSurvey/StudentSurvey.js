@@ -7,8 +7,8 @@ class StudentSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      strongSkills: [],
-      weakSkills: []
+      strongSkills: [], // 3 of your strongest soft skills
+      weakSkills: []    // 3 soft skills you want to work on
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,9 +17,10 @@ class StudentSurvey extends React.Component {
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
     const data = new FormData(event.target);
-    data.append("Strong skills", this.state.strongSkills);
-    data.append("Weak skills", this.state.weakSkills);
+    data.append("strongSkills", this.state.strongSkills);
+    data.append("weakSkills", this.state.weakSkills);
 
+    console.log("FORM DATA SUBMISSION:")
     for (var pair of data.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
     }
