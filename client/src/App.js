@@ -3,6 +3,8 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import StudentSurvey from './views/StudentSurvey/StudentSurvey';
 import NotFound from "./views/NotFound"
+//import Header from "./components/Header/Header"
+import StudentProfile from "./views/StudentProfile/StudentProfile"
 import Header from "./components/Header/Header"
 import Navbar from "./components/Navbar/Navbar"
 import CompanyCard from "./components/CompanyCard"
@@ -59,6 +61,7 @@ class App extends Component {
             {/* <Route exact path="/signup" component={Signup}/> */}
             <Route exact path="/login" render={(props) => <Login {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} />}/>
             <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)}/>}/>
+            <Route exact path="/studentProfile" component={StudentProfile} />
             <Route component={NotFound}/>
           </Switch>
         </div>
