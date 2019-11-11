@@ -29,15 +29,15 @@ class LoginView extends React.Component {
         {isStudent}
         <div className="login-modal">
             <img className="spect-logo" src={logo}></img>
-            <form onSubmit={this.props.onSubmit} className="login-form container">
-             <h3 style={{textAlign: 'left'}}>Email</h3>
+            <form onSubmit={this.props.onSubmit} className="login-form">
+             <h6 style={{textAlign: 'left'}}>Email</h6>
               <input
                 className="input"
                 name="email"
                 type="email"
                 placeholder="Email"
               />
-              <h3 style={{textAlign: 'left'}}>Password</h3>
+              <h6 style={{textAlign: 'left'}}>Password</h6>
               <input
                 className="input"
                 name="password"

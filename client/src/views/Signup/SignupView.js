@@ -32,29 +32,29 @@ class SignupView extends React.Component {
           <div className="login-modal">
               <img className="spect-logo" src={logo}></img>
               <h4>Sign Up for a {Greeting} Account!</h4>
-              <form onSubmit={this.props.onSubmit} className="login-form container">
-               <h3 style={{textAlign: 'left'}}>First Name</h3>
+              <form onSubmit={this.props.onSubmit} className="login-form">
+               <h6 style={{textAlign: 'left'}}>First Name</h6>
                <input
                   className="input"
                   name="firstname"
                   type="text"
                   placeholder="First Name"
                 />
-                <h3 style={{textAlign: 'left'}}>Last Name</h3>
+                <h6 style={{textAlign: 'left'}}>Last Name</h6>
                 <input
                   className="input"
                   name="lastname"
                   type="text"
                   placeholder="Last Name"
                 />
-                <h3 style={{textAlign: 'left'}}>Email</h3>
+                <h6 style={{textAlign: 'left'}}>Email</h6>
                 <input
                   className="input"
                   name="email"
                   type="email"
                   placeholder="Email"
                 />
-                <h3 style={{textAlign: 'left'}}>Password</h3>
+                <h6 style={{textAlign: 'left'}}>Password</h6>
                 <input
                   className="input"
                   name="password"
