@@ -13,6 +13,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
 
+import { Route, Redirect  } from 'react-router-dom';
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,6 +55,11 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const handleOpenProfile = () => {
+    window.location = '/Home'
+    handleClose()
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
@@ -86,7 +94,7 @@ const Navbar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
