@@ -3,6 +3,10 @@ import {withRouter} from 'react-router'
 import auth from "../../config/firebaseauth"
 import LoginView from './LoginView'
 class LoginContainer extends Component {
+    constructor(props) {
+        super(props)
+        console.log(this.props.isStudent)
+    }
     handleSignin = async (event) => { //sign in handler
         event.preventDefault()
         const {email, password} = event.target.elements
@@ -17,7 +21,7 @@ class LoginContainer extends Component {
 
     }
     render() {
-        return <LoginView isStudent={this.props.isStudent} onSubmit={this.handleSignin}/>
+        return <LoginView isStudent={this.props.isStudent} onSubmit={this.handleSignin} userUpdate={this.props.userUpdate}/>
     }
 }
 
