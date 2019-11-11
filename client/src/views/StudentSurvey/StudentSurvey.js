@@ -1,8 +1,25 @@
 import React from 'react';
 import './StudentSurvey.css';
 import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
+import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 
 class StudentSurvey extends React.Component {
+  handleSubmit(event) {
+    event.preventDefault(); // prevent page refresh during testing, might prevent post
+    const data = new FormData(event.target);
+
+    for (var pair of data.entries()) {
+      console.log(pair[0]+ ': ' + pair[1]);
+    }
+  }
+
+  /*
+    Add state to the skill selector class to ensure
+    that no more than three are chosen, save them into array,
+    then add function that takes in FormData and appends the
+    array of skills to it
+  */
+
   render() {
     return (
       <div className='container'>
@@ -10,35 +27,33 @@ class StudentSurvey extends React.Component {
           <div className='col'>
             <div className="card shadow-lg p-3 mb-5 bg-white rounded">
               <div className="card-body">
-                <h3 className="card-title">Contact Information</h3>
-                <form>
+                <form onSubmit={this.handleSubmit}>
+                  <h3 className="card-title">Contact Information</h3>
                   <div className="form-row">
                     <div className="form-group col">
-                      <label for="inputFirstName">First name</label>
-                      <input type="text" className="form-control" placeholder="First name"/>
+                      <label htmlFor="inputFirstName">First name</label>
+                      <input type="text" className="form-control" placeholder="First name" name="firstName"/>
                     </div>
                     <div className="form-group col">
-                      <label for="inputLastName">Last name</label>
-                      <input type="text" className="form-control" placeholder="Last name"/>
-                     </div>
+                      <label htmlFor="inputLastName">Last name</label>
+                      <input type="text" className="form-control" placeholder="Last name" name="lastName"/>
+                    </div>
                   </div>
                   <div className="form-row">
                     <div className="form-group col">
-                      <label for="inputEmail">Email</label>
-                      <input type="email" className="form-control" placeholder="Email"/>
+                      <label htmlFor="inputEmail">Email</label>
+                      <input type="email" className="form-control" placeholder="Email" name="email"/>
                     </div>
                     <div className="form-group col">
-                      <label for="inputNumber">Telephone number</label>
-                      <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx"/>
+                      <label htmlFor="inputNumber">Telephone number</label>
+                      <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx" name="telephone"/>
                     </div>
                   </div>
-                </form>
-                <br/>
-                <h3 className="card-title">Professional Interests and Skills</h3>
-                <form>
+                  <br/>
+                  <h3 className="card-title">Professional Interests and Skills</h3>
                   <div className="form-group">
-                    <label for="selectIndustry">Select the industry that best describes your professional interests:</label>
-                    <select className="form-control" id="selectIndustry" size="10">
+                    <label htmlFor="selectIndustry">Select the industry that best describes your professional interests:</label>
+                    <select className="form-control" id="selectIndustry" size="10" name="industry">
                       <option>Medical/Healthcare</option>
                       <option>Engineering</option>
                       <option>Tech</option>
@@ -51,12 +66,17 @@ class StudentSurvey extends React.Component {
                       <option>Media/Entertainment</option>
                     </select>
                   </div>
+                  <h5>Pick the top 3 soft skills you are good at:</h5>
+                  <SkillSelector/>
+                  <br/>
+                  <h5>Pick the top 3 soft skills you want to work on:</h5>
+                  <SkillSelector/>
+                  <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
-                <button type="submit" className="btn btn-primary" Style="margin-bottom: 5vh; margin-top: 3vh;">Submit</button>
                 <h3 className="card-title">Self-Assessment Survey</h3>
                 <h6 className="card-subtitle mb-2 text-muted">Please consider completing this additional self-assessment survey:</h6>
                 <div className="embed-responsive embed-responsive-16by9">
-                  <iframe className="embed-responsive-item" src='https://www.surveymonkey.com/r/spectSelfAssessment' onLoad="alert('Test');"></iframe>
+                  <iframe className="embed-responsive-item" src='https://www.surveymonkey.com/r/spectSelfAssessment'></iframe>
                 </div>
               </div>
             </div>
