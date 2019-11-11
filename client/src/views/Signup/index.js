@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 import auth from "../../config/firebaseauth"
 import SignupView from './SignupView'
-
+import api from '../../api'
 class SignupContainer extends Component {
     constructor(props) {
         super(props)
@@ -12,14 +12,12 @@ class SignupContainer extends Component {
         event.preventDefault()
         console.log(event.target.elements)
         const {email, firstname, lastname, password} = event.target.elements;
-        try {
-            console.log(email.value)
-            console.log(firstname.value)
-            console.log(lastname.value)
-            console.log(password.value)
-            // const user = await auth.createUserWithEmailAndPassword(email.value, password.value);
-            // console.log(user)
-            // this.props.history.push("/studentsurvey")
+        try { 
+            const newuser = await auth.createUserWithEmailAndPassword(email.value, password.value);
+
+            // can use newuser.email and newuser.uid
+            console.log(newuser)
+            this.props.history.push("/studentsurvey")
         } catch(error) {
             alert(error)
         }

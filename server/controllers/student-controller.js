@@ -1,8 +1,6 @@
 
 /* Dependencies */
 var Student = require('../models/StudentSchema.js')    
-var Auth = require('../models/AuthSchema.js')
-
 
 exports.create = function(req, res) {
 

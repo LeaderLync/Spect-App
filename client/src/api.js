@@ -23,6 +23,8 @@ export default {
         client.get('/students')
         .then(response => {
             return response
-        }).catch
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 }
