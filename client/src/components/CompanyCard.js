@@ -20,12 +20,16 @@ const useStyles = makeStyles({
   },
   media: {
   	height: 80,
-  	width: 150,
-  	padding: 20,
+  	width: 'maxWidth',
+    position: 'relative',
+
   },
   logo: {
+    display: 'block',
   	height: '100%',
-  	justifyContent: 'center'
+
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
   actions: {
   	justifyContent: 'center',
