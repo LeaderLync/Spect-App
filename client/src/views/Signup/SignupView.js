@@ -62,7 +62,7 @@ class SignupView extends React.Component {
                   placeholder="Password"
                 />
                 <button className="button-signin" type="submit">Register</button>
-                <Link to="/signup" className="link"> 
+                <Link to="/login" className="link"> 
                   Back to login
                 </Link>
                 <Link to="/signup" className="link">
