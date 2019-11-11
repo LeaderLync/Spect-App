@@ -26,6 +26,8 @@ class CompanyProfile extends React.Component
     
     render() {
 
+        //Variable that represents the list of job post for a specific company
+        //Based on the jobPost of the Schema for the Company, a new card is made
         const cardList = data[0].jobPost.map(company => 
             {
                 return(
@@ -33,7 +35,7 @@ class CompanyProfile extends React.Component
                         <div> 
                             <div>
                                 <CardGroup>
-                                    <Card bg="light" style={{margin: '2px'}} >
+                                    <Card border="warning" bg="light" style={{margin: '2px'}} >
                                         <Card.Header>Job Post</Card.Header>
                                         <Card.Body>
                                         <Card.Title>{company.jobTitle}</Card.Title>
@@ -59,8 +61,8 @@ class CompanyProfile extends React.Component
                         <Button variant="danger" style={{margin: '2px'}}>Logout</Button>
                     </Navbar>
                     <div className="info-rectangle">
-                        <h3 className="company-name">{data[0].name}</h3>
-                        <img src={sampleImage} className="logo-border" />
+                        <h3 className="company-name">{data[0].name}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
+                        <img src={sampleImage} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
                         <div className='topSkills'>
                             <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "whitesmoke"}}>Top Three Desired Skills</h5>
                             <body style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "whitesmoke"}}>
@@ -82,5 +84,4 @@ class CompanyProfile extends React.Component
     }
 
 }
-
 export default CompanyProfile
