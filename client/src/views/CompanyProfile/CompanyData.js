@@ -29,11 +29,27 @@ export default[
             },
             {
                 jobID: 3,
-                jobTitle: 'Product Manager Intern',
-                jobDescription: 'Lead a team of 20 individuals to accomplish a certain goal.',
+                jobTitle: 'Cyber Security Intern',
+                jobDescription: 'Stop hackers from taking over',
+                jobRequirements: 'Leadership, Creativity and Charisma',
+                jobLink: 'www.google.com/jobs'
+            },
+            {
+                jobID: 4,
+                jobTitle: 'CEO',
+                jobDescription: 'Lead a the worlds largest company.',
+                jobRequirements: 'Leadership, Creativity and Charisma',
+                jobLink: 'www.google.com/jobs'
+            },
+            {
+                jobID: 5,
+                jobTitle: 'Research Intern',
+                jobDescription: 'Learn about our new technologies.',
                 jobRequirements: 'Leadership, Creativity and Charisma',
                 jobLink: 'www.google.com/jobs'
             }
+
+
 
         ]
     },
