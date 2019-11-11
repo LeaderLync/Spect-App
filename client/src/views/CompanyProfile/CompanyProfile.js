@@ -16,7 +16,7 @@ class CompanyProfile extends React.Component
 
         this.state =
         {
-            jobs: data,
+            jobs: data[0].jobPost,
             viewShow: false,
             setViewShow: false,
             editShow: false,
