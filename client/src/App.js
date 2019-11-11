@@ -3,11 +3,16 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import StudentSurvey from './views/StudentSurvey/StudentSurvey';
 import NotFound from "./views/NotFound"
+//import Header from "./components/Header/Header"
+import StudentProfile from "./views/StudentProfile/StudentProfile"
 import Header from "./components/Header/Header"
+import Navbar from "./components/Navbar/Navbar"
+import CompanyCard from "./components/CompanyCard"
 import Login from './views/Login'
 import auth from './config/firebaseauth';
 import PrivateRoute from './components/PrivateRoute'
 import Signup from './views/Signup'
+import CompanyProfile from './views/CompanyProfile/CompanyProfile';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -41,7 +46,6 @@ class App extends Component {
     })
   }
   
-
   render() {
     if(this.state.loading) {
       return (<p>It is still loading</p>)
@@ -52,13 +56,14 @@ class App extends Component {
             <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/Home" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/CompanyProfile" component={CompanyProfile} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>
             {/* <Route exact path="/signup" component={Signup}/> */}
-
             <Route exact path="/login" render={(props) => <Login {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} />}/>
             <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)}/>}/>
+            <Route exact path="/studentProfile" component={StudentProfile} />
             <Route component={NotFound}/>
           </Switch>
         </div>

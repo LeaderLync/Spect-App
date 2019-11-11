@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import './CompanyPopup.css'
 
 const useStyles = makeStyles(theme => ({
@@ -33,9 +34,9 @@ export default function CompanyPopup() {
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
+            <Button variant="contained" size="large" color="primary" onClick={handleOpen}>
                 Profile
-            </button>
+            </Button>
             <Modal
                 aria-labelledby="modalTitle"
                 aria-describedby="AboutUs"
