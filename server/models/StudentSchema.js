@@ -8,7 +8,7 @@ var studentSchema = new Schema({
   name: { type: String, required: true},
 
   topSkills: [{
-    topSkillOne: String, 
+    topSkillOne: String,
     topSkillTwo: String,
     topSkillThree: String
   }],
