@@ -11,13 +11,17 @@ class SkillSelector extends React.Component {
   }
 
   selectSkill(event) {
-    console.log(event.target.checked);
     if (event.target.checked && (this.state.skills.length < this.state.skillLimit)) {
-      this.setState({skills: [...this.state.skills, event.target.value]});
+      this.setState({
+        skills: [...this.state.skills, event.target.value]
+      },
+      () => this.props.passToParent(this.state.skills));
     } else {
-      this.setState({skills: this.state.skills.filter((name)=> name!==event.target.value)});
+      this.setState({
+        skills: this.state.skills.filter((name)=> name!==event.target.value)
+      },
+      () => this.props.passToParent(this.state.skills));
     }
-    console.log(this.state.skills);
   }
 
   render() {

@@ -4,14 +4,30 @@ import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 
 class StudentSurvey extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      strongSkills: [],
+      weakSkills: []
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
     const data = new FormData(event.target);
+    data.append("Strong skills", this.state.strongSkills);
+    data.append("Weak skills", this.state.weakSkills);
 
     for (var pair of data.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
     }
   }
+
+  getStrongSkills = (skills) => {this.setState({strongSkills: skills})}
+
+  getWeakSkills = (skills) => {this.setState({weakSkills: skills})}
 
   /*
     Add state to the skill selector class to ensure
@@ -66,11 +82,12 @@ class StudentSurvey extends React.Component {
                       <option>Media/Entertainment</option>
                     </select>
                   </div>
-                  <h5>Pick the top 3 soft skills you are good at:</h5>
-                  <SkillSelector/>
+                  <br/>
+                  <h5>Pick your top 3 strongest soft skills:</h5>
+                  <SkillSelector passToParent={this.getStrongSkills}/>
                   <br/>
                   <h5>Pick the top 3 soft skills you want to work on:</h5>
-                  <SkillSelector/>
+                  <SkillSelector passToParent={this.getWeakSkills}/>
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
                 <h3 className="card-title">Self-Assessment Survey</h3>
