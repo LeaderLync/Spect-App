@@ -26,10 +26,17 @@ export default[
                 jobDescription: 'Lead a team of 20 individuals to accomplish a certain goal.',
                 jobRequirements: 'Leadership, Creativity and Charisma',
                 jobLink: 'www.google.com/jobs'
+            },
+            {
+                jobID: 3,
+                jobTitle: 'Product Manager Intern',
+                jobDescription: 'Lead a team of 20 individuals to accomplish a certain goal.',
+                jobRequirements: 'Leadership, Creativity and Charisma',
+                jobLink: 'www.google.com/jobs'
             }
 
         ]
-    }
+    },
 
     
 ]
