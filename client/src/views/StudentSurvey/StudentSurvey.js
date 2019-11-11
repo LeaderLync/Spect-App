@@ -29,13 +29,6 @@ class StudentSurvey extends React.Component {
 
   getWeakSkills = (skills) => {this.setState({weakSkills: skills})}
 
-  /*
-    Add state to the skill selector class to ensure
-    that no more than three are chosen, save them into array,
-    then add function that takes in FormData and appends the
-    array of skills to it
-  */
-
   render() {
     return (
       <div className='container'>
@@ -48,28 +41,28 @@ class StudentSurvey extends React.Component {
                   <div className="form-row">
                     <div className="form-group col">
                       <label htmlFor="inputFirstName">First name</label>
-                      <input type="text" className="form-control" placeholder="First name" name="firstName"/>
+                      <input type="text" className="form-control" placeholder="First name" name="firstName" required/>
                     </div>
                     <div className="form-group col">
                       <label htmlFor="inputLastName">Last name</label>
-                      <input type="text" className="form-control" placeholder="Last name" name="lastName"/>
+                      <input type="text" className="form-control" placeholder="Last name" name="lastName" required/>
                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-group col">
                       <label htmlFor="inputEmail">Email</label>
-                      <input type="email" className="form-control" placeholder="Email" name="email"/>
+                      <input type="email" className="form-control" placeholder="Email" name="email" required/>
                     </div>
                     <div className="form-group col">
                       <label htmlFor="inputNumber">Telephone number</label>
-                      <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx" name="telephone"/>
+                      <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx" name="telephone" required/>
                     </div>
                   </div>
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills</h3>
                   <div className="form-group">
                     <label htmlFor="selectIndustry">Select the industry that best describes your professional interests:</label>
-                    <select className="form-control" id="selectIndustry" size="10" name="industry">
+                    <select className="form-control" id="selectIndustry" size="10" name="industry" required>
                       <option>Medical/Healthcare</option>
                       <option>Engineering</option>
                       <option>Tech</option>
