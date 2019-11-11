@@ -13,8 +13,8 @@ import Oracle_logo from '../../assets/Oracle_logo.svg';
 import Google_logo from '../../assets/Google_2015_logo.svg';
 import Twitter_logo from '../../assets/Twitter_Logo_Blue.svg';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CompanyPopup from '../../components/CompanyPopup.js'
-
+import CompanyPopup from '../../components/CompanyPopup.js';
+import Container from '@material-ui/core/Container';
 
 function StudentProfile() {
 
@@ -98,7 +98,7 @@ function StudentProfile() {
                                     </Grid>
                                     <Grid item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
-                                            <CardContent style={{textAlign: 'center', justifyContent: 'center'}}>
+                                            <CardContent>
                                                 <Typography>
                                                     Critical Thinking
                                                 </Typography>
