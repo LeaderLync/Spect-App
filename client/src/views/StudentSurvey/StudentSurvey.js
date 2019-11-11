@@ -24,6 +24,7 @@ class StudentSurvey extends React.Component {
     for (var pair of data.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
     }
+    this.props.history.push("/studentprofile");
   }
 
   getStrongSkills = (skills) => {this.setState({strongSkills: skills})}
