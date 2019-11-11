@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   card: {
     maxWidth: 345,
     margin: 50,
-    border: '1px solid orange',
+    border: '1px solid blue',
 
   },
   media: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   	justifyContent: 'center',
   },
   matchButton: {
-  	background: 'linear-gradient(45deg, #FF8E53 30%, #FF8E53 90%)',
+  	background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)',
   }
 });
 

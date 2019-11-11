@@ -12,6 +12,7 @@ const App = () => {
     <div>
       <Navbar />
       <CompanyCard />
+      <CompanyCard />
       <Switch>
         <Route exact path="/Home" component={Home} />
         <Route exact path="/">

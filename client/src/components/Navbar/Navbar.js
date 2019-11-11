@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
    bar: {
-    background: 'linear-gradient(45deg, #0021A5 30%, #0021A 90%)',
+    background: 'linear-gradient(180deg, #FA4616 30%, #FA0700 90%)', //'linear-gradient(45deg, #0021A5 30%, #0021A 90%)',
     border: 0,
     padding: '0 30px',
   },
