@@ -4,8 +4,9 @@ import data from './CompanyData'
 
 import sampleImage from '../../assets/Company Logo.png'
 import leadership from '../../assets/Leadership Icon.png'
+import Navbar from '../../components/Navbar/Navbar'
 
-import {Navbar, Image, CardGroup, Card, Container, Button, Modal, ModalBody, ModalTitle} from 'react-bootstrap'
+import { Image, CardGroup, Card, Container, Button, Modal, ModalBody, ModalTitle} from 'react-bootstrap'
 
 
 class CompanyProfile extends React.Component
@@ -56,9 +57,7 @@ class CompanyProfile extends React.Component
 
             return(
                 <Container>
-                    <Navbar style={{backgroundColor: 'rgba(250, 70, 22, 0.61)'}}>
-                        <Navbar.Brand style={{fontFamily: 'Calibri', fontStyle: 'bold', fontWeight: '900', fontSize: "1.5vw",}}>Spect App Internship Match</Navbar.Brand>
-                        <Button variant="danger" style={{margin: '2px'}}>Logout</Button>
+                    <Navbar>
                     </Navbar>
                     <div className="info-rectangle">
                         <h3 className="company-name">{data[0].name}</h3> {/*Company Name, styled by CompanyProfile.css page*/}

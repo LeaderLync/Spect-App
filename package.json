@@ -39,7 +39,7 @@
     "should": "^13.2.3",
     "supertest": "^4.0.2",
     "typescript": "^3.7.2",
+    "typeface-roboto": "0.0.75",
     "uuid": "^3.3.3"
-  },
-  "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
+  }
 }
