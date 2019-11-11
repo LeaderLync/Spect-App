@@ -14,7 +14,8 @@ class SignupContainer extends Component {
         const {email, firstname, lastname, password} = event.target.elements;
         try { 
             const newuser = await auth.createUserWithEmailAndPassword(email.value, password.value);
-
+            const uid = await api.registernewuser(newuser.user.uid)
+            console.log(uid)
             // can use newuser.email and newuser.uid
             console.log(newuser)
             this.props.history.push("/studentsurvey")

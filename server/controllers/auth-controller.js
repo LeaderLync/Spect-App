@@ -1,4 +1,4 @@
-var Auth = require('../models/AuthSchema.js')    
+var User = require('../models/UserSchema.js')    
 const uuid = require('uuid/v4')
 
 exports.create = function(req, res) {
@@ -9,7 +9,7 @@ exports.create = function(req, res) {
     authuid : req.body.uid,
     collectionid : id
   }
-  var newUser = new Auth(payload);
+  var newUser = new User(payload);
   /* Then save the listing */
   newUser.save(function(err) {
     if(err) {
@@ -23,36 +23,36 @@ exports.create = function(req, res) {
 };
 
 // /* Show the current listing */
-exports.read = function(req, res) {
-  /* send back the listing as json from the request */
-  res.json(req.body);
-};
+// exports.read = function(req, res) {
+//   /* send back the listing as json from the request */
+//   res.json(req.body);
+// };
 
-/* Update a listing - note the order in which this function is called by the router*/
-exports.update = function(req, res) {
-  if (!req.body.updatedStudent) {
-    return res.status(400).send({
-      message: "Updated content cannot be empty"
-    })
-  }
-  List
-  var updatedStudent = new Listing(req.body);
-  if(req.results) {
-    updatelisting.coordinates = {
-      latitude: req.results.lat, 
-      longitude: req.results.lng
-    };
-  }
-  updatelisting.save(function(err) {
-    if(err) {
-      console.log(err);
-      res.status(400).send(err);
-    } else {
-      res.json(updatelisting);
-      console.log(updatelisting)
-    }
-  });
-};
+// /* Update a listing - note the order in which this function is called by the router*/
+// exports.update = function(req, res) {
+//   if (!req.body.updatedStudent) {
+//     return res.status(400).send({
+//       message: "Updated content cannot be empty"
+//     })
+//   }
+//   List
+//   var updatedStudent = new Listing(req.body);
+//   if(req.results) {
+//     updatelisting.coordinates = {
+//       latitude: req.results.lat, 
+//       longitude: req.results.lng
+//     };
+//   }
+//   updatelisting.save(function(err) {
+//     if(err) {
+//       console.log(err);
+//       res.status(400).send(err);
+//     } else {
+//       res.json(updatelisting);
+//       console.log(updatelisting)
+//     }
+//   });
+// };
 
 // /* Delete a listing */
 // exports.delete = function(req, res) {
