@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
-var listingSchema = new Schema({
+var CompanySchema = new Schema({
   uid: String,
   name: String,
   bio: String,
@@ -25,7 +25,7 @@ var listingSchema = new Schema({
     updated_at: Date,
 });
 /* create a 'pre' function that adds the updated_at and created_at if not already there property */
-listingSchema.pre('save', function(next) {
+CompanySchema.pre('save', function(next) {
     var currentDate = new Date();
     this.updated_at = currentDate;
     // if it doesn't exist, add created_at date
@@ -34,7 +34,7 @@ listingSchema.pre('save', function(next) {
     next();
   });
 
-var Listing = mongoose.model('Listing', listingSchema);
+var Company = mongoose.model('Company', CompanySchema);
 
 /* Export the model to make it available to other parts of your Node application */
-module.exports = Listing;
+module.exports = Company;

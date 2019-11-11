@@ -3,7 +3,7 @@
 var Student = require('../models/StudentSchema.js')    
 
 exports.create = function(req, res) {
-
+  console.log(req.body)
   var newStudent = new Student(req.body);
   /* Then save the listing */
   newStudent.save(function(err) {
@@ -20,7 +20,7 @@ exports.create = function(req, res) {
 // /* Show the current listing */
 exports.read = function(req, res) {
   /* send back the listing as json from the request */
-  res.json(req.student);
+  res.json(req.body);
 };
 
 // /* Update a listing - note the order in which this function is called by the router*/

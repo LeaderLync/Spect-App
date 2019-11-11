@@ -1,9 +1,15 @@
 var Auth = require('../models/AuthSchema.js')    
-
+const uuid = require('uuid/v4')
 
 exports.create = function(req, res) {
+  var id = uuid()
 
-  var newUser = new Auth(req.body);
+  // console.log(req.body)
+  var payload = {
+    authuid : req.body.uid,
+    collectionid : id
+  }
+  var newUser = new Auth(payload);
   /* Then save the listing */
   newUser.save(function(err) {
     if(err) {
@@ -22,40 +28,40 @@ exports.read = function(req, res) {
   res.json(req.body);
 };
 
-// /* Update a listing - note the order in which this function is called by the router*/
-// exports.update = function(req, res) {
-//   if (!req.body.updatedStudent) {
-//     return res.status(400).send({
-//       message: "Updated content cannot be empty"
-//     })
-//   }
-//   List
-//   var updatedStudent = new Listing(req.body);
-//   if(req.results) {
-//     updatelisting.coordinates = {
-//       latitude: req.results.lat, 
-//       longitude: req.results.lng
-//     };
-//   }
-//   updatelisting.save(function(err) {
-//     if(err) {
-//       console.log(err);
-//       res.status(400).send(err);
-//     } else {
-//       res.json(updatelisting);
-//       console.log(updatelisting)
-//     }
-//   });
-// };
+/* Update a listing - note the order in which this function is called by the router*/
+exports.update = function(req, res) {
+  if (!req.body.updatedStudent) {
+    return res.status(400).send({
+      message: "Updated content cannot be empty"
+    })
+  }
+  List
+  var updatedStudent = new Listing(req.body);
+  if(req.results) {
+    updatelisting.coordinates = {
+      latitude: req.results.lat, 
+      longitude: req.results.lng
+    };
+  }
+  updatelisting.save(function(err) {
+    if(err) {
+      console.log(err);
+      res.status(400).send(err);
+    } else {
+      res.json(updatelisting);
+      console.log(updatelisting)
+    }
+  });
+};
 
 // /* Delete a listing */
 // exports.delete = function(req, res) {
-//   var listing = req.student;
+//   var listing = req.auth;
 //   Student.findOneAndRemove({id: listing.id}, (err, entry) => {
 //     if (err) res.status(500).send(err);
 //     else res.status(200).send(entry);
 //   })
-//   /* Add your code to remove the listins */
+  /* Add your code to remove the listins */
 
 // };
 
