@@ -10,7 +10,7 @@ const appconfig = {
     appId: (process.env.APP_ID),
     measurementId: (process.env.MEASUREMENT_ID)
 }
-
+console.log(appconfig)
 const app = firebase.initializeApp(appconfig)
 const auth = app.auth()
 export default auth
