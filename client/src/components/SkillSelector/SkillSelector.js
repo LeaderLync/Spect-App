@@ -7,20 +7,25 @@ class SkillSelector extends React.Component {
       skills: [],
       skillLimit: 3
     };
+    
     this.selectSkill = this.selectSkill.bind(this);
   }
 
   selectSkill(event) {
-    if (event.target.checked && (this.state.skills.length < this.state.skillLimit)) {
-      this.setState({
-        skills: [...this.state.skills, event.target.value]
-      },
-      () => this.props.passToParent(this.state.skills));
-    } else {
+    if (event.target.checked) { // clicking on an unchecked box
+      if (this.state.skills.length < this.state.skillLimit) {
+        this.setState({
+          skills: [...this.state.skills, event.target.value]
+        },
+        () => this.props.passToParent(this.state.skills)); // passes skill array to parent component
+      } else { // attempting to check more than 3 skills
+        console.log("Skill limit reached!");
+      }
+    } else { // clicking on an already checked box to uncheck it
       this.setState({
         skills: this.state.skills.filter((name)=> name!==event.target.value)
       },
-      () => this.props.passToParent(this.state.skills));
+      () => this.props.passToParent(this.state.skills)); // passes skill array to parent component
     }
   }
 
