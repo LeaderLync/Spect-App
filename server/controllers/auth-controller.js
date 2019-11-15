@@ -16,8 +16,8 @@ exports.create = function(req, res) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newUser);
-      console.log(newUser)
+      res.status(200).json(payload.collectionid);
+      console.log(newUser);
     }
   });
 };
