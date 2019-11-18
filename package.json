@@ -27,6 +27,7 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "firebase": "^7.2.3",
     "jquery": "^1.9.1",
@@ -38,8 +39,8 @@
     "react-bootstrap": "^1.0.0-beta.14",
     "should": "^13.2.3",
     "supertest": "^4.0.2",
-    "typescript": "^3.7.2",
     "typeface-roboto": "0.0.75",
+    "typescript": "^3.7.2",
     "uuid": "^3.3.3"
   }
 }
