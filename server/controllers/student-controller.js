@@ -31,7 +31,7 @@ exports.update = function(req, res) {
     })
   }
   List
-  var updatedStudent = new Listing(req.body);
+  var updatedStudent = new Student(req.body);
   if(req.results) {
     updatelisting.coordinates = {
       latitude: req.results.lat, 
@@ -79,15 +79,15 @@ exports.update = function(req, res) {
 //         bind it to the request object as the property 'listing', 
 //         then finally call next
 //  */
-// exports.listingByID = function(req, res, next, id) {
-//   Listing.findById(id).exec(function(err, listing) {
-//     if(err) {
-//       console.log('error on listing by id')
-//       res.status(400).send(err);
-//     } else {
-//       console.log('worked for listing by id')
-//       req.listing = listing;
-//       next();
-//     }
-//   });
-// };
+exports.studentById = function(req, res, next, id) {
+  Student.findById(id).exec(function(err, newStudent) {
+    if(err) {
+      console.log('error on listing by id')
+      res.status(400).send(err);
+    } else {
+      console.log('worked for listing by id')
+      req.newStudent = newStudent;
+      next();
+    }
+  });
+};
