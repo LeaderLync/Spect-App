@@ -13,7 +13,8 @@ class SkillSelector extends React.Component {
   }
 
   selectSkill(event) {
-    if (event.target.checked) { // clicking on an unchecked box
+    this.props.passToParent(this.state.skills);
+    /*if (event.target.checked) { // clicking on an unchecked box
       if (this.state.skills.length < this.state.skillLimit) {
         this.setState({
           skills: [...this.state.skills, event.target.value]
@@ -27,12 +28,12 @@ class SkillSelector extends React.Component {
         skills: this.state.skills.filter((name)=> name!==event.target.value)
       },
       () => this.props.passToParent(this.state.skills)); // passes skill array to parent component
-    }
+    }*/
   }
 
   render() {
     const skillList = skillData.map(skill => {
-      return <option>{skill.name}</option>
+      return <option key={skill.id}>{skill.name}</option>
     });
 
     return (
@@ -41,8 +42,8 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="first">1st</label>
           </div>
-          <select className="form-control custom-select" id="first">
-            <option selected disabled>Choose...</option>
+          <select className="form-control custom-select" id="first" defaultValue="Choose...">
+            <option disabled>Choose...</option>
             {skillList}
           </select>
         </div>
@@ -50,8 +51,8 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="second">2nd</label>
           </div>
-          <select className="form-control custom-select" id="second">
-            <option selected disabled>Choose...</option>
+          <select className="form-control custom-select" id="second" defaultValue="Choose...">
+            <option disabled>Choose...</option>
             {skillList}
           </select>
         </div>
@@ -59,8 +60,8 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="third">3rd</label>
           </div>
-          <select className="form-control custom-select" id="third">
-            <option selected disabled>Choose...</option>
+          <select className="form-control custom-select" id="third" defaultValue="Choose...">
+            <option disabled>Choose...</option>
             {skillList}
           </select>
         </div>
