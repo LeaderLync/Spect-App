@@ -2,11 +2,13 @@ import React from 'react';
 import './StudentSurvey.css';
 import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
+import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 
 class StudentSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedIndustries: [],
       strongSkills: [], // 3 of your strongest soft skills
       weakSkills: []    // 3 soft skills you want to work on
     };
@@ -17,6 +19,7 @@ class StudentSurvey extends React.Component {
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
     const data = new FormData(event.target); // initializes with all text fields and select field
+    data.append("selectedIndustries", this.state.selectedIndustries); //industries of interest array
     data.append("strongSkills", this.state.strongSkills); // strong soft skills array
     data.append("weakSkills", this.state.weakSkills); // weak soft skills array
 
@@ -27,6 +30,8 @@ class StudentSurvey extends React.Component {
 
     this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
   }
+
+  getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, console.log(industries))} // retireves state from child
 
   getStrongSkills = (skills) => {this.setState({strongSkills: skills}, console.log(skills))} // retrieves state from child
 
@@ -64,19 +69,8 @@ class StudentSurvey extends React.Component {
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills</h3>
                   <div className="form-group">
-                    <label htmlFor="selectIndustry">Select the industry that best describes your professional interests:</label>
-                    <select className="form-control" id="selectIndustry" size="10" name="industry" required>
-                      <option>Medical/Healthcare</option>
-                      <option>Engineering</option>
-                      <option>Tech</option>
-                      <option>Law</option>
-                      <option>Education</option>
-                      <option>Manufacturing (Food, chemical, textiles, machines, equipment)</option>
-                      <option>Retail</option>
-                      <option>Agriculture</option>
-                      <option>Sports</option>
-                      <option>Media/Entertainment</option>
-                    </select>
+                    <label htmlFor="selectIndustry">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
+                    <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
                   <h5>Pick your top 3 strongest soft skills:</h5>
