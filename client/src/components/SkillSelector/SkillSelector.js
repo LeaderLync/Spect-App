@@ -42,6 +42,7 @@ class SkillSelector extends React.Component {
             <label className="input-group-text" htmlFor="first">1st</label>
           </div>
           <select className="form-control custom-select" id="first">
+            <option selected disabled>Choose...</option>
             {skillList}
           </select>
         </div>
@@ -50,6 +51,7 @@ class SkillSelector extends React.Component {
             <label className="input-group-text" htmlFor="second">2nd</label>
           </div>
           <select className="form-control custom-select" id="second">
+            <option selected disabled>Choose...</option>
             {skillList}
           </select>
         </div>
@@ -58,6 +60,7 @@ class SkillSelector extends React.Component {
             <label className="input-group-text" htmlFor="third">3rd</label>
           </div>
           <select className="form-control custom-select" id="third">
+            <option selected disabled>Choose...</option>
             {skillList}
           </select>
         </div>
