@@ -1,4 +1,5 @@
 import React from 'react';
+import skillData from '../../assets/SkillData.js'
 
 class SkillSelector extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class SkillSelector extends React.Component {
       skills: [],
       skillLimit: 3
     };
-    
+
     this.selectSkill = this.selectSkill.bind(this);
   }
 
@@ -30,43 +31,35 @@ class SkillSelector extends React.Component {
   }
 
   render() {
+    const skillList = skillData.map(skill => {
+      return <option>{skill.name}</option>
+    });
+
     return (
       <div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Communication" value="Communication" onChange={this.selectSkill} checked={this.state.skills.indexOf("Communication")>=0}/>
-          <label className="form-check-label" htmlFor="Communication">Communication</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="first">1st</label>
+          </div>
+          <select className="form-control custom-select" id="first">
+            {skillList}
+          </select>
         </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Leadership" value="Leadership" onChange={this.selectSkill} checked={this.state.skills.indexOf("Leadership")>=0}/>
-          <label className="form-check-label" htmlFor="Leadership">Leadership</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="second">2nd</label>
+          </div>
+          <select className="form-control custom-select" id="second">
+            {skillList}
+          </select>
         </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Creativity" value="Creativity" onChange={this.selectSkill} checked={this.state.skills.indexOf("Creativity")>=0}/>
-          <label className="form-check-label" htmlFor="Creativity">Creativity</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Mindfulness" value="Mindfulness" onChange={this.selectSkill} checked={this.state.skills.indexOf("Mindfulness")>=0}/>
-          <label className="form-check-label" htmlFor="Mindfulness">Mindfulness</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="WorkEthic" value="WorkEthic" onChange={this.selectSkill} checked={this.state.skills.indexOf("WorkEthic")>=0}/>
-          <label className="form-check-label" htmlFor="WorkEthic">Work Ethic</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="TimeManagement" value="TimeManagement"  onChange={this.selectSkill} checked={this.state.skills.indexOf("TimeManagement")>=0}/>
-          <label className="form-check-label" htmlFor="TimeManagement">Time Management</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="CriticalThinking" value="CriticalThinking" onChange={this.selectSkill} checked={this.state.skills.indexOf("CriticalThinking")>=0}/>
-          <label className="form-check-label" htmlFor="CriticalThinking">Critical Thinking</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Teamwork" value="Teamwork" onChange={this.selectSkill} checked={this.state.skills.indexOf("Teamwork")>=0}/>
-          <label className="form-check-label" htmlFor="Teamwork">Teamwork</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="GlobalAwareness" value="GlobalAwareness" onChange={this.selectSkill} checked={this.state.skills.indexOf("GlobalAwareness")>=0}/>
-          <label className="form-check-label" htmlFor="GlobalAwareness">Global Awareness</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="third">3rd</label>
+          </div>
+          <select className="form-control custom-select" id="third">
+            {skillList}
+          </select>
         </div>
       </div>
     )
