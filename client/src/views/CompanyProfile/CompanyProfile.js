@@ -1,12 +1,13 @@
 import React from 'react';
 import './CompanyProfile.css'
 import data from './CompanyData'
+import PostJobModal from './PostJobModal'
 
 import sampleImage from '../../assets/Company Logo.png'
 import leadership from '../../assets/Leadership Icon.png'
 import Navbar from '../../components/Navbar/Navbar'
 
-import { Image, CardGroup, Card, Container, Button, Modal, ModalBody, ModalTitle} from 'react-bootstrap'
+import { Image, CardGroup, Card, Container, Button, ButtonToolbar} from 'react-bootstrap'
 
 
 class CompanyProfile extends React.Component
@@ -18,18 +19,19 @@ class CompanyProfile extends React.Component
         this.state =
         {
             jobs: data[0].jobPost,
-            viewShow: false,
-            setViewShow: false,
+            postModalShow: false,
             editShow: false,
-            setEditShow: false
         }
     }
     
     render() {
 
+        console.log(this.state.jobs)
+        let postModalClose = () => this.setState({postModalShow: false})
+
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made
-        const cardList = data[0].jobPost.map(company => 
+        const cardList = this.state.jobs.map(company => 
             {
                 return(
                     <Container key={company.jobID}>
@@ -77,6 +79,17 @@ class CompanyProfile extends React.Component
                             {cardList}
                         </CardGroup>
                     </div>
+
+
+                   <ButtonToolbar>
+                       <Button 
+                       variant="primary"
+                       onClick={() => this.setState({postModalShow: true})}>Post Job</Button>
+                       <PostJobModal
+                       show={this.state.postModalShow}
+                       onHide={postModalClose}/>
+                   </ButtonToolbar>
+
                  </Container>
             )
 

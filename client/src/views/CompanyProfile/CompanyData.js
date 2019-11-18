@@ -47,6 +47,13 @@ export default[
                 jobDescription: 'Learn about our new technologies.',
                 jobRequirements: 'Leadership, Creativity and Charisma',
                 jobLink: 'www.google.com/jobs'
+            }, 
+            {
+                jobID: 6,
+                jobTitle: 'Professional Hacker',
+                jobDescription: 'Hack instagram',
+                jobRequirements: 'Leadership, Creativity and Charisma',
+                jobLink: 'www.google.com/jobs'
             }
 
 
