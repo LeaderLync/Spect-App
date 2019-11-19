@@ -10,8 +10,8 @@ class StudentSurvey extends React.Component {
     super(props);
     this.state = {
       selectedIndustries: [],
-      strongSkills: [], // 3 of your strongest soft skills
-      weakSkills: []    // 3 soft skills you want to work on
+      strongSkills: {}, // 3 of your strongest soft skills
+      weakSkills: {}    // 3 soft skills you want to work on
     };
     console.log(this.props.user)
     console.log(this.props.collectionId)
@@ -21,14 +21,17 @@ class StudentSurvey extends React.Component {
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
     const data = new FormData(event.target); // initializes with all text fields and select field
-    data.append("selectedIndustries", this.state.selectedIndustries); //industries of interest array
-    data.append("strongSkills", this.state.strongSkills); // strong soft skills array
-    data.append("weakSkills", this.state.weakSkills); // weak soft skills array
+    data.append("selectedIndustries", JSON.stringify(this.state.selectedIndustries)); //industries of interest array
+    data.append("strongSkills", JSON.stringify(this.state.strongSkills)); // strong soft skills
+    data.append("weakSkills", JSON.stringify(this.state.weakSkills)); // weak soft skills
 
     console.log("FORM DATA SUBMISSION:")
     for (var pair of data.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
     }
+    console.log(JSON.parse(data.get("selectedIndustries")));
+    console.log(JSON.parse(data.get("strongSkills")));
+    console.log(JSON.parse(data.get("weakSkills")));
 
     this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
   }
