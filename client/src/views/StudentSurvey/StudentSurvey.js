@@ -29,9 +29,9 @@ class StudentSurvey extends React.Component {
     for (var pair of data.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
     }
-    console.log(JSON.parse(data.get("selectedIndustries")));
-    console.log(JSON.parse(data.get("strongSkills")));
-    console.log(JSON.parse(data.get("weakSkills")));
+    //console.log(JSON.parse(data.get("selectedIndustries")));
+    //console.log(JSON.parse(data.get("strongSkills")));
+    //console.log(JSON.parse(data.get("weakSkills")));
 
     this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
   }
