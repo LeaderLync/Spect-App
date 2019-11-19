@@ -81,14 +81,7 @@ export default[
     option0: "Disagree"
   }, {
     id: 20,
-    question: "[CRITICAL THINKING]  There are seven employees presenting at a conference; Julia, Andrew, Penny, Bobby, Shayna, Jones, and Neil.  Each will present once and will go after another.  The order of presentations is under the following conditions:
-	Julia must present at some time before Penny presents.
-
-	Shayna must present at some time before Andrew presents.
-
-	Jones must present either immediately before or immediately after Bobby presents.
-
-Neil must present third.",
+    question: "[CRITICAL THINKING]  There are seven employees presenting at a conference; Julia, Andrew, Penny, Bobby, Shayna, Jones, and Neil.  Each will present once and will go after another.  The order of presentations is under the following conditions:",
     option1: "Second",
     option0: "Third"
   }, {

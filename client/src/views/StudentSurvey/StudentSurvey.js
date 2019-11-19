@@ -3,6 +3,7 @@ import './StudentSurvey.css';
 import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
+import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 
 class StudentSurvey extends React.Component {
   constructor(props) {
@@ -84,6 +85,7 @@ class StudentSurvey extends React.Component {
                   <br/>
                   <h5>Pick the top 3 soft skills you want to work on:</h5>
                   <SkillSelector passToParent={this.getWeakSkills}/>
+                  <QuestionForm/>
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
                 <h3 className="card-title">Self-Assessment Survey</h3>
