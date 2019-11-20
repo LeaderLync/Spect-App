@@ -1,4 +1,6 @@
-var User = require('../models/UserSchema.js')    
+var User = require('../models/UserSchema.js')  
+var Student = require('../models/StudentSchema')
+var Company = require('../models/company.model')  
 const uuid = require('uuid/v4')
 
 exports.create = function(req, res) {
@@ -7,19 +9,20 @@ exports.create = function(req, res) {
   // console.log(req.body)
   var payload = {
     authuid : req.body.uid,
-    collectionid : id
+    collectionid : id,
+    accountType: req.body.accountType
   }
   var newUser = new User(payload);
-  /* Then save the listing */
+
   newUser.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.status(200).json(payload.collectionid);
       console.log(newUser);
     }
   });
+
 };
 
 // /* Show the current listing */

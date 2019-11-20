@@ -13,6 +13,7 @@ import auth from './config/firebaseauth';
 import PrivateRoute from './components/PrivateRoute'
 import Signup from './views/Signup'
 import CompanyProfile from './views/CompanyProfile/CompanyProfile';
+import api from './api'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -51,6 +52,8 @@ class App extends Component {
       collectionid: value
     })
     console.log("updating" + this.state.collectionid)
+
+
   }
   
   render() {

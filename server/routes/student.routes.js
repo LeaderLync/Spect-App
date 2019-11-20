@@ -13,6 +13,12 @@ router.route('/')
 
 
 router.route('/:studentid')
+    .get(studentcontroller.read)
+
+
+
+
+router.param('studentid', studentcontroller.studentByID)
 
 
 

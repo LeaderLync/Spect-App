@@ -38,5 +38,15 @@ export default {
             console.log(err)
             return null;
         })
+    },
+    getuser(userid) {
+        return client.get(`/client/${userid}`)
+            .then(response => {
+                console.log(response.data)
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null;
+            })
     }
 }

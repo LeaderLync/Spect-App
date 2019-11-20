@@ -31,7 +31,7 @@ class SignupView extends React.Component {
           {isStudent}
           <div className="login-modal">
               <img className="spect-logo" src={logo}></img>
-              <h4>Sign Up for a {Greeting} Account!</h4>
+              <h4 style={{marginTop: '5px', marginBottom: '5px'}}>{Greeting} Sign Up</h4>
               <form onSubmit={this.props.onSubmit} className="login-form">
                <h6 style={{textAlign: 'left'}}>First Name</h6>
                <input
