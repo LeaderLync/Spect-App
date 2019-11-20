@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, Row, Col, Form} from 'react-bootstrap'
 import data from './CompanyData'
+import api from '../../api'
 
 class PostJobModal extends React.Component {
   constructor(props)
@@ -8,8 +9,39 @@ class PostJobModal extends React.Component {
     super(props)
   }
 
-  render(){
+  handleSubmit(event){
+    event.preventDefault();
+    //alert(event.target.jobName.value) //Prints out the name as an alert
 
+    const jobData = {
+      jobID: null,
+      jobTitle: event.target.jobName.value,
+      jobDescription: event.target.jobDescription.value, 
+      jobRequirements: event.target.jobRequirements.value
+    }
+
+    console.log(jobData);
+
+    api.postJob(jobData);
+    
+
+    // fetch('http://localhost:3000/CompanyProfile'),{
+    //   method:'POST',
+    //   headers:{
+    //     'Accept' : 'application/json',
+    //     'Content-Type' : 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     jobID: null,
+    //     jobTitle: event.target.jobName.value,
+    //     jobDescription: event.target.jobDescription.value,
+    //     jobRequirements: event.target.jobRequirements.value,
+    //   })
+    // }
+
+  }
+
+  render(){
   
   return (
     <Modal
@@ -19,37 +51,34 @@ class PostJobModal extends React.Component {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Add New Job Post</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter" style={{fontFamily: 'Montserrat'}}>Add New Job Post</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className="container">
-        <Row>
-            <Col>
-              <Form onSubmit={this.handleSubmit}>
+              <Form onSubmit={this.handleSubmit} style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
                 <Form.Group controlID="JobPostID">
                 <Form.Label>Job Name</Form.Label>
                 <Form.Control
                 type="text"
-                name="Job Name"
+                name="jobName"
                 required
                 placeholder="Type New Job Name"/>
                 <Form.Label>Job Description</Form.Label>
                 <Form.Control
                 type="text"
-                description="Job Description"
+                name="jobDescription"
                 required
                 placeholder="Type New Job Description"/>
                 <Form.Label>Job Requirements</Form.Label>
                 <Form.Control
                 type="text"
-                description="Job Requirements"
+                name="jobRequirements"
                 required
                 placeholder="Type New Job Requirements"/>
                 </Form.Group>
+                <Form.Group>
+                <Button variant="primary" type="submit">Add Job</Button>
+                </Form.Group>
               </Form>
-            </Col>
-          </Row>
-        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={this.props.onHide}>Close</Button>
