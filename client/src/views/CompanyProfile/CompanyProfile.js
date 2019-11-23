@@ -2,6 +2,8 @@ import React from 'react';
 import './CompanyProfile.css'
 import data from './CompanyData'
 import PostJobModal from './PostJobModal'
+import ViewJobPost from './ViewJobPost'
+//import EditModal from './EditModal'
 
 import sampleImage from '../../assets/Company Logo.png'
 import leadership from '../../assets/Leadership Icon.png'
@@ -20,33 +22,42 @@ class CompanyProfile extends React.Component
         {
             jobs: data[0].jobPost,
             postModalShow: false,
-            editShow: false,
+            seteditShow: false,
+            setViewShow: false,
+            // idea, have a selected job to pass to the view/edit modal:
+            selectedJobPost: data[0].jobPost,
         }
     }
     
     render() {
 
-        console.log(this.state.jobs)
-        let postModalClose = () => this.setState({postModalShow: false})
+        //console.log(this.state.jobs);
+        let postModalClose = () => this.setState({postModalShow: false});
+        let viewJobModalClose = () => this.setState({setViewShow : false});
+        let updateSelectedJobPost = (jobPost) => this.setState({selectedJobPost: jobPost});
 
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made
-        const cardList = this.state.jobs.map(company => 
+        const cardList = this.state.jobs.map(jobPost => 
             {
                 return(
-                    <Container key={company.jobID}>
+                    <Container key={jobPost.jobID}>
                         <div> 
                             <div>
                                 <CardGroup>
                                     <Card border="primary" bg="light" style={{margin: '2px'}} >
                                         <Card.Header style={{fontFamily: 'Montserrat'}}>Job Post</Card.Header>
                                         <Card.Body>
-                                        <Card.Title style={{fontFamily: 'Montserrat'}}>{company.jobTitle}</Card.Title>
+                                        <Card.Title style={{fontFamily: 'Montserrat'}}>{jobPost.jobTitle}</Card.Title>
                                         <Card.Text style={{fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal'}}>
-                                            Job Description: {company.jobDescription.substring(0,48)}...
+                                            Job Description: {jobPost.jobDescription.substring(0,48)}...
                                         </Card.Text>
                                         <Button variant="danger" onClick={() => this.setState({setEditShow : true})} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular' }}>Edit</Button>
-                                        <Button variant="primary" onClick={() => this.setState({setViewShow : true})} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
+                                        {/* <EditModal // edit job post modal
+                                        show={this.state.setEditShow}
+                                        onHide={editJobModalClose}
+                                        /> */} 
+                                        <Button variant="primary" onClick={(jobPost) => {this.setState({setViewShow : true}); updateSelectedJobPost(jobPost)}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
                                         </Card.Body>
                                     </Card>
                                 </CardGroup>
@@ -86,7 +97,13 @@ class CompanyProfile extends React.Component
                         </ButtonToolbar>
                         <CardGroup>
                             {cardList}
+                            
                         </CardGroup>
+                        <ViewJobPost // view job post modal
+                        show={this.state.setViewShow}
+                        onHide={viewJobModalClose}
+                        jobPost={this.selectedJobPost}
+                        />
                     </div>
                  </div>
             )

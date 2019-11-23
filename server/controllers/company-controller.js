@@ -3,15 +3,15 @@ var Company = require('../models/company.model.js')
 
 exports.create = function(req, res) {
 
-  var newStudent = new Student(req.body);
+  var newCompany = new Company(req.body);
   /* Then save the listing */
-  newStudent.save(function(err) {
+  newCompany.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newStudent);
-      console.log(newStudent)
+      res.json(newCompany);
+      console.log(newCompany);
     }
   });
 };
@@ -24,13 +24,13 @@ exports.create = function(req, res) {
 
 // // /* Update a listing - note the order in which this function is called by the router*/
 // exports.update = function(req, res) {
-//   if (!req.body.updatedStudent) {
+//   if (!req.body.updatedCompany) {
 //     return res.status(400).send({
 //       message: "Updated content cannot be empty"
 //     })
 //   }
 //   List
-//   var updatedStudent = new Listing(req.body);
+//   var updatedCompany = new Listing(req.body);
 //   if(req.results) {
 //     updatelisting.coordinates = {
 //       latitude: req.results.lat, 
@@ -51,7 +51,7 @@ exports.create = function(req, res) {
 // /* Delete a listing */
 // exports.delete = function(req, res) {
 //   var listing = req.student;
-//   Student.findOneAndRemove({id: listing.id}, (err, entry) => {
+//   Company.findOneAndRemove({id: listing.id}, (err, entry) => {
 //     if (err) res.status(500).send(err);
 //     else res.status(200).send(entry);
 //   })

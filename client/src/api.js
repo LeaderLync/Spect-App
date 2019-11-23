@@ -39,6 +39,17 @@ export default {
     postJob(jobData)
     {
         let params = jobData
+        client.post('/company/job', params)
+        .then(response => {
+            return response
+        }).catch((err) => {
+            console.log(err)
+            return null;
+        })
+    },
+    postCompany(companyData)
+    {
+        let params = companyData
         client.post('/company', params)
         .then(response => {
             return response
@@ -46,6 +57,6 @@ export default {
             console.log(err)
             return null;
         })
-    }
+    },
 
 }

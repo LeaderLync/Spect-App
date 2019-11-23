@@ -55,7 +55,7 @@ class PostJobModal extends React.Component {
       </Modal.Header>
       <Modal.Body>
               <Form onSubmit={this.handleSubmit} style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
-                <Form.Group controlID="JobPostID">
+                <Form.Group controlId="JobPostID">
                 <Form.Label>Job Name</Form.Label>
                 <Form.Control
                 type="text"

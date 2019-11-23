@@ -54,3 +54,23 @@
     top: 43px;
     bottom: 56px;
 }
+
+.modalpaper{
+    color: rgba(0, 0, 0, 0.87);
+    margin: 0;
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    background-color: #fff;
+    position: fixed;
+    z-index: 1300;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+    width: 400px;
+    position: absolute;
+}
