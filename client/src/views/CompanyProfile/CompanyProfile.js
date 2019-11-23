@@ -25,7 +25,7 @@ class CompanyProfile extends React.Component
             seteditShow: false,
             setViewShow: false,
             // idea, have a selected job to pass to the view/edit modal:
-            selectedJobPost: data[0].jobPost,
+            selectedJobPost: data[0].jobPost[0],
         }
     }
     
@@ -57,7 +57,7 @@ class CompanyProfile extends React.Component
                                         show={this.state.setEditShow}
                                         onHide={editJobModalClose}
                                         /> */} 
-                                        <Button variant="primary" onClick={(jobPost) => {this.setState({setViewShow : true}); updateSelectedJobPost(jobPost)}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
+                                        <Button variant="primary" onClick={(jobPost) => {this.setState({setViewShow : true}); updateSelectedJobPost(jobPost); console.log(jobPost.jobID);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
                                         </Card.Body>
                                     </Card>
                                 </CardGroup>
@@ -102,7 +102,7 @@ class CompanyProfile extends React.Component
                         <ViewJobPost // view job post modal
                         show={this.state.setViewShow}
                         onHide={viewJobModalClose}
-                        jobPost={this.selectedJobPost}
+                        jobPost={this.state.selectedJobPost}
                         />
                     </div>
                  </div>
