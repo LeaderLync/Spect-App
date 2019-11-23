@@ -35,5 +35,17 @@ export default {
             console.log(err)
             return null;
         })
+    },
+    postJob(jobData)
+    {
+        let params = jobData
+        client.post('/company', params)
+        .then(response => {
+            return response
+        }).catch((err) => {
+            console.log(err)
+            return null;
+        })
     }
+
 }

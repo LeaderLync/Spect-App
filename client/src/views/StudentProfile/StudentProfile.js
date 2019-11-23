@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
+import Navbar from '../../components/Navbar/Navbar'
 import { makeStyles } from '@material-ui/core/styles'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,9 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import CardMedia from '@material-ui/core/CardMedia';
 import 'typeface-roboto';
-import Oracle_logo from '../../assets/Oracle_logo.svg';
-import Google_logo from '../../assets/Google_2015_logo.svg';
-import Twitter_logo from '../../assets/Twitter_Logo_Blue.svg';
+import Oracle_logo from '../../assets/Oracle_logo.png';
+import Google_logo from '../../assets/Company Logo.png';
+import Twitter_logo from '../../assets/Twitter.png';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CompanyPopup from '../../components/CompanyPopup.js'
 
@@ -25,10 +26,10 @@ function StudentProfile() {
         companyCard: {
           padding: theme.spacing(2),
           textAlign: 'center',
-          color: 'white',
-          backgroundColor: '#6C9AC3',
-          maxWidth: '50%%',
-          minHeight: '90%'
+          color: 'black',
+          backgroundColor: 'whitesmoke',
+          maxWidth: '70%',
+          minHeight: '50%'
         },
         skillCard: {
             //padding: theme.spacing(2),
@@ -45,13 +46,13 @@ function StudentProfile() {
             height: 100,
           },
           heroContent: {
-            backgroundColor: '#E28F41',
+            backgroundColor: 'rgba(1, 86, 185, 0.77)',
             padding: theme.spacing(6, 0, 6),
           },
         media: {
             
-            maxHeight: '200px',
-            maxWidth: '200px',
+            maxHeight: '6vw',
+            maxWidth: '6vw',
             display: 'block',
             margin: 'auto',
         },
@@ -65,6 +66,8 @@ function StudentProfile() {
         return(
 
             <div className={classes.root}>
+                <Navbar>
+                    </Navbar>
                 <div className={classes.heroContent} >
                     
                     <Grid container spacing={4} justify="center" alignItems="center">

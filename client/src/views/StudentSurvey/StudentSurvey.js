@@ -16,19 +16,21 @@ class StudentSurvey extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
-    const data = new FormData(event.target);
-    data.append("strongSkills", this.state.strongSkills);
-    data.append("weakSkills", this.state.weakSkills);
+    const data = new FormData(event.target); // initializes with all text fields and select field
+    data.append("strongSkills", this.state.strongSkills); // strong soft skills array
+    data.append("weakSkills", this.state.weakSkills); // weak soft skills array
 
     console.log("FORM DATA SUBMISSION:")
     for (var pair of data.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
     }
+
+    this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
   }
 
-  getStrongSkills = (skills) => {this.setState({strongSkills: skills})}
+  getStrongSkills = (skills) => {this.setState({strongSkills: skills}, console.log(skills))} // retrieves state from child
 
-  getWeakSkills = (skills) => {this.setState({weakSkills: skills})}
+  getWeakSkills = (skills) => {this.setState({weakSkills: skills}, console.log(skills))} // retrieves state from child
 
   render() {
     return (
