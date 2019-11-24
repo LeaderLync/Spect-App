@@ -3,7 +3,7 @@ import './CompanyProfile.css'
 import data from './CompanyData'
 import PostJobModal from './PostJobModal'
 import ViewJobPost from './ViewJobPost'
-//import EditModal from './EditModal'
+import EditModal from './EditModal'
 
 import sampleImage from '../../assets/Company Logo.png'
 import leadership from '../../assets/Leadership Icon.png'
@@ -33,6 +33,7 @@ class CompanyProfile extends React.Component
 
         //console.log(this.state.jobs);
         let postModalClose = () => this.setState({postModalShow: false});
+        let editJobModalClose = () => this.setState({setEditShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
 
         //Variable that represents the list of job post for a specific company
@@ -51,11 +52,7 @@ class CompanyProfile extends React.Component
                                         <Card.Text style={{fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal'}}>
                                             Job Description: {jobPost.jobDescription.substring(0,48)}...
                                         </Card.Text>
-                                        <Button variant="danger" onClick={() => this.setState({setEditShow : true})} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular' }}>Edit</Button>
-                                        {/* <EditModal // edit job post modal
-                                        show={this.state.setEditShow}
-                                        onHide={editJobModalClose}
-                                        /> */} 
+                                        <Button variant="danger" onClick={() => {this.setState({setEditShow : true}); this.updateSelectedJobPost(jobPost);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular' }}>Edit</Button>
                                         <Button variant="primary" onClick={() => {this.setState({setViewShow : true}); this.updateSelectedJobPost(jobPost);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
                                         </Card.Body>
                                     </Card>
@@ -75,11 +72,11 @@ class CompanyProfile extends React.Component
                         <img src={sampleImage} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
                         <div className='topSkills'>
                             <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "whitesmoke", fontFamily: 'Montserrat'}}>Top Three Desired Skills</h5>
-                            <body style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal'}}>
+                            <p style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal'}}>
                                 Skill 1: {data[0].topSkills[0]} | {"    "}
                                 Skill 2: {data[0].topSkills[1]} | {" "}
                                 Skill 3: {data[0].topSkills[2]}  {" "}
-                            </body>
+                            </p>
                         </div>
                     </div>
                     <div>
@@ -100,6 +97,11 @@ class CompanyProfile extends React.Component
                         <ViewJobPost // view job post modal
                         show={this.state.setViewShow}
                         onHide={viewJobModalClose}
+                        jobPost={this.state.selectedJobPost}
+                        />
+                        <EditModal // edit job post modal
+                        show={this.state.setEditShow}
+                        onHide={editJobModalClose}
                         jobPost={this.state.selectedJobPost}
                         />
                     </div>
