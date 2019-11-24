@@ -22,6 +22,7 @@ class App extends Component {
       authenticated: false,
       currentUser: null,
       isStudent: false,
+      userinfo: {},
       collectionid: '0'
     }
   }
@@ -45,6 +46,11 @@ class App extends Component {
   userUpdate() {
     this.setState({
       isStudent: !this.state.isStudent
+    })
+  }
+  userInfoUpdate(value) {
+    this.setState({
+      userInfo: value
     })
   }
   collectionIdUpdate(value) {
@@ -71,7 +77,13 @@ class App extends Component {
               <Redirect to="/Home" />
             </Route>
             {/* <Route exact path="/signup" component={Signup}/> */}
-            <Route exact path="/login" render={(props) => <Login {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} />}/>
+            <Route exact path="/login" render={(props) => 
+              <Login {...props } 
+                isStudent={this.state.isStudent} 
+                userUpdate={this.userUpdate.bind(this)} 
+                userInfoUpdate={this.userInfoUpdate.bind(this)}
+                collectionIdUpdate={this.collectionIdUpdate.bind(this)}
+              />}/>
             <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
             <Route exact path="/studentProfile" component={StudentProfile} />
             <Route component={NotFound}/>

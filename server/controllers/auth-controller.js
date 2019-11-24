@@ -1,6 +1,4 @@
-var User = require('../models/UserSchema.js')  
-var Student = require('../models/StudentSchema')
-var Company = require('../models/company.model')  
+var User = require('../models/UserSchema.js')    
 const uuid = require('uuid/v4')
 
 exports.create = function(req, res) {
@@ -19,10 +17,10 @@ exports.create = function(req, res) {
       console.log(err);
       res.status(400).send(err);
     } else {
+      res.status(200).json(payload.collectionid);
       console.log(newUser);
     }
   });
-
 };
 
 // /* Show the current listing */

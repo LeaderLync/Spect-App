@@ -39,8 +39,18 @@ export default {
             return null;
         })
     },
-    getuser(userid) {
-        return client.get(`/client/${userid}`)
+    getcompanyuser(userid) {
+        return client.get(`/company/${userid}`)
+            .then(response => {
+                console.log(response.data)
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null;
+            })
+    },
+    getstudentuser(userid) {
+        return client.get(`/students/${userid}`)
             .then(response => {
                 console.log(response.data)
                 return response.data

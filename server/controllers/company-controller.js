@@ -10,7 +10,7 @@ exports.create = function(req, res) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newCompany);
+      res.status(200).json(newCompany);
       console.log(newCompany)
     }
   });
