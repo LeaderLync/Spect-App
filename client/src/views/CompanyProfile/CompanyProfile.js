@@ -17,7 +17,7 @@ class CompanyProfile extends React.Component
     constructor(props)
     {
         super(props);
-
+        this.updateSelectedJobPost = this.updateSelectedJobPost.bind(this);
         this.state =
         {
             jobs: data[0].jobPost,
@@ -28,17 +28,16 @@ class CompanyProfile extends React.Component
             selectedJobPost: data[0].jobPost[0],
         }
     }
-    
+    updateSelectedJobPost(jobPost){ this.setState({selectedJobPost: jobPost})};   
     render() {
 
         //console.log(this.state.jobs);
         let postModalClose = () => this.setState({postModalShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
-        let updateSelectedJobPost = (jobPost) => this.setState({selectedJobPost: jobPost});
 
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made
-        const cardList = this.state.jobs.map(jobPost => 
+        const cardList = this.state.jobs.map(function(jobPost) 
             {
                 return(
                     <Container key={jobPost.jobID}>
@@ -57,7 +56,7 @@ class CompanyProfile extends React.Component
                                         show={this.state.setEditShow}
                                         onHide={editJobModalClose}
                                         /> */} 
-                                        <Button variant="primary" onClick={(jobPost) => {this.setState({setViewShow : true}); updateSelectedJobPost(jobPost); console.log(jobPost.jobID);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
+                                        <Button variant="primary" onClick={() => {this.setState({setViewShow : true}); this.updateSelectedJobPost(jobPost);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
                                         </Card.Body>
                                     </Card>
                                 </CardGroup>
@@ -65,8 +64,7 @@ class CompanyProfile extends React.Component
                         </div>
                     </Container>
                 );
-
-            })
+            }.bind(this))
 
             return(
                 <div>

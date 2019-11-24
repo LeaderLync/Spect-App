@@ -5,7 +5,6 @@ import { Image, CardGroup, Card, Container, Button, ButtonToolbar} from 'react-b
 
 export default (props) => {
   let jobPost = props.jobPost;
-  console.log(props.jobPost);
   return (
       <Modal
         aria-labelledby="simple-modal-title"
