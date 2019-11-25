@@ -7,8 +7,8 @@ var studentcontroller = require('../controllers/student-controller')
 router.route('/')
     .post(studentcontroller.create)
 
-
-
+router.route('/recommendations')
+    .get(studentcontroller.getmatches)
 
 
 
