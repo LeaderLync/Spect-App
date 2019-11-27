@@ -22,7 +22,7 @@ class SkillSelector extends React.Component {
 
   render() {
     const skillList = skillData.map(skill => {
-      return <option key={skill.id}>{skill.name}</option>
+      return <option key={skill.id} value={skill.name}>{skill.name}</option>
     });
 
     return (
@@ -31,8 +31,8 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="first">1st</label>
           </div>
-          <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill}>
-            <option disabled>Choose...</option>
+          <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
             {skillList}
           </select>
         </div>
@@ -40,8 +40,8 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="second">2nd</label>
           </div>
-          <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill}>
-            <option disabled>Choose...</option>
+          <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
             {skillList}
           </select>
         </div>
@@ -49,8 +49,8 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="third">3rd</label>
           </div>
-          <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill}>
-            <option disabled>Choose...</option>
+          <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
             {skillList}
           </select>
         </div>
