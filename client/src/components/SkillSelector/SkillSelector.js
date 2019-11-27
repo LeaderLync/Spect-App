@@ -33,7 +33,12 @@ class SkillSelector extends React.Component {
           </div>
           <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill} required>
             <option value="">Choose...</option>
-            {skillList}
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name != this.state.second && skill.name != this.state.third
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
           </select>
         </div>
         <div className="input-group mb-3">
@@ -42,7 +47,12 @@ class SkillSelector extends React.Component {
           </div>
           <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill} required>
             <option value="">Choose...</option>
-            {skillList}
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name != this.state.first && skill.name != this.state.third
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
           </select>
         </div>
         <div className="input-group mb-3">
@@ -51,7 +61,12 @@ class SkillSelector extends React.Component {
           </div>
           <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill} required>
             <option value="">Choose...</option>
-            {skillList}
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name != this.state.first && skill.name != this.state.second
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
           </select>
         </div>
       </div>
