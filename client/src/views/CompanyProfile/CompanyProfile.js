@@ -107,7 +107,6 @@ class CompanyProfile extends React.Component
                     </div>
                  </div>
             )
-
     }
 
 }

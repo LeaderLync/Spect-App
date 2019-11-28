@@ -66,8 +66,8 @@
     background-color: #fff;
     position: fixed;
     z-index: 1300;
-    top: 50%;
-    left: 50%;
+    top: 30%;
+    left: 35%;
     background-color: rgba(0, 0, 0, 0.5);
     -webkit-tap-highlight-color: transparent;
     touch-action: none;
