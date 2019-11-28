@@ -13,13 +13,13 @@ const client = axios.create({
 
 
 export default {
-    inputdata(arraydata) {
+    /*inputdata(arraydata) {
         let params = arraydata
         client.post('/students',params)
         .then((response) => {
             console.log(response)
         })
-    },
+    },*/
     getdata(){
         client.get('/students')
         .then(response => {
@@ -39,8 +39,14 @@ export default {
             return null;
         })
     },
-    collectStudentResponse(){
+    collectStudentResponse(studentData){
       console.log("api");
-      return client.post('/students')
+      return client.post('/student', studentData)
+      .then(response => {
+        console.log("put the response here")
+        return response
+      }).catch((err) => {
+        console.log(err)
+      })
     }
 }
