@@ -4,6 +4,7 @@ import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
+import api from '../../api.js'
 
 class StudentSurvey extends React.Component {
   constructor(props) {
@@ -33,6 +34,8 @@ class StudentSurvey extends React.Component {
     //console.log(JSON.parse(data.get("strongSkills")));
     //console.log(JSON.parse(data.get("weakSkills")));
 
+    api.collectStudentResponse();
+
     this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
   }
 
@@ -56,7 +59,7 @@ class StudentSurvey extends React.Component {
               <div className="card-body">
                 <form onSubmit={this.handleSubmit}>
                   <h3 className="card-title">Contact Information</h3>
-                  <div className="form-row">
+                  {/*<div className="form-row">
                     <div className="form-group col">
                       <label htmlFor="inputFirstName">First name</label>
                       <input type="text" className="form-control" placeholder="First name" name="firstName" required/>
@@ -75,7 +78,7 @@ class StudentSurvey extends React.Component {
                       <label htmlFor="inputNumber">Telephone number</label>
                       <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx" name="telephone" required/>
                     </div>
-                  </div>
+                  </div>*/}
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills</h3>
                   <div className="form-group">
@@ -88,7 +91,7 @@ class StudentSurvey extends React.Component {
                   <br/>
                   <h5>Pick the top 3 soft skills you want to work on:</h5>
                   <SkillSelector passToParent={this.getWeakSkills}/>
-                  <QuestionForm/>
+                  {/*<QuestionForm/>*/}
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
                 <h3 className="card-title">Self-Assessment Survey</h3>

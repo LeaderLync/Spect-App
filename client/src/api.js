@@ -38,5 +38,9 @@ export default {
             console.log(err)
             return null;
         })
+    },
+    collectStudentResponse(){
+      console.log("api");
+      return client.post('/students')
     }
 }
