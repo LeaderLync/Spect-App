@@ -5,10 +5,9 @@ var mongoose = require('mongoose'),
 var studentSchema = new Schema({
     id: Number,
 
-    name: {
-      first: String,
-      last: String
-    },
+    firstName: String,
+    lastName: String,
+
     email: String,
     telephone: String,
 
@@ -24,8 +23,8 @@ var studentSchema = new Schema({
       third: String
     },
 
-    industry: [String],
-    
+    selectedIndustries: [String],
+
     question1: Number,
     question2: Number,
     question3: Number,
@@ -54,7 +53,7 @@ var studentSchema = new Schema({
 */
 studentSchema.pre('save', function(next) {
   //if (!this.id) throw new Error("no name provided")
-  if (!this.name) throw new Error("no code provided")
+  //if (!this.name) throw new Error("no code provided")
   var currentDate = new Date()
   this.updated_at = currentDate
   next()

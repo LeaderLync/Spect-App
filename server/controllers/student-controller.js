@@ -1,12 +1,12 @@
 
 /* Dependencies */
-var Student = require('../models/StudentSchema.js')
+var Student = require('../models/student.model.js')
 
 exports.create = function(req, res) {
-  /*console.log(req.body)
+  console.log(JSON.stringify(req.body, null, 2));
   var newStudent = new Student(req.body);
-  /* Then save the listing */
-  /*newStudent.save(function(err) {
+  /* Then save the student */
+  newStudent.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
@@ -14,9 +14,7 @@ exports.create = function(req, res) {
       res.json(newStudent);
       console.log(newStudent)
     }
-  });*/
-  console.log(JSON.stringify(req.body, null, 2));
-  res.json();
+  });
 };
 
 // /* Show the current listing */
