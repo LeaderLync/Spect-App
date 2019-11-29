@@ -21,9 +21,9 @@ class SkillSelector extends React.Component {
   }
 
   render() {
-    const skillList = skillData.map(skill => {
+    /*const skillList = skillData.map(skill => {
       return <option key={skill.id} value={skill.name}>{skill.name}</option>
-    });
+    });*/
 
     return (
       <div>
@@ -35,7 +35,7 @@ class SkillSelector extends React.Component {
             <option value="">Choose...</option>
             {/*skillList*/}
             {skillData.filter(skill => {
-              return skill.name != this.state.second && skill.name != this.state.third
+              return skill.name !== this.state.second && skill.name !== this.state.third
             }).map(skill => {
               return <option key={skill.id} value={skill.name}>{skill.name}</option>
             })}
@@ -49,7 +49,7 @@ class SkillSelector extends React.Component {
             <option value="">Choose...</option>
             {/*skillList*/}
             {skillData.filter(skill => {
-              return skill.name != this.state.first && skill.name != this.state.third
+              return skill.name !== this.state.first && skill.name !== this.state.third
             }).map(skill => {
               return <option key={skill.id} value={skill.name}>{skill.name}</option>
             })}
@@ -63,7 +63,7 @@ class SkillSelector extends React.Component {
             <option value="">Choose...</option>
             {/*skillList*/}
             {skillData.filter(skill => {
-              return skill.name != this.state.first && skill.name != this.state.second
+              return skill.name !== this.state.first && skill.name !== this.state.second
             }).map(skill => {
               return <option key={skill.id} value={skill.name}>{skill.name}</option>
             })}

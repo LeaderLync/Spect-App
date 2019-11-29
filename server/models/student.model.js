@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 
 var studentSchema = new Schema({
     id: Number,
+
     name: {
       first: String,
       last: String
@@ -21,8 +22,10 @@ var studentSchema = new Schema({
       first: String,
       second: String,
       third: String
-    }.
+    },
+
     industry: [String],
+    
     question1: Number,
     question2: Number,
     question3: Number,

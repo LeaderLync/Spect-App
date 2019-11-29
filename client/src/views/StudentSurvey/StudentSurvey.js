@@ -1,6 +1,6 @@
 import React from 'react';
 import './StudentSurvey.css';
-import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
+//import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
@@ -98,7 +98,7 @@ class StudentSurvey extends React.Component {
                 <h3 className="card-title">Self-Assessment Survey</h3>
                 <h6 className="card-subtitle mb-2 text-muted">Please consider completing this additional self-assessment survey:</h6>
                 <div className="embed-responsive embed-responsive-16by9">
-                  <iframe className="embed-responsive-item" src='https://www.surveymonkey.com/r/spectSelfAssessment'></iframe>
+                  <iframe className="embed-responsive-item" src='https://www.surveymonkey.com/r/spectSelfAssessment' title="surveymonkey"></iframe>
                 </div>
               </div>
             </div>
