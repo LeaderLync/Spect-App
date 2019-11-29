@@ -1,11 +1,11 @@
-var Company = require('../models/company.model.js')    
+var Company = require('../models/company.model.js')
 
 
 exports.create = function(req, res) {
 
-  var newStudent = new Student(req.body);
+  /*var newStudent = new Student(req.body);
   /* Then save the listing */
-  newStudent.save(function(err) {
+  /*newStudent.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
@@ -13,7 +13,7 @@ exports.create = function(req, res) {
       res.json(newStudent);
       console.log(newStudent)
     }
-  });
+  });*/
 };
 
 // /* Show the current listing */
@@ -33,7 +33,7 @@ exports.create = function(req, res) {
 //   var updatedStudent = new Listing(req.body);
 //   if(req.results) {
 //     updatelisting.coordinates = {
-//       latitude: req.results.lat, 
+//       latitude: req.results.lat,
 //       longitude: req.results.lng
 //     };
 //   }
@@ -71,11 +71,11 @@ exports.create = function(req, res) {
 //   })
 // };
 
-// /* 
-//   Middleware: find a listing by its ID, then pass it to the next request handler. 
+// /*
+//   Middleware: find a listing by its ID, then pass it to the next request handler.
 
-//   HINT: Find the listing using a mongoose query, 
-//         bind it to the request object as the property 'listing', 
+//   HINT: Find the listing using a mongoose query,
+//         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
 // exports.listingByID = function(req, res, next, id) {

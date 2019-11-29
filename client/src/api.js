@@ -40,10 +40,18 @@ export default {
         })
     },
     collectStudentResponse(studentData){
-      console.log("api");
       return client.post('/student', studentData)
       .then(response => {
-        console.log("put the response here")
+        console.log("put response here")
+        return response
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    collectCompanyResponse(companyData){
+      return client.post('/company', companyData)
+      .then(response => {
+        console.log("put response here")
         return response
       }).catch((err) => {
         console.log(err)

@@ -81,7 +81,7 @@ class StudentSurvey extends React.Component {
                       <input type="text" className="form-control" placeholder="Last name" name="lastName" required/>
                     </div>
                   </div>
-                  {/*<div className="form-row">
+                  <div className="form-row">
                     <div className="form-group col">
                       <label htmlFor="inputEmail">Email</label>
                       <input type="email" className="form-control" placeholder="Email" name="email" required/>
@@ -90,7 +90,7 @@ class StudentSurvey extends React.Component {
                       <label htmlFor="inputNumber">Telephone number</label>
                       <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx" name="telephone" required/>
                     </div>
-                  </div>*/}
+                  </div>
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills</h3>
                   <div className="form-group">
@@ -99,11 +99,11 @@ class StudentSurvey extends React.Component {
                   </div>
                   <br/>
                   <h5>Pick your top 3 strongest soft skills:</h5>
-                  {/*<SkillSelector passToParent={this.getStrongSkills}/>*/}
+                  <SkillSelector passToParent={this.getStrongSkills}/>
                   <br/>
                   <h5>Pick the top 3 soft skills you want to work on:</h5>
                   <SkillSelector passToParent={this.getWeakSkills}/>
-                  {/*<QuestionForm/>*/}
+                  <QuestionForm/>
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
                 <h3 className="card-title">Self-Assessment Survey</h3>
