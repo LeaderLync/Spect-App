@@ -76,21 +76,21 @@ class StudentSurvey extends React.Component {
                       <input type="email" className="form-control" placeholder="Email" name="email" required/>
                     </div>
                     <div className="form-group col">
-                      <label htmlFor="inputNumber">Telephone number</label>
+                      <label htmlFor="inputNumber">Telephone</label>
                       <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx" name="telephone" required/>
                     </div>
                   </div>
                   <br/>
-                  <h3 className="card-title">Professional Interests and Skills</h3>
+                  <h3 className="card-title">Professional Interests and Skills Assessment</h3>
                   <div className="form-group">
-                    <label htmlFor="selectIndustry">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
+                    <label htmlFor="selectIndustry" className="question">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
-                  <h5>Pick your top 3 strongest soft skills:</h5>
+                  <label className="question">Pick your top 3 strongest soft skills:</label>
                   <SkillSelector passToParent={this.getStrongSkills}/>
                   <br/>
-                  <h5>Pick the top 3 soft skills you want to work on:</h5>
+                  <label className="question">Pick the top 3 soft skills you want to work on:</label>
                   <SkillSelector passToParent={this.getWeakSkills}/>
                   <QuestionForm/>
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>

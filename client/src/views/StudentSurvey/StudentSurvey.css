@@ -10,6 +10,11 @@ body {
   border: 1px solid #E28F41;
 }
 
-.question {
+.card-title {
+  border-left: 6px solid #E28F41;
+  padding-left: 6px
+}
+
+label.question {
   font-weight: bold
 }

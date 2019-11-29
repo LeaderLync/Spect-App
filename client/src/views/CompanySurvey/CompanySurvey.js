@@ -40,8 +40,6 @@ class CompanySurvey extends React.Component {
 
   getStrongSkills = (skills) => {this.setState({strongSkills: skills}, console.log(skills))} // retrieves state from child
 
-  //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, console.log(skills))} // retrieves state from child
-
   render() {
 
     return (
@@ -51,13 +49,13 @@ class CompanySurvey extends React.Component {
             <div className="card shadow-lg p-3 mb-5 bg-white rounded">
               <div className="card-body">
                 <form onSubmit={this.handleSubmit}>
-                  <h3 className="card-title">Professional Interests and Skills</h3>
+                  <h3 className="card-title">Professional Interests and Skills Assessment</h3>
                   <div className="form-group">
-                    <label htmlFor="selectIndustry">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
+                    <label htmlFor="selectIndustry" className="question">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
-                  <h5>Pick your top 3 strongest soft skills:</h5>
+                  <label className="question">Pick your top 3 strongest soft skills:</label>
                   <SkillSelector passToParent={this.getStrongSkills}/>
                   <br/>
                   <QuestionForm/>
