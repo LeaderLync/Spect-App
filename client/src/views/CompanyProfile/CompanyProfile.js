@@ -88,7 +88,8 @@ class CompanyProfile extends React.Component
                             onClick={() => this.setState({postModalShow: true})}>Post Job</Button>
                             <PostJobModal
                             show={this.state.postModalShow}
-                            onHide={postModalClose}/>
+                            onHide={postModalClose}
+                            user={this.props}/>
                         </ButtonToolbar>
                         <CardGroup>
                             {cardList}

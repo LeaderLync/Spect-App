@@ -10,6 +10,7 @@ class PostJobModal extends React.Component {
   }
 
   handleSubmit(event){
+    let user = this.props.user;
     event.preventDefault();
     //alert(event.target.jobName.value) //Prints out the name as an alert
 
@@ -19,10 +20,14 @@ class PostJobModal extends React.Component {
       jobDescription: event.target.jobDescription.value, 
       jobRequirements: event.target.jobRequirements.value
     }
-
     console.log(jobData);
-
-    api.postJob(jobData);
+    // var obj = JSON.parse(user);
+    // console.log(obj);
+    // obj['jobPost'].push(jobData);
+    // console.log(obj);
+    // user = JSON.stringify(obj);
+     console.log(user);
+    //api.postJob(user);
     
 
     // fetch('http://localhost:3000/CompanyProfile'),{
@@ -54,7 +59,7 @@ class PostJobModal extends React.Component {
         <Modal.Title id="contained-modal-title-vcenter" style={{fontFamily: 'Montserrat'}}>Add New Job Post</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-              <Form onSubmit={this.handleSubmit} style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
+              <Form onSubmit={this.handleSubmit.bind(this)} style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
                 <Form.Group controlId="JobPostID">
                 <Form.Label>Job Name</Form.Label>
                 <Form.Control
