@@ -9,3 +9,7 @@ body {
 .form-control {
   border: 1px solid #E28F41;
 }
+
+.question {
+  font-weight: bold
+}

@@ -39,7 +39,7 @@ export default {
             return null;
         })
     },
-    collectStudentResponse(studentData){
+    collectStudentResponse(studentData){ // collecting initial reponses from the student survey
       return client.post('/student', studentData)
       .then(response => {
         console.log("put response here")
@@ -48,7 +48,7 @@ export default {
         console.log(err)
       })
     },
-    collectCompanyResponse(companyData){
+    collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
       return client.post('/company', companyData)
       .then(response => {
         console.log("put response here")

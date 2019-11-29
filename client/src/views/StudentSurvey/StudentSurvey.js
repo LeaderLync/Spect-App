@@ -10,28 +10,20 @@ class StudentSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndustries: [],
+      selectedIndustries: [], // up to three
       strongSkills: {}, // 3 of your strongest soft skills
       weakSkills: {}    // 3 soft skills you want to work on
     };
-    console.log(this.props.user)
-    console.log(this.props.collectionId)
+    //console.log(this.props.user)
+    //console.log(this.props.collectionId)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
-    const data = new FormData(event.target); // initializes with all text fields and select field
+    const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
 
-    /*data.append("selectedIndustries", JSON.stringify(this.state.selectedIndustries)); //industries of interest array
-    data.append("strongSkills", JSON.stringify(this.state.strongSkills)); // strong soft skills
-    data.append("weakSkills", JSON.stringify(this.state.weakSkills)); // weak soft skills*/
-
-    /*console.log("FORM DATA SUBMISSION:")
-    for (var pair of data.entries()) {
-      console.log(pair[0]+ ': ' + pair[1]);
-    }*/
-
+    /* create JSON object to include in post request */
     var studentData = {}
     data.forEach(function(value, key){
     studentData[key] = value;
@@ -41,12 +33,9 @@ class StudentSurvey extends React.Component {
     studentData["strongSkills"] = this.state.strongSkills;
     studentData["weakSkills"] = this.state.weakSkills;
 
-    console.log(JSON.stringify(studentData, null, 2));
-    //console.log(JSON.parse(data.get("selectedIndustries")));
-    //console.log(JSON.parse(data.get("strongSkills")));
-    //console.log(JSON.parse(data.get("weakSkills")));
+    //console.log(JSON.stringify(studentData, null, 2));
 
-    api.collectStudentResponse(studentData);
+    api.collectStudentResponse(studentData); // passes JSON object to be request
 
     this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
   }

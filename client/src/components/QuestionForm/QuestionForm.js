@@ -7,7 +7,7 @@ class QuestionForm extends React.Component {
       return (
         <div key={question.id} className="form-group">
           <br/>
-          <label>Q - {question.question}</label>
+          <label className="question">{question.question}</label>
           <div className="form-check">
             <input className="form-check-input" type="radio" name={question.id} value="1" required/>
             <label className="form-check-label" htmlFor={question.question}>{question.option1}</label>
