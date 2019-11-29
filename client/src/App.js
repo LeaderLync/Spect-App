@@ -13,6 +13,7 @@ import auth from './config/firebaseauth';
 import PrivateRoute from './components/PrivateRoute'
 import Signup from './views/Signup'
 import CompanyProfile from './views/CompanyProfile/CompanyProfile';
+import api from './api'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -20,7 +21,9 @@ class App extends Component {
       loading: true,
       authenticated: false,
       currentUser: null,
-      isStudent: false
+      isStudent: false,
+      userinfo: {},
+      collectionid: '0'
     }
   }
   componentDidMount() {
@@ -45,6 +48,19 @@ class App extends Component {
       isStudent: !this.state.isStudent
     })
   }
+  userInfoUpdate(value) {
+    this.setState({
+      userInfo: value
+    })
+  }
+  collectionIdUpdate(value) {
+    this.setState({
+      collectionid: value
+    })
+    console.log("updating" + this.state.collectionid)
+
+
+  }
   
   render() {
     if(this.state.loading) {
@@ -55,14 +71,20 @@ class App extends Component {
           <Switch>
             <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/Home" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanyProfile" component={CompanyProfile} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>
             {/* <Route exact path="/signup" component={Signup}/> */}
-            <Route exact path="/login" render={(props) => <Login {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} />}/>
-            <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)}/>}/>
+            <Route exact path="/login" render={(props) => 
+              <Login {...props } 
+                isStudent={this.state.isStudent} 
+                userUpdate={this.userUpdate.bind(this)} 
+                userInfoUpdate={this.userInfoUpdate.bind(this)}
+                collectionIdUpdate={this.collectionIdUpdate.bind(this)}
+              />}/>
+            <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
             <Route exact path="/studentProfile" component={StudentProfile} />
             <Route component={NotFound}/>
           </Switch>
