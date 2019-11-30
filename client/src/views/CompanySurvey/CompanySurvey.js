@@ -50,8 +50,11 @@ class CompanySurvey extends React.Component {
               <div className="card-body">
                 <form onSubmit={this.handleSubmit}>
                   <h3 className="card-title">Professional Interests and Skills Assessment</h3>
+                  <i>Please answer the following questions in a way you hope your ideal candidate for this position would answer them:</i>
+                  <br/>
+                  <br/>
                   <div className="form-group">
-                    <label htmlFor="selectIndustry" className="question">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
+                    <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>

@@ -83,7 +83,7 @@ class StudentSurvey extends React.Component {
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills Assessment</h3>
                   <div className="form-group">
-                    <label htmlFor="selectIndustry" className="question">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
+                    <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
