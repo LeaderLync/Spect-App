@@ -4,33 +4,25 @@ var mongoose = require('mongoose'),
 
 var studentSchema = new Schema({
 
-  idNum: { type: Number, required: true}, 
+  id: { type: Number, required: true}, 
   name: { type: String, required: true},
+  topSkills: [],
+  skillsToWork: [],
 
-  topSkills: [{
-    topSkillOne: String,
-    topSkillTwo: String,
-    topSkillThree: String
-  }],
-
-  skillsToWork: [{
-    workSkillOne: String, 
-    workSkillTwo: String,
-    workSkillThree: String
-  }],
+  responseValues: [], //17 0s and 1s
 
   matches:[
       {
-          companyID: Number,
+          companyID: String,
           companyName: String,
-          companyTopSkills: String,
-          jobDescription: String,
-          jobRequirements: String,
-          jobLink: String
+          companyTopSkills: [],
+          // jobDescription: String,
+          // jobRequirements: String,
+          // jobLink: String
       },
   ],
   
-  industry: String
+  industry: []
 
 });
 

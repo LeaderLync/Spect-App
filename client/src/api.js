@@ -2,10 +2,11 @@ import axios from 'axios'
 
 
 const client = axios.create({
-    baseURL: 'localhost:5000/api',
+    baseURL: 'http://localhost:5000/api',
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     }
 })
 
@@ -27,10 +28,12 @@ export default {
             console.log(err)
         })
     },
-    async registernewuser(userid){
-        client.post('/auth', userid)
+    registernewuser(userid){
+        return client.post('/auth', userid)
         .then(response => {
-            return response
+            console.log(response)
+            console.log(response.data)
+            return response.data
         }).catch((err) => {
             console.log(err)
             return null;
@@ -59,4 +62,24 @@ export default {
         })
     },
 
+    getcompanyuser(userid) {
+        return client.get(`/company/${userid}`)
+            .then(response => {
+                console.log(response.data)
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null;
+            })
+    },
+    getstudentuser(userid) {
+        return client.get(`/students/${userid}`)
+            .then(response => {
+                console.log(response.data)
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null;
+            })
+    }
 }

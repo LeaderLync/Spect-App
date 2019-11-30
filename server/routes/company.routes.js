@@ -14,7 +14,9 @@ router.route('/')
 
 
 router.route('/:companyid')
+    .get(companycontroller.read)
 
 
+router.param('companyid', companycontroller.companyByID)
 
 module.exports = router

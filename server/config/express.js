@@ -1,6 +1,7 @@
 const path = require('path'),
     express = require('express'),
     mongoose = require('mongoose'),
+    cors = require('cors'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     companyRouter = require('../routes/company.routes'),
@@ -24,7 +25,7 @@ module.exports.init = () => {
 
     // body parsing middleware
     app.use(bodyParser.json());
-
+    app.use(cors())
     // add a router
     app.use('/api/student', studentRouter);
     app.use('/api/company', companyRouter);
@@ -40,6 +41,7 @@ module.exports.init = () => {
         });
     }
 
+    
     return app
 }
 

@@ -1,5 +1,5 @@
 var Company = require('../models/company.model.js')    
-
+var User = require('../models/UserSchema')
 
 exports.create = function(req, res) {
 
@@ -10,17 +10,24 @@ exports.create = function(req, res) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newCompany);
-      console.log(newCompany);
+      res.status(200).json(newCompany);
+      console.log(newCompany)
     }
   });
 };
 
 // /* Show the current listing */
-// exports.read = function(req, res) {
-//   /* send back the listing as json from the request */
-//   res.json(req.student);
-// };
+exports.read = async function(req, res) {
+  Company.findOne({id:req.user.collectionid}).exec(function(err, company) {
+    if(err) {
+      console.log('error on student by id')
+      res.status(400).send(err);
+    } else {
+      console.log('worked for listing by student')
+      res.json(company)
+    }
+  });
+};
 
 // // /* Update a listing - note the order in which this function is called by the router*/
 // exports.update = function(req, res) {
@@ -78,15 +85,15 @@ exports.create = function(req, res) {
 //         bind it to the request object as the property 'listing', 
 //         then finally call next
 //  */
-// exports.listingByID = function(req, res, next, id) {
-//   Listing.findById(id).exec(function(err, listing) {
-//     if(err) {
-//       console.log('error on listing by id')
-//       res.status(400).send(err);
-//     } else {
-//       console.log('worked for listing by id')
-//       req.listing = listing;
-//       next();
-//     }
-//   });
-// };
+exports.companyByID = async function(req, res, next, id) {
+  User.findOne({authuid: id}).exec(function(err, user) {
+    if (err) {
+      console.log('error on student by id')
+      res.status(400).send(err);
+    }else {
+       req.user = user
+       next()
+    }
+  })
+
+};
