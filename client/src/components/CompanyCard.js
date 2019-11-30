@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     maxWidth: 345,
     margin: 50,
     border: '1px solid blue',
+    float: "left",
 
   },
   media: {
@@ -56,7 +57,7 @@ export default function MediaCard() {
         </div>
       </CardActionArea>
       <CardActions className={classes.actions}>
-        <Button variant="contained" color="third" startIcon={<FavoriteIcon />} className={classes.matchButton}>
+        <Button variant="contained" color="secondary" startIcon={<FavoriteIcon />} className={classes.matchButton}>
         	Match
       	</Button>
         <Button size="small" color="primary">

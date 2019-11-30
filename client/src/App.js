@@ -13,6 +13,8 @@ import auth from './config/firebaseauth';
 import PrivateRoute from './components/PrivateRoute'
 import Signup from './views/Signup'
 import CompanyProfile from './views/CompanyProfile/CompanyProfile';
+import Matches from './views/Matches';
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -57,6 +59,7 @@ class App extends Component {
             <PrivateRoute exact path="/Home" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/CompanyProfile" component={CompanyProfile} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/Matches" component={Matches} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>

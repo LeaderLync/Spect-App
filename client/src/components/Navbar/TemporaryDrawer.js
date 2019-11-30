@@ -30,6 +30,10 @@ export default function TemporaryDrawer() {
     right: false,
   });
 
+  const handleClick = (name)=> {
+    console.log(name);
+  }
+
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -38,30 +42,22 @@ export default function TemporaryDrawer() {
     setState({ ...state, [side]: open });
   };
 
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {['Matches', 'Content Marketplace', 'Profile'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
   return (
     <div className='buttonDiv'>
       <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-        <MenuIcon onClick={toggleDrawer('left', true)} >Open Left</MenuIcon>
+        <MenuIcon>Open Left</MenuIcon>
       </IconButton>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {sideList('left')}
+        <div
+          className={classes.list}
+          role="presentation"
+          onClick={toggleDrawer('left', false)}
+          onKeyDown={toggleDrawer('left', false)}
+        >
+          <List >
+            <ListItem button>Matches</ListItem>
+          </List>
+      </div>
       </Drawer>
     </div>
   );
