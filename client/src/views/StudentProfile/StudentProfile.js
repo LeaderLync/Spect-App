@@ -6,8 +6,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-import 'typeface-roboto';
 import CompanyPopup from '../../components/CompanyPopup.js';
+import logo from '../../assets/White logo - no background.svg'
 
 function StudentProfile() {
 
@@ -18,20 +18,15 @@ function StudentProfile() {
         companyCard: {
           padding: theme.spacing(2),
           textAlign: 'center',
-          color: 'white',
-          backgroundColor: '#6C9AC3',
+          color: 'black',
+          backgroundColor: 'white',
           maxWidth: '50%%',
           minHeight: '90%',
           marginRight: 10,
           marginLeft: 10,
         },
         skillCard: {
-            //padding: theme.spacing(2),
-            // textAlign: 'center',
-            // justifyContent: 'center',
-            backgroundColor: '#6C9AC3',
-            color: 'white',
-            //minWidth: 80,
+            color: 'black',
             marginRight: 30,
             marginLeft: 30,
           },
@@ -40,7 +35,7 @@ function StudentProfile() {
             height: 100,
           },
           heroContent: {
-            backgroundColor: '#E28F41',
+            backgroundColor: 'rgb(46, 167, 235)',
             padding: theme.spacing(6, 0, 6),
           },
         media: {
@@ -50,6 +45,19 @@ function StudentProfile() {
             display: 'block',
             margin: 'auto',
         },
+        footer: {
+            position: 'fixed',
+            left: 0,
+            bottom: 0,
+            width: '100%',
+            backgroundColor: 'black',
+            color: 'white',
+            textAlign: 'center',
+          },
+        img: {
+            maxWidth: '10%',
+            height: 'auto',
+        }
 
 
       }));
@@ -121,7 +129,12 @@ function StudentProfile() {
                     </Grid>
                     )})}
                 </Grid>
+
+                <div className={classes.footer}>
+                    <img className={classes.img} src={logo}></img>
+                </div>
             </div>
+
         );
     }
     
