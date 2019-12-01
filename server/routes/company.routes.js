@@ -15,4 +15,11 @@ router.route('/job').post(companyController.jobPost);
 
 
 
+
+router.route('/:companyid')
+    .get(companycontroller.read)
+
+
+router.param('companyid', companycontroller.companyByID)
+
 module.exports = router

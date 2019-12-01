@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {withRouter} from 'react-router'
 import auth from "../../config/firebaseauth"
 import LoginView from './LoginView'
+import api from '../../api'
 class LoginContainer extends Component {
     constructor(props) {
         super(props)
@@ -14,6 +15,13 @@ class LoginContainer extends Component {
             
             const user = await auth.signInWithEmailAndPassword(email.value, password.value); //tries to sign in
             console.log(user)
+            var response = (this.props.isStudent)? 
+                await api.getstudentuser(user.user.uid).then((res) => res)
+                : await api.getcompanyuser(user.user.uid).then((res) => res)
+            console.log("my response")
+            console.log(response)
+            this.props.userInfoUpdate(response)
+            this.props.collectionIdUpdate(response.id)
             this.props.history.push("/");//redirects to home
         } catch (error) {
             alert(error);

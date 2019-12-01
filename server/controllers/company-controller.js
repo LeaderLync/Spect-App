@@ -1,33 +1,34 @@
 var Company = require('../models/company.model.js')
-const uuid = require('uuid/v4')
-
+const uuid = require('uuid/v4') 
+var User = require('../models/UserSchema')
 
 exports.create = function(req, res) {
-  var companyID = uuid();
 
-  var companyData = {
-    uid: companyID,
-    name: req.body.companyName,
-    bio: req.body.companyDescription,
-    industry: req.body.companyIndustry,
-    jobPost: []
-  }
-
-  console.log("Create Function Logging: ", companyData);
-
-  var newCompany = new Company(companyData);
+  var newCompany = new Company(req.body);
   /* Then save the listing */
   newCompany.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newCompany);
-      console.log(newCompany);
+      res.status(200).json(newCompany);
+      console.log(newCompany)
     }
   });
 };
 
+// /* Show the current listing */
+exports.read = async function(req, res) {
+  Company.findOne({id:req.user.collectionid}).exec(function(err, company) {
+    if(err) {
+      console.log('error on student by id')
+      res.status(400).send(err);
+    } else {
+      console.log('worked for listing by student')
+      res.json(company)
+    }
+  });
+};
 
 exports.jobPost = function(req, res) {
 
@@ -84,15 +85,15 @@ exports.jobPost = function(req, res) {
 //         bind it to the request object as the property 'listing', 
 //         then finally call next
 //  */
-// exports.listingByID = function(req, res, next, id) {
-//   Listing.findById(id).exec(function(err, listing) {
-//     if(err) {
-//       console.log('error on listing by id')
-//       res.status(400).send(err);
-//     } else {
-//       console.log('worked for listing by id')
-//       req.listing = listing;
-//       next();
-//     }
-//   });
-// };
+exports.companyByID = async function(req, res, next, id) {
+  User.findOne({authuid: id}).exec(function(err, user) {
+    if (err) {
+      console.log('error on student by id')
+      res.status(400).send(err);
+    }else {
+       req.user = user
+       next()
+    }
+  })
+
+};

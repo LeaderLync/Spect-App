@@ -2,37 +2,52 @@ import React from 'react';
 import './StudentSurvey.css';
 import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
+import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
+import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 
 class StudentSurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      strongSkills: [], // 3 of your strongest soft skills
-      weakSkills: []    // 3 soft skills you want to work on
+      selectedIndustries: [],
+      strongSkills: {}, // 3 of your strongest soft skills
+      weakSkills: {}    // 3 soft skills you want to work on
     };
-
+    console.log(this.props.user)
+    console.log(this.props.collectionId)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
     const data = new FormData(event.target); // initializes with all text fields and select field
-    data.append("strongSkills", this.state.strongSkills); // strong soft skills array
-    data.append("weakSkills", this.state.weakSkills); // weak soft skills array
+    data.append("selectedIndustries", JSON.stringify(this.state.selectedIndustries)); //industries of interest array
+    data.append("strongSkills", JSON.stringify(this.state.strongSkills)); // strong soft skills
+    data.append("weakSkills", JSON.stringify(this.state.weakSkills)); // weak soft skills
 
     console.log("FORM DATA SUBMISSION:")
     for (var pair of data.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
     }
+    //console.log(JSON.parse(data.get("selectedIndustries")));
+    //console.log(JSON.parse(data.get("strongSkills")));
+    //console.log(JSON.parse(data.get("weakSkills")));
 
     this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
   }
+
+  getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, console.log(industries))} // retireves state from child
 
   getStrongSkills = (skills) => {this.setState({strongSkills: skills}, console.log(skills))} // retrieves state from child
 
   getWeakSkills = (skills) => {this.setState({weakSkills: skills}, console.log(skills))} // retrieves state from child
 
   render() {
+    /*if (this.props.collectionId === null || this.props.collectionId == '0') {
+      return (
+        <p>this is not loading</p>
+      )
+    }*/
     return (
       <div className='container'>
         <div className='row'>
@@ -64,19 +79,8 @@ class StudentSurvey extends React.Component {
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills</h3>
                   <div className="form-group">
-                    <label htmlFor="selectIndustry">Select the industry that best describes your professional interests:</label>
-                    <select className="form-control" id="selectIndustry" size="10" name="industry" required>
-                      <option>Medical/Healthcare</option>
-                      <option>Engineering</option>
-                      <option>Tech</option>
-                      <option>Law</option>
-                      <option>Education</option>
-                      <option>Manufacturing (Food, chemical, textiles, machines, equipment)</option>
-                      <option>Retail</option>
-                      <option>Agriculture</option>
-                      <option>Sports</option>
-                      <option>Media/Entertainment</option>
-                    </select>
+                    <label htmlFor="selectIndustry">What job sector are you looking for an internship/full time job? (pick a maximum of 3)</label>
+                    <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
                   <h5>Pick your top 3 strongest soft skills:</h5>
@@ -84,6 +88,7 @@ class StudentSurvey extends React.Component {
                   <br/>
                   <h5>Pick the top 3 soft skills you want to work on:</h5>
                   <SkillSelector passToParent={this.getWeakSkills}/>
+                  <QuestionForm/>
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
                 <h3 className="card-title">Self-Assessment Survey</h3>
