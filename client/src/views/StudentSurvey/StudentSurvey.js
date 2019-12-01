@@ -5,6 +5,7 @@ import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
+import logo from '../../assets/Black-logo-no-background.png'
 
 class StudentSurvey extends React.Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class StudentSurvey extends React.Component {
           <div className='col'>
             <div className="card shadow-lg p-3 mb-5 bg-white rounded">
               <div className="card-body">
+                <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
                   <h3 className="card-title">Contact Information</h3>
                   <div className="form-row">
