@@ -4,6 +4,7 @@ import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
+import logo from '../../assets/Black-logo-no-background.png'
 
 class CompanySurvey extends React.Component {
   constructor(props) {
@@ -48,9 +49,24 @@ class CompanySurvey extends React.Component {
           <div className='col'>
             <div className="card shadow-lg p-3 mb-5 bg-white rounded">
               <div className="card-body">
+                <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
+                <h3 className="card-title">Company Information</h3>
+                <div className="form-row">
+                  <div className="form-group col">
+                    <label htmlFor="inputCompanyName">Company name</label>
+                    <input type="text" className="form-control" placeholder="Company name" name="companyName" required/>
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group col">
+                    <label htmlFor="inputBio">Company bio</label>
+                    <textarea type="text" className="form-control" placeholder="Company bio" name="companyBio" rows="3" required/>
+                  </div>
+                </div>
+                <br/>
                   <h3 className="card-title">Professional Interests and Skills Assessment</h3>
-                  <i>Please answer the following questions in a way you hope your ideal candidate for this position would answer them:</i>
+                  <i>Please answer the following questions in a way you hope your ideal employee would answer them:</i>
                   <br/>
                   <br/>
                   <div className="form-group">
