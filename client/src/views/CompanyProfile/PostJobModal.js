@@ -20,7 +20,7 @@ class PostJobModal extends React.Component {
       jobDescription: event.target.jobDescription.value, 
       jobRequirements: event.target.jobRequirements.value
     }
-    console.log(jobData);
+    // console.log(jobData);
     // var obj = JSON.parse(user);
     // console.log(obj);
     // obj['jobPost'].push(jobData);

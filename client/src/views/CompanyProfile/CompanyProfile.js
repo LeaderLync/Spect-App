@@ -31,7 +31,7 @@ class CompanyProfile extends React.Component
     updateSelectedJobPost(jobPost){ this.setState({selectedJobPost: jobPost})};   
     render() {
 
-        //console.log(this.state.jobs);
+        //console.log(this.props);
         let postModalClose = () => this.setState({postModalShow: false});
         let editJobModalClose = () => this.setState({setEditShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
@@ -89,7 +89,8 @@ class CompanyProfile extends React.Component
                             <PostJobModal
                             show={this.state.postModalShow}
                             onHide={postModalClose}
-                            user={this.props}/>
+                            user={this.props}
+                            />
                         </ButtonToolbar>
                         <CardGroup>
                             {cardList}

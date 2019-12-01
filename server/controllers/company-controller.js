@@ -20,10 +20,10 @@ exports.create = function(req, res) {
 exports.read = async function(req, res) {
   Company.findOne({id:req.user.collectionid}).exec(function(err, company) {
     if(err) {
-      console.log('error on student by id')
+      console.log('error on company by id')
       res.status(400).send(err);
     } else {
-      console.log('worked for listing by student')
+      console.log('worked for listing by company')
       res.json(company)
     }
   });

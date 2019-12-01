@@ -4,8 +4,8 @@ var companycontroller = require('../controllers/company-controller')
 
 
 
-router.route('/job')
-    .post(companycontroller.createjob)
+// router.route('/job')
+//     .post(companycontroller.createjob)
 
 router.route('/')
     .post(companycontroller.create)
