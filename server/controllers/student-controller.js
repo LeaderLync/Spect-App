@@ -36,6 +36,7 @@ exports.getmatches = function(req, res) {
   //   console.log(users.length)
   //   res.status(200).send(users)
   // })
+  res.status(200).send("ayeee bruh")
 }
 
 // /* Show the current listing */
