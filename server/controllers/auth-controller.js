@@ -7,10 +7,11 @@ exports.create = function(req, res) {
   // console.log(req.body)
   var payload = {
     authuid : req.body.uid,
-    collectionid : id
+    collectionid : id,
+    accountType: req.body.accountType
   }
   var newUser = new User(payload);
-  /* Then save the listing */
+
   newUser.save(function(err) {
     if(err) {
       console.log(err);

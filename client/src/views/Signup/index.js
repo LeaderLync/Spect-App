@@ -8,7 +8,6 @@ class SignupContainer extends Component {
     constructor(props) {
         super(props)
         console.log(this.props.isStudent)
-        
     }
     handleSignup = async (event) => {
         event.preventDefault()
@@ -17,8 +16,10 @@ class SignupContainer extends Component {
         try { 
             const newuser = await auth.createUserWithEmailAndPassword(email.value, password.value);
             console.log(newuser.user.uid)
+            
             var request = {
-                uid: newuser.user.uid
+                uid: newuser.user.uid,
+                accountType: (this.props.isStudent)? 0 : 1
             }
             var response = '0'
             await api.registernewuser(request).then((res) => {

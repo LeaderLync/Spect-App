@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
 
   authuid: {type: String, required: true},
-  collectionid: {type: String, required: true}
+  collectionid: {type: String, required: true},
+  accountType: {type: Number, required: true} //0 for student 1 for company
 
 });
 
