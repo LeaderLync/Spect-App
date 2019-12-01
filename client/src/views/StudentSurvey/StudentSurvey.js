@@ -30,6 +30,7 @@ class StudentSurvey extends React.Component {
     studentData[key] = value;
     });
 
+    studentData["id"] = this.props.collectionId;
     studentData["selectedIndustries"] = this.state.selectedIndustries;
     studentData["strongSkills"] = this.state.strongSkills;
     studentData["weakSkills"] = this.state.weakSkills;
