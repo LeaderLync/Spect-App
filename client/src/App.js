@@ -85,7 +85,8 @@ class App extends Component {
                 collectionIdUpdate={this.collectionIdUpdate.bind(this)}
               />}/>
             <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
-            <Route exact path="/studentProfile" component={StudentProfile} />
+            {/* Used render instead of component in order to pass props into the react-router */}
+            <Route exact path="/studentprofile" render={() => <StudentProfile userinfo={this.state.userinfo}/>} />
             <Route component={NotFound}/>
           </Switch>
         </div>

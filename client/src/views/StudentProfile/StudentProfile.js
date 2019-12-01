@@ -7,9 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import CompanyPopup from '../../components/CompanyPopup.js';
-import logo from '../../assets/White logo - no background.svg'
-
-function StudentProfile() {
+import logo from '../../assets/White logo - no background.svg';
+import Navbar from '../../components/Navbar/Navbar';
+function StudentProfile(props) {
 
     const useStyles = makeStyles(theme => ({
         root: {
@@ -62,7 +62,7 @@ function StudentProfile() {
 
       }));
       const classes = useStyles();
-      //set person = this.props
+
       const person = {
         oid: "5dd416b81c9d440000dba799",
         id: "123456789",
@@ -83,10 +83,10 @@ function StudentProfile() {
             ],
         industry:["Engineering","Health","Business"]
     }
-
+        console.log(props.userinfo)
         return(
-
             <div className={classes.root}>
+                <Navbar/>
                 <div className={classes.heroContent} >
                     <Grid container spacing={4} justify="center" alignItems="center">
                         <Grid container item sm={4} md={2} style={{textAlign: 'center', justifyContent: 'center'}}>
