@@ -1,9 +1,21 @@
-var Company = require('../models/company.model.js')    
+var Company = require('../models/company.model.js')
+const uuid = require('uuid/v4')
 
 
 exports.create = function(req, res) {
+  var companyID = uuid();
 
-  var newCompany = new Company(req.body);
+  var companyData = {
+    uid: companyID,
+    name: req.body.companyName,
+    bio: req.body.companyDescription,
+    industry: req.body.companyIndustry,
+    jobPost: []
+  }
+
+  console.log("Create Function Logging: ", companyData);
+
+  var newCompany = new Company(companyData);
   /* Then save the listing */
   newCompany.save(function(err) {
     if(err) {
@@ -16,37 +28,31 @@ exports.create = function(req, res) {
   });
 };
 
-// /* Show the current listing */
-// exports.read = function(req, res) {
-//   /* send back the listing as json from the request */
-//   res.json(req.student);
-// };
 
-// // /* Update a listing - note the order in which this function is called by the router*/
-// exports.update = function(req, res) {
-//   if (!req.body.updatedCompany) {
-//     return res.status(400).send({
-//       message: "Updated content cannot be empty"
-//     })
-//   }
-//   List
-//   var updatedCompany = new Listing(req.body);
-//   if(req.results) {
-//     updatelisting.coordinates = {
-//       latitude: req.results.lat, 
-//       longitude: req.results.lng
-//     };
-//   }
-//   updatelisting.save(function(err) {
-//     if(err) {
-//       console.log(err);
-//       res.status(400).send(err);
-//     } else {
-//       res.json(updatelisting);
-//       console.log(updatelisting)
-//     }
-//   });
-// };
+exports.jobPost = function(req, res) {
+
+
+   console.log("Posting Controller Function: ", req.body)
+  
+   var updatedCompany = new Company(req.body);
+   if(req.results) {
+     updatecompany.jobPost = {
+       jobID: uuid(), 
+       jobTitle: req.body.jobTitle,
+       jobDescription: req.body.jobDescription,
+       jobRequirements: req.body.jobRequirements
+     };
+   }
+   updatecompany.save(function(err) {
+     if(err) {
+       console.log(err);
+       res.status(400).send(err);
+     } else {
+       res.json(updatecompany);
+       console.log(updatecompany)
+     }
+   });
+};
 
 // /* Delete a listing */
 // exports.delete = function(req, res) {

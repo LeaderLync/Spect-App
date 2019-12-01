@@ -20,7 +20,7 @@ class PostJobModal extends React.Component {
       jobRequirements: event.target.jobRequirements.value
     }
 
-    console.log(jobData);
+    console.log("Post Modal Logging: ",jobData);
 
     api.postJob(jobData);
     

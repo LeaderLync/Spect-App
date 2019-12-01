@@ -1,19 +1,17 @@
-var companycontroller = require('../controllers/company-controller')
+var companyController = require('../controllers/company-controller')
     express = require('express'),
     router = express.Router()
 
 
+//Route to create a company inside the database    
+router.route('/').post(companyController.create);
 
-router.route('/job')
-    .post(companycontroller.createjob)
-
-router.route('/')
-    .post(companycontroller.create)
-
+//Update a company (Used to update the jobPost/ Post jobs)
+router.route('/job').post(companyController.jobPost);
 
 
-
-router.route('/:companyid')
+//Route to retieve a single company by company id
+//router.route('/:companyid').get(companyController.findOne);
 
 
 

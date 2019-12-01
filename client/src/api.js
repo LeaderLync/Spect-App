@@ -2,14 +2,13 @@ import axios from 'axios'
 
 
 const client = axios.create({
-    baseURL: 'localhost:5000/api',
+    baseURL: 'http://localhost:5000/api',
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     }
 })
-
-
 
 export default {
     inputdata(arraydata) {
@@ -39,8 +38,12 @@ export default {
     postJob(jobData)
     {
         let params = jobData
-        client.post('/company/job', params)
+
+        console.log("API logging", params)
+
+        client.post('/company/job', {params})
         .then(response => {
+            console.log(response)
             return response
         }).catch((err) => {
             console.log(err)
