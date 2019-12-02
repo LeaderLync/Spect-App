@@ -13,7 +13,7 @@ import auth from './config/firebaseauth';
 import PrivateRoute from './components/PrivateRoute'
 import Signup from './views/Signup'
 import CompanyProfile from './views/CompanyProfile/CompanyProfile';
-import Matches from './views/Matches';
+import Matches from './views/Matches/Matches';
 
 class App extends Component {
   constructor(props) {
