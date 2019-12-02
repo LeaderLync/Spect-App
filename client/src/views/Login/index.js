@@ -22,6 +22,7 @@ class LoginContainer extends Component {
             console.log(response)
             this.props.userInfoUpdate(response)
             this.props.collectionIdUpdate(response.id)
+            console.log(response.id)
             this.props.history.push("/");//redirects to home
         } catch (error) {
             alert(error);

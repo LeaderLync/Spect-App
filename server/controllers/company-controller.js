@@ -21,36 +21,37 @@ exports.create = function(req, res) {
 exports.read = async function(req, res) {
   Company.findOne({id:req.user.collectionid}).exec(function(err, company) {
     if(err) {
-      console.log('error on student by id')
+      console.log('error on company by id')
       res.status(400).send(err);
     } else {
-      console.log('worked for listing by student')
+      console.log('worked for listing by company')
       res.json(company)
     }
   });
 };
 
 exports.jobPost = function(req, res) {
-
+  
 
    console.log("Posting Controller Function: ", req.body)
   
    var updatedCompany = new Company(req.body);
    if(req.results) {
-     updatecompany.jobPost = {
+     updatedCompany.jobPost = {
        jobID: uuid(), 
        jobTitle: req.body.jobTitle,
        jobDescription: req.body.jobDescription,
-       jobRequirements: req.body.jobRequirements
+       jobRequirements: req.body.jobRequirements,
+       jobLink: req.body.jobRequirements
      };
    }
-   updatecompany.save(function(err) {
+   updatedCompany.save(function(err) {
      if(err) {
        console.log(err);
        res.status(400).send(err);
      } else {
-       res.json(updatecompany);
-       console.log(updatecompany)
+       res.json(updatedCompany);
+       console.log(updatedCompany)
      }
    });
 };

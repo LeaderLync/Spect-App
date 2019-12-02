@@ -63,6 +63,8 @@ class App extends Component {
   }
   
   render() {
+    console.log("printing collection id")
+    console.log(this.state.collectionid)
     if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
@@ -72,7 +74,7 @@ class App extends Component {
             <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/Home" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
-            <PrivateRoute exact path="/CompanyProfile" component={CompanyProfile} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/CompanyProfile" component={CompanyProfile} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid} />
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>

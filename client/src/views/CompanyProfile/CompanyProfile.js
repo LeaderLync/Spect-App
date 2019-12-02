@@ -8,6 +8,8 @@ import ViewJobPost from './ViewJobPost'
 import sampleImage from '../../assets/Company Logo.png'
 import leadership from '../../assets/Leadership Icon.png'
 import Navbar from '../../components/Navbar/Navbar'
+import api from '../../api'
+
 
 import { Image, CardGroup, Card, Container, Button, ButtonToolbar} from 'react-bootstrap'
 
@@ -17,19 +19,25 @@ class CompanyProfile extends React.Component
     constructor(props)
     {
         super(props);
-
+        console.log(props)
         this.state =
         {
             jobs: data[0].jobPost,
             postModalShow: false,
             seteditShow: false,
             setViewShow: false,
+            collectionid: "547b8dbf-d04d-47e8-b903-4f1ba0a62a6d",
             // idea, have a selected job to pass to the view/edit modal:
             selectedJobPost: data[0].jobPost[0],
         }
     }
+
+    
     
     render() {
+        console.log(this.state.collectionid)
+        const Compdata = api.getcompanyuser('547b8dbf-d04d-47e8-b903-4f1ba0a62a6d');
+        console.log("Job Data: ", Compdata)
 
         //console.log(this.state.jobs);
         let postModalClose = () => this.setState({postModalShow: false});
@@ -93,7 +101,8 @@ class CompanyProfile extends React.Component
                             onClick={() => this.setState({postModalShow: true})}>Post Job</Button>
                             <PostJobModal
                             show={this.state.postModalShow}
-                            onHide={postModalClose}/>
+                            onHide={postModalClose}
+                            collectionId={this.state.collectionid}/>
                         </ButtonToolbar>
                         <CardGroup>
                             {cardList}

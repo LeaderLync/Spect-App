@@ -17,7 +17,8 @@ class PostJobModal extends React.Component {
       jobID: null,
       jobTitle: event.target.jobName.value,
       jobDescription: event.target.jobDescription.value, 
-      jobRequirements: event.target.jobRequirements.value
+      jobRequirements: event.target.jobRequirements.value,
+      jobLink: event.target.jobRequirements.value
     }
 
     console.log("Post Modal Logging: ",jobData);
@@ -42,6 +43,8 @@ class PostJobModal extends React.Component {
   }
 
   render(){
+
+    console.log(this.props.collectionId)
   
   return (
     <Modal
@@ -74,6 +77,12 @@ class PostJobModal extends React.Component {
                 name="jobRequirements"
                 required
                 placeholder="Type New Job Requirements"/>
+                <Form.Label>Job Link</Form.Label>
+                <Form.Control
+                type="text"
+                name="jobLink"
+                required
+                placeholder="Type New Job Link"/>
                 </Form.Group>
                 <Form.Group>
                 <Button variant="primary" type="submit">Add Job</Button>

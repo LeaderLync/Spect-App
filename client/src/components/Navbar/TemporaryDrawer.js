@@ -11,6 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -48,7 +49,9 @@ export default function TemporaryDrawer() {
       <List>
         {['Matches', 'Content Marketplace', 'Profile'].map((text, index) => (
           <ListItem button key={text}>
+            <Link to="/CompanyProfile">
             <ListItemText primary={text} />
+            </Link>
           </ListItem>
         ))}
       </List>

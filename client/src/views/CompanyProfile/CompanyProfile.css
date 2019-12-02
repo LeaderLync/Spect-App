@@ -17,6 +17,14 @@
     background: rgba(46, 167, 235);
 }
 
+.skillSquare{
+    position: absolute;
+    width: 5vw;
+    height: 5vw;
+    background: white;
+
+}
+
 .company-name{
     position: absolute;
     left: 10vw;
