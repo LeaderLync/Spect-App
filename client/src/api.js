@@ -79,9 +79,11 @@ export default {
             })
     },
     getrecommendations(userinfo) {
-
-        return client.get(`/student/recommendations`, userinfo)
+        // console.log(userinfo)
+        console.log(userinfo)
+        return client.get('/student/recommendations', userinfo)
             .then(response => {
+                console.log(response)
                 // console.log(response.data)
                 return response
                 // return response.data

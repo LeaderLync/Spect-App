@@ -69,7 +69,9 @@ class Matches extends React.Component {
     }
     componentDidMount() {
         console.log(this.props.mystate.userinfo)
-        api.getrecommendations(this.props.mystate.userinfo)
+        console.log(typeof this.props.mystate.userinfo)
+        var payload = this.props.mystate.userinfo
+        api.getrecommendations(payload)
     }
     render(){
         const {classes} = this.props;
