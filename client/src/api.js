@@ -13,13 +13,13 @@ const client = axios.create({
 
 
 export default {
-    inputdata(arraydata) {
+    /*inputdata(arraydata) {
         let params = arraydata
         client.post('/students',params)
         .then((response) => {
             console.log(response)
         })
-    },
+    },*/
     getdata(){
         client.get('/students')
         .then(response => {
@@ -39,6 +39,24 @@ export default {
             return null;
         })
     },
+    collectStudentResponse(studentData){ // collecting initial reponses from the student survey
+      return client.post('/student', studentData)
+      .then(response => {
+        console.log("put response here")
+        return response
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
+      return client.post('/company', companyData)
+      .then(response => {
+        console.log("put response here")
+        return response
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
@@ -50,7 +68,7 @@ export default {
             })
     },
     getstudentuser(userid) {
-        return client.get(`/students/${userid}`)
+        return client.get(`/student/${userid}`)
             .then(response => {
                 console.log(response.data)
                 return response.data

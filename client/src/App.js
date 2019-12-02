@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import StudentSurvey from './views/StudentSurvey/StudentSurvey';
+import CompanySurvey from './views/CompanySurvey/CompanySurvey';
 import NotFound from "./views/NotFound"
 //import Header from "./components/Header/Header"
 import StudentProfile from "./views/StudentProfile/StudentProfile"
@@ -27,6 +28,7 @@ class App extends Component {
     }
   }
   componentDidMount() {
+    console.log("whatupp")
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -57,11 +59,11 @@ class App extends Component {
     this.setState({
       collectionid: value
     })
-    console.log("updating" + this.state.collectionid)
+    console.log("updating " + this.state.collectionid)
 
 
   }
-  
+
   render() {
     if(this.state.loading) {
       return (<p>It is still loading</p>)
@@ -69,18 +71,19 @@ class App extends Component {
       return (
         <div style={{height: '100%'}}>
           <Switch>
-            <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/Home" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
-            <PrivateRoute exact path="/CompanyProfile" component={CompanyProfile} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/" render={(props) => <Home {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/Home" render={(props) => <Home {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
+            <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
+            <PrivateRoute exact path="/CompanyProfile" render={(props) => <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>
             {/* <Route exact path="/signup" component={Signup}/> */}
-            <Route exact path="/login" render={(props) => 
-              <Login {...props } 
-                isStudent={this.state.isStudent} 
-                userUpdate={this.userUpdate.bind(this)} 
+            <Route exact path="/login" render={(props) =>
+              <Login {...props }
+                isStudent={this.state.isStudent}
+                userUpdate={this.userUpdate.bind(this)}
                 userInfoUpdate={this.userInfoUpdate.bind(this)}
                 collectionIdUpdate={this.collectionIdUpdate.bind(this)}
               />}/>
