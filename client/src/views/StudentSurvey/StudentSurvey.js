@@ -38,7 +38,7 @@ class StudentSurvey extends React.Component {
     //console.log(JSON.stringify(studentData, null, 2));
 
     api.collectStudentResponse(studentData).then(response => {
-      console.log(response.data);
+      //console.log(response.data);
       this.props.userInfoUpdate(response);
     }); // passes JSON object to be request
 

@@ -52,10 +52,11 @@ export default {
     collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
       return client.post('/company', companyData)
       .then(response => {
-        console.log("put response here")
+        //console.log("put response here")
         return response.data
       }).catch((err) => {
         console.log(err)
+        return null
       })
     },
     getcompanyuser(userid) {
@@ -76,6 +77,20 @@ export default {
             }).catch((err) => {
                 console.log(err)
                 return null;
+            })
+    },
+    getrecommendations(userinfo) {
+        console.log(userinfo)
+        console.log(userinfo)
+        return client.patch('/student', userinfo)
+            .then(response => {
+                console.log(response)
+                console.log(response.data)
+                return response
+                // return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
             })
     }
 }
