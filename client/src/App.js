@@ -27,7 +27,6 @@ class App extends Component {
     // sessionStorage.
   }
   componentDidMount() {
-    console.log("bro this did happen")
     auth.onAuthStateChanged((user) => {
       console.log(user)
       if (user) {
@@ -68,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.loading && this.state.isStudent === null) {
+    if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
       return (
