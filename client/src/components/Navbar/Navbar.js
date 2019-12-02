@@ -14,6 +14,7 @@ import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
 import auth from '../../config/firebaseauth'
 import { Link, Route, Redirect  } from 'react-router-dom';
+import spectLogo from '../../assets/Black-logo-no-background.png';
 
 
 const signout = () => {
@@ -34,12 +35,16 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
    bar: {
-    background: 'linear-gradient(180deg, #000000 30%, #000000 90%)', //'linear-gradient(45deg, #0021A5 30%, #0021A 90%)',
+    background: 'linear-gradient(180deg, #2EA7EB 30%, #2EA7EB 90%)',
     border: 0,
     padding: '0 30px',
   },
   drawer: {
     margin: '0px 20px 50px',
+  },
+  spect: {
+    maxWidth: '10%',
+    margin: 'auto',
   }
 }));
 
@@ -117,8 +122,9 @@ const Navbar = (props) => {
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
           <TemporaryDrawer className="drawer" isStudent= {props.isStudent}/>
-          <Typography variant="h6" className={classes.title}>
-          </Typography>
+          <div>
+            <img src={spectLogo} className = {classes.spect}/> 
+          </div>
           {auth && (
             <div>
               <IconButton
@@ -127,7 +133,7 @@ const Navbar = (props) => {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-              >
+              > 
                 <AccountCircle />
               </IconButton>
               {menuItems}

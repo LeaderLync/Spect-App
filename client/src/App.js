@@ -24,7 +24,7 @@ class App extends Component {
       loading: true,
       authenticated: false,
       currentUser: null,
-      isStudent: null,
+      isStudent: false,
       userinfo: {},
       collectionid: '0'
     }
@@ -52,10 +52,13 @@ class App extends Component {
     console.log(this.state.isStudent)
   }
   userUpdate() {
+    console.log("the new boolean value is ")
+    console.log(!this.state.isStudent)
     sessionStorage.setItem("isStudent", JSON.stringify(!this.state.isStudent))
     this.setState({
       isStudent: !this.state.isStudent
     })
+    console.log(sessionStorage.getItem('isStudent'))
   }
   userInfoUpdate(value) {
     this.setState({
@@ -87,7 +90,7 @@ class App extends Component {
               render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>}
               authenticated={this.state.authenticated} 
               user={this.state.currentUser}
-              isStudent={this.state.isStudent}
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateRoute exact path="/StudentSurvey" 
               render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} 
