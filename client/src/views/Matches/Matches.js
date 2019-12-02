@@ -37,8 +37,11 @@ const styles = theme => ({
     actions: {
         justifyContent: 'center',
     },
-    matchButton: {
+    matchButtonFalse: {
         background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)',
+    },
+    matchButtonTrue: {
+        background: 'black',
     },
     actionDiv: {
         display: 'inline',
@@ -56,7 +59,9 @@ class Matches extends React.Component {
             jobs: data,
             postModalShow: false,
             editShow: false,
+            matchButtonState: false,
         }
+        this.matchButtonClicked = this.matchButtonClicked.bind(this);
     }
 
     signOut() {
@@ -66,6 +71,14 @@ class Matches extends React.Component {
             alert('Cant sign out')
         })
     }
+
+    matchButtonClicked() {
+        console.log(this.state.matchButtonState ? "matchButtonTrue": "matchButtonFalse");
+        this.setState({
+            matchButtonState:!this.state.matchButtonState
+          })
+    }
+
     render(){
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
@@ -83,7 +96,12 @@ class Matches extends React.Component {
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
                         <h3>Google</h3>
-                        <Button variant="contained" color="secondary" startIcon={<FavoriteIcon />} className={classes.matchButton}>
+                        <Button 
+                            variant="contained" 
+                            color="secondary" 
+                            startIcon={<FavoriteIcon />} 
+                            className={this.state.matchButtonState ? classes.matchButtonTrue : classes.matchButtonFalse}
+                            onClick={this.matchButtonClicked}>
                             Match
                         </Button>
                         <Button size="small" color="primary">
