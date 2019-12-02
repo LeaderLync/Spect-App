@@ -36,7 +36,7 @@ function StudentProfile(props) {
             
           },
           heroContent: {
-            backgroundColor: 'rgb(46, 167, 235)',
+            backgroundColor: 'gray',
             padding: theme.spacing(6, 0, 6),
           },
         media: {

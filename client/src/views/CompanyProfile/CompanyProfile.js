@@ -56,7 +56,7 @@ class CompanyProfile extends React.Component
 
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made
-        const cardList = this.state.jobs.map(jobPost => 
+        const cardList = this.state.jobs.map(function(jobPost)
             {
                 return(
                     <Container key={jobPost.jobID}>
@@ -78,8 +78,8 @@ class CompanyProfile extends React.Component
                             </div>
                         </div>
                     </Container>
-                );
-            }).bind(this) // TODO: check this guy out
+                )
+            }.bind(this)) // TODO: check this guy out
 
             return(
                 <div>
