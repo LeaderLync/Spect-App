@@ -43,6 +43,7 @@ class App extends Component {
     })
   }
   userUpdate() {
+    console.log("HEY")
     sessionStorage.setItem("isStudent", JSON.stringify(!this.state.isStudent))
     this.setState({
       isStudent: !this.state.isStudent
@@ -64,7 +65,7 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.loading && this.state.isStudent === null) {
+    if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
       return (
@@ -83,13 +84,13 @@ class App extends Component {
               render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
-              collectionId={this.state.collectionid}
+              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanySurvey"
               render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
               authenticated={this.state.authenticated} user={this.state.currentUser}
-              collectionId={this.state.collectionid}
+              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanyProfile" render={(props) =>
