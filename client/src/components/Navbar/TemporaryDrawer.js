@@ -79,6 +79,11 @@ export default function TemporaryDrawer() {
             <ListItem button><Link to="/Matches" style={{ textDecoration: 'none' }}>Matches</Link></ListItem>
             <ListItem button><Link to="/studentprofile" style={{ textDecoration: 'none' }}>Student Profile</Link></ListItem>
           </List>
+          <List >
+            <Link to="/StudentSurvey">
+              <ListItem button>Studentsurvet</ListItem>
+            </Link>
+          </List>
       </div>
       </Drawer>
     </div>

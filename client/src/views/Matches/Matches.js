@@ -110,7 +110,7 @@ class Matches extends React.Component {
 
         return (
             <div className="App">
-                <Navbar page={"Matches"}/>
+                <Navbar isStudent={this.props.mystate.isStudent}/>
                 <div className={classes.cardList}>
                     {CompanyCardList}
                 </div>

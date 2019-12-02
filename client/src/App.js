@@ -62,7 +62,7 @@ class App extends Component {
       collectionid: value
     })
     console.log("updating" + this.state.collectionid)
-
+    sessionStorage.setItem("collectionid", JSON.stringify(value))
 
   }
 
@@ -70,16 +70,14 @@ class App extends Component {
     if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
-      console.log(JSON.parse(sessionStorage.getItem("userinfo")))
       return (
         <div style={{height: '100%'}}>
           <Switch>
-            <PrivateRoute exact path="/" render={(props) => <Home {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/Home" render={(props) => <Home {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
-            <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
-            <PrivateRoute exact path="/CompanyProfile" render={(props) => <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/Matches" render={(props) => <Matches {...props} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/" render={(props) => (this.state.isStudent === true)? <Home {...props} mystate={this.state}/> : <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
+            <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
+            <PrivateRoute exact path="/CompanyProfile" render={(props) =>(this.state.isStudent === true)? <NotFound/> : <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/Matches" render={(props) => (this.state.isStudent === true)? <NotFound/> : <Matches {...props} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>
