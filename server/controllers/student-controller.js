@@ -41,7 +41,7 @@ exports.getmatches = function(req, res) {
 }
 
 // /* Show the current listing */
-exports.read = function(req, res) {
+exports.read = async function(req, res) {
   Student.findOne({id:req.user.collectionid}).exec(function(err, student) {
     if(err) {
       console.log('error on student by id')
@@ -109,13 +109,13 @@ exports.read = function(req, res) {
 //         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
-exports.studentByID = function(req, res, next, id) {
-  var my_user = null
+exports.studentByID = async function(req, res, next, id) {
   User.findOne({authuid: id}).exec(function(err, user) {
     if (err) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
+      console.log(user)
       req.user = user
       next()
     }
