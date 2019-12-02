@@ -50,7 +50,7 @@ class App extends Component {
   }
   userInfoUpdate(value) {
     this.setState({
-      userInfo: value
+      userinfo: value
     })
   }
   collectionIdUpdate(value) {
