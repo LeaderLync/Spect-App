@@ -58,7 +58,6 @@ class App extends Component {
     this.setState({
       isStudent: !this.state.isStudent
     })
-    console.log(sessionStorage.getItem('isStudent'))
   }
   userInfoUpdate(value) {
     this.setState({
@@ -80,6 +79,9 @@ class App extends Component {
     if(this.state.loading && this.state.isStudent === null) {
       return (<p>It is still loading</p>)
     } else {
+      console.log("watching variable")
+      console.log(typeof JSON.parse(sessionStorage.getItem("isStudent")))
+      console.log(sessionStorage.getItem("isStudent"))
       return (
         <div style={{height: '100%'}}>
           <Switch>
@@ -126,13 +128,14 @@ class App extends Component {
             />
             <Route exact path="/login" render={(props) =>
               <Login {...props }
-                isStudent={this.state.isStudent}
+                isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
                 userUpdate={this.userUpdate.bind(this)}
                 userInfoUpdate={this.userInfoUpdate.bind(this)}
                 collectionIdUpdate={this.collectionIdUpdate.bind(this)}
               />}/>
             <Route exact path="/signup" render={(props) => <Signup {...props } 
-              isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} 
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))} 
+              userUpdate={this.userUpdate.bind(this)} 
               collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
             <Route component={NotFound}/>
           </Switch>
