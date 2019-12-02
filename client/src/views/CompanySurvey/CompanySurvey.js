@@ -27,14 +27,18 @@ class CompanySurvey extends React.Component {
     companyData[key] = value;
     });
 
+    companyData["id"] = this.props.collectionId;
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
 
-    console.log(JSON.stringify(companyData, null, 2));
+    //console.log(JSON.stringify(companyData, null, 2));
 
-    api.collectCompanyResponse(companyData);
+    api.collectCompanyResponse(companyData).then(response => {
+      //console.log(response.data);
+      this.props.userInfoUpdate(response);
+    }); // passes JSON object to be request
 
-    //this.props.history.push("/studentprofile"); // reroutes to student profile page upon successful survey form submission
+    this.props.history.push("/companyprofile"); // reroutes to student profile page upon successful survey form submission
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, console.log(industries))} // retireves state from child

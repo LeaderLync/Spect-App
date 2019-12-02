@@ -80,6 +80,11 @@ export default function TemporaryDrawer() {
               <ListItem button>Matches</ListItem>
             </Link>
           </List>
+          <List >
+            <Link to="/StudentSurvey">
+              <ListItem button>Studentsurvet</ListItem>
+            </Link>
+          </List>
       </div>
       </Drawer>
     </div>

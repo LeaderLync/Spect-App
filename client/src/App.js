@@ -74,8 +74,8 @@ class App extends Component {
           <Switch>
             <PrivateRoute exact path="/" render={(props) => <Home {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/Home" render={(props) => <Home {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
-            <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
+            <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
+            <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanyProfile" render={(props) => <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/Matches" component={Matches} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">
