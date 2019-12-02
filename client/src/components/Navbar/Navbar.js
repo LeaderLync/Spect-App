@@ -29,11 +29,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
    bar: {
-<<<<<<< HEAD
     background: 'black', //'linear-gradient(45deg, #0021A5 30%, #0021A 90%)',
-=======
-    background: 'linear-gradient(180deg, #2EA7EB 30%, #2EA7EB 90%)', //'linear-gradient(45deg, #0021A5 30%, #0021A 90%)',
->>>>>>> b3bb7edf959205bb3245dbcbe6f15dbf26f68cfe
     border: 0,
     padding: '0 30px',
   },
@@ -99,14 +95,10 @@ const Navbar = () => {
                 open={open}
                 onClose={handleClose}
               >
-<<<<<<< HEAD
                 <MenuItem>
                <Link to="/CompanyProfile">Profile</Link>   
                   </MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-=======
-                <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
->>>>>>> b3bb7edf959205bb3245dbcbe6f15dbf26f68cfe
               </Menu>
             </div>
           )}

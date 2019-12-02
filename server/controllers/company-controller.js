@@ -37,15 +37,17 @@ exports.jobPost = function(req, res) {
   
 
    console.log("Posting Controller Function: ", jobData)
+   const update = {jobPosts: jobData}
 
-    Company.findByIdAndUpdate({id:req.user.collectionid}, {jobPosts: jobData}).exec(function(err,company) {
+
+    Company.findOneAndUpdate({id:req.user.collectionid}, update).exec(function(err,company) {
      if(err)
        {
-         console.log('error on company by id')
+         console.log('Erron on updating Job Post')
          res.status(400).send(err);
        }
        else {
-         console.log('worked for listing by company')
+         console.log('Job Post Was Updated')
          res.json(company)
        }
     });

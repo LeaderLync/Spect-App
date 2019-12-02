@@ -26,7 +26,7 @@ class PostJobModal extends React.Component {
     }
 
     console.log(newJob);
-    console.log("Job ID" , newJob.jobId);
+    console.log("Job ID" , newJob.jobID);
     const newData = this.props.jobs.concat(newJob);
     console.log(newData);
 

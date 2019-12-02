@@ -49,7 +49,7 @@ class CompanyProfile extends React.Component
         let updateSelectedJobPost = (jobPost) => this.setState({selectedJobPost: jobPost});
 
         console.log(this.state.jobs)
-        let postModalClose = () => this.setState({postModalShow: false})
+       // let postModalClose = () => this.setState({postModalShow: false})
 
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made
