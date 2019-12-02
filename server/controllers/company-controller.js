@@ -30,30 +30,25 @@ exports.read = async function(req, res) {
 };
 
 exports.jobPost = function(req, res) {
+  console.log(req.body)
+  res.status(200).send("great")
+  // const jobData = req.body.params
   
 
-   console.log("Posting Controller Function: ", req.body)
-  
-   var updatedCompany = new Company(req.body);
-   if(req.results) {
-     updatedCompany.jobPost = {
-       jobID: uuid(), 
-       jobTitle: req.body.jobTitle,
-       jobDescription: req.body.jobDescription,
-       jobRequirements: req.body.jobRequirements,
-       jobLink: req.body.jobRequirements
-     };
-   }
-   updatedCompany.save(function(err) {
-     if(err) {
-       console.log(err);
-       res.status(400).send(err);
-     } else {
-       res.json(updatedCompany);
-       console.log(updatedCompany)
-     }
-   });
-};
+  //  console.log("Posting Controller Function: ", jobData)
+
+  //  Company.findByIdAndUpdate({id:req.user.collectionid}, jobData).exec(function(err,company) {
+  //   if(err)
+  //     {
+  //       console.log('error on company by id')
+  //       res.status(400).send(err);
+  //     }
+  //     else {
+  //       console.log('worked for listing by company')
+  //       res.json(company)
+  //     }
+  //  });
+   };
 // // /* Update a listing - note the order in which this function is called by the router*/
 // exports.update = function(req, res) {
 //   if (!req.body.updatedStudent) {
@@ -116,6 +111,7 @@ exports.companyByID = async function(req, res, next, id) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
+      console.log(user)
        req.user = user
        next()
     }

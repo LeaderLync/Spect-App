@@ -37,13 +37,13 @@ export default {
             return null;
         })
     },
-    postJob(jobData)
+    postJob(data)
     {
-        let params = jobData
+        let params = data
 
         console.log("API logging", params)
 
-        client.post('/company/job', {params})
+        client.put(`/company/${params.collectionid}`, params.jobs)
         .then(response => {
             console.log(response)
             return response
