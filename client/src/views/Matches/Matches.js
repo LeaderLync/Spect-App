@@ -9,7 +9,6 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import data from './MatchData'
 import api from '../../api'
 
 const styles = theme => ({
@@ -59,7 +58,7 @@ class Matches extends React.Component {
 
         this.state =
         {
-            jobs: data,
+            jobs: [],
             postModalShow: false,
             editShow: false,
             matchButtonState: false,
@@ -75,8 +74,6 @@ class Matches extends React.Component {
         })
     }
     componentDidMount() {
-        console.log(this.props.isStudents)
-        console.log("hitting api")
         api.getrecommendations(this.props.userinfo).then((res) => {
             this.setState({
                 jobs: res.data
@@ -92,12 +89,15 @@ class Matches extends React.Component {
     }
 
     render(){
+        if (this.state.jobs.length === 0 || this.state.jobs === null) {
+            return <h1>NOT LOADING FAM</h1>
+        }
         const btnPrefix = "matchButton";
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
             return (
                 <Card className={classes.card} key={company.id}
-                    boxShadow={3}
+                    boxshadow={3}
                 >
                     <div className={classes.media}>
                         <img
@@ -133,7 +133,7 @@ class Matches extends React.Component {
 
         return (
             <div className="App">
-                <Navbar isStudent={this.props.mystate.isStudent}/>
+                <Navbar isStudent={this.props.isStudent}/>
                 <div className={classes.cardList}>
                     {CompanyCardList}
                 </div>
