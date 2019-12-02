@@ -10,8 +10,6 @@ const client = axios.create({
     }
 })
 
-
-
 export default {
     /*inputdata(arraydata) {
         let params = arraydata
@@ -34,6 +32,20 @@ export default {
             console.log(response)
             console.log(response.data)
             return response.data
+        }).catch((err) => {
+            console.log(err)
+            return null;
+        })
+    },
+    postJob(data){ // update when a new job post is created
+        let params = data
+
+        console.log("API logging CollectionID", params.collectionid)
+
+        client.put(`/company/${params.collectionid}`, params.jobs)
+        .then(response => {
+            console.log(response)
+            return response
         }).catch((err) => {
             console.log(err)
             return null;

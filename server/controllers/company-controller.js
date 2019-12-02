@@ -20,7 +20,7 @@ exports.create = function(req, res) {
 exports.read = async function(req, res) {
   Company.findOne({id:req.user.collectionid}).exec(function(err, company) {
     if(err) {
-      console.log('error on student by id')
+      console.log('error on company by id')
       res.status(400).send(err);
     } else {
       console.log('worked for listing by company')
@@ -29,6 +29,31 @@ exports.read = async function(req, res) {
   });
 };
 
+exports.jobPost = function(req, res) {
+  
+  console.log("Controller Body" , req.body)
+  
+  const jobData = req.body
+  
+
+   console.log("Posting Controller Function: ", jobData)
+   const update = {jobPosts: jobData}
+
+   console.log("User Collection ID", req.params.companyid)
+
+
+    Company.findOneAndUpdate({id:req.params.companyid}, update).exec(function(err,company) {
+     if(err)
+       {
+         console.log('Erron on updating Job Post')
+         res.status(400).send(err);
+       }
+       else {
+         console.log('Job Post Was Updated')
+         res.json(company)
+       }
+    });
+   };
 // // /* Update a listing - note the order in which this function is called by the router*/
 // exports.update = function(req, res) {
 //   if (!req.body.updatedStudent) {
@@ -58,7 +83,7 @@ exports.read = async function(req, res) {
 // /* Delete a listing */
 // exports.delete = function(req, res) {
 //   var listing = req.student;
-//   Student.findOneAndRemove({id: listing.id}, (err, entry) => {
+//   Company.findOneAndRemove({id: listing.id}, (err, entry) => {
 //     if (err) res.status(500).send(err);
 //     else res.status(200).send(entry);
 //   })
@@ -91,6 +116,7 @@ exports.companyByID = async function(req, res, next, id) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
+      console.log(user)
        req.user = user
        next()
     }

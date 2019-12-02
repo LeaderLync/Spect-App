@@ -36,13 +36,13 @@ function StudentProfile(props) {
             
           },
           heroContent: {
-            backgroundColor: 'rgb(46, 167, 235)',
+            backgroundColor: 'gray',
             padding: theme.spacing(6, 0, 6),
           },
         media: {
             
-            maxHeight: '200px',
-            maxWidth: '200px',
+            maxHeight: '6vw',
+            maxWidth: '6vw',
             display: 'block',
             margin: 'auto',
         },
