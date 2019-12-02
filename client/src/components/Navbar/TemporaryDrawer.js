@@ -48,7 +48,7 @@ export default function TemporaryDrawer(props) {
     </List>
     :
     <List >
-      <ListItem button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
+      <ListItem button><Link to="/CompanyProfile" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
     </List>
   return (
     <div className='buttonDiv'>

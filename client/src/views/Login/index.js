@@ -22,7 +22,11 @@ class LoginContainer extends Component {
             console.log(response)
             this.props.userInfoUpdate(response)
             this.props.collectionIdUpdate(response.id)
-            this.props.history.push("/");//redirects to home
+            if (this.props.isStudent === true) {
+                this.props.history.push("/")
+            } else {
+                this.props.history.push("/CompanyProfile")
+            }
         } catch (error) {
             alert(error);
         }
