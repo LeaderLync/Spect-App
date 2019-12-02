@@ -15,12 +15,12 @@ class LoginView extends React.Component {
     (
     <div className="header-top">
         <Button variant="contained" color="primary">Student</Button>
-        <Button onClick={this.props.userUpdate} variant="contained">Admin</Button>
+        <Button onClick={this.props.userUpdate} variant="contained">Company</Button>
     </div>
     ) : (
       <div className="header-top">
       <Button onClick={this.props.userUpdate} variant="contained">Student</Button>
-      <Button variant="contained" color="primary">Admin</Button>
+      <Button variant="contained" color="primary">Company</Button>
       </div>
     )
     return (
