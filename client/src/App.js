@@ -79,7 +79,7 @@ class App extends Component {
             <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanyProfile" render={(props) => <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/Matches" render={(props) => <Matches {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            <PrivateRoute exact path="/Matches" render={(props) => <Matches {...props} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">
               <Redirect to="/Home" />
             </Route>

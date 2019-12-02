@@ -9,35 +9,35 @@ export default[
         name: 'Facebook',
     },
     {
-        id:0, 
+        id:2, 
         name: 'Google',
     },
     {
-        id: 1,
+        id: 3,
         name: 'Facebook',
     },
     {
-        id:0, 
+        id:4, 
         name: 'Google',
     },
     {
-        id: 1,
+        id: 5,
         name: 'Facebook',
     },
     {
-        id:0, 
+        id:6, 
         name: 'Google',
     },
     {
-        id: 1,
+        id: 7,
         name: 'Facebook',
     },
     {
-        id:0, 
+        id:8, 
         name: 'Google',
     },
     {
-        id: 1,
+        id: 9,
         name: 'Facebook',
     }, 
 ]
