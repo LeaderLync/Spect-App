@@ -23,3 +23,11 @@
 .App-link {
     color: #09d3ac;
 }
+
+.cards {
+    padding-left: 100px;
+    position: absolute;
+    margin: 0 auto;
+}
+
+
