@@ -11,6 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import { Link, Route, Redirect  } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -30,6 +31,10 @@ export default function TemporaryDrawer() {
     right: false,
   });
 
+  const handleClick = (name)=> {
+    console.log(name);
+  }
+
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -37,31 +42,28 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [side]: open });
   };
-
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {['Matches', 'Content Marketplace', 'Profile'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
+  const menuitems = (props.isStudent)? 
+    <List >
+      <ListItem button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
+    </List>
+    :
+    <List >
+      <ListItem button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
+    </List>
   return (
     <div className='buttonDiv'>
       <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-        <MenuIcon onClick={toggleDrawer('left', true)} >Open Left</MenuIcon>
+        <MenuIcon>Open Left</MenuIcon>
       </IconButton>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {sideList('left')}
+        <div
+          className={classes.list}
+          role="presentation"
+          onClick={toggleDrawer('left', false)}
+          onKeyDown={toggleDrawer('left', false)}
+        >
+          {menuitems}
+      </div>
       </Drawer>
     </div>
   );

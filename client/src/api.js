@@ -13,13 +13,13 @@ const client = axios.create({
 
 
 export default {
-    inputdata(arraydata) {
+    /*inputdata(arraydata) {
         let params = arraydata
         client.post('/students',params)
         .then((response) => {
             console.log(response)
         })
-    },
+    },*/
     getdata(){
         client.get('/students')
         .then(response => {
@@ -39,8 +39,7 @@ export default {
             return null;
         })
     },
-    postJob(jobData)
-    {
+    postJob(jobData){ // update when a new job post is created
         let params = jobData
         client.post('/company/job', params)
         .then(response => {
@@ -50,18 +49,26 @@ export default {
             return null;
         })
     },
-    postCompany(companyData)
-    {
-        let params = companyData
-        client.post('/company', params)
-        .then(response => {
-            return response
-        }).catch((err) => {
-            console.log(err)
-            return null;
-        })
+    collectStudentResponse(studentData){ // collecting initial reponses from the student survey
+      return client.post('/student', studentData)
+      .then(response => {
+        //console.log(response.data)
+        return response.data
+      }).catch((err) => {
+        console.log(err)
+        return null
+      })
     },
-
+    collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
+      return client.post('/company', companyData)
+      .then(response => {
+        //console.log("put response here")
+        return response.data
+      }).catch((err) => {
+        console.log(err)
+        return null
+      })
+    },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
@@ -73,13 +80,27 @@ export default {
             })
     },
     getstudentuser(userid) {
-        return client.get(`/students/${userid}`)
+        return client.get(`/student/${userid}`)
             .then(response => {
                 console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
                 return null;
+            })
+    },
+    getrecommendations(userinfo) {
+        console.log(userinfo)
+        console.log(userinfo)
+        return client.patch('/student', userinfo)
+            .then(response => {
+                console.log(response)
+                console.log(response.data)
+                return response
+                // return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
             })
     }
 }

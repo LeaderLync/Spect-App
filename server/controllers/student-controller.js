@@ -1,47 +1,97 @@
 
 /* Dependencies */
-var Student = require('../models/StudentSchema.js')    
+var Student = require('../models/student.model.js')
 var User = require('../models/UserSchema')
 var Company = require('../models/company.model')
+
 exports.create = function(req, res) {
-  console.log(req.body)
+  //console.log(JSON.stringify(req.body, null, 2));
   var newStudent = new Student(req.body);
-  /* Then save the listing */
+  /* Then save the student */
   newStudent.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newStudent);
-      console.log(newStudent)
+      res.status(200).json(newStudent);
+      //console.log(newStudent)
     }
   });
 };
 
-exports.getmatches = function(req, res) {
+exports.getmatches = async function(req, res) {
+  console.log("ayeee")
   console.log(req.body)
-  let the_len = req.body.request.length
-  
-  // Company.find({}, function (err, users) {
-  //   if (err) res.status(500).send(err)
-  //   users.sort((x, y) => {
-  //     let absx  = 0
-  //     let absy = 0
-  //     for (let i = 0; i < the_len; i++) {
-  //       absx += Math.abs(x[i] - request[i])
-  //       absy += Math.abs(y[i] - request[i])
-  //     }
-  //     return absx < absy;
-  //   })
-  //   console.log(users.length)
-  //   res.status(200).send(users)
-  // })
+  const r_user = req.body
+
+  await Company.find({}, function (err, users) {
+    if (err) res.status(500).send(err)
+    users.sort((x, y) => {
+      let absx  = 0
+      let absy = 0
+
+      absx += Math.abs(x.question1 - r_user.questions1)
+      absx += Math.abs(x.question2 - r_user.questions2)
+      absx += Math.abs(x.question3 - r_user.questions3)
+      absx += Math.abs(x.question4 - r_user.questions4)
+      absx += Math.abs(x.question5 - r_user.questions5)
+      absx += Math.abs(x.question6 - r_user.questions6)
+      absx += Math.abs(x.question1 - r_user.questions1)
+      absx += Math.abs(x.question2 - r_user.questions2)
+      absx += Math.abs(x.question3 - r_user.questions3)
+      absx += Math.abs(x.question4 - r_user.questions4)
+      absx += Math.abs(x.question5 - r_user.questions5)
+      absx += Math.abs(x.question6 - r_user.questions6)
+      absx += Math.abs(x.question7 - r_user.questions7)
+      absx += Math.abs(x.question8 - r_user.questions8)
+      absx += Math.abs(x.question9 - r_user.questions9)
+      absx += Math.abs(x.question10 - r_user.questions10)
+      absx += Math.abs(x.question11 - r_user.questions11)
+      absx += Math.abs(x.question12 - r_user.questions12)
+      absx += Math.abs(x.question13 - r_user.questions13)
+      absx += Math.abs(x.question14 - r_user.questions14)
+      absx += Math.abs(x.question15 - r_user.questions15)
+      absx += Math.abs(x.question16 - r_user.questions16)
+      absx += Math.abs(x.question17 - r_user.questions17)
+      absx += Math.abs(x.question18 - r_user.questions18)
+
+      absy += Math.abs(y.question1 - r_user.questions1)
+      absy += Math.abs(y.question2 - r_user.questions2)
+      absy += Math.abs(y.question3 - r_user.questions3)
+      absy += Math.abs(y.question4 - r_user.questions4)
+      absy += Math.abs(y.question5 - r_user.questions5)
+      absy += Math.abs(y.question6 - r_user.questions6)
+      absy += Math.abs(y.question7 - r_user.questions7)
+      absy += Math.abs(y.question8 - r_user.questions8)
+      absy += Math.abs(y.question9 - r_user.questions9)
+      absy += Math.abs(y.question10 - r_user.questions10)
+      absy += Math.abs(y.question11 - r_user.questions11)
+      absy += Math.abs(y.question12 - r_user.questions12)
+      absy += Math.abs(y.question13 - r_user.questions13)
+      absy += Math.abs(y.question14 - r_user.questions14)
+      absy += Math.abs(y.question15 - r_user.questions15)
+      absy += Math.abs(y.question16 - r_user.questions16)
+      absy += Math.abs(y.question17 - r_user.questions17)
+      absy += Math.abs(y.question18 - r_user.questions18)
+
+      return absx < absy;
+    })
+    console.log(users.length)
+    res.status(200).send(users)
+  })
 }
 
 // /* Show the current listing */
-exports.read = function(req, res) {
-  /* send back the listing as json from the request */
-  res.json(req.student);
+exports.read = async function(req, res) {
+  Student.findOne({id:req.user.collectionid}).exec(function(err, student) {
+    if(err) {
+      console.log('error on student by id')
+      res.status(400).send(err);
+    } else {
+      console.log('worked for listing by student')
+      res.json(student)
+    }
+  });
 };
 
 // /* Update a listing - note the order in which this function is called by the router*/
@@ -55,7 +105,7 @@ exports.read = function(req, res) {
 //   var updatedStudent = new Listing(req.body);
 //   if(req.results) {
 //     updatelisting.coordinates = {
-//       latitude: req.results.lat, 
+//       latitude: req.results.lat,
 //       longitude: req.results.lng
 //     };
 //   }
@@ -93,31 +143,22 @@ exports.read = function(req, res) {
 //   })
 // };
 
-// /* 
-//   Middleware: find a listing by its ID, then pass it to the next request handler. 
+// /*
+//   Middleware: find a listing by its ID, then pass it to the next request handler.
 
-//   HINT: Find the listing using a mongoose query, 
-//         bind it to the request object as the property 'listing', 
+//   HINT: Find the listing using a mongoose query,
+//         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
-exports.studentByID = function(req, res, next, _id) {
-  var my_user = null
-  User.findOne({id: _id}).exec(function(err, user) {
+exports.studentByID = async function(req, res, next, id) {
+  User.findOne({authuid: id}).exec(function(err, user) {
     if (err) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
-      my_user = user
+      console.log(user)
+      req.user = user
+      next()
     }
   })
-  Student.findById(my_user.collectionid).exec(function(err, student) {
-    if(err) {
-      console.log('error on student by id')
-      res.status(400).send(err);
-    } else {
-      console.log('worked for listing by student')
-      req.student = student;
-      next();
-    }
-  });
 };

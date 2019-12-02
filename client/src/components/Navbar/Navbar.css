@@ -1,0 +1,17 @@
+.root: {
+    flex-grow: 1,
+  },
+  .menuButton: {
+    margin-right: theme.spacing(2),
+  },
+  .title: {
+    flex-grow: 1,
+  },
+  .bar: {
+    background: 'linear-gradient(180deg, #FA4616 30%, #FA0700 90%)', //'linear-gradient(45deg, #0021A5 30%, #0021A 90%)',
+    border: 0,
+    padding: '0 30px',
+  },
+  .temp: {
+    margin: '0px 20px 50px',
+  }

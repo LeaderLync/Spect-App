@@ -35,10 +35,9 @@ class CompanyProfile extends React.Component
         let postModalClose = () => this.setState({postModalShow: false});
         let editJobModalClose = () => this.setState({setEditShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
-
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made
-        const cardList = this.state.jobs.map(function(jobPost) 
+        const cardList = this.state.jobs.map(company => 
             {
                 return(
                     <Container key={jobPost.jobID}>
@@ -61,22 +60,21 @@ class CompanyProfile extends React.Component
                         </div>
                     </Container>
                 );
-            }.bind(this))
+            }).bind(this) // TODO: check this guy out
 
             return(
                 <div>
-                    <Navbar>
-                    </Navbar>
+                    <Navbar isStudent={this.props.isStudent}/>
                     <div className="info-rectangle">
                         <h3 className="company-name">{data[0].name}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
                         <img src={sampleImage} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
                         <div className='topSkills'>
                             <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "whitesmoke", fontFamily: 'Montserrat'}}>Top Three Desired Skills</h5>
-                            <p style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal'}}>
+                            <div style={{height: '100%', textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal'}}>
                                 Skill 1: {data[0].topSkills[0]} | {"    "}
                                 Skill 2: {data[0].topSkills[1]} | {" "}
                                 Skill 3: {data[0].topSkills[2]}  {" "}
-                            </p>
+                            </div>
                         </div>
                     </div>
                     <div>

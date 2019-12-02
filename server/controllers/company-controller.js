@@ -1,17 +1,17 @@
-var Company = require('../models/company.model.js')    
+var Company = require('../models/company.model.js')
 var User = require('../models/UserSchema')
 
 exports.create = function(req, res) {
 
   var newCompany = new Company(req.body);
-  /* Then save the listing */
+  /* Then save company */
   newCompany.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
       res.status(200).json(newCompany);
-      console.log(newCompany)
+      //console.log(newCompany)
     }
   });
 };
@@ -40,7 +40,7 @@ exports.read = async function(req, res) {
 //   var updatedCompany = new Listing(req.body);
 //   if(req.results) {
 //     updatelisting.coordinates = {
-//       latitude: req.results.lat, 
+//       latitude: req.results.lat,
 //       longitude: req.results.lng
 //     };
 //   }
@@ -78,11 +78,11 @@ exports.read = async function(req, res) {
 //   })
 // };
 
-// /* 
-//   Middleware: find a listing by its ID, then pass it to the next request handler. 
+// /*
+//   Middleware: find a listing by its ID, then pass it to the next request handler.
 
-//   HINT: Find the listing using a mongoose query, 
-//         bind it to the request object as the property 'listing', 
+//   HINT: Find the listing using a mongoose query,
+//         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
 exports.companyByID = async function(req, res, next, id) {

@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button'
 class LoginView extends React.Component {
   constructor(props) {
     super(props)
-    console.log("ayeee" + this.props.isStudent)
   }
   render() {
 
