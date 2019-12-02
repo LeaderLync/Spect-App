@@ -23,7 +23,7 @@ exports.read = async function(req, res) {
       console.log('error on student by id')
       res.status(400).send(err);
     } else {
-      console.log('worked for listing by student')
+      console.log('worked for listing by company')
       res.json(company)
     }
   });
