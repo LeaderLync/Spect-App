@@ -51,7 +51,7 @@ class App extends Component {
   }
   userInfoUpdate(value) {
     this.setState({
-      userInfo: value
+      userinfo: value
     })
   }
   collectionIdUpdate(value) {
@@ -72,7 +72,7 @@ class App extends Component {
           <Switch>
             <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/Home" component={Home} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
+            <PrivateRoute exact path="/StudentSurvey" component={StudentSurvey} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid} userInfoUpdate={this.userInfoUpdate.bind(this)}/>
             <PrivateRoute exact path="/CompanySurvey" component={CompanySurvey} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanyProfile" component={CompanyProfile} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <Route exact path="/">

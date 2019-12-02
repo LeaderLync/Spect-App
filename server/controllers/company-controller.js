@@ -13,7 +13,7 @@ exports.create = function(req, res) {
       res.status(200).json(newCompany);
       console.log(newCompany)
     }
-  });*/
+  });
 };
 
 // /* Show the current listing */

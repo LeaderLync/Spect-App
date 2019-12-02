@@ -42,17 +42,18 @@ export default {
     collectStudentResponse(studentData){ // collecting initial reponses from the student survey
       return client.post('/student', studentData)
       .then(response => {
-        console.log("put response here")
-        return response
+        //console.log(response.data)
+        return response.data
       }).catch((err) => {
         console.log(err)
+        return null
       })
     },
     collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
       return client.post('/company', companyData)
       .then(response => {
         console.log("put response here")
-        return response
+        return response.data
       }).catch((err) => {
         console.log(err)
       })

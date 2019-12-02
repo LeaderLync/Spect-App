@@ -5,7 +5,7 @@ var User = require('../models/UserSchema')
 var Company = require('../models/company.model')
 
 exports.create = function(req, res) {
-  console.log(JSON.stringify(req.body, null, 2));
+  //console.log(JSON.stringify(req.body, null, 2));
   var newStudent = new Student(req.body);
   /* Then save the student */
   newStudent.save(function(err) {
@@ -14,7 +14,7 @@ exports.create = function(req, res) {
       res.status(400).send(err);
     } else {
       res.status(200).json(newStudent);
-      console.log(newStudent)
+      //console.log(newStudent)
     }
   });
 };
