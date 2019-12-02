@@ -12,7 +12,6 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
-
 import { Link, Route, Redirect  } from 'react-router-dom';
 
 
@@ -92,7 +91,7 @@ const Navbar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleOpenProfile}><Link to="/Home">Profile</Link></MenuItem>
+                <MenuItem onClick={handleOpenProfile}><Link to="/Home" style={{ textDecoration: 'none' }}>Profile</Link></MenuItem>
               </Menu>
             </div>
           )}

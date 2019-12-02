@@ -11,6 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import { Link, Route, Redirect  } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -55,7 +56,7 @@ export default function TemporaryDrawer() {
           onKeyDown={toggleDrawer('left', false)}
         >
           <List >
-            <ListItem button>Matches</ListItem>
+            <ListItem button><Link to="/Matches" style={{ textDecoration: 'none' }}>Matches</Link></ListItem>
           </List>
       </div>
       </Drawer>
