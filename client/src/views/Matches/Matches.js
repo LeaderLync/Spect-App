@@ -45,11 +45,13 @@ const styles = theme => ({
     },
     actionDiv: {
         display: 'inline',
+    },
+    matchButton1: {
+        background: 'black',
     }
 })
 
 class Matches extends React.Component {
-
     constructor(props)
     {
         super(props);
@@ -73,16 +75,13 @@ class Matches extends React.Component {
     }
 
     matchButtonClicked() {
-        console.log(this.state.matchButtonState ? "matchButtonTrue": "matchButtonFalse");
-        this.setState({
-            matchButtonState:!this.state.matchButtonState
-          })
+        //api call
     }
 
     render(){
+        const btnPrefix = "matchButton";
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
-        
             return (
                 <Card className={classes.card}>
                     <CardActionArea>
@@ -100,7 +99,12 @@ class Matches extends React.Component {
                             variant="contained" 
                             color="secondary" 
                             startIcon={<FavoriteIcon />} 
-                            className={classes.matchButtonFalse}
+                            onClick={this.matchButtonClicked}
+                            style={ 
+                                company.matched ?
+                                { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
+                                : {background: 'black'}
+                            }
                             >
                                 Match
                         </Button>
