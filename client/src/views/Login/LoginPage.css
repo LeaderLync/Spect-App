@@ -56,13 +56,13 @@
 .link:hover {
     color: #549ede;
 }
-.button-signin, .button-signup {
+.button-signin{
     padding: 8.85px 13px;
     font-size: 14px;
     margin: 5px auto;
     width: 100%;
     color: #ffffff;
     border-radius: 3px;
-    background: linear-gradient(215deg, #546e7a, #37474f);
+    background-color: rgba(46, 167, 235);
     margin-bottom: 5px;
 }

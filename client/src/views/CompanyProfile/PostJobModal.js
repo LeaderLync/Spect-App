@@ -2,51 +2,53 @@ import React from 'react';
 import { Button, Modal, Row, Col, Form} from 'react-bootstrap'
 import data from './CompanyData'
 import api from '../../api'
+const uuid = require('uuid/v4')
+
 
 class PostJobModal extends React.Component {
   constructor(props)
   {
     super(props)
+
+    console.log(props.jobs)
+
+    // props.jobs = props.jobs.bind(this)
   }
 
-  handleSubmit(event){
-    let user = this.props.user;
-    event.preventDefault();
-    //alert(event.target.jobName.value) //Prints out the name as an alert
-
-    const jobData = {
-      jobID: null,
-      jobTitle: event.target.jobName.value,
-      jobDescription: event.target.jobDescription.value, 
-      jobRequirements: event.target.jobRequirements.value
+  //Will just update the entire jobPost Field inside mogo after
+  addNewJob(){ 
+    const newJob = {
+      "jobID":uuid(),
+      "jobTitle":this.refs.jobTitle.value,
+      "jobDescription":this.refs.jobDescription.value,
+      "jobRequirements":this.refs.jobRequirements.value,
+      "jobLink" : this.refs.jobLink.value
     }
-    // console.log(jobData);
-    // var obj = JSON.parse(user);
-    // console.log(obj);
-    // obj['jobPost'].push(jobData);
-    // console.log(obj);
-    // user = JSON.stringify(obj);
-     console.log(user);
-    //api.postJob(user);
-    
 
-    // fetch('http://localhost:3000/CompanyProfile'),{
-    //   method:'POST',
-    //   headers:{
-    //     'Accept' : 'application/json',
-    //     'Content-Type' : 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     jobID: null,
-    //     jobTitle: event.target.jobName.value,
-    //     jobDescription: event.target.jobDescription.value,
-    //     jobRequirements: event.target.jobRequirements.value,
-    //   })
-    // }
+    console.log(newJob);
+    console.log("Job ID" , newJob.jobID);
+    const newData = this.props.jobs.concat(newJob);
+    console.log(newData);
+
+    this.refs.jobTitle.value = '';
+    this.refs.jobDescription.value = '';
+    this.refs.jobRequirements.value = '';
+    this.refs.jobLink.value = '';
+
+    const payload = {
+           jobs: newData,
+           collectionid: this.props.collectionId
+    }
+    api.postJob(payload);
+
+    this.props.addNewJob(newData);
+
 
   }
 
   render(){
+
+    console.log("Post Job Modal" , this.props.collectionId)
   
   return (
     <Modal
@@ -59,29 +61,35 @@ class PostJobModal extends React.Component {
         <Modal.Title id="contained-modal-title-vcenter" style={{fontFamily: 'Montserrat'}}>Add New Job Post</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-              <Form onSubmit={this.handleSubmit.bind(this)} style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
+              <Form style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
                 <Form.Group controlId="JobPostID">
                 <Form.Label>Job Name</Form.Label>
                 <Form.Control
                 type="text"
-                name="jobName"
+                ref="jobTitle"
                 required
-                placeholder="Type New Job Name"/>
+                placeholder="Type New Job Title"/>
                 <Form.Label>Job Description</Form.Label>
                 <Form.Control
                 type="text"
-                name="jobDescription"
+                ref="jobDescription"
                 required
                 placeholder="Type New Job Description"/>
                 <Form.Label>Job Requirements</Form.Label>
                 <Form.Control
                 type="text"
-                name="jobRequirements"
+                ref="jobRequirements"
                 required
                 placeholder="Type New Job Requirements"/>
+                <Form.Label>Job Link</Form.Label>
+                <Form.Control
+                type="text"
+                ref="jobLink"
+                required
+                placeholder="Type New Job Link"/>
                 </Form.Group>
                 <Form.Group>
-                <Button variant="primary" type="submit">Add Job</Button>
+                <Button variant="primary" onClick={() => {if (this.refs.jobTitle.value !== '') this.addNewJob()}} type="submit">Add Job</Button>
                 </Form.Group>
               </Form>
       </Modal.Body>

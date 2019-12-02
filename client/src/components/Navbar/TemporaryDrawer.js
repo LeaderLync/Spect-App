@@ -11,7 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
-import { Link, Route, Redirect  } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {

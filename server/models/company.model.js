@@ -16,7 +16,7 @@ var CompanySchema = new Schema({
   },
   
   jobPosts: [{
-      jobID: Number,
+      jobID: String,
       jobTitle: String,
       jobDescription: String,
       jobRequirements: String,

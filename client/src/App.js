@@ -68,6 +68,8 @@ class App extends Component {
   }
 
   render() {
+    console.log("printing collection id")
+    console.log(this.state.collectionid)
     if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
@@ -86,6 +88,7 @@ class App extends Component {
               user={this.state.currentUser}
               userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
+              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
               />
             
             <PrivateRoute exact path="/studentprofile" render={() => 

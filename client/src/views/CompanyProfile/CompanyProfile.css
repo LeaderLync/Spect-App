@@ -14,15 +14,23 @@
     position: relative;
     margin: 0%;
     height: 12vw;
-    background: rgba(1, 86, 185, 0.77);
+    background: rgba(46, 167, 235);
+}
+
+.skillSquare{
+    position: absolute;
+    width: 5vw;
+    height: 5vw;
+    background: white;
+
 }
 
 .company-name{
     position: absolute;
     left: 10vw;
     top: 26%;
-    font-size: 4vw;
-    color:whitesmoke;
+    font-size: 3vw;
+    color:black;
     text-shadow: black;
     font-family: Montserrat;
     ;
@@ -34,7 +42,7 @@
     height: 6.5vw;
     left: 50%;
     top: 10%;
-    background: whitesmoke;
+    background: black;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .logo-border{

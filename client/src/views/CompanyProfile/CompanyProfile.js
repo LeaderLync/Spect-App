@@ -3,11 +3,12 @@ import './CompanyProfile.css'
 import data from './CompanyData'
 import PostJobModal from './PostJobModal'
 import ViewJobPost from './ViewJobPost'
-import EditModal from './EditModal'
+//import EditModal from './EditModal'
 
 import sampleImage from '../../assets/Company Logo.png'
 import leadership from '../../assets/Leadership Icon.png'
 import Navbar from '../../components/Navbar/Navbar'
+import api from '../../api'
 
 import { Image, CardGroup, Card, Container, Button, ButtonToolbar} from 'react-bootstrap'
 
@@ -20,24 +21,42 @@ class CompanyProfile extends React.Component
         this.updateSelectedJobPost = this.updateSelectedJobPost.bind(this);
         this.state =
         {
-            jobs: data[0].jobPost,
+            jobs: this.props.userinfo.jobPosts,
             postModalShow: false,
             seteditShow: false,
             setViewShow: false,
+            collectionid: this.props.collectionId,
             // idea, have a selected job to pass to the view/edit modal:
             selectedJobPost: data[0].jobPost[0],
         }
     }
+    
     updateSelectedJobPost(jobPost){ this.setState({selectedJobPost: jobPost})};   
+
+    addNewJob(newJobs) {
+        this.setState({
+          jobs: newJobs
+        })
+      }
+    
     render() {
+        // console.log("about to log props")
+        // console.log(this.state.collectionid)
+        // console.log("Top Info: ")
+        // console.log(this.props.userinfo.topSkills[0])
 
         //console.log(this.props);
         let postModalClose = () => this.setState({postModalShow: false});
         let editJobModalClose = () => this.setState({setEditShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
+        let updateSelectedJobPost = (jobPost) => this.setState({selectedJobPost: jobPost});
+
+        console.log(this.state.jobs)
+       // let postModalClose = () => this.setState({postModalShow: false})
+
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made
-        const cardList = this.state.jobs.map(company => 
+        const cardList = this.state.jobs.map(jobPost => 
             {
                 return(
                     <Container key={jobPost.jobID}>
@@ -66,15 +85,15 @@ class CompanyProfile extends React.Component
                 <div>
                     <Navbar isStudent={this.props.isStudent}/>
                     <div className="info-rectangle">
-                        <h3 className="company-name">{data[0].name}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
+                        <h3 className="company-name">{this.props.userinfo.companyName}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
                         <img src={sampleImage} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
                         <div className='topSkills'>
-                            <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "whitesmoke", fontFamily: 'Montserrat'}}>Top Three Desired Skills</h5>
-                            <div style={{height: '100%', textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal'}}>
-                                Skill 1: {data[0].topSkills[0]} | {"    "}
-                                Skill 2: {data[0].topSkills[1]} | {" "}
-                                Skill 3: {data[0].topSkills[2]}  {" "}
-                            </div>
+                            <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "black", fontFamily: 'Montserrat', color: 'white'}}>Top Three Desired Skills</h5>
+                            <body style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "black", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal', color: 'white'}}>
+                                Skill 1: {this.props.userinfo.strongSkills.first} | {"    "}
+                                Skill 2: {this.props.userinfo.strongSkills.second} | {" "}
+                                Skill 3: {this.props.userinfo.strongSkills.third}  {" "}
+                            </body>
                         </div>
                     </div>
                     <div>
@@ -87,8 +106,9 @@ class CompanyProfile extends React.Component
                             <PostJobModal
                             show={this.state.postModalShow}
                             onHide={postModalClose}
-                            user={this.props}
-                            />
+                            addNewJob={this.addNewJob.bind(this)}
+                            jobs={this.state.jobs}
+                            collectionId={this.state.collectionid}/>
                         </ButtonToolbar>
                         <CardGroup>
                             {cardList}
