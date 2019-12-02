@@ -30,24 +30,25 @@ exports.read = async function(req, res) {
 };
 
 exports.jobPost = function(req, res) {
-  console.log(req.body)
-  res.status(200).send("great")
-  // const jobData = req.body.params
+  
+  console.log("Controller Body" , req.body)
+  
+  const jobData = req.body
   
 
-  //  console.log("Posting Controller Function: ", jobData)
+   console.log("Posting Controller Function: ", jobData)
 
-  //  Company.findByIdAndUpdate({id:req.user.collectionid}, jobData).exec(function(err,company) {
-  //   if(err)
-  //     {
-  //       console.log('error on company by id')
-  //       res.status(400).send(err);
-  //     }
-  //     else {
-  //       console.log('worked for listing by company')
-  //       res.json(company)
-  //     }
-  //  });
+    Company.findByIdAndUpdate({id:req.user.collectionid}, {jobPosts: jobData}).exec(function(err,company) {
+     if(err)
+       {
+         console.log('error on company by id')
+         res.status(400).send(err);
+       }
+       else {
+         console.log('worked for listing by company')
+         res.json(company)
+       }
+    });
    };
 // // /* Update a listing - note the order in which this function is called by the router*/
 // exports.update = function(req, res) {

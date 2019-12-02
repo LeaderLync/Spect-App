@@ -7,7 +7,7 @@ var companycontroller = require('../controllers/company-controller')
 router.route('/').post(companycontroller.create);
 
 //Update a company (Used to update the jobPost/ Post jobs)
-router.route('/job').put(companycontroller.jobPost);
+//router.route('/job').put(companycontroller.jobPost);
 
 
 //Route to retieve a single company by company id

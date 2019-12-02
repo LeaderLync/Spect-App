@@ -18,7 +18,7 @@ class PostJobModal extends React.Component {
   //Will just update the entire jobPost Field inside mogo after
   addNewJob(){ 
     const newJob = {
-      "jobId":this.props.jobs[this.props.jobs.length-1].id + 1,
+      "jobID":uuid(),
       "jobTitle":this.refs.jobTitle.value,
       "jobDescription":this.refs.jobDescription.value,
       "jobRequirements":this.refs.jobRequirements.value,
@@ -26,6 +26,7 @@ class PostJobModal extends React.Component {
     }
 
     console.log(newJob);
+    console.log("Job ID" , newJob.jobId);
     const newData = this.props.jobs.concat(newJob);
     console.log(newData);
 
@@ -34,46 +35,16 @@ class PostJobModal extends React.Component {
     this.refs.jobRequirements.value = '';
     this.refs.jobLink.value = '';
 
+    const payload = {
+           jobs: newData,
+           collectionid: this.props.collectionId
+    }
+    api.postJob(payload);
+
     this.props.addNewJob(newData);
+
+
   }
-
-  //HandleSubmit Changing
-  // handleSubmit(event){
-  //   event.preventDefault();
-  //   console(this.props.jobs)
-  //   //alert(event.target.jobName.value) //Prints out the name as an alert
-
-  //   const jobData = {
-  //     jobID: uuid(),
-  //     jobTitle: event.target.jobName.value,
-  //     jobDescription: event.target.jobDescription.value, 
-  //     jobRequirements: event.target.jobRequirements.value,
-  //     jobLink: event.target.jobRequirements.value
-  //   }
-
-  //   console.log("Post Modal Logging: ",jobData);
-  //   const payload = {
-  //     jobs: jobData,
-  //     collectionid: this.props.collectionId
-  //   }
-  //   api.postJob(payload);
-    
-
-  //   // fetch('http://localhost:3000/CompanyProfile'),{
-  //   //   method:'POST',
-  //   //   headers:{
-  //   //     'Accept' : 'application/json',
-  //   //     'Content-Type' : 'application/json'
-  //   //   },
-  //   //   body: JSON.stringify({
-  //   //     jobID: null,
-  //   //     jobTitle: event.target.jobName.value,
-  //   //     jobDescription: event.target.jobDescription.value,
-  //   //     jobRequirements: event.target.jobRequirements.value,
-  //   //   })
-  //   // }
-
-  // }
 
   render(){
 
@@ -90,12 +61,11 @@ class PostJobModal extends React.Component {
         <Modal.Title id="contained-modal-title-vcenter" style={{fontFamily: 'Montserrat'}}>Add New Job Post</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-              <Form onSubmit={this.handleSubmit} style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
+              <Form style={{fontFamily: 'GlacialIndifferenceRegular'}}> {/*Form for New Job Post Information*/}
                 <Form.Group controlId="JobPostID">
                 <Form.Label>Job Name</Form.Label>
                 <Form.Control
                 type="text"
-                name="jobName"
                 ref="jobTitle"
                 required
                 placeholder="Type New Job Title"/>
@@ -103,21 +73,18 @@ class PostJobModal extends React.Component {
                 <Form.Control
                 type="text"
                 ref="jobDescription"
-                name="jobDescription"
                 required
                 placeholder="Type New Job Description"/>
                 <Form.Label>Job Requirements</Form.Label>
                 <Form.Control
                 type="text"
                 ref="jobRequirements"
-                name="jobRequirements"
                 required
                 placeholder="Type New Job Requirements"/>
                 <Form.Label>Job Link</Form.Label>
                 <Form.Control
                 type="text"
                 ref="jobLink"
-                name="jobLink"
                 required
                 placeholder="Type New Job Link"/>
                 </Form.Group>

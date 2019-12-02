@@ -41,7 +41,7 @@ export default {
     {
         let params = data
 
-        console.log("API logging", params)
+        console.log("API logging CollectionID", params.collectionid)
 
         client.put(`/company/${params.collectionid}`, params.jobs)
         .then(response => {

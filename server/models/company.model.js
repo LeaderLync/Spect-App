@@ -11,7 +11,7 @@ var CompanySchema = new Schema({
   //URLtoLogo: String, // if time permits
   topSkills: [],
   jobPost: [{
-      jobID: Number,
+      jobID: String,
       jobTitle: String,
       jobDescription: String,
       jobRequirements: String,
