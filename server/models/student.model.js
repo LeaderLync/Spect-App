@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 
 var studentSchema = new Schema({
-    id: Number,
+    id: String,
 
     firstName: String,
     lastName: String,
@@ -44,16 +44,15 @@ var studentSchema = new Schema({
     question17: Number,
     question18: Number,
 
-    matches:[
+    matches: [
       {
-          companyID: String,
-          companyName: String,
-          companyTopSkills: [],
-          // jobDescription: String,
-          // jobRequirements: String,
-          // jobLink: String
-      },
-    ],
+        companyID: String,
+        companyName: String,
+        companyTopSkills: [],
+        // jobDescription: String,
+        // jobRequirements: String,
+        // jobLink: String
+    }],
 
     updated_at: Date
 })
