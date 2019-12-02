@@ -112,7 +112,7 @@ exports.studentByID = function(req, res, next, _id) {
       my_user = user
     }
   })
-  Student.findById(my_user.collectionid).exec(function(err, student) {
+  Student.findById(my_user.id).exec(function(err, student) {
     if(err) {
       console.log('error on student by id')
       res.status(400).send(err);
