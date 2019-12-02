@@ -94,7 +94,7 @@ class Matches extends React.Component {
                     </CardActionArea>
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
-                        <h3>{company.companyName}</h3>
+                        <h3 style={{whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
                         <Button variant="contained" color="secondary" startIcon={<FavoriteIcon />} className={classes.matchButton}>
                             Match
                         </Button>
