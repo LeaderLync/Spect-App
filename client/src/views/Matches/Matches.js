@@ -10,6 +10,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import data from './MatchData'
+import api from '../../api'
 
 const styles = theme => ({
     cardList: {
@@ -75,15 +76,34 @@ class Matches extends React.Component {
     }
 
     matchButtonClicked() {
+        // const payload = {
+        //     theid: this.props.userinfo.id,
+        //     company: 
+        // }
+        // api.updatematch(payload)
         //api call
+        //make a function in api js
+        // make a route in student routes
+        // make a functiuon in student controller
+        // connect it together using patch api call 
     }
 
+    componentDidMount() {
+        api.getrecommendations(this.props.userinfo).then((res) => {
+            this.setState({
+                jobs: res.data
+            })
+        }
+        )
+        console.log(this.props.userinfo)
+        console.log(typeof this.props.userinfo)
+    }
     render(){
         const btnPrefix = "matchButton";
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
             return (
-                <Card className={classes.card}>
+                <Card className={classes.card} key={company.id}>
                     <CardActionArea>
                         <div className={classes.media}>
                             <img
@@ -94,23 +114,23 @@ class Matches extends React.Component {
                     </CardActionArea>
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
-                        <h3>Google</h3>
-                        <Button 
-                            variant="contained" 
-                            color="secondary" 
-                            startIcon={<FavoriteIcon />} 
-                            onClick={this.matchButtonClicked}
-                            style={ 
-                                company.matched ?
-                                { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
-                                : {background: 'black'}
-                            }
-                            >
-                                Match
-                        </Button>
-                        <Button size="small" color="primary">
-                            Learn More
-                        </Button>
+                            <h3>{company.companyName}</h3>
+                            <Button 
+                                variant="contained" 
+                                color="secondary" 
+                                startIcon={<FavoriteIcon />} 
+                                onClick={this.matchButtonClicked}
+                                style={ 
+                                    company.matched ?
+                                    { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
+                                    : {background: 'gray'}
+                                }
+                                >
+                                    Match  
+                            </Button>  
+                            <Button size="small" color="primary">
+                                Learn More
+                            </Button>
                         </div>
                     </CardActions>
                 </Card>

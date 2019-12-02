@@ -27,16 +27,19 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
-  bar: {
-    background: 'linear-gradient(180deg, #2EA7EB 30%, #2EA7EB 90%)', //'linear-gradient(45deg, #0021A5 30%, #0021A 90%)',
+   bar: {
+    background: 'linear-gradient(45deg, #2EA7EB 30%, #2EA7EB 90%)',
     border: 0,
     padding: '0 30px',
   },
   drawer: {
     margin: '0px 20px 50px',
   },
+  spectDiv: {
+  },
   spect: {
     maxWidth: '10%',
+    margin: 'auto',
   }
 }));
 
@@ -66,8 +69,8 @@ const Navbar = () => {
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
-          <TemporaryDrawer className="drawer" />
-          <div>
+          <TemporaryDrawer className={classes.drawer} />
+          <div className={classes.spectDiv}>
             <img src={spectLogo} className = {classes.spect}/> 
           </div>
           {auth && (
