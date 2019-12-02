@@ -150,6 +150,7 @@ exports.read = async function(req, res) {
 //         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
+
 exports.studentByID = async function(req, res, next, id) {
   User.findOne({authuid: id}).exec(function(err, user) {
     if (err) {
@@ -162,3 +163,7 @@ exports.studentByID = async function(req, res, next, id) {
     }
   })
 };
+
+exports.addMatch = async function(req, res){
+  
+}

@@ -75,12 +75,12 @@ class Matches extends React.Component {
         })
     }
 
-    matchButtonClicked() {
-        // const payload = {
-        //     theid: this.props.userinfo.id,
-        //     company: 
-        // }
-        // api.updatematch(payload)
+    matchButtonClicked(companyARG) {
+        const payload = {
+            userId: this.props.userinfo.id,
+            company: companyARG,
+        };
+        api.updatematch(payload)
         //api call
         //make a function in api js
         // make a route in student routes
@@ -99,7 +99,6 @@ class Matches extends React.Component {
         console.log(typeof this.props.userinfo)
     }
     render(){
-        const btnPrefix = "matchButton";
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
             return (
@@ -119,7 +118,7 @@ class Matches extends React.Component {
                                 variant="contained" 
                                 color="secondary" 
                                 startIcon={<FavoriteIcon />} 
-                                onClick={this.matchButtonClicked}
+                                onClick={() => this.matchButtonClicked(company)}
                                 style={ 
                                     company.matched ?
                                     { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
