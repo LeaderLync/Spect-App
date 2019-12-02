@@ -38,7 +38,7 @@ class CompanySurvey extends React.Component {
       this.props.userInfoUpdate(response);
     }); // passes JSON object to be request
 
-    this.props.history.push("/companyprofile"); // reroutes to student profile page upon successful survey form submission
+    this.props.history.push("/CompanyProfile"); // reroutes to student profile page upon successful survey form submission
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, console.log(industries))} // retireves state from child

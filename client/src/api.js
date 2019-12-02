@@ -74,7 +74,7 @@ export default {
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -84,7 +84,7 @@ export default {
     getstudentuser(userid) {
         return client.get(`/student/${userid}`)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -96,8 +96,8 @@ export default {
         console.log(userinfo)
         return client.patch('/student', userinfo)
             .then(response => {
-                console.log(response)
-                console.log(response.data)
+                // console.log(response)
+                // console.log(response.data)
                 return response
                 // return response.data
             }).catch((err) => {

@@ -20,7 +20,7 @@ const styles = theme => ({
     card: {
         maxWidth: 345,
         margin: 50,
-        border: '1px solid #2EA7EB',
+        border: '1px solid #dfe1e5',
         float: "left",
     },
     media: {
@@ -38,16 +38,21 @@ const styles = theme => ({
     actions: {
         justifyContent: 'center',
     },
-    matchButton: {
+    matchButtonFalse: {
         background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)',
+    },
+    matchButtonTrue: {
+        background: 'black',
     },
     actionDiv: {
         display: 'inline',
+    },
+    matchButton1: {
+        background: 'black',
     }
 })
 
 class Matches extends React.Component {
-
     constructor(props)
     {
         super(props);
@@ -57,7 +62,9 @@ class Matches extends React.Component {
             jobs: data,
             postModalShow: false,
             editShow: false,
+            matchButtonState: false,
         }
+        this.matchButtonClicked = this.matchButtonClicked.bind(this);
     }
 
     signOut() {
@@ -68,7 +75,7 @@ class Matches extends React.Component {
         })
     }
     componentDidMount() {
-        this.setState()
+        console.log(this.props.isStudents)
         api.getrecommendations(this.props.userinfo).then((res) => {
             this.setState({
                 jobs: res.data
@@ -78,25 +85,40 @@ class Matches extends React.Component {
         console.log(this.props.userinfo)
         console.log(typeof this.props.userinfo)
     }
+
+    matchButtonClicked() {
+        //api call
+    }
+
     render(){
+        const btnPrefix = "matchButton";
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
-        
             return (
-                <Card className={classes.card} key={company.id}>
-                    <CardActionArea>
-                        <div className={classes.media}>
-                            <img
-                            className={classes.logo}
-                            src={logo}
-                            />
-                        </div>
-                    </CardActionArea>
+                <Card className={classes.card} key={company.id}
+                    boxShadow={3}
+                >
+                    <div className={classes.media}>
+                        <img
+                        className={classes.logo}
+                        src={logo}
+                        />
+                    </div>
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
                         <h3 style={{whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
-                        <Button variant="contained" color="secondary" startIcon={<FavoriteIcon />} className={classes.matchButton}>
-                            Match
+                        <Button 
+                            variant="contained" 
+                            color="secondary" 
+                            startIcon={<FavoriteIcon />} 
+                            onClick={this.matchButtonClicked}
+                            style={ 
+                                company.matched ?
+                                { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
+                                : {background: 'black'}
+                            }
+                            >
+                                Match
                         </Button>
                         <Button size="small" color="primary">
                             Learn More

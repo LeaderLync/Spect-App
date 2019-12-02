@@ -3,7 +3,6 @@ import {withRouter} from 'react-router'
 import auth from "../../config/firebaseauth"
 import SignupView from './SignupView'
 import api from '../../api'
-import uuid from 'uuid/v4'
 class SignupContainer extends Component {
     constructor(props) {
         super(props)
