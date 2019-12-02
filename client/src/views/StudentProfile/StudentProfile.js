@@ -36,28 +36,15 @@ function StudentProfile(props) {
             
           },
           heroContent: {
-            backgroundColor: 'gray',
+            backgroundColor: 'whitesmoke',
             padding: theme.spacing(6, 0, 6),
           },
         media: {
-            
             maxHeight: '6vw',
             maxWidth: '6vw',
             display: 'block',
             margin: 'auto',
         },
-        footer: {
-            position: 'fixed',
-            left: 0,
-            bottom: 0,
-            width: '100%',
-            backgroundColor: 'black',
-            color: 'white',
-          },
-        footerLogo: {
-            maxWidth: '10%',
-            height: 'auto',
-        }
       }));
 
 
@@ -73,12 +60,12 @@ function StudentProfile(props) {
                             <Avatar className={classes.avatar} src="https://i.pravatar.cc/300"></Avatar>
                         </Grid>
                         <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
-                            <Typography variant="h5" style={{color: 'white'}}>
+                            <Typography variant="h5" style={{color: 'black'}}>
                                 {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
                         <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
-                            <Typography style={{color: "white"}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
+                            <Typography style={{color: "black"}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
                             <Grid container spacing = {2}>
                                 {Object.entries(person.strongSkills).map(([key, value]) => {return(
                                     <Grid key={key} item xs = {12} sm={12} md={4}>
@@ -109,12 +96,7 @@ function StudentProfile(props) {
                     </Grid>
                     )})}
                 </Grid>
-
-                <div className={classes.footer}>
-                    <img className={classes.footerLogo} src={logo}></img>
-                </div>
             </div>
-
         );
     }
     

@@ -78,7 +78,7 @@ class App extends Component {
             Use render instead of component in order to pass props into the react-router
             *****************************************************************************/}
             <PrivateRoute exact path="/"
-              render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>}
+              render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
