@@ -108,12 +108,12 @@ class Matches extends React.Component {
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
                         <h3 style={{textAlign: 'center', whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
-                        <Button 
-                            variant="contained" 
-                            color="secondary" 
-                            startIcon={<FavoriteIcon />} 
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<FavoriteIcon />}
                             onClick={this.matchButtonClicked}
-                            style={ 
+                            style={
                                 company.matched ?
                                 { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
                                 : {background: 'black'}
@@ -128,16 +128,16 @@ class Matches extends React.Component {
                     </CardActions>
                 </Card>
             )
-        }) 
+        })
 
 
         return (
             <div className="App">
-                <Navbar isStudent={this.props.mystate.isStudent}/>
+                <Navbar isStudent={this.props.isStudent}/>
                 <div className={classes.cardList}>
                     {CompanyCardList}
                 </div>
-                
+
             </div>
         );
     }
