@@ -8,20 +8,19 @@ import Button from '@material-ui/core/Button'
 class LoginView extends React.Component {
   constructor(props) {
     super(props)
-    console.log("ayeee" + this.props.isStudent)
   }
   render() {
 
     var isStudent = (this.props.isStudent) ? 
     (
-    <div className="top-header">
+    <div className="header-top">
         <Button variant="contained" color="primary">Student</Button>
-        <Button onClick={this.props.userUpdate} variant="contained">Admin</Button>
+        <Button onClick={this.props.userUpdate} variant="contained">Company</Button>
     </div>
     ) : (
-      <div className="top-header">
+      <div className="header-top">
       <Button onClick={this.props.userUpdate} variant="contained">Student</Button>
-      <Button variant="contained" color="primary">Admin</Button>
+      <Button variant="contained" color="primary">Company</Button>
       </div>
     )
     return (
