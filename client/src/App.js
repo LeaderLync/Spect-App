@@ -23,12 +23,11 @@ class App extends Component {
       authenticated: false,
       currentUser: null,
       isStudent: false,
-      userinfo: {},
+      userinfo: null,
       collectionid: '0'
     }
   }
   componentDidMount() {
-    console.log("whatupp")
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({
