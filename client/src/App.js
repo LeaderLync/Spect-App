@@ -23,21 +23,24 @@ class App extends Component {
       userinfo: {},
       collectionid: '0'
     }
+    // sessionStorage.setItem("isStudent", JSON.stringify(false))
+    // sessionStorage.
   }
   componentDidMount() {
+    console.log("bro this did happen")
     auth.onAuthStateChanged((user) => {
+      console.log(user)
       if (user) {
         this.setState({
           authenticated: true,
           currentUser: user,
           loading: false,
-          isStudent: sessionStorage.getItem('isStudent')
         });
       } else {
         this.setState({
           authenticated: false,
           currentUser: null,
-          loading: false
+          loading: false,
         })
       }
     })
@@ -49,6 +52,7 @@ class App extends Component {
     })
   }
   userInfoUpdate(value) {
+    console.log("has hit")
     this.setState({
       userinfo: value
     })
@@ -88,7 +92,8 @@ class App extends Component {
             />
             <PrivateCompanyRoute exact path="/CompanySurvey" 
               render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} 
-              authenticated={this.state.authenticated} user={this.state.currentUser} 
+              authenticated={this.state.authenticated} 
+              user={this.state.currentUser} 
               collectionId={this.state.collectionid}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
