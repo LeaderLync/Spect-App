@@ -4,19 +4,12 @@ import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-import CardMedia from '@material-ui/core/CardMedia';
-import 'typeface-roboto';
-import Oracle_logo from '../../assets/Oracle_logo.svg';
-import Google_logo from '../../assets/Google_2015_logo.svg';
-import Twitter_logo from '../../assets/Twitter_Logo_Blue.svg';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CompanyPopup from '../../components/CompanyPopup.js'
-
-
-function StudentProfile() {
+import CompanyPopup from '../../components/CompanyPopup.js';
+import logo from '../../assets/White logo - no background.svg';
+import Navbar from '../../components/Navbar/Navbar';
+function StudentProfile(props) {
 
     const useStyles = makeStyles(theme => ({
         root: {
@@ -25,27 +18,25 @@ function StudentProfile() {
         companyCard: {
           padding: theme.spacing(2),
           textAlign: 'center',
-          color: 'white',
-          backgroundColor: '#6C9AC3',
+          color: 'black',
+          backgroundColor: 'white',
           maxWidth: '50%%',
-          minHeight: '90%'
+          minHeight: '90%',
+          marginRight: 10,
+          marginLeft: 10,
         },
         skillCard: {
-            //padding: theme.spacing(2),
-            // textAlign: 'center',
-            // justifyContent: 'center',
-            backgroundColor: '#6C9AC3',
-            color: 'white',
-            //minWidth: 80,
+            color: 'black',
             marginRight: 30,
             marginLeft: 30,
           },
         avatar: {
             width: 100,
             height: 100,
+            
           },
           heroContent: {
-            backgroundColor: '#E28F41',
+            backgroundColor: 'rgb(46, 167, 235)',
             padding: theme.spacing(6, 0, 6),
           },
         media: {
@@ -55,177 +46,76 @@ function StudentProfile() {
             display: 'block',
             margin: 'auto',
         },
-
-
+        footer: {
+            position: 'fixed',
+            left: 0,
+            bottom: 0,
+            width: '100%',
+            backgroundColor: 'black',
+            color: 'white',
+          },
+        footerLogo: {
+            maxWidth: '10%',
+            height: 'auto',
+        }
       }));
+
+
       const classes = useStyles();
-
-
-
+      const person = props.userinfo;
+      
         return(
-
             <div className={classes.root}>
+                <Navbar/>
                 <div className={classes.heroContent} >
-                    
                     <Grid container spacing={4} justify="center" alignItems="center">
-                        
                         <Grid container item sm={4} md={2} style={{textAlign: 'center', justifyContent: 'center'}}>
-                            <Avatar className={classes.avatar}>A</Avatar>
+                            <Avatar className={classes.avatar} src="https://i.pravatar.cc/300"></Avatar>
                         </Grid>
-
                         <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
                             <Typography variant="h5" style={{color: 'white'}}>
-                                Alberta Gator
+                                {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
-
                         <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
-                            
-                                <Typography style={{color: "white"}} variant="h6" gutterBottom>
-                                    Your Top 3 Soft Skills
-                                </Typography>
-                                
-                                <Grid container spacing = {2}>
-                                    <Grid item xs = {12} sm={12} md={4}>
+                            <Typography style={{color: "white"}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
+                            <Grid container spacing = {2}>
+                                {Object.entries(person.strongSkills).map(([key, value]) => {return(
+                                    <Grid key={key} item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
-                                            <CardContent>
-                                                <Typography>
-                                                    Global Awareness
-                                                </Typography>
-                                            </CardContent>
-    
-                                        </Card>
-                                    </Grid>
-                                    <Grid item xs = {12} sm={12} md={4}>
-                                        <Card className={classes.skillCard}>
-                                            <CardContent style={{textAlign: 'center', justifyContent: 'center'}}>
-                                                <Typography>
-                                                    Critical Thinking
-                                                </Typography>
-                                            </CardContent>
-    
-                                        </Card>
-                                    </Grid>
-                                    <Grid item xs = {12} sm={12} md={4}>
-                                        <Card className={classes.skillCard}>
-                                            <CardContent>
-                                                <Typography>
-                                                    Time Management
-                                                </Typography>
+                                            <CardContent textAlign = "center">
+                                                    {value}
                                             </CardContent>
                                         </Card>
                                     </Grid>
+                                )})}
                                 </Grid>
-    
-                        </Grid>
-                        
-                    </Grid>
-                
+                        </Grid>      
+                    </Grid>            
                 </div>
-    
                 <Grid container spacing = {4} style={{paddingTop: '4%'}}>
-                    <Grid item xs = {12} sm={6} md={4} align="center">
-                        <Card className={classes.companyCard}>
-                            <CardContent>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    className={classes.media}
-                                    image={Twitter_logo}
-                                    title="Twitter"
-                                    />
-                            
-                            </CardActionArea>
-                            </CardContent>
-                            <CardActions style={{textAlign: 'center', justifyContent: 'center'}}>
-                                {/* <Button variant="contained" size="large" color="primary">View</Button> */}
-                                <CompanyPopup></CompanyPopup>
-                            </CardActions>
-                        </Card>
+                    {person.matches.map((item, index) => {return(
+                        <Grid key={index} item xs = {12} sm={6} md={4} align="center">
+                            <Card className={classes.companyCard}>
+                                <CardContent>
+                                    <Typography variant="h5" component="h2">
+                                        {item.companyName}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions style={{textAlign: 'center', justifyContent: 'center'}}>
+                                    <CompanyPopup></CompanyPopup>
+                                </CardActions>
+                            </Card>
                     </Grid>
-    
-                    <Grid item xs = {12} sm={6} md={4} align="center">
-                        <Card className={classes.companyCard}>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    className={classes.media}
-                                    image={Oracle_logo}
-                                    title="Oracle"
-                                    />
-                            
-                            </CardActionArea>
-                            <CardActions style={{alignItems: 'center',textAlign: 'center', justifyContent: 'center'}}>
-                                <Button variant="contained" size="large" color="primary">View</Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-    
-                    <Grid item xs = {12} sm={6} md={4} align="center">
-                        <Card className={classes.companyCard}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                className={classes.media}
-                                image={Google_logo}
-                                title="Google"
-                                />
-                            
-                            </CardActionArea>
-                            <CardActions style={{textAlign: 'center', justifyContent: 'center'}}>
-                                <Button variant="contained" size="large" color="primary">View</Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-    
-                    <Grid item xs = {12} sm={6} md={4} align="center">
-                        <Card className={classes.companyCard}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    Company Logo
-                                </Typography>
-                            </CardContent>
-                            <CardActions style={{textAlign: 'center', justifyContent: 'center'}}>
-                                <Button variant="contained" size="large" color="primary">View</Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-    
-                    <Grid item xs = {12} sm={6} md={4} align="center">
-                        <Card className={classes.companyCard}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    Company Logo
-                                </Typography>
-                            </CardContent>
-                            <CardActions style={{textAlign: 'center', justifyContent: 'center'}}>
-                                <Button variant="contained" size="large" color="primary">View</Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-    
-                    <Grid item xs = {12} sm={6} md={4} align="center">
-                        <Card className={classes.companyCard}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    Company Logo
-                                </Typography>
-                            </CardContent>
-                            <CardActions style={{textAlign: 'center', justifyContent: 'center'}}>
-                                <Button variant="contained" size="large" color="primary">View</Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-    
+                    )})}
                 </Grid>
+
+                <div className={classes.footer}>
+                    <img className={classes.footerLogo} src={logo}></img>
+                </div>
             </div>
+
         );
     }
     
-
-
-
-
-
-
 export default StudentProfile;
