@@ -39,8 +39,10 @@ exports.jobPost = function(req, res) {
    console.log("Posting Controller Function: ", jobData)
    const update = {jobPosts: jobData}
 
+   console.log("User Collection ID", req.params.companyid)
 
-    Company.findOneAndUpdate({id:req.user.collectionid}, update).exec(function(err,company) {
+
+    Company.findOneAndUpdate({id:req.params.companyid}, update).exec(function(err,company) {
      if(err)
        {
          console.log('Erron on updating Job Post')
