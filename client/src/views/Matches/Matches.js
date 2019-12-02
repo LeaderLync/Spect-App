@@ -100,9 +100,9 @@ class Matches extends React.Component {
                             variant="contained" 
                             color="secondary" 
                             startIcon={<FavoriteIcon />} 
-                            className={this.state.matchButtonState ? classes.matchButtonTrue : classes.matchButtonFalse}
-                            onClick={this.matchButtonClicked}>
-                            Match
+                            className={classes.matchButtonFalse}
+                            >
+                                Match
                         </Button>
                         <Button size="small" color="primary">
                             Learn More
