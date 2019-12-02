@@ -10,7 +10,6 @@ import leadership from '../../assets/Leadership Icon.png'
 import Navbar from '../../components/Navbar/Navbar'
 import api from '../../api'
 
-
 import { Image, CardGroup, Card, Container, Button, ButtonToolbar} from 'react-bootstrap'
 
 
@@ -48,6 +47,9 @@ class CompanyProfile extends React.Component
         let postModalClose = () => this.setState({postModalShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
         let updateSelectedJobPost = (jobPost) => this.setState({selectedJobPost: jobPost});
+
+        console.log(this.state.jobs)
+        let postModalClose = () => this.setState({postModalShow: false})
 
         //Variable that represents the list of job post for a specific company
         //Based on the jobPost of the Schema for the Company, a new card is made

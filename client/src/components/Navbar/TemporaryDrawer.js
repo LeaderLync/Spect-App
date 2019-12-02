@@ -31,6 +31,10 @@ export default function TemporaryDrawer() {
     right: false,
   });
 
+  const handleClick = (name)=> {
+    console.log(name);
+  }
+
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -61,10 +65,27 @@ export default function TemporaryDrawer() {
   return (
     <div className='buttonDiv'>
       <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-        <MenuIcon onClick={toggleDrawer('left', true)} >Open Left</MenuIcon>
+        <MenuIcon>Open Left</MenuIcon>
       </IconButton>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {sideList('left')}
+        <div
+          className={classes.list}
+          role="presentation"
+          onClick={toggleDrawer('left', false)}
+          onKeyDown={toggleDrawer('left', false)}
+        >
+
+          <List >
+            <Link to="/Matches">
+              <ListItem button>Matches</ListItem>
+            </Link>
+          </List>
+          <List >
+            <Link to="/StudentSurvey">
+              <ListItem button>Studentsurvet</ListItem>
+            </Link>
+          </List>
+      </div>
       </Drawer>
     </div>
   );

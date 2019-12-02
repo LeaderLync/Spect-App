@@ -4,14 +4,14 @@ var User = require('../models/UserSchema')
 exports.create = function(req, res) {
 
   var newCompany = new Company(req.body);
-  /* Then save the listing */
+  /* Then save company */
   newCompany.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
       res.status(200).json(newCompany);
-      console.log(newCompany)
+      //console.log(newCompany)
     }
   });
 };
