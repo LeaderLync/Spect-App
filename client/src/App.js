@@ -28,6 +28,7 @@ class App extends Component {
   }
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
+      console.log("BIG HIT")
       console.log(user)
       if (user) {
         this.setState({
