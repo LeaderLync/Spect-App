@@ -10,6 +10,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import data from './MatchData'
+import api from '../../api'
 
 const styles = theme => ({
     cardList: {
@@ -65,6 +66,10 @@ class Matches extends React.Component {
         }).catch((error) => {
             alert('Cant sign out')
         })
+    }
+    componentDidMount() {
+        console.log(this.props.mystate.userinfo)
+        api.getrecommendations(this.props.mystate.userinfo)
     }
     render(){
         const {classes} = this.props;

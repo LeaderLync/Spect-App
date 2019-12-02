@@ -19,9 +19,9 @@ exports.create = function(req, res) {
   });
 };
 
-exports.getmatches = function(req, res) {
-  console.log(req.body)
-  let the_len = req.body.request.length
+exports.getmatches = async function(req, res) {
+  console.log("ayeee")
+  console.log(req)
 
   // Company.find({}, function (err, users) {
   //   if (err) res.status(500).send(err)

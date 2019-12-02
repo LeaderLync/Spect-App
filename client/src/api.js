@@ -77,5 +77,17 @@ export default {
                 console.log(err)
                 return null;
             })
+    },
+    getrecommendations(userinfo) {
+
+        return client.get(`/student/recommendations`, userinfo)
+            .then(response => {
+                // console.log(response.data)
+                return response
+                // return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
     }
 }
