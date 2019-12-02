@@ -12,10 +12,10 @@ class LoginContainer extends Component {
         event.preventDefault()
         const {email, password} = event.target.elements
         try {
-            
+
             const user = await auth.signInWithEmailAndPassword(email.value, password.value); //tries to sign in
             console.log(user)
-            var response = (this.props.isStudent)? 
+            var response = (this.props.isStudent)?
                 await api.getstudentuser(user.user.uid).then((res) => res)
                 : await api.getcompanyuser(user.user.uid).then((res) => res)
             console.log("my response")
