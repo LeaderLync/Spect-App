@@ -76,6 +76,7 @@ class Matches extends React.Component {
     }
     componentDidMount() {
         console.log(this.props.isStudents)
+        console.log("hitting api")
         api.getrecommendations(this.props.userinfo).then((res) => {
             this.setState({
                 jobs: res.data
@@ -106,7 +107,7 @@ class Matches extends React.Component {
                     </div>
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
-                        <h3 style={{whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
+                        <h3 style={{textAlign: 'center', whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
                         <Button 
                             variant="contained" 
                             color="secondary" 
