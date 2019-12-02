@@ -44,7 +44,7 @@ class PostJobModal extends React.Component {
 
   render(){
 
-    console.log(this.props.collectionId)
+    console.log("Post Job Modal" , this.props.collectionId)
   
   return (
     <Modal

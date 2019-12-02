@@ -22,11 +22,11 @@ class CompanyProfile extends React.Component
         console.log(props)
         this.state =
         {
-            jobs: data[0].jobPost,
+            jobs: this.props.userinfo.jobPost,
             postModalShow: false,
             seteditShow: false,
             setViewShow: false,
-            collectionid: "547b8dbf-d04d-47e8-b903-4f1ba0a62a6d",
+            collectionid: this.props.collectionId,
             // idea, have a selected job to pass to the view/edit modal:
             selectedJobPost: data[0].jobPost[0],
         }
@@ -35,9 +35,10 @@ class CompanyProfile extends React.Component
     
     
     render() {
+        console.log("about to log props")
         console.log(this.state.collectionid)
-        const Compdata = api.getcompanyuser('547b8dbf-d04d-47e8-b903-4f1ba0a62a6d');
-        console.log("Job Data: ", Compdata)
+        console.log("Top Info: ")
+        console.log(this.props.userinfo.topSkills[0])
 
         //console.log(this.state.jobs);
         let postModalClose = () => this.setState({postModalShow: false});
@@ -81,14 +82,14 @@ class CompanyProfile extends React.Component
                     <Navbar>
                     </Navbar>
                     <div className="info-rectangle">
-                        <h3 className="company-name">{data[0].name}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
+                        <h3 className="company-name">{this.props.userinfo.name}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
                         <img src={sampleImage} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
                         <div className='topSkills'>
                             <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "black", fontFamily: 'Montserrat', color: 'white'}}>Top Three Desired Skills</h5>
                             <body style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "black", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal', color: 'white'}}>
-                                Skill 1: {data[0].topSkills[0]} | {"    "}
-                                Skill 2: {data[0].topSkills[1]} | {" "}
-                                Skill 3: {data[0].topSkills[2]}  {" "}
+                                Skill 1: {this.props.userinfo.topSkills[0]} | {"    "}
+                                Skill 2: {this.props.userinfo.topSkills[1]} | {" "}
+                                Skill 3: {this.props.userinfo.topSkills[2]}  {" "}
                             </body>
                         </div>
                     </div>

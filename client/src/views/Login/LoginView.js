@@ -19,8 +19,8 @@ class LoginView extends React.Component {
     </div>
     ) : (
       <div className="header-top">
-      <Button onClick={this.props.userUpdate} variant="contained">Student</Button>
-      <Button variant="contained" color="primary">Admin</Button>
+      <Button style={{fontFamily: 'GlacialIndifferenceRegular', backgroundColor: "white"}} onClick={this.props.userUpdate} variant="contained">Student</Button>
+      <Button style={{fontFamily: 'GlacialIndifferenceRegular', backgroundColor: " rgba(46, 167, 235)"}} variant="contained" color="primary">Admin</Button>
       </div>
     )
     return (
@@ -29,28 +29,28 @@ class LoginView extends React.Component {
         <div className="login-modal">
             <img className="spect-logo" src={logo}></img>
             <form onSubmit={this.props.onSubmit} className="login-form">
-             <h6 style={{textAlign: 'left'}}>Email</h6>
+             <h6 style={{textAlign: 'left', fontFamily: 'GlacialIndifferenceRegular'}}>Email</h6>
               <input
                 className="input"
                 name="email"
                 type="email"
                 placeholder="Email"
               />
-              <h6 style={{textAlign: 'left'}}>Password</h6>
+              <h6 style={{textAlign: 'left', fontFamily: 'GlacialIndifferenceRegular'}}>Password</h6>
               <input
                 className="input"
                 name="password"
                 type="password"
                 placeholder="Password"
               />
-              <button className="button-signin" type="submit">Sign In</button>
-              <Link to="/signup" className="link"> 
+              <button className="button-signin" type="submit" style={{fontFamily: 'GlacialIndifferenceRegular'}} >Sign In</button>
+              <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}> 
                 Create an Account
               </Link>
-              <Link to="/signup" className="link">
+              <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}>
                 Forgot your password?
               </Link>
-              <Link to="/signup" className="link">
+              <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}>
                 Contact Us
               </Link>
             </form>

@@ -2,38 +2,6 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 
-<<<<<<< HEAD
-var StudentSchema = new Schema({
-	idNum: { type: Number, required: true},
-	name: { type: String, required: true},
-	topSkills: [],
-	skillsToWork: [],
-	responseValues: [],
-	matches:[
-		{
-			companyID: Number,
-			companyName: String,
-			companyTopSkills: String,
-			jobDescription: String,
-			jobRequirements: String,
-			jobLink: String
-		},
-	],
-	industry: []
-})
-
-
-/* Create a 'pre' function that adds the updated_at (and created_at if not already there) property 
-	 See https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
-	 */
-StudentSchema.pre('save', function(next) {
-	if (!this.id) throw new Error("no name provided")
-	if (!this.name) throw new Error("no code provided")
-	var currentDate = new Date()
-	this.updated_at = currentDate
-	next()
-	/* your code here */
-=======
 var studentSchema = new Schema({
     id: Number,
 
@@ -101,7 +69,6 @@ studentSchema.pre('save', function(next) {
   this.updated_at = currentDate
   next()
   /* your code here */
->>>>>>> 7140391fa1b6eea0f20b23a78d060bb9316c87f5
 });
 
 /* Use your schema to instantiate a Mongoose model */
