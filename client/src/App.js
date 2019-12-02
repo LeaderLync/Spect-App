@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
-import Home from "./views/Home/Home"
 import StudentSurvey from './views/StudentSurvey/StudentSurvey';
 import CompanySurvey from './views/CompanySurvey/CompanySurvey';
 import NotFound from "./views/NotFound"
-//import Header from "./components/Header/Header"
 import StudentProfile from "./views/StudentProfile/StudentProfile"
-import Header from "./components/Header/Header"
-import Navbar from "./components/Navbar/Navbar"
-import CompanyCard from "./components/CompanyCard"
 import Login from './views/Login'
 import auth from './config/firebaseauth';
 import PrivateRoute from './components/PrivateRoute'
@@ -46,14 +41,8 @@ class App extends Component {
         })
       }
     })
-    console.log(this.state.authenticated)
-    console.log(this.state.userinfo)
-    console.log(this.state.currentUser)
-    console.log(this.state.isStudent)
   }
   userUpdate() {
-    console.log("the new boolean value is ")
-    console.log(!this.state.isStudent)
     sessionStorage.setItem("isStudent", JSON.stringify(!this.state.isStudent))
     this.setState({
       isStudent: !this.state.isStudent
@@ -70,7 +59,6 @@ class App extends Component {
     this.setState({
       collectionid: value
     })
-    console.log("updating" + this.state.collectionid)
     sessionStorage.setItem("collectionid", JSON.stringify(value))
 
   }
@@ -79,9 +67,6 @@ class App extends Component {
     if(this.state.loading && this.state.isStudent === null) {
       return (<p>It is still loading</p>)
     } else {
-      console.log("watching variable")
-      console.log(typeof JSON.parse(sessionStorage.getItem("isStudent")))
-      console.log(sessionStorage.getItem("isStudent"))
       return (
         <div style={{height: '100%'}}>
           <Switch>
