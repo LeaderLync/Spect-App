@@ -12,10 +12,17 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
+import auth from '../../config/firebaseauth'
 import { Link, Route, Redirect  } from 'react-router-dom';
 
 
-
+const signout = () => {
+  auth.signOut().then(()=> {
+      alert('Signed Out')
+  }).catch((error) => {
+      alert('Cant sign out')
+  })
+}
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -57,12 +64,59 @@ const Navbar = (props) => {
   const handleOpenProfile = () => {
     handleClose();    
   }
+  const menuItems = (props.isStudent)?
+  <Menu
+  id="menu-appbar"
+  anchorEl={anchorEl}
+  anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  keepMounted
+  transformOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  open={open}
+  onClose={handleClose}
+  >
+    <MenuItem onClick={handleOpenProfile}>
+      <Link to="/CompanyProfile" style={{ textDecoration: 'none' }}>Profile</Link>
+    </MenuItem>
+    <MenuItem onClick={signout}>
+      Profile
+    </MenuItem>
+  </Menu>
+  :
+  <Menu
+  id="menu-appbar"
+  anchorEl={anchorEl}
+  anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  keepMounted
+  transformOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  open={open}
+  onClose={handleClose}
+  >
+    <MenuItem onClick={handleOpenProfile}>
+      <Link to="/StudentProfile" style={{ textDecoration: 'none' }}>Profile</Link>
+    </MenuItem>
+    <MenuItem onClick={signout}>
+      Sign Out
+    </MenuItem>
+  </Menu>;
+
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
-          <TemporaryDrawer className="drawer" />
+          <TemporaryDrawer className="drawer" isStudent= {props.isStudent}/>
           <Typography variant="h6" className={classes.title}>
           </Typography>
           {auth && (
@@ -76,23 +130,7 @@ const Navbar = (props) => {
               >
                 <AccountCircle />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleOpenProfile}><Link to="/Home" style={{ textDecoration: 'none' }}>Profile</Link></MenuItem>
-              </Menu>
+              {menuItems}
             </div>
           )}
         </Toolbar>

@@ -49,6 +49,7 @@ class App extends Component {
     this.setState({
       isStudent: !this.state.isStudent
     })
+    sessionStorage.setItem("isStudent", JSON.stringify(this.state.isStudent))
   }
   userInfoUpdate(value) {
     this.setState({
@@ -73,15 +74,25 @@ class App extends Component {
       return (
         <div style={{height: '100%'}}>
           <Switch>
-            <PrivateRoute exact path="/" render={(props) => (this.state.isStudent === true)? <Home {...props} mystate={this.state}/> : <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
+            {/****************************************************************************
+            Use render instead of component in order to pass props into the react-router 
+            *****************************************************************************/}
+            <PrivateRoute exact path="/" render={(props) => (this.state.isStudent === true)? <Matches {...props} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>  : <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
             <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
-            <PrivateRoute exact path="/CompanyProfile" render={(props) =>(this.state.isStudent === true)? <NotFound/> : <CompanyProfile {...props} mystate={this.state}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <PrivateRoute exact path="/Matches" render={(props) => (this.state.isStudent === true)? <NotFound/> : <Matches {...props} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} authenticated={this.state.authenticated} user={this.state.currentUser}/>
-            <Route exact path="/">
-              <Redirect to="/Home" />
-            </Route>
-            {/* <Route exact path="/signup" component={Signup}/> */}
+            <PrivateRoute exact path="/CompanyProfile" render={(props) =>
+              (this.state.isStudent === true)? <NotFound/> : <CompanyProfile {...props} mystate={this.state}/>} 
+              authenticated={this.state.authenticated} 
+              user={this.state.currentUser}
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
+              />
+            
+            <PrivateRoute exact path="/studentprofile" render={() => 
+              <StudentProfile 
+                userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
+                isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
+              />
+            }/>
             <Route exact path="/login" render={(props) =>
               <Login {...props }
                 isStudent={this.state.isStudent}
@@ -89,9 +100,10 @@ class App extends Component {
                 userInfoUpdate={this.userInfoUpdate.bind(this)}
                 collectionIdUpdate={this.collectionIdUpdate.bind(this)}
               />}/>
-            <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
-            {/* Used render instead of component in order to pass props into the react-router */}
-            <Route exact path="/studentprofile" render={() => <StudentProfile userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} />
+            <Route exact path="/signup" render={(props) => <Signup {...props } 
+              isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} 
+              collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
+
             <Route component={NotFound}/>
           </Switch>
         </div>

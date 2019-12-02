@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -42,26 +42,14 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [side]: open });
   };
-
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {['Matches', 'Content_Marketplace', 'Profile'].map((text, index) => (
-          <ListItem button key={text}>
-            <Link to={`/${text}`}>
-              <ListItemText primary={text} />
-            </Link>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
+  const menuitems = (props.isStudent)? 
+    <List >
+      <ListItem button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
+    </List>
+    :
+    <List >
+      <ListItem button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
+    </List>
   return (
     <div className='buttonDiv'>
       <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -74,16 +62,7 @@ export default function TemporaryDrawer() {
           onClick={toggleDrawer('left', false)}
           onKeyDown={toggleDrawer('left', false)}
         >
-
-          <List >
-            <ListItem button><Link to="/Matches" style={{ textDecoration: 'none' }}>Matches</Link></ListItem>
-            <ListItem button><Link to="/studentprofile" style={{ textDecoration: 'none' }}>Student Profile</Link></ListItem>
-          </List>
-          <List >
-            <Link to="/StudentSurvey">
-              <ListItem button>Studentsurvet</ListItem>
-            </Link>
-          </List>
+          {menuitems}
       </div>
       </Drawer>
     </div>
