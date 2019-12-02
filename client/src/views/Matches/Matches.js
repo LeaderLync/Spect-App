@@ -10,6 +10,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import data from './MatchData'
+import api from '../../api'
 
 const styles = theme => ({
     cardList: {
@@ -66,12 +67,23 @@ class Matches extends React.Component {
             alert('Cant sign out')
         })
     }
+    componentDidMount() {
+        this.setState()
+        api.getrecommendations(this.props.userinfo).then((res) => {
+            this.setState({
+                jobs: res.data
+            })
+        }
+        )
+        console.log(this.props.userinfo)
+        console.log(typeof this.props.userinfo)
+    }
     render(){
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
         
             return (
-                <Card className={classes.card}>
+                <Card className={classes.card} key={company.id}>
                     <CardActionArea>
                         <div className={classes.media}>
                             <img
@@ -82,7 +94,7 @@ class Matches extends React.Component {
                     </CardActionArea>
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
-                        <h3>Google</h3>
+                        <h3 style={{whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
                         <Button variant="contained" color="secondary" startIcon={<FavoriteIcon />} className={classes.matchButton}>
                             Match
                         </Button>
@@ -98,7 +110,7 @@ class Matches extends React.Component {
 
         return (
             <div className="App">
-                <Navbar page={"Matches"}/>
+                <Navbar isStudent={this.props.mystate.isStudent}/>
                 <div className={classes.cardList}>
                     {CompanyCardList}
                 </div>

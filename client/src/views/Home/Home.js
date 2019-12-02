@@ -33,7 +33,7 @@ class Home extends React.Component {
         console.log(this.state.collectionid)
         return (
             <div className="App">
-                <Navbar />
+                <Navbar isStudent={this.props.isStudent}/>
                 <CompanyPopup/>
                 <Button onClick={this.signOut}>Sign out</Button>
             </div>
