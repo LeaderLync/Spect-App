@@ -1,5 +1,5 @@
 /* Import mongoose and define any variables needed to create the schema */
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
@@ -7,18 +7,42 @@ var CompanySchema = new Schema({
   id: String,
   name: String,
   bio: String,
-  industry: String,
+  selectedIndustries: [String],
   //URLtoLogo: String, // if time permits
-  topSkills: [],
+  strongSkills: {
+    first: String,
+    second: String,
+    third: String
+  },
   jobPost: [{
       jobID: Number,
       jobTitle: String,
       jobDescription: String,
       jobRequirements: String,
       jobLink: String,
-    }],
-    created_at: Date,
-    updated_at: Date,
+  }],
+
+  question1: Number,
+  question2: Number,
+  question3: Number,
+  question4: Number,
+  question5: Number,
+  question6: Number,
+  question7: Number,
+  question8: Number,
+  question9: Number,
+  question10: Number,
+  question11: Number,
+  question12: Number,
+  question13: Number,
+  question14: Number,
+  question15: Number,
+  question16: Number,
+  question17: Number,
+  question18: Number,
+
+  created_at: Date,
+  updated_at: Date,
 });
 /* create a 'pre' function that adds the updated_at and created_at if not already there property */
 CompanySchema.pre('save', function(next) {
