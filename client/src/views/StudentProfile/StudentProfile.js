@@ -33,6 +33,7 @@ function StudentProfile(props) {
         avatar: {
             width: 100,
             height: 100,
+            
           },
           heroContent: {
             backgroundColor: 'rgb(46, 167, 235)',
@@ -52,37 +53,46 @@ function StudentProfile(props) {
             width: '100%',
             backgroundColor: 'black',
             color: 'white',
-            textAlign: 'center',
           },
-        img: {
+        footerLogo: {
             maxWidth: '10%',
             height: 'auto',
         }
-
-
       }));
-      const classes = useStyles();
 
+
+      const classes = useStyles();
+      //const person = props.userinfo;
       const person = {
-        oid: "5dd416b81c9d440000dba799",
-        id: "123456789",
-        name: "Marcus Smart",
-        topSkills: ["Communication","Leadership","Creativity"],
-        skillsToWork: ["Working hard","Eating","Breathing"],
-        responseValues: [0,1,0,1,0,0,0,1,1,0,0,1,1,1,0,1,0,1],
-        matches:[
+          firstName: "Marcus",
+          lastName: "Smart",
+          email: "fake@fake.com",
+          telephone: "1234567891",
+          id: "0",
+          strongSkills: {
+              first: "Leadership",
+              second: "Creativity",
+              third: "Time management"
+          },
+          weakSkills: {
+              first: "IDK",
+              second: "idk",
+              third: "iDk"
+          },
+          selectedIndustries: ["Idk", "idek", "IDK"],
+          matches:[
             {companyID: "companyid1",
-            companyName: "Google",
-            CompanyTopSkills: ["Communication","Leadershipp","values"]},
+            companyName: "Googleymoogoley",
+            companyTopSkills: ["Communication","Leadershipp","values"]},
             {companyID: "companyid2",
             companyName: "Amazon",
-            CompanyTopSkills: ["Communication","Leadershipp","values"]},
+            companyTopSkills: ["Communication","Leadershipp","values"]},
             {companyID: "companyid3",
             companyName: "Microsoft",
-            CompanyTopSkills: ["Communication","Leadershipp","values"]}
+            companyTopSkills: ["Communication","Leadershipp","values"]}
             ],
-        industry:["Engineering","Health","Business"]
-    }
+      }
+
         console.log(props.userinfo)
         return(
             <div className={classes.root}>
@@ -94,17 +104,17 @@ function StudentProfile(props) {
                         </Grid>
                         <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
                             <Typography variant="h5" style={{color: 'white'}}>
-                                {person.name}
+                                {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
                         <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
                             <Typography style={{color: "white"}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
                             <Grid container spacing = {2}>
-                                {person.topSkills.map((item,index) => {return(
-                                    <Grid key={index} item xs = {12} sm={12} md={4}>
+                                {Object.entries(person.strongSkills).map(([key, value]) => {return(
+                                    <Grid key={key} item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
                                             <CardContent textAlign = "center">
-                                                    {item}
+                                                    {value}
                                             </CardContent>
                                         </Card>
                                     </Grid>
@@ -131,7 +141,7 @@ function StudentProfile(props) {
                 </Grid>
 
                 <div className={classes.footer}>
-                    <img className={classes.img} src={logo}></img>
+                    <img className={classes.footerLogo} src={logo}></img>
                 </div>
             </div>
 
