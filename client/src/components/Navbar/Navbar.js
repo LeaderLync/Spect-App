@@ -95,7 +95,6 @@ const Navbar = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
           )}
