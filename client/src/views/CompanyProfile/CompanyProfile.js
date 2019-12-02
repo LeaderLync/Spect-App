@@ -3,7 +3,7 @@ import './CompanyProfile.css'
 import data from './CompanyData'
 import PostJobModal from './PostJobModal'
 import ViewJobPost from './ViewJobPost'
-//import EditModal from './EditModal'
+import EditModal from './EditModal'
 
 import sampleImage from '../../assets/Company Logo.png'
 import leadership from '../../assets/Leadership Icon.png'
@@ -45,7 +45,7 @@ class CompanyProfile extends React.Component
         // console.log("Top Info: ")
         // console.log(this.props.userinfo.topSkills[0])
 
-        //console.log(this.props);
+        console.log(this.props);
         let postModalClose = () => this.setState({postModalShow: false});
         let editJobModalClose = () => this.setState({setEditShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});

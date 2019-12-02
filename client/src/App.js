@@ -83,12 +83,7 @@ class App extends Component {
             <PrivateRoute exact path="/StudentSurvey" render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanySurvey" render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} authenticated={this.state.authenticated} user={this.state.currentUser} collectionId={this.state.collectionid}/>
             <PrivateRoute exact path="/CompanyProfile" render={(props) =>
-              (this.state.isStudent === true)? <NotFound/> : <CompanyProfile {...props} mystate={this.state}/>} 
-              authenticated={this.state.authenticated} 
-              user={this.state.currentUser}
-              userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
-              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
-              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
+              (this.state.isStudent === true)? <NotFound/> : <CompanyProfile />} 
               />
             
             <PrivateRoute exact path="/studentprofile" render={() => 

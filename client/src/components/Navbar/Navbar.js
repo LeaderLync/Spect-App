@@ -14,7 +14,6 @@ import {Link} from 'react-router-dom'
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
 import auth from '../../config/firebaseauth'
-import { Link, Route, Redirect  } from 'react-router-dom';
 
 
 const signout = () => {
