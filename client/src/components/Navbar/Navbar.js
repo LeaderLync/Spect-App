@@ -12,8 +12,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
-
-import { Route, Redirect  } from 'react-router-dom';
+import { Link, Route, Redirect  } from 'react-router-dom';
 
 
 
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     border: 0,
     padding: '0 30px',
   },
-  tits: {
+  drawer: {
     margin: '0px 20px 50px',
   }
 }));
@@ -56,17 +55,15 @@ const Navbar = () => {
   };
 
   const handleOpenProfile = () => {
-    window.location = '/Home'
-    handleClose()
+    handleClose();    
   }
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
-          <TemporaryDrawer className="tits" />
+          <TemporaryDrawer className="drawer" />
           <Typography variant="h6" className={classes.title}>
-            Matches
           </Typography>
           {auth && (
             <div>
@@ -94,7 +91,7 @@ const Navbar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
+                <MenuItem onClick={handleOpenProfile}><Link to="/Home" style={{ textDecoration: 'none' }}>Profile</Link></MenuItem>
               </Menu>
             </div>
           )}
