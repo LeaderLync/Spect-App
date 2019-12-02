@@ -1,5 +1,4 @@
 var Company = require('../models/company.model.js')
-const uuid = require('uuid/v4') 
 var User = require('../models/UserSchema')
 
 exports.create = function(req, res) {
@@ -55,6 +54,31 @@ exports.jobPost = function(req, res) {
      }
    });
 };
+// // /* Update a listing - note the order in which this function is called by the router*/
+// exports.update = function(req, res) {
+//   if (!req.body.updatedStudent) {
+//     return res.status(400).send({
+//       message: "Updated content cannot be empty"
+//     })
+//   }
+//   List
+//   var updatedStudent = new Listing(req.body);
+//   if(req.results) {
+//     updatelisting.coordinates = {
+//       latitude: req.results.lat,
+//       longitude: req.results.lng
+//     };
+//   }
+//   updatelisting.save(function(err) {
+//     if(err) {
+//       console.log(err);
+//       res.status(400).send(err);
+//     } else {
+//       res.json(updatelisting);
+//       console.log(updatelisting)
+//     }
+//   });
+// };
 
 // /* Delete a listing */
 // exports.delete = function(req, res) {
@@ -79,11 +103,11 @@ exports.jobPost = function(req, res) {
 //   })
 // };
 
-// /* 
-//   Middleware: find a listing by its ID, then pass it to the next request handler. 
+// /*
+//   Middleware: find a listing by its ID, then pass it to the next request handler.
 
-//   HINT: Find the listing using a mongoose query, 
-//         bind it to the request object as the property 'listing', 
+//   HINT: Find the listing using a mongoose query,
+//         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
 exports.companyByID = async function(req, res, next, id) {

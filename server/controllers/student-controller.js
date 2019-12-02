@@ -1,18 +1,18 @@
 
 /* Dependencies */
-var Student = require('../models/StudentSchema.js')    
+var Student = require('../models/student.model.js')
 var User = require('../models/UserSchema')
 var Company = require('../models/company.model')
 exports.create = function(req, res) {
-  console.log(req.body)
+  console.log(JSON.stringify(req.body, null, 2));
   var newStudent = new Student(req.body);
-  /* Then save the listing */
+  /* Then save the student */
   newStudent.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(newStudent);
+      res.status(200).json(newStudent);
       console.log(newStudent)
     }
   });
@@ -21,7 +21,7 @@ exports.create = function(req, res) {
 exports.getmatches = function(req, res) {
   console.log(req.body)
   let the_len = req.body.request.length
-  
+
   // Company.find({}, function (err, users) {
   //   if (err) res.status(500).send(err)
   //   users.sort((x, y) => {
@@ -56,7 +56,7 @@ exports.read = function(req, res) {
 //   var updatedStudent = new Listing(req.body);
 //   if(req.results) {
 //     updatelisting.coordinates = {
-//       latitude: req.results.lat, 
+//       latitude: req.results.lat,
 //       longitude: req.results.lng
 //     };
 //   }
@@ -94,11 +94,11 @@ exports.read = function(req, res) {
 //   })
 // };
 
-// /* 
-//   Middleware: find a listing by its ID, then pass it to the next request handler. 
+// /*
+//   Middleware: find a listing by its ID, then pass it to the next request handler.
 
-//   HINT: Find the listing using a mongoose query, 
-//         bind it to the request object as the property 'listing', 
+//   HINT: Find the listing using a mongoose query,
+//         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
 exports.studentByID = function(req, res, next, _id) {

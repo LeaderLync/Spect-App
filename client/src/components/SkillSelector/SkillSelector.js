@@ -21,9 +21,9 @@ class SkillSelector extends React.Component {
   }
 
   render() {
-    const skillList = skillData.map(skill => {
-      return <option key={skill.id}>{skill.name}</option>
-    });
+    /*const skillList = skillData.map(skill => {
+      return <option key={skill.id} value={skill.name}>{skill.name}</option>
+    });*/
 
     return (
       <div>
@@ -31,27 +31,42 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="first">1st</label>
           </div>
-          <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill}>
-            <option disabled>Choose...</option>
-            {skillList}
+          <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name !== this.state.second && skill.name !== this.state.third
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
           </select>
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="second">2nd</label>
           </div>
-          <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill}>
-            <option disabled>Choose...</option>
-            {skillList}
+          <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name !== this.state.first && skill.name !== this.state.third
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
           </select>
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="third">3rd</label>
           </div>
-          <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill}>
-            <option disabled>Choose...</option>
-            {skillList}
+          <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name !== this.state.first && skill.name !== this.state.second
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
           </select>
         </div>
       </div>

@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 
+<<<<<<< HEAD
 var StudentSchema = new Schema({
 	idNum: { type: Number, required: true},
 	name: { type: String, required: true},
@@ -32,11 +33,80 @@ StudentSchema.pre('save', function(next) {
 	this.updated_at = currentDate
 	next()
 	/* your code here */
+=======
+var studentSchema = new Schema({
+    id: Number,
+
+    firstName: String,
+    lastName: String,
+
+    email: String,
+    telephone: String,
+
+    strongSkills: {
+      first: String,
+      second: String,
+      third: String
+    },
+
+    weakSkills: {
+      first: String,
+      second: String,
+      third: String
+    },
+
+    selectedIndustries: [String],
+
+    question1: Number,
+    question2: Number,
+    question3: Number,
+    question4: Number,
+    question5: Number,
+    question6: Number,
+    question7: Number,
+    question8: Number,
+    question9: Number,
+    question10: Number,
+    question11: Number,
+    question12: Number,
+    question13: Number,
+    question14: Number,
+    question15: Number,
+    question16: Number,
+    question17: Number,
+    question18: Number,
+
+    matches:[
+      {
+          companyID: String,
+          companyName: String,
+          companyTopSkills: [],
+          // jobDescription: String,
+          // jobRequirements: String,
+          // jobLink: String
+      },
+    ],
+
+    updated_at: Date
+})
+
+
+/* Create a 'pre' function that adds the updated_at (and created_at if not already there) property
+   See https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
+*/
+studentSchema.pre('save', function(next) {
+  //if (!this.id) throw new Error("no name provided")
+  //if (!this.name) throw new Error("no code provided")
+  var currentDate = new Date()
+  this.updated_at = currentDate
+  next()
+  /* your code here */
+>>>>>>> 7140391fa1b6eea0f20b23a78d060bb9316c87f5
 });
 
 /* Use your schema to instantiate a Mongoose model */
 //Check out - https://mongoosejs.com/docs/guide.html#models
-var Student = mongoose.model('Student', StudentSchema);
+var Student = mongoose.model('Student', studentSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
 module.exports = Student;
