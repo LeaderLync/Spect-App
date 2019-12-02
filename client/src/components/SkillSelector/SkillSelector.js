@@ -1,72 +1,73 @@
 import React from 'react';
+import skillData from '../../assets/SkillData.js'
 
 class SkillSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      skills: [],
-      skillLimit: 3
+      first: null,
+      second: null,
+      third: null
     };
-    
+
     this.selectSkill = this.selectSkill.bind(this);
   }
 
   selectSkill(event) {
-    if (event.target.checked) { // clicking on an unchecked box
-      if (this.state.skills.length < this.state.skillLimit) {
-        this.setState({
-          skills: [...this.state.skills, event.target.value]
-        },
-        () => this.props.passToParent(this.state.skills)); // passes skill array to parent component
-      } else { // attempting to check more than 3 skills
-        console.log("Skill limit reached!");
-      }
-    } else { // clicking on an already checked box to uncheck it
-      this.setState({
-        skills: this.state.skills.filter((name)=> name!==event.target.value)
-      },
-      () => this.props.passToParent(this.state.skills)); // passes skill array to parent component
-    }
+    const skill = event.target.id;
+    this.setState({
+      [skill]: event.target.value
+    }, () => this.props.passToParent(this.state));
   }
 
   render() {
+    /*const skillList = skillData.map(skill => {
+      return <option key={skill.id} value={skill.name}>{skill.name}</option>
+    });*/
+
     return (
       <div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Communication" value="Communication" onChange={this.selectSkill} checked={this.state.skills.indexOf("Communication")>=0}/>
-          <label className="form-check-label" htmlFor="Communication">Communication</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="first">1st</label>
+          </div>
+          <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name !== this.state.second && skill.name !== this.state.third
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
+          </select>
         </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Leadership" value="Leadership" onChange={this.selectSkill} checked={this.state.skills.indexOf("Leadership")>=0}/>
-          <label className="form-check-label" htmlFor="Leadership">Leadership</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="second">2nd</label>
+          </div>
+          <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name !== this.state.first && skill.name !== this.state.third
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
+          </select>
         </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Creativity" value="Creativity" onChange={this.selectSkill} checked={this.state.skills.indexOf("Creativity")>=0}/>
-          <label className="form-check-label" htmlFor="Creativity">Creativity</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Mindfulness" value="Mindfulness" onChange={this.selectSkill} checked={this.state.skills.indexOf("Mindfulness")>=0}/>
-          <label className="form-check-label" htmlFor="Mindfulness">Mindfulness</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="WorkEthic" value="WorkEthic" onChange={this.selectSkill} checked={this.state.skills.indexOf("WorkEthic")>=0}/>
-          <label className="form-check-label" htmlFor="WorkEthic">Work Ethic</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="TimeManagement" value="TimeManagement"  onChange={this.selectSkill} checked={this.state.skills.indexOf("TimeManagement")>=0}/>
-          <label className="form-check-label" htmlFor="TimeManagement">Time Management</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="CriticalThinking" value="CriticalThinking" onChange={this.selectSkill} checked={this.state.skills.indexOf("CriticalThinking")>=0}/>
-          <label className="form-check-label" htmlFor="CriticalThinking">Critical Thinking</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="Teamwork" value="Teamwork" onChange={this.selectSkill} checked={this.state.skills.indexOf("Teamwork")>=0}/>
-          <label className="form-check-label" htmlFor="Teamwork">Teamwork</label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="GlobalAwareness" value="GlobalAwareness" onChange={this.selectSkill} checked={this.state.skills.indexOf("GlobalAwareness")>=0}/>
-          <label className="form-check-label" htmlFor="GlobalAwareness">Global Awareness</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <label className="input-group-text" htmlFor="third">3rd</label>
+          </div>
+          <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill} required>
+            <option value="">Choose...</option>
+            {/*skillList*/}
+            {skillData.filter(skill => {
+              return skill.name !== this.state.first && skill.name !== this.state.second
+            }).map(skill => {
+              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+            })}
+          </select>
         </div>
       </div>
     )

@@ -3,6 +3,7 @@ import {withRouter} from 'react-router'
 import auth from "../../config/firebaseauth"
 import SignupView from './SignupView'
 import api from '../../api'
+import uuid from 'uuid/v4'
 class SignupContainer extends Component {
     constructor(props) {
         super(props)
@@ -14,10 +15,19 @@ class SignupContainer extends Component {
         const {email, firstname, lastname, password} = event.target.elements;
         try { 
             const newuser = await auth.createUserWithEmailAndPassword(email.value, password.value);
-            // const uid = await api.registernewuser(newuser.user.uid)
-            // console.log(uid)
+            console.log(newuser.user.uid)
+            
+            var request = {
+                uid: newuser.user.uid,
+                accountType: (this.props.isStudent)? 0 : 1
+            }
+            var response = '0'
+            await api.registernewuser(request).then((res) => {
+                response = res
+            })
+            console.log("Im doing this stuff" + response)
+            this.props.collectionIdUpdate(response)
             // can use newuser.email and newuser.uid
-            console.log(newuser)
             this.props.history.push("/studentsurvey")
         } catch(error) {
             alert(error)

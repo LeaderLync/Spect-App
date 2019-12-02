@@ -11,6 +11,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 import logo from '../assets/Googlelogo.png';
+import { BottomNavigation } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
     maxWidth: 345,
     margin: 50,
     border: '1px solid blue',
-
+    float: "left",
   },
   media: {
   	height: 80,
@@ -34,10 +35,13 @@ const useStyles = makeStyles({
     marginRight: 'auto'
   },
   actions: {
-  	justifyContent: 'center',
+    justifyContent: 'center',
   },
   matchButton: {
   	background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)',
+  },
+  actionDiv: {
+    display: 'inline',
   }
 });
 
@@ -56,12 +60,15 @@ export default function MediaCard() {
         </div>
       </CardActionArea>
       <CardActions className={classes.actions}>
-        <Button variant="contained" color="third" startIcon={<FavoriteIcon />} className={classes.matchButton}>
-        	Match
-      	</Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <div className={classes.actionDiv}>
+          <h3>Google</h3>
+          <Button variant="contained" color="secondary" startIcon={<FavoriteIcon />} className={classes.matchButton}>
+            Match
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </div>
       </CardActions>
     </Card>
   );

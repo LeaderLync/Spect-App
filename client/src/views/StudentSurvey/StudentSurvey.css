@@ -4,8 +4,27 @@ body {
 
 .container {
   margin-top: 50px;
+  font-family: 'Glacial Indifference', sans-serif;
 }
 
 .form-control {
-  border: 1px solid #E28F41;
+  border: 1px solid #2EA7EB;
+}
+
+.card-title {
+  border-left: 6px solid #2EA7EB;
+  padding-left: 6px;
+}
+
+label.question {
+  font-weight: bold;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+img {
+  display: block;
+  margin-bottom: 20px
 }
