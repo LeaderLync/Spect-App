@@ -88,14 +88,14 @@ class App extends Component {
               render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
-              collectionId={this.state.collectionid}
+              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanySurvey"
               render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
-              collectionId={this.state.collectionid}
+              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanyProfile" render={(props) =>
