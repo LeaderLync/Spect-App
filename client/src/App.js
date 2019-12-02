@@ -69,6 +69,7 @@ class App extends Component {
     if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
+      console.log(this.state.userinfo);
       return (
         <div style={{height: '100%'}}>
           <Switch>

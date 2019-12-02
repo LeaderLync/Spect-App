@@ -5,8 +5,8 @@ var mongoose = require('mongoose'),
 /* Create your schema */
 var CompanySchema = new Schema({
   id: String,
-  name: String,
-  bio: String,
+  companyName: String,
+  companyBio: String,
   selectedIndustries: [String],
   //URLtoLogo: String, // if time permits
   strongSkills: {
@@ -14,7 +14,8 @@ var CompanySchema = new Schema({
     second: String,
     third: String
   },
-  jobPost: [{
+  
+  jobPosts: [{
       jobID: Number,
       jobTitle: String,
       jobDescription: String,
