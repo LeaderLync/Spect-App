@@ -55,6 +55,8 @@ class App extends Component {
     this.setState({
       userinfo: value
     })
+    sessionStorage.setItem("userinfo", JSON.stringify(value))
+    
   }
   collectionIdUpdate(value) {
     this.setState({
@@ -69,6 +71,7 @@ class App extends Component {
     if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
+      console.log(JSON.parse(sessionStorage.getItem("userinfo")))
       return (
         <div style={{height: '100%'}}>
           <Switch>
@@ -91,7 +94,7 @@ class App extends Component {
               />}/>
             <Route exact path="/signup" render={(props) => <Signup {...props } isStudent={this.state.isStudent} userUpdate={this.userUpdate.bind(this)} collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
             {/* Used render instead of component in order to pass props into the react-router */}
-            <Route exact path="/studentprofile" render={() => <StudentProfile userinfo={this.state.userinfo}/>} />
+            <Route exact path="/studentprofile" render={() => <StudentProfile userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} />
             <Route component={NotFound}/>
           </Switch>
         </div>

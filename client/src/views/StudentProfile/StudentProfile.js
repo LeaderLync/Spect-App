@@ -62,38 +62,8 @@ function StudentProfile(props) {
 
 
       const classes = useStyles();
-      //const person = props.userinfo;
-      const person = {
-          firstName: "Marcus",
-          lastName: "Smart",
-          email: "fake@fake.com",
-          telephone: "1234567891",
-          id: "0",
-          strongSkills: {
-              first: "Leadership",
-              second: "Creativity",
-              third: "Time management"
-          },
-          weakSkills: {
-              first: "IDK",
-              second: "idk",
-              third: "iDk"
-          },
-          selectedIndustries: ["Idk", "idek", "IDK"],
-          matches:[
-            {companyID: "companyid1",
-            companyName: "Googleymoogoley",
-            companyTopSkills: ["Communication","Leadershipp","values"]},
-            {companyID: "companyid2",
-            companyName: "Amazon",
-            companyTopSkills: ["Communication","Leadershipp","values"]},
-            {companyID: "companyid3",
-            companyName: "Microsoft",
-            companyTopSkills: ["Communication","Leadershipp","values"]}
-            ],
-      }
-
-        console.log(props.userinfo)
+      const person = props.userinfo;
+      
         return(
             <div className={classes.root}>
                 <Navbar/>
