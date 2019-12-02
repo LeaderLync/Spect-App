@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
 import { Link, Route, Redirect  } from 'react-router-dom';
+import spectLogo from '../../assets/Black-logo-no-background.png';
 
 
 
@@ -33,6 +34,9 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     margin: '0px 20px 50px',
+  },
+  spect: {
+    maxWidth: '10%',
   }
 }));
 
@@ -63,8 +67,9 @@ const Navbar = () => {
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
           <TemporaryDrawer className="drawer" />
-          <Typography variant="h6" className={classes.title}>
-          </Typography>
+          <div>
+            <img src={spectLogo} className = {classes.spect}/> 
+          </div>
           {auth && (
             <div>
               <IconButton
@@ -73,7 +78,7 @@ const Navbar = () => {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-              >
+              > 
                 <AccountCircle />
               </IconButton>
               <Menu
