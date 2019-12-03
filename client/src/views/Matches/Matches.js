@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import api from '../../api'
 import { CardContent, Typography } from '@material-ui/core';
-import { textAlign } from '@material-ui/system';
+
 import Grid from '@material-ui/core/Grid'
 import CompanyPopup from '../../components/CompanyPopup.js'
 
@@ -61,7 +61,7 @@ class Matches extends React.Component {
         this.updateSelectedCompany = this.updateSelectedCompany.bind(this);
         this.state =
             {
-                jobs: data,
+                jobs: [],
                 morePopup: false,
                 matchButtonState: false,
                 selectedCompany: this.props.userinfo,
@@ -128,7 +128,7 @@ class Matches extends React.Component {
                         return (
                             <Grid key={index} item xs={12} sm={6} md={4} align="center">
                                 <Card className={classes.card} key={company.id}>
-                                    <CardContent style={{ textAlign: 'center' }}>
+                                    <CardContent style={{ textalign: 'center' }}>
                                         <Typography noWrap style={{ display: 'block' }}>
                                             {company.companyName}
                                         </Typography>
@@ -139,7 +139,7 @@ class Matches extends React.Component {
                                             color="secondary"
                                             size="small"
                                             startIcon={<FavoriteIcon />}
-                                            onClick={this.matchButtonClicked(company)}
+                                            onClick={() => {this.matchButtonClicked(company)}}
                                             style={
                                                 company.matched ?
                                                     { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px' }
