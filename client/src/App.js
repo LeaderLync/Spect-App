@@ -23,37 +23,41 @@ class App extends Component {
       userinfo: {},
       collectionid: '0'
     }
+    // sessionStorage.setItem("isStudent", JSON.stringify(false))
+    // sessionStorage.
   }
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
+      console.log(user)
       if (user) {
         this.setState({
           authenticated: true,
           currentUser: user,
           loading: false,
-          isStudent: sessionStorage.getItem('isStudent')
         });
       } else {
         this.setState({
           authenticated: false,
           currentUser: null,
-          loading: false
+          loading: false,
         })
       }
     })
   }
   userUpdate() {
+    console.log("HEY")
     sessionStorage.setItem("isStudent", JSON.stringify(!this.state.isStudent))
     this.setState({
       isStudent: !this.state.isStudent
     })
   }
   userInfoUpdate(value) {
+    console.log("has hit")
     this.setState({
       userinfo: value
     })
     sessionStorage.setItem("userinfo", JSON.stringify(value))
-    
+
   }
   collectionIdUpdate(value) {
     this.setState({
@@ -64,32 +68,32 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.loading && this.state.isStudent === null) {
+    if(this.state.loading) {
       return (<p>It is still loading</p>)
     } else {
       return (
         <div style={{height: '100%'}}>
           <Switch>
             {/****************************************************************************
-            Use render instead of component in order to pass props into the react-router 
+            Use render instead of component in order to pass props into the react-router
             *****************************************************************************/}
-            <PrivateRoute exact path="/" 
-              render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>}
-              authenticated={this.state.authenticated} 
+            <PrivateRoute exact path="/"
+              render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
+              authenticated={this.state.authenticated}
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
-            <PrivateRoute exact path="/StudentSurvey" 
-              render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} 
-              authenticated={this.state.authenticated} 
-              user={this.state.currentUser} 
-              collectionId={this.state.collectionid}
+            <PrivateRoute exact path="/StudentSurvey"
+              render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
+              authenticated={this.state.authenticated}
+              user={this.state.currentUser}
+              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
-            <PrivateCompanyRoute exact path="/CompanySurvey" 
-              render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} 
-              authenticated={this.state.authenticated} user={this.state.currentUser} 
-              collectionId={this.state.collectionid}
+            <PrivateCompanyRoute exact path="/CompanySurvey"
+              render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
+              authenticated={this.state.authenticated} user={this.state.currentUser}
+              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanyProfile" render={(props) =>
@@ -97,18 +101,18 @@ class App extends Component {
               authenticated={this.state.authenticated} 
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
-              
+
             />
-            <PrivateRoute exact path="/studentprofile" render={(props) => 
-              <StudentProfile 
-                {...props} 
+            <PrivateRoute exact path="/studentprofile" render={(props) =>
+              <StudentProfile
+                {...props}
                 mystate={this.state}
                 userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
                 isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
               />
               }
-              authenticated={this.state.authenticated} 
-              user={this.state.currentUser} 
+              authenticated={this.state.authenticated}
+              user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <Route exact path="/login" render={(props) =>
@@ -118,9 +122,9 @@ class App extends Component {
                 userInfoUpdate={this.userInfoUpdate.bind(this)}
                 collectionIdUpdate={this.collectionIdUpdate.bind(this)}
               />}/>
-            <Route exact path="/signup" render={(props) => <Signup {...props } 
-              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))} 
-              userUpdate={this.userUpdate.bind(this)} 
+            <Route exact path="/signup" render={(props) => <Signup {...props }
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
+              userUpdate={this.userUpdate.bind(this)}
               collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
             <Route component={NotFound}/>
           </Switch>

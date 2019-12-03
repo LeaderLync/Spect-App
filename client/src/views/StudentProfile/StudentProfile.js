@@ -1,6 +1,6 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CompanyPopup from '../../components/CompanyPopup.js';
-import logo from '../../assets/White logo - no background.svg';
 import Navbar from '../../components/Navbar/Navbar';
 import './StudentProfile.css'
 
@@ -28,7 +27,7 @@ class StudentProfile extends React.Component {
         let formattedCompany = {
             companyName: company.companyName, 
             strongSkills: company.companyTopSkills[0], 
-            companyBio: "lorem ipsum",
+            companyBio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt nunc sit amet nisi tincidunt egestas. Vestibulum justo tellus, pretium id consequat at, convallis quis erat. Etiam non placerat diam, quis tempus elit. Nulla in elementum turpis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam in tellus metus. Aliquam ut mi interdum nibh tempor eleifend vel et libero.",
         };
         this.setState(
         {
@@ -47,29 +46,27 @@ class StudentProfile extends React.Component {
                         <Grid container item sm={4} md={2} style={{ textAlign: 'center', justifyContent: 'center' }}>
                             <Avatar className="avatar" src="https://i.pravatar.cc/300"></Avatar>
                         </Grid>
-                        <Grid item sm={4} md={2} style={{ textAlign: 'left', justifyContent: 'center' }}>
-                            <Typography variant="h5" style={{ color: 'white' }}>
+                        <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
+                            <Typography noWrap variant="h5" style={{color: 'black', display: 'block'}}>
                                 {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={8} style={{ textAlign: 'center', justifyContent: 'center' }}>
-                            <Typography style={{ color: "white" }} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>
-                            <Grid container spacing={2}>
-                                {Object.entries(person.strongSkills).map(([key, value]) => {
-                                    return (
-                                        <Grid key={key} item xs={12} sm={12} md={4}>
-                                            <Card className="skillCard">
-                                                <CardContent textAlign="center">
-                                                    {value}
-                                                </CardContent>
-                                            </Card>
-                                        </Grid>
-                                    )
-                                })}
+                        <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
+                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
+                            <Grid container spacing = {2}>
+                                {Object.entries(person.strongSkills).map(([key, value]) => {return(
+                                    <Grid key={key} item xs = {12} sm={12} md={4}>
+                                        <Card className="skillCard">
+                                            <CardContent textAlign = "center">
+                                                    <Typography noWrap style={{display: 'block'}}>{value}</Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                )})}
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                </div>
+                     </div> 
                 <Grid container spacing={4} style={{ paddingTop: '4%' }}>
                     {person.matches.map(function (item, index) {
                         return (
@@ -95,11 +92,7 @@ class StudentProfile extends React.Component {
                     onHide={morePopupClose}
                     company={this.state.selectedCompany}
                 />
-                <div className="footer">
-                    <img className="footerLogo" src={logo}></img>
-                </div>
             </div>
-
         );
     }
 }
