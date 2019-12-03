@@ -31,7 +31,8 @@ var exampleuserinfo = {
     question18: 1
 }
 
-var teststudentid = '45063b7f-60c5-433b-95c3-b953d94836cf'
+var teststudentid = 'AxUgrsIy0NWQ4CkoXgybHCBVvPY2'
+var companyid = 'LF2aS1TsEpdMAe4SqBMNKznFNy52'
 describe('API Requests', function() {
 
     before(function(done) {
@@ -52,8 +53,18 @@ describe('API Requests', function() {
             });
     });
 
-    it('should be able to grab the user', function(done) {
+    it('should be able to grab the student', function(done) {
         agent.get(`/api/student/${teststudentid}`)
+            .expect(200)
+            .end(function(err, res) {
+                should.not.exist(err)
+                should.exist(res)
+                console.log(res)
+                done()
+            })
+    })
+    it('should be able to grab the company', function(done) {
+        agent.get(`/api/student/${companyid}`)
             .expect(200)
             .end(function(err, res) {
                 should.not.exist(err)

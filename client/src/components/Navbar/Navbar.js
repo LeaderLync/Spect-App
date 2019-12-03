@@ -116,7 +116,8 @@ const Navbar = (props) => {
     </MenuItem>
   </Menu>;
 
-
+  console.log("LOGGING IS STUDENT")
+  console.log(props.isStudent)
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
