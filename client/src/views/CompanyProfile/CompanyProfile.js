@@ -21,7 +21,7 @@ class CompanyProfile extends React.Component
         this.updateSelectedJobPost = this.updateSelectedJobPost.bind(this);
         this.state =
         {
-            jobs: this.props.userinfo.jobPosts,
+            jobs: [],
             postModalShow: false,
             setRemoveShow: false,
             setViewShow: false,
@@ -29,6 +29,14 @@ class CompanyProfile extends React.Component
             // idea, have a selected job to pass to the view/edit modal:
             selectedJobPost: data[0].jobPost[0],
         }
+    }
+    componentDidMount() {
+        this.updatejobs()
+    }
+    updatejobs() {
+        this.setState({
+            jobs: this.props.userinfo.jobPosts
+        })
     }
     
     updateSelectedJobPost(jobPost){ this.setState({selectedJobPost: jobPost})};   

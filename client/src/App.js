@@ -52,10 +52,10 @@ class App extends Component {
   }
   userInfoUpdate(value) {
     console.log("has hit")
+    sessionStorage.setItem("userinfo", JSON.stringify(value))
     this.setState({
       userinfo: value
     })
-    sessionStorage.setItem("userinfo", JSON.stringify(value))
 
   }
   collectionIdUpdate(value) {
