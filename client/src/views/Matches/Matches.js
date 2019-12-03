@@ -148,12 +148,39 @@ class Matches extends React.Component {
 
 
         return (
-            <div className="App">
-                <Navbar isStudent={this.props.isStudent} />
-                <div className={classes.cardList}>
-                    {CompanyCardList}
-                </div>
-                
+            <div className="App">	
+                <Navbar isStudent={this.props.isStudent}/>	
+                <Grid container spacing = {4} style={{paddingTop: '4%'}}>	
+                    {this.state.jobs.map(company => {return(	
+                        <Grid item xs = {12} sm={6} md={4} align="center">	
+                            <Card className={classes.card} key={company.id} boxShadow={3}>	
+                                <CardContent style={{textAlign: 'center'}}>	
+                                    <Typography noWrap style={{display: 'block'}}>	
+                                        {company.companyName}	
+                                    </Typography>	
+                                </CardContent>	
+                             <CardActions className={classes.actions}>	
+                                	
+                                <Button 	
+                                    variant="contained" 	
+                                    color="secondary" 	
+                                    size="small"	
+                                    startIcon={<FavoriteIcon />} 	
+                                    onClick={() => this.matchButtonClicked(company)}
+                                    style={	
+                                        company.matched ?	
+                                        { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px'}	
+                                        : {background: 'black', margin: '5px'}	
+                                    }	
+                                    >	
+                                        Match	
+                                </Button>	
+                                <CompanyPopup></CompanyPopup>	
+                            </CardActions>	
+                        </Card>	
+                    </Grid>	
+                    )})}	
+                </Grid>	
             </div>
         );
     }
