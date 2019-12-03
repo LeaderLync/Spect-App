@@ -14,15 +14,14 @@
     position: relative;
     margin: 0%;
     height: 12vw;
-    background: rgba(46, 167, 235);
+    background: whitesmoke;
 }
 
 .skillSquare{
     position: absolute;
     width: 5vw;
     height: 5vw;
-    background: white;
-
+    background: whitesmoke  ;
 }
 
 .company-name{

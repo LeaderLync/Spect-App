@@ -37,7 +37,7 @@ export default {
             return null;
         })
     },
-    postJob(data){ // update when a new job post is created
+    updateJob(data){ // update when a new job post is created
         let params = data
 
         console.log("API logging CollectionID", params.collectionid)

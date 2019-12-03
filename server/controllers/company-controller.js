@@ -29,7 +29,7 @@ exports.read = async function(req, res) {
   });
 };
 
-exports.jobPost = function(req, res) {
+exports.updatePost = function(req, res) {
   
   console.log("Controller Body" , req.body)
   

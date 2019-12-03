@@ -11,7 +11,7 @@ router.route('/').post(companycontroller.create);
 
 router.route('/:companyid')
     .get(companycontroller.read)
-    .put(companycontroller.jobPost)
+    .put(companycontroller.updatePost)
 
 
 router.param('companyid', companycontroller.companyByID)
