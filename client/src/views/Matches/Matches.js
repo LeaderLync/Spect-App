@@ -9,7 +9,6 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import data from './MatchData'
 import api from '../../api'
 import { CardContent, Typography } from '@material-ui/core';
 import { textAlign } from '@material-ui/system';
@@ -67,6 +66,12 @@ class Matches extends React.Component {
                 matchButtonState: false,
                 selectedCompany: this.props.userinfo,
             }
+        // {
+        //     jobs: [],
+        //     postModalShow: false,
+        //     editShow: false,
+        //     matchButtonState: false,
+        // }
         this.matchButtonClicked = this.matchButtonClicked.bind(this);
     }
 
@@ -77,8 +82,28 @@ class Matches extends React.Component {
             alert('Cant sign out')
         })
     }
+
+    matchButtonClicked(companyARG) {
+        var newArray = this.props.userinfo.matches;
+        newArray.push({
+            companyID: companyARG.id,
+            companyName: companyARG.companyName,
+            companyTopSkills: [companyARG.strongSkills],
+        })
+        var newinfo = this.props.userinfo
+        newinfo.matches = newArray
+        sessionStorage.setItem('userinfo', JSON.stringify(newinfo))
+
+        const payload = {
+            userId: this.props.userinfo.id,
+            newArray:  newArray,
+        };
+        api.updatematch(payload).then(response => {
+            this.props.userInfoUpdate(response);
+        })
+    }
+
     componentDidMount() {
-        console.log(this.props.isStudents)
         api.getrecommendations(this.props.userinfo).then((res) => {
             this.setState({
                 jobs: res.data
@@ -87,10 +112,6 @@ class Matches extends React.Component {
         )
         // console.log(this.props.userinfo)
         // console.log(typeof this.props.userinfo)
-    }
-
-    matchButtonClicked() {
-        //api call
     }
 
     updateSelectedCompany(company) { this.setState({ selectedCompany: company }) };
@@ -118,7 +139,7 @@ class Matches extends React.Component {
                                             color="secondary"
                                             size="small"
                                             startIcon={<FavoriteIcon />}
-                                            onClick={this.matchButtonClicked}
+                                            onClick={this.matchButtonClicked(company)}
                                             style={
                                                 company.matched ?
                                                     { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px' }

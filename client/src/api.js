@@ -37,7 +37,7 @@ export default {
             return null;
         })
     },
-    postJob(data){ // update when a new job post is created
+    updateJob(data){ // update when a new job post is created
         let params = data
 
         console.log("API logging CollectionID", params.collectionid)
@@ -104,5 +104,15 @@ export default {
                 console.log(err)
                 return null
             })
-    }
+    },
+    updatematch(payload) {
+        console.log(payload);
+        return client.patch(`/student/${payload.userId}`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
 }

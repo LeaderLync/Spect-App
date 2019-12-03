@@ -28,7 +28,6 @@ class App extends Component {
   }
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
-      console.log(user)
       if (user) {
         this.setState({
           authenticated: true,
@@ -77,36 +76,40 @@ class App extends Component {
             {/****************************************************************************
             Use render instead of component in order to pass props into the react-router
             *****************************************************************************/}
-            <PrivateRoute exact path="/"
-              render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
-              authenticated={this.state.authenticated}
+            <PrivateRoute exact path="/" 
+              render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} userInfoUpdate={this.userInfoUpdate.bind(this)} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
+              authenticated={this.state.authenticated} 
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
-            <PrivateRoute exact path="/StudentSurvey"
-              render={(props) => <StudentSurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
-              authenticated={this.state.authenticated}
-              user={this.state.currentUser}
-              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
+            <PrivateRoute exact path="/StudentSurvey" 
+              render={(props) => <StudentSurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} 
+              authenticated={this.state.authenticated} 
+              user={this.state.currentUser} 
+              collectionId={this.state.collectionid}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
-            <PrivateCompanyRoute exact path="/CompanySurvey"
-              render={(props) => <CompanySurvey {...props} mystate={this.state} userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
-              authenticated={this.state.authenticated} user={this.state.currentUser}
-              collectionId={JSON.parse(sessionStorage.getItem("collectionid"))}
+            <PrivateCompanyRoute exact path="/CompanySurvey" 
+              render={(props) => <CompanySurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)}/>} 
+              authenticated={this.state.authenticated} 
+              user={this.state.currentUser} 
+              collectionId={this.state.collectionid}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanyProfile" render={(props) =>
-              <CompanyProfile {...props} collectionId={this.state.collectionid} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} 
-              authenticated={this.state.authenticated} 
+              // <CompanyProfile {...props} collectionId={this.state.collectionid} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} 
+              // authenticated={this.state.authenticated} 
+              <CompanyProfile {...props} mystate={this.state}
+              userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
+              />}
+              authenticated={this.state.authenticated}
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
 
             />
-            <PrivateRoute exact path="/studentprofile" render={(props) =>
-              <StudentProfile
-                {...props}
-                mystate={this.state}
+            <PrivateRoute exact path="/studentprofile" render={(props) => 
+              <StudentProfile 
+                {...props} 
                 userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
                 isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
               />

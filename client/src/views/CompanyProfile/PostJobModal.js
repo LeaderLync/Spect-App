@@ -14,9 +14,13 @@ class PostJobModal extends React.Component {
 
     // props.jobs = props.jobs.bind(this)
   }
+  doboth() {
+    this.updateNewJob()
+    this.props.onHide()
+  }
 
   //Will just update the entire jobPost Field inside mogo after
-  addNewJob(){ 
+  updateNewJob(){ 
     const newJob = {
       "jobID":uuid(),
       "jobTitle":this.refs.jobTitle.value,
@@ -39,10 +43,9 @@ class PostJobModal extends React.Component {
            jobs: newData,
            collectionid: this.props.collectionId
     }
-    api.postJob(payload);
+    api.updateJob(payload);
 
-    this.props.addNewJob(newData);
-
+    this.props.updateNewJob(newData);
 
   }
 
@@ -89,7 +92,7 @@ class PostJobModal extends React.Component {
                 placeholder="Type New Job Link"/>
                 </Form.Group>
                 <Form.Group>
-                <Button variant="primary" onClick={() => {if (this.refs.jobTitle.value !== '') this.addNewJob()}} type="submit">Add Job</Button>
+                <Button variant="primary" onClick={() => {if (this.refs.jobTitle.value !== '') this.doboth()}} type="submit">Add Job</Button>
                 </Form.Group>
               </Form>
       </Modal.Body>

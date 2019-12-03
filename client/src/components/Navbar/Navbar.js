@@ -42,6 +42,8 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     margin: '0px 20px 50px',
   },
+  spectDiv: {
+  },
   spect: {
     maxWidth: '10%',
     margin: 'auto',
@@ -86,7 +88,7 @@ const Navbar = (props) => {
   onClose={handleClose}
   >
     <MenuItem onClick={handleOpenProfile}>
-      <Link to="/StudentProfile" style={{ textDecoration: 'none' }}>Profile</Link>
+      <Link to="/studentprofile" style={{ textDecoration: 'none' }}>Profile</Link>
     </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out
