@@ -16,14 +16,14 @@ function StudentProfile(props) {
           flexGrow: 1,
         },
         companyCard: {
-          padding: theme.spacing(2),
+          //padding: theme.spacing(2),
           textAlign: 'center',
           color: 'black',
           backgroundColor: 'white',
-          maxWidth: '50%%',
-          minHeight: '90%',
-          marginRight: 10,
-          marginLeft: 10,
+          minWidth: '200px',
+          maxWidth: '50%',
+          border: '1px solid #dfe1e5',
+          margin: 30,
         },
         skillCard: {
             color: 'black',
@@ -85,7 +85,7 @@ function StudentProfile(props) {
                         <Grid key={index} item xs = {12} sm={6} md={4} align="center">
                             <Card className={classes.companyCard}>
                                 <CardContent>
-                                    <Typography variant="h5" component="h2">
+                                    <Typography noWrap style={{display: 'block'}}>
                                         {item.companyName}
                                     </Typography>
                                 </CardContent>

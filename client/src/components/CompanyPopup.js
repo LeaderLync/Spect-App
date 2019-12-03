@@ -33,7 +33,7 @@ export default function CompanyPopup() {
 
     return (
         <div>
-            <Button variant="contained" size="large" color="primary" onClick={handleOpen}>
+            <Button variant="contained" size="small" style={{background: 'rgb(46, 167, 235)'}} onClick={handleOpen}>
                 Profile
             </Button>
             <Modal
