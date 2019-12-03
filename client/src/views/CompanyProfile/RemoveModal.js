@@ -14,6 +14,11 @@ class RemoveModal extends React.Component {
     // props.jobs = props.jobs.bind(this)
   }
 
+  doboth() {
+    this.updateNewJob()
+    this.props.onHide()
+  }
+
   updateNewJob(){
       console.log("Job ID", this.props.jobID)
       const jobID = this.props.jobID;
@@ -49,10 +54,9 @@ class RemoveModal extends React.Component {
       </Modal.Header>
       <Modal.Body>
           Are you sure you wish to remove this job post?
-          <Button variant="primary" onClick={() => this.updateNewJob() } type="submit">Remove</Button>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" onClick={() => this.props.onHide() }>Remove</Button>
+        <Button variant="danger" onClick={() => this.doboth() }>Remove</Button>
       </Modal.Footer>
     </Modal>
   );
