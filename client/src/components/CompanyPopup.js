@@ -118,7 +118,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
   },
   heroContent: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(46, 167, 235)',
     padding: theme.spacing(6, 0, 6),
   },
   skillCard: {
@@ -167,7 +167,7 @@ export default function CompanyPopup() {
             <div className={classes.heroContent}>
                 <Grid container spacing={4} justify="center" alignItems="center">
                     <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
-                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
+                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Most Valued Skills</Typography>     
                             <Grid container spacing = {2}>
                                
                                     <Grid item xs = {12} sm={12} md={4}>
@@ -200,8 +200,12 @@ export default function CompanyPopup() {
 
                 </Grid>
             </div>
+
             <div>
-                
+                <Typography><h4>About Us:</h4></Typography>
+            </div>
+            <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt nunc sit amet nisi tincidunt egestas. Vestibulum justo tellus, pretium id consequat at, convallis quis erat. Etiam non placerat diam, quis tempus elit. Nulla in elementum turpis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam in tellus metus. Aliquam ut mi interdum nibh tempor eleifend vel et libero.
             </div>
             
           {/* <DialogContentText>
