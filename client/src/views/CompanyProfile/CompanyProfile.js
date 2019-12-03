@@ -42,7 +42,7 @@ class CompanyProfile extends React.Component
     render() {
         // console.log("about to log props")
         // console.log(this.state.collectionid)
-        // console.log("Top Info: ")
+         console.log("Top Info: ")
         console.log("Jobs HERE", this.state.selectedJobPost.jobID)
         // console.log(this.props.userinfo.topSkills[0])
 
