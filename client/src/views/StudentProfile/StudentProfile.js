@@ -10,7 +10,6 @@ import { withStyles } from  '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CompanyPopup from '../../components/CompanyPopup.js';
 import Navbar from '../../components/Navbar/Navbar';
-//import './StudentProfile.css'
 
 const styles = theme => ({
 root: {
@@ -18,26 +17,26 @@ root: {
   },
   companyCard: {
     textAlign: 'center',
-    color: 'black',
-    backgroundColor: 'white',
-    minWidth: '200px',
-    maxWidth: '50%',
-    border: '1px solid #dfe1e5',
-    margin: 30,
-  },
-  skillCard: {
-      color: 'black',
-      marginRight: 30,
-      marginLeft: 30,
-    },
-  avatar: {
-      width: 100,
-      height: 100,
+    color: 'black',	
+    backgroundColor: 'white',	
+    minWidth: '200px',	
+    maxWidth: '50%',	
+    border: '1px solid #dfe1e5',	
+    margin: 30,	
+  },	
+  skillCard: {	
+      color: 'black',	
+      marginRight: 30,	
+      marginLeft: 30,	
+    },	
+  avatar: {	
+      width: 100,	
+      height: 100,	
 
-    },
-    heroContent: {
-      backgroundColor: 'whitesmoke',
-      padding: theme.spacing(6, 0, 6),
+    },	
+    heroContent: {	
+      backgroundColor: 'whitesmoke',	
+      padding: theme.spacing(6, 0, 6),	
     },
 })
 
@@ -109,7 +108,7 @@ class StudentProfile extends React.Component {
                                         </Typography>
                                     </CardContent>
                                     <CardActions style={{ textalign: 'center', justifyContent: 'center' }}>
-                                        <Button variant="contained" size="large" color="primary" onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
+                                        <Button variant="contained" size="small" color="primary" onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
                                             Profile
                                     </Button>
                                     </CardActions>
