@@ -42,6 +42,8 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     margin: '0px 20px 50px',
   },
+  spectDiv: {
+  },
   spect: {
     maxWidth: '10%',
     margin: 'auto',
@@ -116,7 +118,8 @@ const Navbar = (props) => {
     </MenuItem>
   </Menu>;
 
-
+  console.log("LOGGING IS STUDENT")
+  console.log(props.isStudent)
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>

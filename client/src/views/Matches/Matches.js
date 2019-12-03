@@ -9,8 +9,11 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import data from './MatchData'
 import api from '../../api'
+import { CardContent, Typography } from '@material-ui/core';
+import { textAlign } from '@material-ui/system';
+import Grid from '@material-ui/core/Grid'
+import CompanyPopup from '../../components/CompanyPopup.js'
 
 const styles = theme => ({
     cardList: {
@@ -18,10 +21,10 @@ const styles = theme => ({
         paddingLeft: '8%',
     },
     card: {
-        maxWidth: 345,
-        margin: 50,
+        minWidth: '200px',
+        maxWidth: '50%',
+        margin: 30,
         border: '1px solid #dfe1e5',
-        float: "left",
     },
     media: {
         height: 80,
@@ -59,7 +62,7 @@ class Matches extends React.Component {
 
         this.state =
         {
-            jobs: data,
+            jobs: [],
             postModalShow: false,
             editShow: false,
             matchButtonState: false,
@@ -74,9 +77,28 @@ class Matches extends React.Component {
             alert('Cant sign out')
         })
     }
+
+    matchButtonClicked(companyARG) {
+        var newArray = this.props.userinfo.matches;
+        newArray.push({
+            companyID: companyARG.id,
+            companyName: companyARG.companyName,
+            companyTopSkills: [companyARG.strongSkills],
+        })
+        var newinfo = this.props.userinfo
+        newinfo.matches = newArray
+        sessionStorage.setItem('userinfo', JSON.stringify(newinfo))
+
+        const payload = {
+            userId: this.props.userinfo.id,
+            newArray:  newArray,
+        };
+        api.updatematch(payload).then(response => {
+            this.props.userInfoUpdate(response);
+        })
+    }
+
     componentDidMount() {
-        console.log(this.props.isStudents)
-        console.log("hitting api")
         api.getrecommendations(this.props.userinfo).then((res) => {
             this.setState({
                 jobs: res.data
@@ -86,13 +108,7 @@ class Matches extends React.Component {
         console.log(this.props.userinfo)
         console.log(typeof this.props.userinfo)
     }
-
-    matchButtonClicked() {
-        //api call
-    }
-
     render(){
-        const btnPrefix = "matchButton";
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
             return (
@@ -112,7 +128,7 @@ class Matches extends React.Component {
                             variant="contained" 
                             color="secondary" 
                             startIcon={<FavoriteIcon />} 
-                            onClick={this.matchButtonClicked}
+                            onClick={() => this.matchButtonClicked(company)}
                             style={ 
                                 company.matched ?
                                 { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
@@ -132,12 +148,39 @@ class Matches extends React.Component {
 
 
         return (
-            <div className="App">
-                <Navbar isStudent={this.props.mystate.isStudent}/>
-                <div className={classes.cardList}>
-                    {CompanyCardList}
-                </div>
-                
+            <div className="App">	
+                <Navbar isStudent={this.props.isStudent}/>	
+                <Grid container spacing = {4} style={{paddingTop: '4%'}}>	
+                    {this.state.jobs.map(company => {return(	
+                        <Grid item xs = {12} sm={6} md={4} align="center">	
+                            <Card className={classes.card} key={company.id} boxShadow={3}>	
+                                <CardContent style={{textAlign: 'center'}}>	
+                                    <Typography noWrap style={{display: 'block'}}>	
+                                        {company.companyName}	
+                                    </Typography>	
+                                </CardContent>	
+                             <CardActions className={classes.actions}>	
+                                	
+                                <Button 	
+                                    variant="contained" 	
+                                    color="secondary" 	
+                                    size="small"	
+                                    startIcon={<FavoriteIcon />} 	
+                                    onClick={() => this.matchButtonClicked(company)}
+                                    style={	
+                                        company.matched ?	
+                                        { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px'}	
+                                        : {background: 'black', margin: '5px'}	
+                                    }	
+                                    >	
+                                        Match	
+                                </Button>	
+                                <CompanyPopup></CompanyPopup>	
+                            </CardActions>	
+                        </Card>	
+                    </Grid>	
+                    )})}	
+                </Grid>	
             </div>
         );
     }
