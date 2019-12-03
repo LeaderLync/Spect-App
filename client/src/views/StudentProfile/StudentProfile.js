@@ -16,7 +16,6 @@ function StudentProfile(props) {
           flexGrow: 1,
         },
         companyCard: {
-          //padding: theme.spacing(2),
           textAlign: 'center',
           color: 'black',
           backgroundColor: 'white',

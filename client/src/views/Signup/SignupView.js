@@ -3,12 +3,24 @@ import './SignupPage.css'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/Black-logo-no-background.png'
 import Button from '@material-ui/core/Button'
-
+import Avatar from '@material-ui/core/Avatar'
 
 
 class SignupView extends React.Component {
     constructor(props) {
       super(props)
+      this.state = {
+        selectedFile: null,
+        imagePreviewUrl: null,
+        file: null
+      }
+      this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(event) {
+      
+      this.setState({
+        file: URL.createObjectURL(event.target.files[0])
+      })
     }
     render() {
   
@@ -32,6 +44,10 @@ class SignupView extends React.Component {
               <img className="spect-logo" src={logo}></img>
               <h4 style={{marginTop: '5px', marginBottom: '5px'}}>{Greeting} Sign Up</h4>
               <form onSubmit={this.props.onSubmit} className="login-form">
+                <div style= {{textAlign: 'center'}}>
+                <Avatar style={{width: '100px', height: '100px', marginBottom: '10px'}} src={this.state.file}></Avatar>
+                </div>
+                <input type="file" id= "photo" onChange={this.handleChange}/>
                <h6 style={{textAlign: 'left'}}>First Name</h6>
                <input
                   className="input"
