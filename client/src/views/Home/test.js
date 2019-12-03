@@ -2,14 +2,14 @@ import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
 import CompanyPopup from "../../components/CompanyPopup"
-import auth from '../../config/firebaseauth'
+import app from '../../config/firebaseauth'
 import ProfileBar from '../../components/ProfileBar'
 import Button from '@material-ui/core/Button'
 import Navbar from '../../components/Navbar/Navbar'
 
 class test extends React.Component {
     signOut() {
-        auth.signOut().then(()=> {
+        app.auth().signOut().then(()=> {
             alert('Signed Out')
         }).catch((error) => {
             alert('Cant sign out')

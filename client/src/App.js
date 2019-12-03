@@ -21,7 +21,8 @@ class App extends Component {
       currentUser: null,
       isStudent: false,
       userinfo: {},
-      collectionid: '0'
+      collectionid: '0',
+      avatarURL: null
     }
     // sessionStorage.setItem("isStudent", JSON.stringify(false))
     // sessionStorage.
@@ -64,6 +65,12 @@ class App extends Component {
     })
     sessionStorage.setItem("collectionid", JSON.stringify(value))
 
+  }
+  avatarURLUpdate(value) {
+    this.setState({
+      avatarURL: value
+    })
+    sessionStorage.setItem("avatarURL", JSON.stringify(value))
   }
 
   render() {
@@ -126,7 +133,9 @@ class App extends Component {
             <Route exact path="/signup" render={(props) => <Signup {...props }
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
               userUpdate={this.userUpdate.bind(this)}
-              collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}/>
+              collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}
+              avatarURLUpdate={this.avatarURLUpdate.bind(this)}
+              />
             <Route component={NotFound}/>
           </Switch>
         </div>

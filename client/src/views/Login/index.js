@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router'
-import auth from "../../config/firebaseauth"
+import app from "../../config/firebaseauth"
 import LoginView from './LoginView'
 import api from '../../api'
 class LoginContainer extends Component {
@@ -14,7 +14,7 @@ class LoginContainer extends Component {
         const {email, password} = event.target.elements
         try {
 
-            const user = await auth.signInWithEmailAndPassword(email.value, password.value); //tries to sign in
+            const user = await app.auth().signInWithEmailAndPassword(email.value, password.value); //tries to sign in
             var response = (this.props.isStudent)?
                 await api.getstudentuser(user.user.uid).then((res) => res)
                 : await api.getcompanyuser(user.user.uid).then((res) => res)

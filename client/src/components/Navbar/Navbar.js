@@ -12,13 +12,13 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
-import auth from '../../config/firebaseauth'
+import app from '../../config/firebaseauth'
 import { Link, Route, Redirect  } from 'react-router-dom';
 import spectLogo from '../../assets/Black-logo-no-background.png';
 
 
 const signout = () => {
-  auth.signOut().then(()=> {
+  app.auth().signOut().then(()=> {
       alert('Signed Out')
   }).catch((error) => {
       alert('Cant sign out')

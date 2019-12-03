@@ -47,7 +47,9 @@ class SignupView extends React.Component {
                 <div style= {{textAlign: 'center'}}>
                 <Avatar style={{width: '100px', height: '100px', marginBottom: '10px'}} src={this.state.file}></Avatar>
                 </div>
-                <input type="file" id= "photo" onChange={this.handleChange}/>
+                <input type="file" 
+                name="thefile"
+                onChange={this.handleChange}/>
                <h6 style={{textAlign: 'left'}}>First Name</h6>
                <input
                   className="input"
