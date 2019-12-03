@@ -77,6 +77,27 @@ class Matches extends React.Component {
             alert('Cant sign out')
         })
     }
+
+    matchButtonClicked(companyARG) {
+        var newArray = this.props.userinfo.matches;
+        newArray.push({
+            companyID: companyARG.id,
+            companyName: companyARG.companyName,
+            companyTopSkills: [companyARG.strongSkills],
+        })
+        var newinfo = this.props.userinfo
+        newinfo.matches = newArray
+        sessionStorage.setItem('userinfo', JSON.stringify(newinfo))
+
+        const payload = {
+            userId: this.props.userinfo.id,
+            newArray:  newArray,
+        };
+        api.updatematch(payload).then(response => {
+            this.props.userInfoUpdate(response);
+        })
+    }
+
     componentDidMount() {
         api.getrecommendations(this.props.userinfo).then((res) => {
             this.setState({
@@ -87,54 +108,52 @@ class Matches extends React.Component {
         console.log(this.props.userinfo)
         console.log(typeof this.props.userinfo)
     }
-
-    matchButtonClicked() {
-        //api call
-    }
-
     render(){
-        if (this.state.jobs.length === 0 || this.state.jobs === null) {
-            return <h1>NOT LOADING FAM</h1>
-        }
-        const btnPrefix = "matchButton";
         const {classes} = this.props;
+        const CompanyCardList = this.state.jobs.map(company => {
+            return (
+                <Card className={classes.card} key={company.id}
+                    boxShadow={3}
+                >
+                    <div className={classes.media}>
+                        <img
+                        className={classes.logo}
+                        src={logo}
+                        />
+                    </div>
+                    <CardActions className={classes.actions}>
+                        <div className="actionDiv">
+                        <h3 style={{textAlign: 'center', whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
+                        <Button 
+                            variant="contained" 
+                            color="secondary" 
+                            startIcon={<FavoriteIcon />} 
+                            onClick={() => this.matchButtonClicked(company)}
+                            style={ 
+                                company.matched ?
+                                { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
+                                : {background: 'black'}
+                            }
+                            >
+                                Match
+                        </Button>
+                        <Button size="small" color="primary">
+                            Learn More
+                        </Button>
+                        </div>
+                    </CardActions>
+                </Card>
+            )
+        }) 
+
 
         return (
             <div className="App">
-                <Navbar isStudent={this.props.isStudent}/>
-                <Grid container spacing = {4} style={{paddingTop: '4%'}}>
-                    {this.state.jobs.map(company => {return(
-                        <Grid item xs = {12} sm={6} md={4} align="center">
-                            <Card className={classes.card} key={company.id} boxShadow={3}>
-                                <CardContent style={{textAlign: 'center'}}>
-                                    <Typography noWrap style={{display: 'block'}}>
-                                        {company.companyName}
-                                    </Typography>
-                                </CardContent>
-                             <CardActions className={classes.actions}>
-                                
-                                <Button 
-                                    variant="contained" 
-                                    color="secondary" 
-                                    size="small"
-                                    startIcon={<FavoriteIcon />} 
-                                    onClick={this.matchButtonClicked}
-                                    style={
-                                        company.matched ?
-                                        { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px'}
-                                        : {background: 'black', margin: '5px'}
-                                    }
-                                    >
-                                        Match
-                                </Button>
-
-                                <CompanyPopup></CompanyPopup>
-
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                    )})}
-                </Grid>
+                <Navbar isStudent={this.props.isStudent} />
+                <div className={classes.cardList}>
+                    {CompanyCardList}
+                </div>
+                
             </div>
         );
     }

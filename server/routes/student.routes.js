@@ -10,6 +10,8 @@ router.route('/')
 
 router.route('/:studentid')
     .get(studentcontroller.read)
+    .patch(studentcontroller.addMatch)
+
 
 
 

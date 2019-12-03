@@ -104,5 +104,15 @@ export default {
                 console.log(err)
                 return null
             })
-    }
+    },
+    updatematch(payload) {
+        console.log(payload);
+        return client.patch(`/student/${payload.userId}`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
 }

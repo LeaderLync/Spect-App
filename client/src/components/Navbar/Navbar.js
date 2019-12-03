@@ -42,6 +42,8 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     margin: '0px 20px 50px',
   },
+  spectDiv: {
+  },
   spect: {
     maxWidth: '10%',
     margin: 'auto',
