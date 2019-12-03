@@ -73,15 +73,15 @@ class StudentProfile extends React.Component {
                 <Navbar isStudent={this.props.isStudent} />
                 <div className={classes.heroContent}>
                     <Grid container spacing={4} justify="center" alignItems="center">
-                        <Grid container item sm={4} md={2} style={{ textalign: 'center', justifyContent: 'center' }}>
+                        <Grid container item sm={4} md={2} style={{ textAlign: 'center', justifyContent: 'center' }}>
                             <Avatar className={classes.avatar} src="https://i.pravatar.cc/300"></Avatar>
                         </Grid>
-                        <Grid item sm={4} md={2} style={{textalign: 'left', justifyContent: 'center'}}>
+                        <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
                             <Typography noWrap variant="h5" style={{color: 'black', display: 'block'}}>
                                 {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
-                        <Grid item xs = {12} sm={12} md={8} style={{textalign: 'center', justifyContent: 'center'}}>
+                        <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
                             <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
                             <Grid container spacing = {2}>
                                 {Object.entries(person.strongSkills).map(([key, value]) => {return(
@@ -107,8 +107,8 @@ class StudentProfile extends React.Component {
                                             {item.companyName}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions style={{ textalign: 'center', justifyContent: 'center' }}>
-                                        <Button variant="contained" size="small" color="primary" onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
+                                    <CardActions style={{ textAlign: 'center', justifyContent: 'center' }}>
+                                        <Button variant="contained" size="small" style={{background: 'rgb(46, 167, 235)', color: 'white'}} onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
                                             Profile
                                     </Button>
                                     </CardActions>
