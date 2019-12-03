@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import api from '../../api'
 import { CardContent, Typography } from '@material-ui/core';
-import { textAlign } from '@material-ui/system';
+
 import Grid from '@material-ui/core/Grid'
 import CompanyPopup from '../../components/CompanyPopup.js'
 
@@ -56,22 +56,27 @@ const styles = theme => ({
 })
 
 class Matches extends React.Component {
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
-
+        this.updateSelectedCompany = this.updateSelectedCompany.bind(this);
         this.state =
-        {
-            jobs: [],
-            postModalShow: false,
-            editShow: false,
-            matchButtonState: false,
-        }
+            {
+                jobs: [],
+                morePopup: false,
+                matchButtonState: false,
+                selectedCompany: this.props.userinfo,
+            }
+        // {
+        //     jobs: [],
+        //     postModalShow: false,
+        //     editShow: false,
+        //     matchButtonState: false,
+        // }
         this.matchButtonClicked = this.matchButtonClicked.bind(this);
     }
 
     signOut() {
-        auth.signOut().then(()=> {
+        auth.signOut().then(() => {
             alert('Signed Out')
         }).catch((error) => {
             alert('Cant sign out')
@@ -106,48 +111,60 @@ class Matches extends React.Component {
             })
         }
         )
-        console.log(this.props.userinfo)
-        console.log(typeof this.props.userinfo)
+        // console.log(this.props.userinfo)
+        // console.log(typeof this.props.userinfo)
     }
-    render(){
-        const {classes} = this.props;
+
+    updateSelectedCompany(company) { this.setState({ selectedCompany: company }) };
+    render() {
+        let morePopupClose = () => this.setState({ morePopup: false });
+        const btnPrefix = "matchButton";
+        const { classes } = this.props;
         if (this.props.userinfo === null) {
             return <h1>Can't do it mate</h1>
         }
         return (
-            <div className="App">	
-                <Navbar isStudent={this.props.isStudent}/>	
-                <Grid container spacing = {4} style={{paddingTop: '4%'}}>	
-                    {this.state.jobs.map(company => {return(	
-                        <Grid item xs = {12} sm={6} md={4} align="center">	
-                            <Card className={classes.card} key={company.id} boxShadow={3}>	
-                                <CardContent style={{textAlign: 'center'}}>	
-                                    <Typography noWrap style={{display: 'block'}}>	
-                                        {company.companyName}	
-                                    </Typography>	
-                                </CardContent>	
-                             <CardActions className={classes.actions}>	
-                                	
-                                <Button 	
-                                    variant="contained" 	
-                                    color="secondary" 	
-                                    size="small"	
-                                    startIcon={<FavoriteIcon />} 	
-                                    onClick={() => this.matchButtonClicked(company)}
-                                    style={	
-                                        company.matched ?	
-                                        { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px'}	
-                                        : {background: 'black', margin: '5px'}	
-                                    }	
-                                    >	
-                                        Match	
-                                </Button>	
-                                <CompanyPopup></CompanyPopup>	
-                            </CardActions>	
-                        </Card>	
-                    </Grid>	
-                    )})}	
-                </Grid>	
+            <div className="App">
+                <Navbar isStudent={this.props.isStudent} />
+                <Grid container spacing={4} style={{ paddingTop: '4%' }}>
+                    {this.state.jobs.map(function(company,index) {
+                        return (
+                            <Grid key={index} item xs={12} sm={6} md={4} align="center">
+                                <Card className={classes.card} key={company.id}>
+                                    <CardContent style={{ textalign: 'center' }}>
+                                        <Typography noWrap style={{ display: 'block' }}>
+                                            {company.companyName}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions className={classes.actions}>
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            size="small"
+                                            startIcon={<FavoriteIcon />}
+                                            onClick={() => {this.matchButtonClicked(company)}}
+                                            style={
+                                                company.matched ?
+                                                    { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px' }
+                                                    : { background: 'black', margin: '5px' }
+                                            }
+                                        >
+                                            Match
+                                        </Button>
+                                        <Button variant="contained" size="small" style={{ background: 'rgb(46, 167, 235)', color: 'white' }} onClick={() => { this.setState({ morePopup: true }); this.updateSelectedCompany(company); }}>
+                                            Profile
+                                        </Button>
+                                        <CompanyPopup // view more company info modal
+                                            show={this.state.morePopup}
+                                            onHide={morePopupClose}
+                                            company={this.state.selectedCompany}
+                                        />
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        )
+                    }.bind(this))}
+                </Grid>
             </div>
         );
     }

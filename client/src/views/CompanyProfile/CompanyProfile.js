@@ -79,7 +79,7 @@ class CompanyProfile extends React.Component
                         </div>
                     </Container>
                 )
-            }.bind(this)) // TODO: check this guy out
+            }.bind(this))
 
             return(
                 <div>
