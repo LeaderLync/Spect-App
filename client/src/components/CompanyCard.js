@@ -65,7 +65,7 @@ export default function MediaCard() {
           <Button variant="contained" color="secondary" startIcon={<FavoriteIcon />} className={classes.matchButton}>
             Match
           </Button>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" >
             Learn More
           </Button>
         </div>
