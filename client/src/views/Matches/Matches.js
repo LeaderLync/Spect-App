@@ -14,6 +14,7 @@ import api from '../../api'
 import { CardContent, Typography } from '@material-ui/core';
 import { textAlign } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid'
+import CompanyPopup from '../../components/CompanyPopup.js'
 
 const styles = theme => ({
     cardList: {
@@ -21,7 +22,7 @@ const styles = theme => ({
         paddingLeft: '8%',
     },
     card: {
-        // minWidth: 300,
+        minWidth: '200px',
         maxWidth: '50%',
         margin: 50,
         border: '1px solid #dfe1e5',
@@ -107,12 +108,11 @@ class Matches extends React.Component {
                             <Card className={classes.card} key={company.id} boxShadow={3}>
                                 <CardContent style={{textAlign: 'center'}}>
                                     <Typography noWrap style={{display: 'block'}}>
-                                        {/* <h3 style={{whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3> */}
                                         {company.companyName}
                                     </Typography>
                                 </CardContent>
                              <CardActions className={classes.actions}>
-                                <div className="actionDiv">
+                                
                                 <Button 
                                     variant="contained" 
                                     color="secondary" 
@@ -127,10 +127,9 @@ class Matches extends React.Component {
                                     >
                                         Match
                                 </Button>
-                                <Button variant="contained" size="small" style={{background: 'rgb(46, 167, 235)', margin: '5px'}}>
-                                    Learn More
-                                </Button>
-                        </div>
+
+                                <CompanyPopup></CompanyPopup>
+
                             </CardActions>
                         </Card>
                     </Grid>
