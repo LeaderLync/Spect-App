@@ -122,6 +122,7 @@ class CompanyProfile extends React.Component
                         <RemoveModal // edit job post modal
                         show={this.state.setRemoveShow}
                         jobID={this.state.selectedJobPost.jobID}
+                        jobs={this.state.jobs}
                         updateNewJob={this.updateNewJob.bind(this)}
                         onHide={removeJobModalClose}
                         collectionId={this.state.collectionid}
