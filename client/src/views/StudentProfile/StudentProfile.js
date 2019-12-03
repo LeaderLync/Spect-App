@@ -1,14 +1,14 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import CompanyPopup from '../../components/CompanyPopup.js';
-import logo from '../../assets/White logo - no background.svg';
 import Navbar from '../../components/Navbar/Navbar';
+
 function StudentProfile(props) {
 
     const useStyles = makeStyles(theme => ({
@@ -16,7 +16,6 @@ function StudentProfile(props) {
           flexGrow: 1,
         },
         companyCard: {
-          //padding: theme.spacing(2),
           textAlign: 'center',
           color: 'black',
           backgroundColor: 'white',
@@ -39,12 +38,6 @@ function StudentProfile(props) {
             backgroundColor: 'whitesmoke',
             padding: theme.spacing(6, 0, 6),
           },
-        media: {
-            maxHeight: '6vw',
-            maxWidth: '6vw',
-            display: 'block',
-            margin: 'auto',
-        },
       }));
 
 
@@ -60,18 +53,18 @@ function StudentProfile(props) {
                             <Avatar className={classes.avatar} src="https://i.pravatar.cc/300"></Avatar>
                         </Grid>
                         <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
-                            <Typography variant="h5" style={{color: 'black'}}>
+                            <Typography noWrap variant="h5" style={{color: 'black', display: 'block'}}>
                                 {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
                         <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
-                            <Typography style={{color: "black"}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
+                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
                             <Grid container spacing = {2}>
                                 {Object.entries(person.strongSkills).map(([key, value]) => {return(
                                     <Grid key={key} item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
                                             <CardContent textAlign = "center">
-                                                    {value}
+                                                    <Typography noWrap style={{display: 'block'}}>{value}</Typography>
                                             </CardContent>
                                         </Card>
                                     </Grid>
@@ -83,7 +76,7 @@ function StudentProfile(props) {
                 <Grid container spacing = {4} style={{paddingTop: '4%'}}>
                     {person.matches.map((item, index) => {return(
                         <Grid key={index} item xs = {12} sm={6} md={4} align="center">
-                            <Card className={classes.companyCard}>
+                            <Card className={classes.companyCard} boxShadow={3}>
                                 <CardContent>
                                     <Typography noWrap style={{display: 'block'}}>
                                         {item.companyName}
