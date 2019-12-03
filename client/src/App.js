@@ -99,7 +99,9 @@ class App extends Component {
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanyProfile" render={(props) =>
-              <CompanyProfile {...props} mystate={this.state}/>}
+              <CompanyProfile {...props} mystate={this.state}
+              userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
+              />}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
