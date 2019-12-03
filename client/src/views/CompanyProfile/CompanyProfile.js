@@ -49,7 +49,6 @@ class CompanyProfile extends React.Component
         let postModalClose = () => this.setState({postModalShow: false});
         let editJobModalClose = () => this.setState({setEditShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
-        let updateSelectedJobPost = (jobPost) => this.setState({selectedJobPost: jobPost});
 
         console.log(this.state.jobs)
        // let postModalClose = () => this.setState({postModalShow: false})
@@ -71,7 +70,7 @@ class CompanyProfile extends React.Component
                                             Job Description: {jobPost.jobDescription.substring(0,48)}...
                                         </Card.Text>
                                         <Button variant="danger" onClick={() => {this.setState({setEditShow : true}); this.updateSelectedJobPost(jobPost);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular' }}>Edit</Button>
-                                        <Button variant="primary" onClick={() => {this.setState({setViewShow : true}); this.updateSelectedJobPost(jobPost);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>View</Button>
+                                        <Button variant="primary" onClick={() => {this.setState({setViewShow : true}); this.updateSelectedJobPost(jobPost);}} style={{margin: '2px', fontFamily: 'GlacialIndifferenceRegular'}}>Remove</Button>
                                         </Card.Body>
                                     </Card>
                                 </CardGroup>
@@ -79,7 +78,7 @@ class CompanyProfile extends React.Component
                         </div>
                     </Container>
                 )
-            }.bind(this)) // TODO: check this guy out
+            }.bind(this))
 
             return(
                 <div>

@@ -11,6 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import data from './MatchData'
 import api from '../../api'
+import CompanyPopup from '../../components/CompanyPopup'
 
 const styles = theme => ({
     cardList: {
@@ -56,13 +57,13 @@ class Matches extends React.Component {
     constructor(props)
     {
         super(props);
-
+        this.updateSelectedCompany = this.updateSelectedCompany.bind(this);
         this.state =
         {
             jobs: data,
-            postModalShow: false,
-            editShow: false,
+            morePopup: false,
             matchButtonState: false,
+            selectedCompany: this.props.userinfo,
         }
         this.matchButtonClicked = this.matchButtonClicked.bind(this);
     }
@@ -82,18 +83,21 @@ class Matches extends React.Component {
             })
         }
         )
-        console.log(this.props.userinfo)
-        console.log(typeof this.props.userinfo)
+        // console.log(this.props.userinfo)
+        // console.log(typeof this.props.userinfo)
     }
 
     matchButtonClicked() {
         //api call
     }
 
+    updateSelectedCompany(company){ this.setState({selectedCompany: company})};
+
     render(){
+        let morePopupClose = () => this.setState({morePopup: false});
         const btnPrefix = "matchButton";
         const {classes} = this.props;
-        const CompanyCardList = this.state.jobs.map(company => {
+        const CompanyCardList = this.state.jobs.map(function(company){
             return (
                 <Card className={classes.card} key={company.id}
                     boxShadow={3}
@@ -120,14 +124,14 @@ class Matches extends React.Component {
                             >
                                 Match
                         </Button>
-                        <Button size="small" color="primary">
+                        <Button size="small" color="primary" onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(company);}}>
                             Learn More
                         </Button>
                         </div>
                     </CardActions>
                 </Card>
             )
-        }) 
+        }.bind(this)) 
 
 
         return (
@@ -136,7 +140,11 @@ class Matches extends React.Component {
                 <div className={classes.cardList}>
                     {CompanyCardList}
                 </div>
-                
+                <CompanyPopup // view more company info modal
+                    show={this.state.morePopup}
+                    onHide={morePopupClose}
+                    company={this.state.selectedCompany}
+                />
             </div>
         );
     }

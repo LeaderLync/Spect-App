@@ -19,13 +19,13 @@ export default (props) => {
           <Card.Body>
             <Card.Title style={{ fontFamily: 'Montserrat' }}>{jobPost.jobTitle}</Card.Title>
             <Card.Text style={{ fontFamily: 'GlacialIndifferenceRegular', fontStyle: 'normal' }}>
-              Job Description: {jobPost.jobDescription}
+              <strong>Job Description:</strong> {jobPost.jobDescription}
             </Card.Text>
             <Card.Text style={{ fontFamily: 'GlacialIndifferenceRegular', fontStyle: 'normal'}}>
               <strong>Job Requirements:</strong> {jobPost.jobRequirements}
             </Card.Text>
             <Card.Text style={{ fontFamily: 'GlacialIndifferenceRegular', fontStyle: 'normal' }}>
-              Job Link: <a href={"http://"+jobPost.jobLink}>{jobPost.jobLink}</a>
+              <strong>Job Link:</strong> <a href={"http://"+jobPost.jobLink}>{jobPost.jobLink}</a>
             </Card.Text>
           </Card.Body>
         </Card>

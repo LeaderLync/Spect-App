@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import './CompanyPopup.css'
 
 const useStyles = makeStyles(theme => ({
@@ -18,35 +17,22 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function CompanyPopup() {
+export default function CompanyPopup(props) {
     const classes = useStyles();
-    // getModalStyle is not a pure function, we roll the style only on the first render
-    const [open, setOpen] = React.useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
+    let company = props.company;
     return (
         <div>
-            <Button variant="contained" size="large" color="primary" onClick={handleOpen}>
-                Profile
-            </Button>
             <Modal
                 aria-labelledby="modalTitle"
                 aria-describedby="AboutUs"
-                open={open}
-                onClose={handleClose}
+                open={props.show}
+                onClose={props.onHide}
             >
                 <div className={classes.paper}>
                     <div className="modalcompanytop">
                     <h2 id="modalSkillshead" className="companyHead" Style="width:35%;">
                     <Paper className={classes.root}>
-                        Google img
+                        {company.companyName}
                         </Paper>
                     </h2>
                     <h2 id="modalCompany" className="companyHead" Style="background-color:#5f89ce;
@@ -56,17 +42,17 @@ export default function CompanyPopup() {
                                                                         padding-left:2vh;">
                         <div className="modalValueTitle" Style="flex-direction:row;display:flex;">
                         <p Style="width: 89%;">VALUED SOFT SKILLS</p>
-                        <img src='https://d30y9cdsu7xlg0.cloudfront.net/png/53504-200.png' className="modalcloseImg" onClick={handleClose}/>
+                        <img src='https://d30y9cdsu7xlg0.cloudfront.net/png/53504-200.png' className="modalcloseImg" onClick={props.onHide}/>
                         </div>
                         <div className="modalcompanytop">
                             <Paper className={classes.root} Style="margin:5px; min-height:8vh; min-width:8vh;">
-                            skill1
+                            {company.strongSkills.first}
                             </Paper>
                             <Paper className={classes.root} Style="margin:5px; min-height:8vh; min-width:8vh;">
-                            skill2
+                            {company.strongSkills.second}
                             </Paper>
                             <Paper className={classes.root} Style="margin:5px; min-height:8vh; min-width:8vh;">
-                            skill3
+                            {company.strongSkills.third}
                             </Paper>
                         </div>
                     </h2>
@@ -74,7 +60,7 @@ export default function CompanyPopup() {
                     <div className="modalcompanydesc">
                         <h4> About us: </h4>
                         <p id="AboutUs" Style="width:auto;">
-                            Our mission is to organize the world’s information and make it universally accessible and useful.
+                            {company.companyBio}
                         </p>
                     </div>
                 </div>
