@@ -10,7 +10,7 @@ import leadership from '../../assets/Leadership Icon.png'
 import Navbar from '../../components/Navbar/Navbar'
 import api from '../../api'
 
-import { Image, CardGroup, Card, Container, Button, ButtonToolbar} from 'react-bootstrap'
+import { Image, CardGroup, Card, Container, Button, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 
 
 class CompanyProfile extends React.Component
@@ -79,7 +79,7 @@ class CompanyProfile extends React.Component
                         </div>
                     </Container>
                 )
-            }.bind(this)) // TODO: check this guy out
+            }.bind(this))
 
             return(
                 <div>
@@ -88,11 +88,11 @@ class CompanyProfile extends React.Component
                         <h3 className="company-name">{this.props.userinfo.companyName}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
                         <img src={sampleImage} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
                         <div className='topSkills'>
-                            <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "black", fontFamily: 'Montserrat', color: 'white'}}>Top Three Desired Skills</h5>
-                            <body style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1vw", backgroundColor: "black", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal', color: 'white'}}>
-                                Skill 1: {this.props.userinfo.strongSkills.first} | {"    "}
-                                Skill 2: {this.props.userinfo.strongSkills.second} | {" "}
-                                Skill 3: {this.props.userinfo.strongSkills.third}  {" "}
+                            <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "whitesmoke", fontFamily: 'Montserrat', color: 'black'}}>Top Three Desired Skills</h5>
+                            <body style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1.5vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal', color: 'black'}}>
+                                {this.props.userinfo.strongSkills.first} | {"    "}
+                                {this.props.userinfo.strongSkills.second} | {" "}
+                                {this.props.userinfo.strongSkills.third}  {" "}
                             </body>
                         </div>
                     </div>
@@ -122,6 +122,7 @@ class CompanyProfile extends React.Component
                         <RemoveModal // edit job post modal
                         show={this.state.setRemoveShow}
                         jobID={this.state.selectedJobPost.jobID}
+                        jobs={this.state.jobs}
                         updateNewJob={this.updateNewJob.bind(this)}
                         onHide={removeJobModalClose}
                         collectionId={this.state.collectionid}

@@ -13,5 +13,10 @@ const appconfig = {
 
 const app = firebase.initializeApp(appconfig)
 const auth = app.auth()
+const storage = app.storage()
 auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-export default auth
+
+export default {
+    auth: auth,
+    storage: storage
+}

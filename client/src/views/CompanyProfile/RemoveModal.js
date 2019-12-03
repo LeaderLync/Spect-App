@@ -14,20 +14,27 @@ class RemoveModal extends React.Component {
     // props.jobs = props.jobs.bind(this)
   }
 
-  //Will just update the entire jobPost Field inside mogo after
-  updateNewJob(){ 
-      console.log("HEY")
-    // const newData = this.props.jobs.filter(directory => id);
-    // console.log(newData);
+  doboth() {
+    this.updateNewJob()
+    this.props.onHide()
+  }
 
-    // const payload = {
-    //        jobs: newData,
-    //        collectionid: this.props.collectionId
-    // }
-   // api.postJob(payload);
+  updateNewJob(){
+      console.log("Job ID", this.props.jobID)
+      const jobID = this.props.jobID;
+      console.log("Company ID", this.props.collectionId)
+      console.log("Jobs", this.props.jobs)
 
-    // this.props.removeJobPost(newData);
+      const updatedJobs = this.props.jobs.filter(job => jobID != job.jobID)
+      console.log(updatedJobs)
 
+      const payload = {
+        jobs: updatedJobs,
+        collectionid: this.props.collectionId
+    }
+        api.updateJob(payload);
+
+        this.props.updateNewJob(updatedJobs);
   }
 
   render(){
@@ -47,10 +54,9 @@ class RemoveModal extends React.Component {
       </Modal.Header>
       <Modal.Body>
           Are you sure you wish to remove this job post?
-          <Button variant="primary" onClick={() => this.updateNewJob() }  type="submit">Remove</Button>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" onClick={() => this.updateNewJob() }>Remove</Button>
+        <Button variant="danger" onClick={() => this.doboth() }>Remove</Button>
       </Modal.Footer>
     </Modal>
   );

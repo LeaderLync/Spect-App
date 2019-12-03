@@ -14,7 +14,7 @@ var CompanySchema = new Schema({
     second: String,
     third: String
   },
-  
+  avatarUrl: String,
   jobPosts: [{
       jobID: String,
       jobTitle: String,
@@ -55,7 +55,7 @@ CompanySchema.pre('save', function(next) {
     next();
   });
 
-var Company = mongoose.model('Company', CompanySchema);
+var Company = mongoose.model('TestCompany', CompanySchema);
 
 /* Export the model to make it available to other parts of your Node application */
 module.exports = Company;

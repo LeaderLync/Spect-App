@@ -5,7 +5,7 @@ import CompanySurvey from './views/CompanySurvey/CompanySurvey';
 import NotFound from "./views/NotFound"
 import StudentProfile from "./views/StudentProfile/StudentProfile"
 import Login from './views/Login'
-import auth from './config/firebaseauth';
+import app from './config/firebaseauth';
 import PrivateRoute from './components/PrivateRoute'
 import Signup from './views/Signup'
 import CompanyProfile from './views/CompanyProfile/CompanyProfile';
@@ -28,7 +28,7 @@ class App extends Component {
     // sessionStorage.
   }
   componentDidMount() {
-    auth.onAuthStateChanged((user) => {
+    app.auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({
           authenticated: true,
@@ -84,9 +84,7 @@ class App extends Component {
             Use render instead of component in order to pass props into the react-router
             *****************************************************************************/}
             <PrivateRoute exact path="/" 
-              render={(props) => <Matches {...props} mystate={this.state} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
-              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
-              />}
+              render={(props) => <Matches userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} userInfoUpdate={this.userInfoUpdate.bind(this)} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
               authenticated={this.state.authenticated} 
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
@@ -106,7 +104,11 @@ class App extends Component {
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanyProfile" render={(props) =>
-              <CompanyProfile {...props} mystate={this.state}/>}
+              // <CompanyProfile {...props} collectionId={this.state.collectionid} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>} 
+              // authenticated={this.state.authenticated} 
+              <CompanyProfile {...props} mystate={this.state}
+              userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}
+              />}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
@@ -133,8 +135,9 @@ class App extends Component {
             <Route exact path="/signup" render={(props) => <Signup {...props }
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
               userUpdate={this.userUpdate.bind(this)}
-              collectionIdUpdate={this.collectionIdUpdate.bind(this)}/>}
+              collectionIdUpdate={this.collectionIdUpdate.bind(this)}
               avatarURLUpdate={this.avatarURLUpdate.bind(this)}
+              />}
               />
             <Route component={NotFound}/>
           </Switch>

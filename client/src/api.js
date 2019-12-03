@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 const client = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://spectapp.herokuapp.com/api',
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json',
@@ -104,5 +104,15 @@ export default {
                 console.log(err)
                 return null
             })
-    }
+    },
+    updatematch(payload) {
+        console.log(payload);
+        return client.patch(`/student/${payload.userId}`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
 }

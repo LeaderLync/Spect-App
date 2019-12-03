@@ -3,7 +3,7 @@ import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
 import CompanyPopup from "../../components/CompanyPopup"
-import app from '../../config/firebaseauth'
+import {auth} from '../../config/firebaseauth'
 import ProfileBar from '../../components/ProfileBar'
 import Button from '@material-ui/core/Button'
 import Navbar from '../../components/Navbar/Navbar'

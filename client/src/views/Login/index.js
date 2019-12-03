@@ -14,7 +14,7 @@ class LoginContainer extends Component {
         const {email, password} = event.target.elements
         try {
 
-            const user = await app.auth().signInWithEmailAndPassword(email.value, password.value); //tries to sign in
+            const user = await app.auth.signInWithEmailAndPassword(email.value, password.value); //tries to sign in
             var response = (this.props.isStudent)?
                 await api.getstudentuser(user.user.uid).then((res) => res)
                 : await api.getcompanyuser(user.user.uid).then((res) => res)

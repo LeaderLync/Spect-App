@@ -9,10 +9,6 @@ export default function PrivateRoute({
   ...rest
 }) 
 {
-  console.log(authenticated)
-  console.log("loggin student")
-  console.log(isStudent)
-  console.log(user)
   if (authenticated === false) {
     return <Route {...rest} render={() => <Redirect to="/login"/>}/>
   } else if (authenticated === true && isStudent === false) {

@@ -16,7 +16,7 @@ var studentSchema = new Schema({
       second: String,
       third: String
     },
-
+    avatarUrl: String,
     weakSkills: {
       first: String,
       second: String,
@@ -72,7 +72,7 @@ studentSchema.pre('save', function(next) {
 
 /* Use your schema to instantiate a Mongoose model */
 //Check out - https://mongoosejs.com/docs/guide.html#models
-var Student = mongoose.model('Student', studentSchema);
+var Student = mongoose.model('TestStudent', studentSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
 module.exports = Student;

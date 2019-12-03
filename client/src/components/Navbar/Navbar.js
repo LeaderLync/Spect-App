@@ -18,7 +18,7 @@ import spectLogo from '../../assets/Black-logo-no-background.png';
 
 
 const signout = () => {
-  app.auth().signOut().then(()=> {
+  app.auth.signOut().then(()=> {
       alert('Signed Out')
   }).catch((error) => {
       alert('Cant sign out')
@@ -41,6 +41,8 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     margin: '0px 20px 50px',
+  },
+  spectDiv: {
   },
   spect: {
     maxWidth: '10%',

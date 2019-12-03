@@ -16,7 +16,8 @@ class SignupContainer extends Component {
         const imagefile = thefile.files[0]
 
         try {
-            const storageref = app.storage().ref()
+            console.log(this.props)
+            const storageref = app.storage.ref()
             const mainImage = storageref.child(thefile.files[0].name)
             mainImage.put(imagefile).then((snapshot) => {
                 mainImage.getDownloadURL().then((url) => {
@@ -24,7 +25,7 @@ class SignupContainer extends Component {
                     this.props.avatarURLUpdate(url)
                 })
             })
-            const newuser = await app.auth().createUserWithEmailAndPassword(email.value, password.value);
+            const newuser = await app.auth.createUserWithEmailAndPassword(email.value, password.value);
             console.log(newuser.user.uid)
 
             var request = {
