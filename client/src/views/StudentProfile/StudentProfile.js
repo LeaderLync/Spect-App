@@ -43,21 +43,21 @@ class StudentProfile extends React.Component {
                 <Navbar isStudent={this.props.isStudent} />
                 <div className="heroContent">
                     <Grid container spacing={4} justify="center" alignItems="center">
-                        <Grid container item sm={4} md={2} style={{ textAlign: 'center', justifyContent: 'center' }}>
+                        <Grid container item sm={4} md={2} style={{ textalign: 'center', justifyContent: 'center' }}>
                             <Avatar className="avatar" src="https://i.pravatar.cc/300"></Avatar>
                         </Grid>
-                        <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
+                        <Grid item sm={4} md={2} style={{textalign: 'left', justifyContent: 'center'}}>
                             <Typography noWrap variant="h5" style={{color: 'black', display: 'block'}}>
                                 {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
-                        <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
+                        <Grid item xs = {12} sm={12} md={8} style={{textalign: 'center', justifyContent: 'center'}}>
                             <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
                             <Grid container spacing = {2}>
                                 {Object.entries(person.strongSkills).map(([key, value]) => {return(
                                     <Grid key={key} item xs = {12} sm={12} md={4}>
                                         <Card className="skillCard">
-                                            <CardContent textAlign = "center">
+                                            <CardContent textalign = "center">
                                                     <Typography noWrap style={{display: 'block'}}>{value}</Typography>
                                             </CardContent>
                                         </Card>
@@ -70,14 +70,14 @@ class StudentProfile extends React.Component {
                 <Grid container spacing={4} style={{ paddingTop: '4%' }}>
                     {person.matches.map(function (item, index) {
                         return (
-                            <Grid item xs={12} sm={6} md={4} align="center">
+                            <Grid key={index} item xs={12} sm={6} md={4} align="center">
                                 <Card className="companyCard">
                                     <CardContent>
                                         <Typography variant="h5" component="h2">
                                             {item.companyName}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions style={{ textAlign: 'center', justifyContent: 'center' }}>
+                                    <CardActions style={{ textalign: 'center', justifyContent: 'center' }}>
                                         <Button variant="contained" size="large" color="primary" onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
                                             Profile
                                     </Button>
