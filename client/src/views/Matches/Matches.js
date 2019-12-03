@@ -24,9 +24,8 @@ const styles = theme => ({
     card: {
         minWidth: '200px',
         maxWidth: '50%',
-        margin: 50,
+        margin: 30,
         border: '1px solid #dfe1e5',
-        //float: "left",
     },
     media: {
         height: 80,
