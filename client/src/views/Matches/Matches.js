@@ -20,7 +20,7 @@ const styles = theme => ({
     card: {
         maxWidth: 345,
         margin: 50,
-        border: '1px solid #2EA7EB',
+        border: '1px solid #dfe1e5',
         float: "left",
     },
     media: {
@@ -59,7 +59,7 @@ class Matches extends React.Component {
 
         this.state =
         {
-            jobs: data,
+            jobs: [],
             postModalShow: false,
             editShow: false,
             matchButtonState: false,
@@ -76,19 +76,28 @@ class Matches extends React.Component {
     }
 
     matchButtonClicked(companyARG) {
+        var newArray = this.props.userinfo.matches;
+        newArray.push({
+            companyID: companyARG.id,
+            companyName: companyARG.companyName,
+            companyTopSkills: [companyARG.strongSkills],
+        })
+        var newinfo = this.props.userinfo
+        newinfo.matches = newArray
+        sessionStorage.setItem('userinfo', JSON.stringify(newinfo))
+
         const payload = {
             userId: this.props.userinfo.id,
-            company: companyARG,
+            newArray:  newArray,
         };
-        api.updatematch(payload)
-        //api call
-        //make a function in api js
-        // make a route in student routes
-        // make a functiuon in student controller
-        // connect it together using patch api call 
+        api.updatematch(payload).then(response => {
+            this.props.userInfoUpdate(response);
+        })
     }
 
     componentDidMount() {
+        console.log(this.props.isStudents)
+        console.log("hitting api")
         api.getrecommendations(this.props.userinfo).then((res) => {
             this.setState({
                 jobs: res.data
@@ -102,34 +111,34 @@ class Matches extends React.Component {
         const {classes} = this.props;
         const CompanyCardList = this.state.jobs.map(company => {
             return (
-                <Card className={classes.card} key={company.id}>
-                    <CardActionArea>
-                        <div className={classes.media}>
-                            <img
-                            className={classes.logo}
-                            src={logo}
-                            />
-                        </div>
-                    </CardActionArea>
+                <Card className={classes.card} key={company.id}
+                    boxShadow={3}
+                >
+                    <div className={classes.media}>
+                        <img
+                        className={classes.logo}
+                        src={logo}
+                        />
+                    </div>
                     <CardActions className={classes.actions}>
                         <div className="actionDiv">
-                            <h3>{company.companyName}</h3>
-                            <Button 
-                                variant="contained" 
-                                color="secondary" 
-                                startIcon={<FavoriteIcon />} 
-                                onClick={() => this.matchButtonClicked(company)}
-                                style={ 
-                                    company.matched ?
-                                    { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
-                                    : {background: 'gray'}
-                                }
-                                >
-                                    Match  
-                            </Button>  
-                            <Button size="small" color="primary">
-                                Learn More
-                            </Button>
+                        <h3 style={{textAlign: 'center', whiteSpace:'nowrap', width: '215px',overflow: 'hidden', textOverflow: 'ellipsis'}}>{company.companyName}</h3>
+                        <Button 
+                            variant="contained" 
+                            color="secondary" 
+                            startIcon={<FavoriteIcon />} 
+                            onClick={() => this.matchButtonClicked(company)}
+                            style={ 
+                                company.matched ?
+                                { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)'}
+                                : {background: 'black'}
+                            }
+                            >
+                                Match
+                        </Button>
+                        <Button size="small" color="primary">
+                            Learn More
+                        </Button>
                         </div>
                     </CardActions>
                 </Card>
@@ -139,7 +148,7 @@ class Matches extends React.Component {
 
         return (
             <div className="App">
-                <Navbar page={"Matches"}/>
+                <Navbar isStudent={this.props.isStudent} />
                 <div className={classes.cardList}>
                     {CompanyCardList}
                 </div>

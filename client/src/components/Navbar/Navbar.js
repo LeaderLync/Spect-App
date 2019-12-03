@@ -12,11 +12,18 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
+import auth from '../../config/firebaseauth'
 import { Link, Route, Redirect  } from 'react-router-dom';
 import spectLogo from '../../assets/Black-logo-no-background.png';
 
 
-
+const signout = () => {
+  auth.signOut().then(()=> {
+      alert('Signed Out')
+  }).catch((error) => {
+      alert('Cant sign out')
+  })
+}
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -28,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
    bar: {
-    background: 'linear-gradient(45deg, #2EA7EB 30%, #2EA7EB 90%)',
+    background: 'linear-gradient(180deg, #2EA7EB 30%, #2EA7EB 90%)',
     border: 0,
     padding: '0 30px',
   },
@@ -43,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -64,13 +71,60 @@ const Navbar = () => {
   const handleOpenProfile = () => {
     handleClose();    
   }
+  const menuItems = (props.isStudent)?
+  <Menu
+  id="menu-appbar"
+  anchorEl={anchorEl}
+  anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  keepMounted
+  transformOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  open={open}
+  onClose={handleClose}
+  >
+    <MenuItem onClick={handleOpenProfile}>
+      <Link to="/studentprofile" style={{ textDecoration: 'none' }}>Profile</Link>
+    </MenuItem>
+    <MenuItem onClick={signout}>
+      Sign Out
+    </MenuItem>
+  </Menu>
+  :
+  <Menu
+  id="menu-appbar"
+  anchorEl={anchorEl}
+  anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  keepMounted
+  transformOrigin={{
+    vertical: 'top',
+    horizontal: 'right',
+  }}
+  open={open}
+  onClose={handleClose}
+  >
+    <MenuItem onClick={handleOpenProfile}>
+      <Link to="/CompanyProfile" style={{ textDecoration: 'none' }}>Profile</Link>
+    </MenuItem>
+    <MenuItem onClick={signout}>
+      Sign Out
+    </MenuItem>
+  </Menu>;
+
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
-          <TemporaryDrawer className={classes.drawer} />
-          <div className={classes.spectDiv}>
+          <TemporaryDrawer className="drawer" isStudent= {props.isStudent}/>
+          <div>
             <img src={spectLogo} className = {classes.spect}/> 
           </div>
           {auth && (
@@ -84,23 +138,7 @@ const Navbar = () => {
               > 
                 <AccountCircle />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleOpenProfile}><Link to="/Home" style={{ textDecoration: 'none' }}>Profile</Link></MenuItem>
-              </Menu>
+              {menuItems}
             </div>
           )}
         </Toolbar>

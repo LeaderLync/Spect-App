@@ -52,16 +52,17 @@ export default {
     collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
       return client.post('/company', companyData)
       .then(response => {
-        console.log("put response here")
+        //console.log("put response here")
         return response.data
       }).catch((err) => {
         console.log(err)
+        return null
       })
     },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -71,7 +72,7 @@ export default {
     getstudentuser(userid) {
         return client.get(`/student/${userid}`)
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -83,8 +84,8 @@ export default {
         console.log(userinfo)
         return client.patch('/student', userinfo)
             .then(response => {
-                console.log(response)
-                console.log(response.data)
+                // console.log(response)
+                // console.log(response.data)
                 return response
                 // return response.data
             }).catch((err) => {
@@ -93,7 +94,13 @@ export default {
             })
     },
     updatematch(payload) {
-        console.log("HELLO");
         console.log(payload);
-    }
+        return client.patch(`/student/${payload.userId}`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
 }

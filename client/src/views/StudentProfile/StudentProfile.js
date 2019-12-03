@@ -66,7 +66,7 @@ function StudentProfile(props) {
       
         return(
             <div className={classes.root}>
-                <Navbar/>
+                <Navbar isStudent={props.isStudent}/>
                 <div className={classes.heroContent} >
                     <Grid container spacing={4} justify="center" alignItems="center">
                         <Grid container item sm={4} md={2} style={{textAlign: 'center', justifyContent: 'center'}}>
