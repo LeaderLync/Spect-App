@@ -92,7 +92,7 @@ class PostJobModal extends React.Component {
                 placeholder="Type New Job Link"/>
                 </Form.Group>
                 <Form.Group>
-                <Button variant="primary" onClick={() => {if (this.refs.jobTitle.value !== '') this.doboth()}} type="submit">Add Job</Button>
+                <Button variant="primary" onClick={() => {if (this.refs.jobTitle.value !== '' && this.refs.jobDescription.value !== '' && this.refs.jobLink.value !== '' && this.refs.jobTitle.value !== '') this.doboth()}} type="submit">Add Job</Button>
                 </Form.Group>
               </Form>
       </Modal.Body>
