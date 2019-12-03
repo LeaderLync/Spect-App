@@ -152,7 +152,7 @@ export default function CompanyPopup() {
 
   return (
     <React.Fragment>
-      <Button variant="contained" size="small" style={{background: 'rgb(46, 167, 235)'}} onClick={handleClickOpen}>
+      <Button variant="contained" size="small" style={{background: 'rgb(46, 167, 235)', color: 'white'}} onClick={handleClickOpen}>
         Profile
       </Button>
       <Dialog
