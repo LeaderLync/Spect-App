@@ -43,14 +43,11 @@ export default[
             },
             {
                 jobID: 5,
-                jobTitle: 'Research Intern',
+                jobTitle: 'Product Intern',
                 jobDescription: 'Learn about our new technologies.',
                 jobRequirements: 'Leadership, Creativity and Charisma',
                 jobLink: 'www.google.com/jobs'
             }
-
-
-
         ]
     },
 

@@ -149,6 +149,7 @@ exports.read = async function(req, res) {
 //         bind it to the request object as the property 'listing',
 //         then finally call next
 //  */
+
 exports.studentByID = async function(req, res, next, id) {
   User.findOne({authuid: id}).exec(function(err, user) {
     if (err) {
@@ -161,3 +162,17 @@ exports.studentByID = async function(req, res, next, id) {
     }
   })
 };
+
+exports.addMatch = async function(req, res){
+  Student.findOneAndUpdate({id: req.body.userId}, {matches: req.body.newArray}).exec(function(err, user) {
+    if (err) {
+      console.log('error on student by id')
+      res.status(400).send(err);
+    }else {
+      console.log(req.body.newArray);
+      var myuser = user
+      myuser['matches'] = req.body.newArray
+      res.status(200).send(myuser);
+    }
+  })
+}

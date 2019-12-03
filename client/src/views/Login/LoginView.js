@@ -10,7 +10,8 @@ class LoginView extends React.Component {
     super(props)
   }
   render() {
-
+    var isStudentString = (this.props.isStudent)? "Student Email" : "Company Email"
+    var propString = (this.props.isStudent)? "Sam Smith" : "Airbnb"
     var isStudent = (this.props.isStudent) ? 
     (
     <div className="header-top">
@@ -29,28 +30,25 @@ class LoginView extends React.Component {
         <div className="login-modal">
             <img className="spect-logo" src={logo}></img>
             <form onSubmit={this.props.onSubmit} className="login-form">
-             <h6 style={{textAlign: 'left'}}>Email</h6>
+            <h6 style={{textAlign: 'left', fontFamily: 'GlacialIndifferenceRegular'}}>{isStudentString}</h6>
               <input
                 className="input"
                 name="email"
                 type="email"
-                placeholder="Email"
+                placeholder={propString}
               />
-              <h6 style={{textAlign: 'left'}}>Password</h6>
+              <h6 style={{textAlign: 'left', fontFamily: 'GlacialIndifferenceRegular'}}>Password</h6>
               <input
                 className="input"
                 name="password"
                 type="password"
                 placeholder="Password"
               />
-              <button className="button-signin" type="submit">Sign In</button>
-              <Link to="/signup" className="link"> 
+              <button className="button-signin" type="submit" style={{fontFamily: 'GlacialIndifferenceRegular'}} >Sign In</button>
+              <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}> 
                 Create an Account
               </Link>
-              <Link to="/signup" className="link">
-                Forgot your password?
-              </Link>
-              <Link to="/signup" className="link">
+              <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}>
                 Contact Us
               </Link>
             </form>
