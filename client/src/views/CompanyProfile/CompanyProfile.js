@@ -49,7 +49,7 @@ class CompanyProfile extends React.Component
 
     render() {
        if (this.props.userinfo === null) {
-         return <h2>loading userinfo is still null</h2>
+         return <h2>Loading</h2>
        }
         // console.log("about to log props")
         // console.log(this.state.collectionid)

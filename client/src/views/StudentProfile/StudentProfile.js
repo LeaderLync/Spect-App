@@ -17,26 +17,26 @@ root: {
   },
   companyCard: {
     textAlign: 'center',
-    color: 'black',	
-    backgroundColor: 'white',	
-    minWidth: '200px',	
-    maxWidth: '50%',	
-    border: '1px solid #dfe1e5',	
-    margin: 30,	
-  },	
-  skillCard: {	
-      color: 'black',	
-      marginRight: 30,	
-      marginLeft: 30,	
-    },	
-  avatar: {	
-      width: 100,	
-      height: 100,	
+    color: 'black',
+    backgroundColor: 'white',
+    minWidth: '200px',
+    maxWidth: '50%',
+    border: '1px solid #dfe1e5',
+    margin: 30,
+  },
+  skillCard: {
+      color: 'black',
+      marginRight: 30,
+      marginLeft: 30,
+    },
+  avatar: {
+      width: 100,
+      height: 100,
 
-    },	
-    heroContent: {	
-      backgroundColor: 'whitesmoke',	
-      padding: theme.spacing(6, 0, 6),	
+    },
+    heroContent: {
+      backgroundColor: 'whitesmoke',
+      padding: theme.spacing(6, 0, 6),
     },
 })
 
@@ -52,10 +52,10 @@ class StudentProfile extends React.Component {
         }
     }
 
-    updateSelectedCompany(company){ 
+    updateSelectedCompany(company){
         let formattedCompany = {
-            companyName: company.companyName, 
-            strongSkills: company.companyTopSkills[0], 
+            companyName: company.companyName,
+            strongSkills: company.companyTopSkills[0],
             companyBio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt nunc sit amet nisi tincidunt egestas. Vestibulum justo tellus, pretium id consequat at, convallis quis erat. Etiam non placerat diam, quis tempus elit. Nulla in elementum turpis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam in tellus metus. Aliquam ut mi interdum nibh tempor eleifend vel et libero.",
         };
         this.setState(
@@ -65,6 +65,9 @@ class StudentProfile extends React.Component {
         )};
 
     render() {
+      if (this.props.userinfo === null) {
+        return <h2>Loading</h2>
+      }
         const { classes } = this.props;
         let morePopupClose = () => this.setState({morePopup: false});
         let person = this.props.userinfo;
@@ -82,7 +85,7 @@ class StudentProfile extends React.Component {
                             </Typography>
                         </Grid>
                         <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
-                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
+                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>
                             <Grid container spacing = {2}>
                                 {Object.entries(person.strongSkills).map(([key, value]) => {return(
                                     <Grid key={key} item xs = {12} sm={12} md={4}>
@@ -96,7 +99,7 @@ class StudentProfile extends React.Component {
                                 </Grid>
                             </Grid>
                         </Grid>
-                     </div> 
+                     </div>
                 <Grid container spacing={4} style={{ paddingTop: '4%' }}>
                     {person.matches.map(function (item, index) {
                         return (
