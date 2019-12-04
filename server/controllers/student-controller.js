@@ -170,7 +170,9 @@ exports.addMatch = async function(req, res){
       res.status(400).send(err);
     }else {
       console.log(req.body.newArray);
-      res.status(200).send(user);
+      var myuser = user
+      myuser['matches'] = req.body.newArray
+      res.status(200).send(myuser);
     }
   })
 }

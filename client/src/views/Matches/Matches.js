@@ -92,13 +92,14 @@ class Matches extends React.Component {
         })
         var newinfo = this.props.userinfo
         newinfo.matches = newArray
-        sessionStorage.setItem('userinfo', JSON.stringify(newinfo))
 
         const payload = {
             userId: this.props.userinfo.id,
             newArray:  newArray,
         };
         api.updatematch(payload).then(response => {
+            console.log("hit me I am logging update match")
+            console.log(response)
             this.props.userInfoUpdate(response);
         })
     }
@@ -115,11 +116,13 @@ class Matches extends React.Component {
     }
 
     updateSelectedCompany(company) { this.setState({ selectedCompany: company }) };
-
     render() {
         let morePopupClose = () => this.setState({ morePopup: false });
         const btnPrefix = "matchButton";
         const { classes } = this.props;
+        if (this.props.userinfo === null) {
+            return <h1>Can't do it mate</h1>
+        }
         return (
             <div className="App">
                 <Navbar isStudent={this.props.isStudent} />
