@@ -1,15 +1,44 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles'
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import PropTypes from 'prop-types';
+import { withStyles } from  '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CompanyPopup from '../../components/CompanyPopup.js';
 import Navbar from '../../components/Navbar/Navbar';
-import './StudentProfile.css'
+
+const styles = theme => ({
+root: {
+    flexGrow: 1,
+  },
+  companyCard: {
+    textAlign: 'center',
+    color: 'black',	
+    backgroundColor: 'white',	
+    minWidth: '200px',	
+    maxWidth: '50%',	
+    border: '1px solid #dfe1e5',	
+    margin: 30,	
+  },	
+  skillCard: {	
+      color: 'black',	
+      marginRight: 30,	
+      marginLeft: 30,	
+    },	
+  avatar: {	
+      width: 100,	
+      height: 100,	
+
+    },	
+    heroContent: {	
+      backgroundColor: 'whitesmoke',	
+      padding: theme.spacing(6, 0, 6),	
+    },
+})
 
 class StudentProfile extends React.Component {
     constructor(props)
@@ -36,27 +65,28 @@ class StudentProfile extends React.Component {
         )};
 
     render() {
+        const { classes } = this.props;
         let morePopupClose = () => this.setState({morePopup: false});
         let person = this.props.userinfo;
         return (
-            <div className="root">
+            <div className={classes.root}>
                 <Navbar isStudent={this.props.isStudent} />
-                <div className="heroContent">
+                <div className={classes.heroContent}>
                     <Grid container spacing={4} justify="center" alignItems="center">
-                        <Grid container item sm={4} md={2} style={{ textalign: 'center', justifyContent: 'center' }}>
-                            <Avatar className="avatar" src="https://i.pravatar.cc/300"></Avatar>
+                        <Grid container item sm={4} md={2} style={{ textAlign: 'center', justifyContent: 'center' }}>
+                            <Avatar className={classes.avatar} src="https://i.pravatar.cc/300"></Avatar>
                         </Grid>
-                        <Grid item sm={4} md={2} style={{textalign: 'left', justifyContent: 'center'}}>
+                        <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
                             <Typography noWrap variant="h5" style={{color: 'black', display: 'block'}}>
                                 {person.firstName + " " + person.lastName}
                             </Typography>
                         </Grid>
-                        <Grid item xs = {12} sm={12} md={8} style={{textalign: 'center', justifyContent: 'center'}}>
+                        <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
                             <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>     
                             <Grid container spacing = {2}>
                                 {Object.entries(person.strongSkills).map(([key, value]) => {return(
                                     <Grid key={key} item xs = {12} sm={12} md={4}>
-                                        <Card className="skillCard">
+                                        <Card className={classes.skillCard}>
                                             <CardContent textalign = "center">
                                                     <Typography noWrap style={{display: 'block'}}>{value}</Typography>
                                             </CardContent>
@@ -71,14 +101,14 @@ class StudentProfile extends React.Component {
                     {person.matches.map(function (item, index) {
                         return (
                             <Grid key={index} item xs={12} sm={6} md={4} align="center">
-                                <Card className="companyCard">
+                                <Card className={classes.companyCard}>
                                     <CardContent>
                                         <Typography variant="h5" component="h2">
                                             {item.companyName}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions style={{ textalign: 'center', justifyContent: 'center' }}>
-                                        <Button variant="contained" size="large" color="primary" onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
+                                    <CardActions style={{ textAlign: 'center', justifyContent: 'center' }}>
+                                        <Button variant="contained" size="small" style={{background: 'rgb(46, 167, 235)', color: 'white'}} onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
                                             Profile
                                     </Button>
                                     </CardActions>
@@ -97,4 +127,8 @@ class StudentProfile extends React.Component {
     }
 }
 
-export default StudentProfile;
+StudentProfile.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
+  export default withStyles(styles)(StudentProfile);
