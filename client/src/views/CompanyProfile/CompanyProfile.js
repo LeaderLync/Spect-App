@@ -21,7 +21,7 @@ class CompanyProfile extends React.Component
         this.updateSelectedJobPost = this.updateSelectedJobPost.bind(this);
         this.state =
         {
-            jobs: this.props.userinfo.jobPosts,
+            jobs: [],
             postModalShow: false,
             setRemoveShow: false,
             setViewShow: false,
@@ -30,16 +30,27 @@ class CompanyProfile extends React.Component
             selectedJobPost: data[0].jobPost[0],
         }
     }
-    
-    updateSelectedJobPost(jobPost){ this.setState({selectedJobPost: jobPost})};   
+    // componentDidMount() {
+    //     this.updatejobs()
+    // }
+    // updatejobs() {
+    //     this.setState({
+    //         jobs: this.props.userinfo.jobPosts
+    //     })
+    // }
+
+    updateSelectedJobPost(jobPost){ this.setState({selectedJobPost: jobPost})};
 
     updateNewJob(newJobs) {
         this.setState({
           jobs: newJobs
         })
       }
-    
+
     render() {
+       if (this.props.userinfo === null) {
+         return <h2>Loading</h2>
+       }
         // console.log("about to log props")
         // console.log(this.state.collectionid)
          console.log("Top Info: ")
@@ -60,7 +71,7 @@ class CompanyProfile extends React.Component
             {
                 return(
                     <Container key={jobPost.jobID}>
-                        <div> 
+                        <div>
                             <div>
                                 <CardGroup>
                                     <Card bg="light" style={{margin: '2px'}} >
@@ -79,7 +90,7 @@ class CompanyProfile extends React.Component
                         </div>
                     </Container>
                 )
-            }.bind(this)) // TODO: check this guy out
+            }.bind(this))
 
             return(
                 <div>
@@ -97,7 +108,7 @@ class CompanyProfile extends React.Component
                         </div>
                     </div>
                     <div>
-                        <h4 style={{fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal' , fontSize: '1.5vw'}}>Recently Posted Content and Resources</h4> 
+                        <h4 style={{fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal' , fontSize: '1.5vw'}}>Recently Posted Content and Resources</h4>
                         <ButtonToolbar style={{justifyContent: 'flex-end', marginRight: '5%'}}>
                             <Button
                             style={{fontFamily: 'GlacialIndifferenceRegular'}}
@@ -112,7 +123,7 @@ class CompanyProfile extends React.Component
                         </ButtonToolbar>
                         <CardGroup>
                             {cardList}
-                            
+
                         </CardGroup>
                         <ViewJobPost // view job post modal
                         show={this.state.setViewShow}
@@ -126,7 +137,7 @@ class CompanyProfile extends React.Component
                         updateNewJob={this.updateNewJob.bind(this)}
                         onHide={removeJobModalClose}
                         collectionId={this.state.collectionid}
-                        /> 
+                        />
                     </div>
                  </div>
             )

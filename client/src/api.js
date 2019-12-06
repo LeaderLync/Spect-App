@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 const client = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://spectapp.herokuapp.com/api',
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json',
