@@ -12,7 +12,7 @@ class LoginView extends React.Component {
   render() {
     var isStudentString = (this.props.isStudent)? "Student Email" : "Company Email"
     var propString = (this.props.isStudent)? "Sam Smith" : "Airbnb"
-    var isStudent = (this.props.isStudent) ? 
+    var isStudent = (this.props.isStudent) ?
     (
     <div className="header-top">
         <Button variant="contained" color="primary">Student</Button>
@@ -35,7 +35,7 @@ class LoginView extends React.Component {
                 className="input"
                 name="email"
                 type="email"
-                placeholder={propString}
+                placeholder={isStudentString}
               />
               <h6 style={{textAlign: 'left', fontFamily: 'GlacialIndifferenceRegular'}}>Password</h6>
               <input
@@ -45,7 +45,7 @@ class LoginView extends React.Component {
                 placeholder="Password"
               />
               <button className="button-signin" type="submit" style={{fontFamily: 'GlacialIndifferenceRegular'}} >Sign In</button>
-              <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}> 
+              <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}>
                 Create an Account
               </Link>
               <Link to="/signup" className="link" style={{fontFamily: 'GlacialIndifferenceRegular'}}>
