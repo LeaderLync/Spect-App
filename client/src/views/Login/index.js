@@ -20,6 +20,7 @@ class LoginContainer extends Component {
                 : await api.getcompanyuser(user.user.uid).then((res) => res)
             this.props.userInfoUpdate(response)
             this.props.collectionIdUpdate(response.id)
+            this.props.avatarURLUpdate(response.avatarUrl)
             console.log("logging from handle sign in")
             console.log(this.props.isStudent)
             if (this.props.isStudent == true) {

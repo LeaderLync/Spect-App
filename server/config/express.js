@@ -9,11 +9,15 @@ const path = require('path'),
     authRouter = require('../routes/auth.routes')
 
 module.exports.init = () => {
-
-    mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
+    mongoose.connect(require('./config').db.uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true
-    });
+    })
+    console.log(require('./config').db.uri)
+    // mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
+    //     useNewUrlParser: true,
+    //     useUnifiedTopology: true
+    // });
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
 

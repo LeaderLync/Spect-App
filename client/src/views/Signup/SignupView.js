@@ -44,10 +44,16 @@ class SignupView extends React.Component {
               <img className="spect-logo" src={logo}></img>
               <h4 style={{marginTop: '5px', marginBottom: '5px'}}>{Greeting} Sign Up</h4>
               <form onSubmit={this.props.onSubmit} className="login-form">
-                <div style= {{textAlign: 'center'}}>
+                <div style= {{margin: '0 auto'}}>
                 <Avatar style={{width: '100px', height: '100px', marginBottom: '10px'}} src={this.state.file}></Avatar>
                 </div>
-                <input type="file" 
+                <label htmlFor="file-upload" class="custom-file-upload" 
+                style={{border: '1px solid #ccc', display: 'inline-block', padding: '6px 12px', cursor: 'pointer'}}
+                >
+                    <i className="fa fa-cloud-upload"></i> Custom Upload
+                </label>
+                <input type="file" style={{display: 'none'}}
+                id="file-upload"
                 name="thefile"
                 onChange={this.handleChange}/>
                <h6 style={{textAlign: 'left'}}>First Name</h6>

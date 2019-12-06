@@ -6,7 +6,6 @@ import api from '../../api'
 class SignupContainer extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props.isStudent)
     }
     handleSignup = async (event) => {
         event.preventDefault()
@@ -16,15 +15,6 @@ class SignupContainer extends Component {
         const imagefile = thefile.files[0]
 
         try {
-            console.log(this.props)
-            const storageref = app.storage.ref()
-            const mainImage = storageref.child(thefile.files[0].name)
-            mainImage.put(imagefile).then((snapshot) => {
-                mainImage.getDownloadURL().then((url) => {
-                    console.log(url)
-                    this.props.avatarURLUpdate(url)
-                })
-            })
             const newuser = await app.auth.createUserWithEmailAndPassword(email.value, password.value);
             console.log(newuser.user.uid)
 
@@ -36,8 +26,15 @@ class SignupContainer extends Component {
             await api.registernewuser(request).then((res) => {
                 response = res
             })
-            console.log("Im doing this stuff" + response)
             this.props.collectionIdUpdate(response)
+            const storageref = app.storage.ref()
+            const mainImage = storageref.child(response + thefile.files[0].name)
+            mainImage.put(imagefile).then((snapshot) => {
+                mainImage.getDownloadURL().then((url) => {
+                    console.log(url)
+                    this.props.avatarURLUpdate(url)
+                })
+            })
             // can use newuser.email and newuser.uid
             if (this.props.isStudent){
               this.props.history.push("/studentsurvey")

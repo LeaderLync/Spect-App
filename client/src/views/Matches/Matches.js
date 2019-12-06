@@ -136,6 +136,8 @@ class Matches extends React.Component {
                                             {company.companyName}
                                         </Typography>
                                     </CardContent>
+                                    <img style={{width: '100px'}}src={company.avatarUrl}>
+                                    </img>
                                     <CardActions className={classes.actions}>
                                         <Button
                                             variant="contained"

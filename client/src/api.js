@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 const client = axios.create({
-    baseURL: 'https://spectapp.herokuapp.com/api',
+    baseURL: 'http://localhost:5000/api',
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json',
@@ -11,13 +11,6 @@ const client = axios.create({
 })
 
 export default {
-    /*inputdata(arraydata) {
-        let params = arraydata
-        client.post('/students',params)
-        .then((response) => {
-            console.log(response)
-        })
-    },*/
     getdata(){
         client.get('/students')
         .then(response => {
@@ -92,8 +85,6 @@ export default {
             })
     },
     getrecommendations(userinfo) {
-        console.log(userinfo)
-        console.log(userinfo)
         return client.patch('/student', userinfo)
             .then(response => {
                 // console.log(response)
@@ -106,7 +97,6 @@ export default {
             })
     },
     updatematch(payload) {
-        console.log(payload);
         return client.patch(`/student/${payload.userId}`, payload)
             .then(response => {
                 return response.data

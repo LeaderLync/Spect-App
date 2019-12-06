@@ -15,8 +15,6 @@ class StudentSurvey extends React.Component {
       strongSkills: {}, // 3 of your strongest soft skills
       weakSkills: {}    // 3 soft skills you want to work on
     };
-    //console.log(this.props.user)
-    //console.log(this.props.collectionId)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -31,6 +29,7 @@ class StudentSurvey extends React.Component {
     });
 
     studentData["id"] = this.props.collectionId;
+    studentData["avatarUrl"] = this.props.avatarURL
     studentData["selectedIndustries"] = this.state.selectedIndustries;
     studentData["strongSkills"] = this.state.strongSkills;
     studentData["weakSkills"] = this.state.weakSkills;

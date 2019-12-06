@@ -77,7 +77,7 @@ class StudentProfile extends React.Component {
                 <div className={classes.heroContent}>
                     <Grid container spacing={4} justify="center" alignItems="center">
                         <Grid container item sm={4} md={2} style={{ textAlign: 'center', justifyContent: 'center' }}>
-                            <Avatar className={classes.avatar} src="https://i.pravatar.cc/300"></Avatar>
+                            <Avatar className={classes.avatar} src={this.props.avatarURL}></Avatar>
                         </Grid>
                         <Grid item sm={4} md={2} style={{textAlign: 'left', justifyContent: 'center'}}>
                             <Typography noWrap variant="h5" style={{color: 'black', display: 'block'}}>
