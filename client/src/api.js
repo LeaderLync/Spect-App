@@ -11,13 +11,6 @@ const client = axios.create({
 })
 
 export default {
-    /*inputdata(arraydata) {
-        let params = arraydata
-        client.post('/students',params)
-        .then((response) => {
-            console.log(response)
-        })
-    },*/
     getdata(){
         client.get('/students')
         .then(response => {
@@ -61,10 +54,10 @@ export default {
         return null
       })
     },
-    collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
+    collectCompanyResponse(companyData){ // collecting initial responses from the company survey
       return client.post('/company', companyData)
       .then(response => {
-        //console.log("put response here")
+        //console.log(response.data)
         return response.data
       }).catch((err) => {
         console.log(err)
