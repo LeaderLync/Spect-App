@@ -1,6 +1,10 @@
 import React from 'react';
 import skillData from '../../assets/SkillData.js'
 
+/*
+  This component allows a user to rank their top 3 soft skills without being able to make a repetition
+*/
+
 class SkillSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -17,13 +21,10 @@ class SkillSelector extends React.Component {
     const skill = event.target.id;
     this.setState({
       [skill]: event.target.value
-    }, () => this.props.passToParent(this.state));
+    }, () => this.props.passToParent(this.state)); // keeps parent state updated
   }
 
   render() {
-    /*const skillList = skillData.map(skill => {
-      return <option key={skill.id} value={skill.name}>{skill.name}</option>
-    });*/
 
     return (
       <div>
@@ -33,9 +34,8 @@ class SkillSelector extends React.Component {
           </div>
           <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill} required>
             <option value="">Choose...</option>
-            {/*skillList*/}
             {skillData.filter(skill => {
-              return skill.name !== this.state.second && skill.name !== this.state.third
+              return skill.name !== this.state.second && skill.name !== this.state.third // removes already selected skills as options
             }).map(skill => {
               return <option key={skill.id} value={skill.name}>{skill.name}</option>
             })}
@@ -47,9 +47,8 @@ class SkillSelector extends React.Component {
           </div>
           <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill} required>
             <option value="">Choose...</option>
-            {/*skillList*/}
             {skillData.filter(skill => {
-              return skill.name !== this.state.first && skill.name !== this.state.third
+              return skill.name !== this.state.first && skill.name !== this.state.third // removes already selected skills as options
             }).map(skill => {
               return <option key={skill.id} value={skill.name}>{skill.name}</option>
             })}
@@ -61,9 +60,8 @@ class SkillSelector extends React.Component {
           </div>
           <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill} required>
             <option value="">Choose...</option>
-            {/*skillList*/}
             {skillData.filter(skill => {
-              return skill.name !== this.state.first && skill.name !== this.state.second
+              return skill.name !== this.state.first && skill.name !== this.state.second // removes already selected skills as options
             }).map(skill => {
               return <option key={skill.id} value={skill.name}>{skill.name}</option>
             })}

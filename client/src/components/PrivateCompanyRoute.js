@@ -7,11 +7,8 @@ export default function PrivateCompanyRoute({
   user,
   isStudent,
   ...rest
-}) 
+})
 {
-  console.log(authenticated)
-  console.log(user)
-  console.log(isStudent)
   if (authenticated === false) {
     return <Route {...rest} render={() => <Redirect to="/login"/>}/>
   } else if (authenticated === true && isStudent === true) {
@@ -20,7 +17,7 @@ export default function PrivateCompanyRoute({
   return (
     <Route
       {...rest}
-      render={props => 
+      render={props =>
           <Component {...props} {...rest} user = {user}/>
       }
     />

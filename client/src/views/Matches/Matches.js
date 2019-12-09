@@ -98,7 +98,6 @@ class Matches extends React.Component {
             newArray:  newArray,
         };
         api.updatematch(payload).then(response => {
-            console.log("hit me I am logging update match")
             console.log(response)
             this.props.userInfoUpdate(response);
         })
@@ -121,7 +120,7 @@ class Matches extends React.Component {
         const btnPrefix = "matchButton";
         const { classes } = this.props;
         if (this.props.userinfo === null) {
-            return <h1>Can't do it mate</h1>
+            return <h1>Loading</h1>
         }
         return (
             <div className="App">

@@ -44,14 +44,12 @@ class App extends Component {
     })
   }
   userUpdate() {
-    console.log("HEY")
     sessionStorage.setItem("isStudent", JSON.stringify(!this.state.isStudent))
     this.setState({
       isStudent: !this.state.isStudent
     })
   }
   userInfoUpdate(value) {
-    console.log("has hit")
     sessionStorage.setItem("userinfo", JSON.stringify(value))
     this.setState({
       userinfo: value
