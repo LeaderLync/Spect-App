@@ -7,7 +7,7 @@ import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
 
 /*
-  This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission*/
+  This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission
 */
 
 class CompanySurvey extends React.Component {

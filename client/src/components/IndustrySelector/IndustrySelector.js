@@ -2,7 +2,7 @@ import React from 'react';
 import industryData from '../../assets/IndustryData.js'
 
 /*
-
+  This component allows a user to check off up to three industry names, but no more than 3
 */
 
 class IndustrySelector extends React.Component {

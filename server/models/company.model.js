@@ -14,7 +14,7 @@ var CompanySchema = new Schema({
     second: String,
     third: String
   },
-  
+
   jobPosts: [{
       jobID: String,
       jobTitle: String,
@@ -49,7 +49,6 @@ var CompanySchema = new Schema({
 CompanySchema.pre('save', function(next) {
     var currentDate = new Date();
     this.updated_at = currentDate;
-    // if it doesn't exist, add created_at date
     if(!this.created_at)
       this.created_at = currentDate;
     next();

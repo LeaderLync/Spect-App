@@ -4,6 +4,7 @@ var Student = require('../models/student.model.js')
 var User = require('../models/UserSchema')
 var Company = require('../models/company.model')
 
+// saves new student to database after completion of survey
 exports.create = function(req, res) {
   var newStudent = new Student(req.body);
   /* Then save the student */

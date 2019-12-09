@@ -1,6 +1,10 @@
 import React from 'react';
 import questionData from '../../assets/QuestionData.js'
 
+/*
+  This component presents all of the soft skill questions as multiple choice style radio forms, with each question having answers of value 0 or 1
+*/
+
 class QuestionForm extends React.Component {
   render() {
     const questionList = questionData.map(question => {

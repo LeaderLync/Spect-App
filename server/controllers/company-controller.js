@@ -1,6 +1,7 @@
 var Company = require('../models/company.model.js')
 var User = require('../models/UserSchema')
 
+// Posts new company to database after survey completion
 exports.create = function(req, res) {
 
   var newCompany = new Company(req.body);

@@ -7,6 +7,10 @@ import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
 
+/*
+  This component is what a student user will be presented with upon registartion for a new account.  It pulls from several other files to compose a large form that is sent to the database upon successful submission
+*/
+
 class StudentSurvey extends React.Component {
   constructor(props) {
     super(props);
