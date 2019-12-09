@@ -6,20 +6,25 @@ import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
 
+/*
+  This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission*/
+*/
+
 class CompanySurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedIndustries: [],
-      strongSkills: {} // 3 of your strongest soft skills
+      strongSkills: {} // 3 of company's strongest soft skills
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
-    event.preventDefault(); // prevent page refresh during testing, might prevent post
-    const data = new FormData(event.target); // initializes with all text fields and select field
+    event.preventDefault(); // prevent page refresh
+    const data = new FormData(event.target); // collects all text fields and select fields data
 
+    // composing payload
     var companyData = {}
     data.forEach(function(value, key){
     companyData[key] = value;
@@ -29,6 +34,7 @@ class CompanySurvey extends React.Component {
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
 
+    // send payload
     api.collectCompanyResponse(companyData).then(response => {
       this.props.userInfoUpdate(response);
     }); // passes JSON object to be request

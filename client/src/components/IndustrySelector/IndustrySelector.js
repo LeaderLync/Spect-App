@@ -1,6 +1,10 @@
 import React from 'react';
 import industryData from '../../assets/IndustryData.js'
 
+/*
+
+*/
+
 class IndustrySelector extends React.Component {
   constructor(props) {
     super(props);
