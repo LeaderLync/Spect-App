@@ -51,7 +51,6 @@ class CompanyProfile extends React.Component
        if (this.props.userinfo === null) {
          return <h2>Loading</h2>
        }
-
         let postModalClose = () => this.setState({postModalShow: false});
         let removeJobModalClose = () => this.setState({setRemoveShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});
