@@ -22,8 +22,6 @@ export default {
     registernewuser(userid){
         return client.post('/auth', userid)
         .then(response => {
-            console.log(response)
-            console.log(response.data)
             return response.data
         }).catch((err) => {
             console.log(err)
@@ -33,31 +31,26 @@ export default {
     updateJob(data){ // update when a new job post is created
         let params = data
 
-        console.log("API logging CollectionID", params.collectionid)
-
         client.put(`/company/${params.collectionid}`, params.jobs)
         .then(response => {
-            console.log(response)
             return response
         }).catch((err) => {
             console.log(err)
             return null;
         })
     },
-    collectStudentResponse(studentData){ // collecting initial reponses from the student survey
+    collectStudentResponse(studentData){ //send initial student survey responses to database
       return client.post('/student', studentData)
       .then(response => {
-        //console.log(response.data)
         return response.data
       }).catch((err) => {
         console.log(err)
         return null
       })
     },
-    collectCompanyResponse(companyData){ // collecting initial responses from the company survey
+    collectCompanyResponse(companyData){ // send initial company survey responses to database
       return client.post('/company', companyData)
       .then(response => {
-        //console.log(response.data)
         return response.data
       }).catch((err) => {
         console.log(err)
@@ -67,7 +60,6 @@ export default {
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
-                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -77,7 +69,6 @@ export default {
     getstudentuser(userid) {
         return client.get(`/student/${userid}`)
             .then(response => {
-                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -85,21 +76,15 @@ export default {
             })
     },
     getrecommendations(userinfo) {
-        console.log(userinfo)
-        console.log(userinfo)
         return client.patch('/student', userinfo)
             .then(response => {
-                // console.log(response)
-                // console.log(response.data)
                 return response
-                // return response.data
             }).catch((err) => {
                 console.log(err)
                 return null
             })
     },
     updatematch(payload) {
-        console.log(payload);
         return client.patch(`/student/${payload.userId}`, payload)
             .then(response => {
                 return response.data
