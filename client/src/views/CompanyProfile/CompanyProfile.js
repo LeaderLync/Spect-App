@@ -51,13 +51,7 @@ class CompanyProfile extends React.Component
        if (this.props.userinfo === null) {
          return <h2>Loading</h2>
        }
-        // console.log("about to log props")
-        // console.log(this.state.collectionid)
-        // console.log("Top Info: ")
-        console.log("Jobs HERE", this.state.selectedJobPost.jobID)
-        // console.log(this.props.userinfo.topSkills[0])
 
-        console.log(this.props);
         let postModalClose = () => this.setState({postModalShow: false});
         let removeJobModalClose = () => this.setState({setRemoveShow: false});
         let viewJobModalClose = () => this.setState({setViewShow : false});

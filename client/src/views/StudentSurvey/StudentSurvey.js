@@ -15,8 +15,6 @@ class StudentSurvey extends React.Component {
       strongSkills: {}, // 3 of your strongest soft skills
       weakSkills: {}    // 3 soft skills you want to work on
     };
-    //console.log(this.props.user)
-    //console.log(this.props.collectionId)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -36,25 +34,21 @@ class StudentSurvey extends React.Component {
     studentData["weakSkills"] = this.state.weakSkills;
     studentData["matches"] = []
 
-    //console.log(JSON.stringify(studentData, null, 2));
-
     api.collectStudentResponse(studentData).then(response => {
-      //console.log(response.data);
       this.props.userInfoUpdate(response);
     }); // passes JSON object to be request
 
     this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
   }
 
-  getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, console.log(industries))} // retireves state from child
+  getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
 
-  getStrongSkills = (skills) => {this.setState({strongSkills: skills}, console.log(skills))} // retrieves state from child
+  getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
-  getWeakSkills = (skills) => {this.setState({weakSkills: skills}, console.log(skills))} // retrieves state from child
+  getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
     if (this.props.collectionId === null || this.props.collectionId == '0') {
-      console.log(this.props.collectionId);
       return (
         <p>this is not loading</p>
       )

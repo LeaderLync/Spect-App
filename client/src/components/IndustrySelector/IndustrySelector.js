@@ -20,7 +20,7 @@ class IndustrySelector extends React.Component {
         },
         () => this.props.passToParent(this.state.industries)); // passes industries array to parent component
       } else { // attempting to check more than 3 industries
-        console.log("Industry limit reached!");
+        // console.log("Industry limit reached!");
       }
     } else { // clicking on an already checked box to uncheck it
       this.setState({
