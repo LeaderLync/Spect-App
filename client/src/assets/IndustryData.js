@@ -1,3 +1,9 @@
+/*
+ This collection can be edited to change the industry
+ options that appear throughout the app
+ --MAINTAIN THE EXISTING STRUCTURE--
+ */
+
 export default [
   {
     id: 0,

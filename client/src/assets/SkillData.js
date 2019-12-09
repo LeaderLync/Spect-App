@@ -1,3 +1,9 @@
+/*
+  This file can be modified to change what soft skills appear
+  throughout the web app as options
+  --MAINTAIN THE EXISTING STRUCTURE--
+*/
+
 export default [
   {
     id: 0,
