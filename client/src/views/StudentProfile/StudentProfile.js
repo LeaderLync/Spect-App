@@ -10,7 +10,7 @@ import CompanyPopup from '../../components/CompanyPopup.js';
 import Navbar from '../../components/Navbar/Navbar';
 
 function StudentProfile(props) {
-
+    //styling for material- ui
     const useStyles = makeStyles(theme => ({
         root: {
           flexGrow: 1,
@@ -39,9 +39,8 @@ function StudentProfile(props) {
             padding: theme.spacing(6, 0, 6),
           },
       }));
-
-
       const classes = useStyles();
+      //props contains userinfo from database, which is used to render relevant information to the page
       const person = props.userinfo;
       
         return(
