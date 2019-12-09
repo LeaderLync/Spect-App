@@ -1,6 +1,5 @@
 ## Spect App
-
-![Image of Spect](https://149360317.v2.pressablecdn.com/wp-content/uploads/2019/11/spect-white-logo-scaled.png)
+![Image of Spect](/client/src/assets/Black-logo-no-background.png)
 Spect App is an internship matching tool for students to learn more about opportunities in their local community based on their soft skills
 
 ## Tech Stack
