@@ -2,6 +2,8 @@
 ![Image of Spect](/client/src/assets/Black-logo-no-background.png)
 Spect App is an internship matching tool for students to learn more about opportunities in their local community based on their soft skills
 
+Interact with the deployed app [here](http://spectapp.herokuapp.com/login)
+
 ## Tech Stack
 * MongoDB
 * NodeJS
