@@ -1,11 +1,10 @@
 import React from 'react';
 import './CompanyProfile.css';
 import Modal from '@material-ui/core/Modal';
-import { Image, CardGroup, Card, Container, Button, ButtonToolbar } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
 export default (props) => {
   let jobPost = props.jobPost;
-  console.log(jobPost);
   return (
     <Modal
       aria-labelledby="simple-modal-title"
