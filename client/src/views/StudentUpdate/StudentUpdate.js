@@ -1,9 +1,9 @@
 import React from 'react';
 import './StudentSurvey.css';
 //import SoftSkill from '../../components/SoftSkill/SoftSkill.js'
-import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
+/* import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
-import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
+import QuestionForm from '../../components/QuestionForm/QuestionForm.js'*/
 import SkillDistributor from '../../components/SkillDistributor/SkillDistributor.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
@@ -12,13 +12,13 @@ import logo from '../../assets/Black-logo-no-background.png'
   This component is what a student user will be presented with upon registartion for a new account.  It pulls from several other files to compose a large form that is sent to the database upon successful submission
 */
 
-class StudentSurvey extends React.Component {
+class StudentUpdate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedIndustries: [], // up to three
-      /*strongSkills: {}, // 3 of your strongest soft skills
-      weakSkills: {}    // 3 soft skills you want to work on*/
+      strongSkills: {}, // 3 of your strongest soft skills
+      weakSkills: {}    // 3 soft skills you want to work on
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -35,24 +35,22 @@ class StudentSurvey extends React.Component {
 
     studentData["id"] = this.props.collectionId;
     studentData["selectedIndustries"] = this.state.selectedIndustries;
-    /*studentData["strongSkills"] = this.state.strongSkills;
-    studentData["weakSkills"] = this.state.weakSkills;*/
+    studentData["strongSkills"] = this.state.strongSkills;
+    studentData["weakSkills"] = this.state.weakSkills;
     studentData["matches"] = []
 
-    console.log(studentData);
-
-    /*api.collectStudentResponse(studentData).then(response => {
+    api.collectStudentResponse(studentData).then(response => {
       this.props.userInfoUpdate(response);
-    }); // passes JSON object to be request*/
+    }); // passes JSON object to be request
 
-    //this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+    this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
 
-  //getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
+  getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
-  //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
+  getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
     /*if (this.props.collectionId === null || this.props.collectionId == '0') {
@@ -96,13 +94,13 @@ class StudentSurvey extends React.Component {
                     <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
-                  {/*<br/>
+                  <br/>
                   <label className="question">Pick your top 3 strongest soft skills:</label>
                   <SkillSelector passToParent={this.getStrongSkills}/>
                   <br/>
                   <label className="question">Pick the top 3 soft skills you want to work on:</label>
-                  <SkillSelector passToParent={this.getWeakSkills}/>*/}
-                  {/*<QuestionForm/>*/}
+                  <SkillSelector passToParent={this.getWeakSkills}/>
+                  <QuestionForm/>
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
                 <h3 className="card-title">Self-Assessment Survey</h3>
@@ -118,4 +116,4 @@ class StudentSurvey extends React.Component {
     )
   }
 }
- export default StudentSurvey;
+ export default StudentUpdate;

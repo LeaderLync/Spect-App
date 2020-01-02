@@ -36,7 +36,7 @@ class SkillDistributor extends React.Component {
       return (
         <div className="form-group" key={skill.id}>
           <label htmlFor="formControlRange">{skill.name}</label>
-          <input type="range" className="custom-range" id={skill.name} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue="1"/>
+          <input type="range" className="custom-range" name={skill.name} id={skill.name} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue="1"/>
         </div>
       )
     })
