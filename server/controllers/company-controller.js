@@ -16,7 +16,7 @@ exports.create = function(req, res) {
   });
 };
 
-// /* Show the current listing */
+// /* Show the current company */
 exports.read = async function(req, res) {
   Company.findOne({id:req.user.collectionid}).exec(function(err, company) {
     if(err) {
@@ -54,6 +54,33 @@ exports.updatePost = function(req, res) {
        }
     });
    };
+
+exports.delete = function(req, res) {
+  Company.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
+    if (err) res.status(500).send(err);
+    else res.status(200).send(entry);
+  })
+}
+
+exports.update = function(req,res) {
+  if (!req.user.collectionid) {
+    return res.status(400).send({
+      message: "Updated content cannot be empty"
+    })
+  }
+  var updateduser = new Company(req.body);
+  updateduser.save(function(err) {
+    if (err) {
+      console.log(err);
+      res.status(400).send(err)
+    } else {
+      res.json(updateduser)
+    }
+  })
+}
+
+
+// };
 // // /* Update a listing - note the order in which this function is called by the router*/
 // exports.update = function(req, res) {
 //   if (!req.body.updatedStudent) {
@@ -80,16 +107,7 @@ exports.updatePost = function(req, res) {
 //   });
 // };
 
-// /* Delete a listing */
-// exports.delete = function(req, res) {
-//   var listing = req.student;
-//   Company.findOneAndRemove({id: listing.id}, (err, entry) => {
-//     if (err) res.status(500).send(err);
-//     else res.status(200).send(entry);
-//   })
-//   /* Add your code to remove the listins */
 
-// };
 
 // /* Retreive all the directory listings, sorted alphabetically by listing code */
 // exports.list = function(req, res) {

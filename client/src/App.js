@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute'
 import Signup from './views/Signup'
 import CompanyProfile from './views/CompanyProfile/CompanyProfile';
 import api from './api'
+import AdminDashboard from './views/Admin/AdminDashboard'
 import Matches from './views/Matches/Matches';
 import PrivateCompanyRoute from './components/PrivateCompanyRoute'
 class App extends Component {
@@ -79,12 +80,21 @@ class App extends Component {
             {/****************************************************************************
             Use render instead of component in order to pass props into the react-router
             *****************************************************************************/}
+            <Route exact path="/admin"
+              component={AdminDashboard}
+            />
             <PrivateRoute exact path="/"
               render={(props) => <Matches userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} userInfoUpdate={this.userInfoUpdate.bind(this)} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
+            {/* <PrivateCompanyRoute exact path="/admin"
+              render={(props) => <AdminDashboard></AdminDashboard>}
+              user={this.state.currentUser}
+              collectionId={this.state.collectionid}
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
+            /> */}
             <PrivateRoute exact path="/StudentSurvey"
               render={(props) => <StudentSurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
               authenticated={this.state.authenticated}
