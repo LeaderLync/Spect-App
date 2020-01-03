@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import StudentSurvey from './views/StudentSurvey/StudentSurvey';
+import StudentUpdate from './views/StudentUpdate/StudentUpdate';
 import CompanySurvey from './views/CompanySurvey/CompanySurvey';
 import NotFound from "./views/NotFound"
 import StudentProfile from "./views/StudentProfile/StudentProfile"
@@ -82,6 +83,13 @@ class App extends Component {
             />
             <PrivateRoute exact path="/StudentSurvey"
               render={(props) => <StudentSurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>}
+              authenticated={this.state.authenticated}
+              user={this.state.currentUser}
+              collectionId={this.state.collectionid}
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
+            />
+            <PrivateRoute exact path="/StudentUpdate"
+              render={(props) => <StudentUpdate {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               collectionId={this.state.collectionid}

@@ -46,7 +46,7 @@ class SkillDistributor extends React.Component {
       instruction = "Distribute the allotted 27 skill points amongst the 9 skills below.  A skill level can range from 1 (weak) to 5 (strong)."
     }
     else {
-      instruction = "You have used all your skill points! If you want to increase the level of a skill, you just decrease the level of another skill."
+      instruction = "You have used all your skill points! If you want to increase the level of a skill, you must decrease the level of another skill."
     }
 
     return (
