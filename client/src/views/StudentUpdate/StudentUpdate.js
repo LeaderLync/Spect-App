@@ -62,7 +62,7 @@ class StudentUpdate extends React.Component {
       "Mindfulness" : "4",
       "Critical Thinking" : "5",
       "Communication" : "4",
-      "Global Awareness" : "3",
+      "Global Awareness" : "5",
       "Time Management" : "2",
       "Work Ethic" : "1"
     }

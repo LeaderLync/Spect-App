@@ -31,6 +31,15 @@ class SkillDistributor extends React.Component {
     }, () => console.log(this.state.points))
   }
 
+  componentDidMount() {
+    var total = 0;
+    skillData.map(skill => {
+      total += parseInt(document.getElementById(skill.name).value);
+    })
+
+    this.setState({points : total})
+  }
+
   render() {
     const skillList = skillData.map(skill => {
       return (
