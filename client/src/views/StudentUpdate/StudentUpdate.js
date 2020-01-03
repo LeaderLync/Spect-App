@@ -55,6 +55,17 @@ class StudentUpdate extends React.Component {
   //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
+    const testStudent = {
+      "Leadership" : "1",
+      "Teamwork" : "2",
+      "Creativity" : "3",
+      "Mindfulness" : "4",
+      "Critical Thinking" : "5",
+      "Communication" : "4",
+      "Global Awareness" : "3",
+      "Time Management" : "2",
+      "Work Ethic" : "1"
+    }
     /*if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
         <p>this is not loading</p>
@@ -68,7 +79,7 @@ class StudentUpdate extends React.Component {
               <div className="card-body">
                 <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
-                  <SkillDistributor/>
+                  <SkillDistributor stats={testStudent}/>
                   {/*<h3 className="card-title">Contact Information</h3>
                   <div className="form-row">
                     <div className="form-group col">
