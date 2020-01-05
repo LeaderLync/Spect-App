@@ -17,7 +17,8 @@ class StudentSurvey extends React.Component {
     super(props);
     this.state = {
       selectedIndustries: [], // up to three
-      skillPoints: 0
+      skillPoints: 0,
+      skillTree: {}
       /*strongSkills: {}, // 3 of your strongest soft skills
       weakSkills: {}    // 3 soft skills you want to work on*/
     };
@@ -38,9 +39,10 @@ class StudentSurvey extends React.Component {
 
       studentData["id"] = this.props.collectionId;
       studentData["selectedIndustries"] = this.state.selectedIndustries;
+      studentData["skills"] = this.state.skillTree;
       /*studentData["strongSkills"] = this.state.strongSkills;
       studentData["weakSkills"] = this.state.weakSkills;*/
-      studentData["matches"] = []
+      studentData["matches"] = [];
 
       console.log(studentData);
 
@@ -54,7 +56,7 @@ class StudentSurvey extends React.Component {
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
 
-  getSkillPoints = (points) => {this.setState({skillPoints: points}, console.log(points))} // retireves state from child
+  getSkillData = (childState) => {this.setState({skillPoints: childState.points, skillTree: childState.skills}, /*() => console.log(this.state)*/)} // retireves state from child
 
   //getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
@@ -74,7 +76,8 @@ class StudentSurvey extends React.Component {
               <div className="card-body">
                 <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
-                  <SkillDistributor passToParent={this.getSkillPoints}/>
+                  <h3>{this.state.skillPoints}</h3>
+                  <SkillDistributor passToParent={this.getSkillData}/>
                   <h3 className="card-title">Contact Information</h3>
                   <div className="form-row">
                     <div className="form-group col">
