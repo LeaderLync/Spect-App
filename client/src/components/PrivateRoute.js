@@ -7,7 +7,7 @@ export default function PrivateRoute({
   user,
   isStudent,
   ...rest
-}) 
+})
 {
   if (authenticated === false) {
     return <Route {...rest} render={() => <Redirect to="/login"/>}/>
@@ -17,7 +17,7 @@ export default function PrivateRoute({
   return (
     <Route
       {...rest}
-      render={props => 
+      render={props =>
           <Component {...props} {...rest} user = {user}/>
       }
     />

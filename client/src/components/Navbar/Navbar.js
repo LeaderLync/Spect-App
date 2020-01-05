@@ -69,7 +69,7 @@ const Navbar = (props) => {
   };
 
   const handleOpenProfile = () => {
-    handleClose();    
+    handleClose();
   }
   const menuItems = (props.isStudent)?
   <Menu
@@ -118,15 +118,13 @@ const Navbar = (props) => {
     </MenuItem>
   </Menu>;
 
-  console.log("LOGGING IS STUDENT")
-  console.log(props.isStudent)
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
           <TemporaryDrawer className="drawer" isStudent= {props.isStudent}/>
           <div>
-            <img src={spectLogo} className = {classes.spect}/> 
+            <img src={spectLogo} className = {classes.spect}/>
           </div>
           {auth && (
             <div>
@@ -136,7 +134,7 @@ const Navbar = (props) => {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-              > 
+              >
                 <AccountCircle />
               </IconButton>
               {menuItems}

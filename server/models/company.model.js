@@ -14,7 +14,8 @@ var CompanySchema = new Schema({
     second: String,
     third: String
   },
-  avatarUrl: String,
+  // avatarUrl: String,
+
   jobPosts: [{
       jobID: String,
       jobTitle: String,
@@ -23,7 +24,7 @@ var CompanySchema = new Schema({
       jobLink: String,
   }],
 
-  question1: Number,
+  /*question1: Number,
   question2: Number,
   question3: Number,
   question4: Number,
@@ -40,7 +41,7 @@ var CompanySchema = new Schema({
   question15: Number,
   question16: Number,
   question17: Number,
-  question18: Number,
+  question18: Number,*/
 
   created_at: Date,
   updated_at: Date,
@@ -49,13 +50,12 @@ var CompanySchema = new Schema({
 CompanySchema.pre('save', function(next) {
     var currentDate = new Date();
     this.updated_at = currentDate;
-    // if it doesn't exist, add created_at date
     if(!this.created_at)
       this.created_at = currentDate;
     next();
   });
 
-var Company = mongoose.model('TestCompany', CompanySchema);
+var Company = mongoose.model('Company', CompanySchema);
 
 /* Export the model to make it available to other parts of your Node application */
 module.exports = Company;

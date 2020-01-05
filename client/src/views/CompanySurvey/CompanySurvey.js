@@ -6,22 +6,25 @@ import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
 
+/*
+  This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission
+*/
+
 class CompanySurvey extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedIndustries: [],
-      strongSkills: {} // 3 of your strongest soft skills
+      strongSkills: {} // 3 of company's strongest soft skills
     };
-    console.log(this.props.user)
-    console.log(this.props.collectionId)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
-    event.preventDefault(); // prevent page refresh during testing, might prevent post
-    const data = new FormData(event.target); // initializes with all text fields and select field
+    event.preventDefault(); // prevent page refresh
+    const data = new FormData(event.target); // collects all text fields and select fields data
 
+    // composing payload
     var companyData = {}
     data.forEach(function(value, key){
     companyData[key] = value;
@@ -31,23 +34,20 @@ class CompanySurvey extends React.Component {
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
 
-    //console.log(JSON.stringify(companyData, null, 2));
-
+    // send payload
     api.collectCompanyResponse(companyData).then(response => {
-      //console.log(response.data);
       this.props.userInfoUpdate(response);
     }); // passes JSON object to be request
 
     this.props.history.push("/CompanyProfile"); // reroutes to student profile page upon successful survey form submission
   }
 
-  getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, console.log(industries))} // retireves state from child
+  getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
 
-  getStrongSkills = (skills) => {this.setState({strongSkills: skills}, console.log(skills))} // retrieves state from child
+  getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
     if (this.props.collectionId === null || this.props.collectionId == '0') {
-      console.log(this.props.collectionId);
       return (
         <p>this is not loading</p>
       )

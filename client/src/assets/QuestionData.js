@@ -1,3 +1,9 @@
+/*
+  Entries can be added or removed from this file to modiy what questions
+  and answers appear in the student and company surveys
+  --MAINTAIN THE EXISTING STRUCTURE--
+*/
+
 export default[
   {
     id: "question1",

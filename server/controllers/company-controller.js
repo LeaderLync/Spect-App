@@ -1,6 +1,7 @@
 var Company = require('../models/company.model.js')
 var User = require('../models/UserSchema')
 
+// Posts new company to database after survey completion
 exports.create = function(req, res) {
 
   var newCompany = new Company(req.body);
@@ -11,7 +12,6 @@ exports.create = function(req, res) {
       res.status(400).send(err);
     } else {
       res.status(200).json(newCompany);
-      //console.log(newCompany)
     }
   });
 };
@@ -27,23 +27,16 @@ exports.read = async function(req, res) {
       console.log('error on company by id')
       res.status(400).send(err);
     } else {
-      console.log('worked for listing by company')
       res.json(company)
     }
   });
 };
 
 exports.updatePost = function(req, res) {
-  
-  console.log("Controller Body" , req.body)
-  
+
   const jobData = req.body
-  
 
-   console.log("Posting Controller Function: ", jobData)
    const update = {jobPosts: jobData}
-
-   console.log("User Collection ID", req.params.companyid)
 
 
     Company.findOneAndUpdate({id:req.params.companyid}, update).exec(function(err,company) {
@@ -53,7 +46,6 @@ exports.updatePost = function(req, res) {
          res.status(400).send(err);
        }
        else {
-         console.log('Job Post Was Updated')
          res.json(company)
        }
     });
@@ -128,17 +120,12 @@ exports.update = function(req,res) {
 // /*
 //   Middleware: find a listing by its ID, then pass it to the next request handler.
 
-//   HINT: Find the listing using a mongoose query,
-//         bind it to the request object as the property 'listing',
-//         then finally call next
-//  */
 exports.companyByID = async function(req, res, next, id) {
   User.findOne({authuid: id}).exec(function(err, user) {
     if (err) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
-      console.log(user)
        req.user = user
        next()
     }

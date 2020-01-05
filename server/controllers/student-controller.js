@@ -4,8 +4,8 @@ var Student = require('../models/student.model.js')
 var User = require('../models/UserSchema')
 var Company = require('../models/company.model')
 
+// saves new student to database after completion of survey
 exports.create = function(req, res) {
-  //console.log(JSON.stringify(req.body, null, 2));
   var newStudent = new Student(req.body);
   /* Then save the student */
   newStudent.save(function(err) {
@@ -14,13 +14,11 @@ exports.create = function(req, res) {
       res.status(400).send(err);
     } else {
       res.status(200).json(newStudent);
-      //console.log(newStudent)
     }
   });
 };
 
 exports.getmatches = async function(req, res) {
-  console.log("GET MATCHES API")
   const r_user = req.body
 
 
@@ -87,7 +85,6 @@ exports.read = async function(req, res) {
       console.log('error on student by id')
       res.status(400).send(err);
     } else {
-      console.log('worked for listing by student')
       res.json(student)
     }
   });
@@ -166,7 +163,6 @@ exports.studentByID = async function(req, res, next, id) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
-      console.log(user)
       req.user = user
       next()
     }
@@ -179,7 +175,6 @@ exports.addMatch = async function(req, res){
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
-      console.log(req.body.newArray);
       var myuser = user
       myuser['matches'] = req.body.newArray
       res.status(200).send(myuser);

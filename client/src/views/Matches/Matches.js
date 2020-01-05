@@ -98,7 +98,6 @@ class Matches extends React.Component {
             newArray:  newArray,
         };
         api.updatematch(payload).then(response => {
-            //console.log("hit me I am logging update match")
             console.log(response)
             this.props.userInfoUpdate(response);
         })
