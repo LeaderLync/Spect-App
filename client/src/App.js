@@ -13,6 +13,7 @@ import api from './api'
 import AdminDashboard from './views/Admin/AdminDashboard'
 import Matches from './views/Matches/Matches';
 import PrivateCompanyRoute from './components/PrivateCompanyRoute'
+
 class App extends Component {
   constructor(props) {
     super(props)

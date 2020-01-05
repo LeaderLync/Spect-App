@@ -11,10 +11,18 @@ const client = axios.create({
 })
 
 export default {
-    getdata(){
-        client.get('/students')
+    getallcompanies() {
+        return client.get('/company')
         .then(response => {
-            return response
+            return response.data
+        }).catch((err) => {
+            console.log(err)
+        })
+    },
+    getallstudents(){
+        return client.get('/student')
+        .then(response => {
+            return response.data
         }).catch((err) => {
             console.log(err)
         })

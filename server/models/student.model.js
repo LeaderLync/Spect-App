@@ -16,7 +16,7 @@ var studentSchema = new Schema({
       second: String,
       third: String
     },
-    avatarUrl: String,
+    // avatarUrl: String,
     weakSkills: {
       first: String,
       second: String,

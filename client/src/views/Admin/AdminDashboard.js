@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-
+import Companies from './Companies'
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -46,7 +46,13 @@ class AdminDashboard extends Component {
                     <Container maxWidth="lg" className={classes.container}>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
-                                
+                                <Companies/>
+                            </Paper>
+                        </Grid>
+                        <div className={classes.appBarSpacer}/>
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper}>
+                                <Companies/>
                             </Paper>
                         </Grid>
 

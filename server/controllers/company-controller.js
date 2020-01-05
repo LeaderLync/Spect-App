@@ -16,6 +16,10 @@ exports.create = function(req, res) {
   });
 };
 
+exports.getall = function(req,res) {
+  
+}
+
 // /* Show the current company */
 exports.read = async function(req, res) {
   Company.findOne({id:req.user.collectionid}).exec(function(err, company) {

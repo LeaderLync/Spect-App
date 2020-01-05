@@ -4,7 +4,9 @@ var companycontroller = require('../controllers/company-controller')
 
 
 //Route to create a company inside the database    
-router.route('/').post(companycontroller.create);
+router.route('/')
+    .post(companycontroller.create)
+    .get(companycontroller.getall)
 
 //Route to retieve a single company by company id
 //router.route('/:companyid').get(companyController.findOne);
