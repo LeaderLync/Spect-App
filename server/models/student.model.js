@@ -11,21 +11,33 @@ var studentSchema = new Schema({
     email: String,
     telephone: String,
 
-    strongSkills: {
+    /*strongSkills: {
       first: String,
       second: String,
       third: String
-    },
+    },*/
 
-    weakSkills: {
+    /*weakSkills: {
       first: String,
       second: String,
       third: String
-    },
+    },*/
+
+		skills: {
+			leadership: Number,
+			teamwork: Number,
+			creativity: Number,
+			mindfulness: Number,
+			criticalThinking: Number,
+			communication: Number,
+			globalAwareness: Number,
+			timeManagement: Number,
+			workEthic: Number
+		},
 
     selectedIndustries: [String],
 
-    question1: Number,
+    /*question1: Number,
     question2: Number,
     question3: Number,
     question4: Number,
@@ -42,7 +54,7 @@ var studentSchema = new Schema({
     question15: Number,
     question16: Number,
     question17: Number,
-    question18: Number,
+    question18: Number,*/
 
     matches: [
       {
