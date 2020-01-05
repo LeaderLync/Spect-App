@@ -17,6 +17,7 @@ class StudentSurvey extends React.Component {
     super(props);
     this.state = {
       selectedIndustries: [], // up to three
+      skillPoints: 0
       /*strongSkills: {}, // 3 of your strongest soft skills
       weakSkills: {}    // 3 soft skills you want to work on*/
     };
@@ -50,6 +51,8 @@ class StudentSurvey extends React.Component {
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
 
+  getSkillPoints = (points) => {this.setState({skillPoints: points}, console.log(points))} // retireves state from child
+
   //getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
@@ -68,7 +71,7 @@ class StudentSurvey extends React.Component {
               <div className="card-body">
                 <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
-                  <SkillDistributor/>
+                  <SkillDistributor passToParent={this.getSkillPoints}/>
                   <h3 className="card-title">Contact Information</h3>
                   <div className="form-row">
                     <div className="form-group col">

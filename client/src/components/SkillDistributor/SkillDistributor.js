@@ -28,16 +28,17 @@ class SkillDistributor extends React.Component {
 
     this.setState({
       points: total
-    }, () => console.log(this.state.points))
+    }, () => this.props.passToParent(this.state.points))
   }
 
   componentDidMount() {
     var total = 0;
+
     skillData.map(skill => {
       total += parseInt(document.getElementById(skill.name).value);
     })
 
-    this.setState({points : total})
+    this.setState({points : total}, () => this.props.passToParent(this.state.points))
   }
 
   render() {
