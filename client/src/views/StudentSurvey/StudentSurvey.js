@@ -50,7 +50,7 @@ class StudentSurvey extends React.Component {
         this.props.userInfoUpdate(response);
       }); // passes JSON object to be request
 
-      //this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+      this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
     }
   }
 
@@ -63,11 +63,11 @@ class StudentSurvey extends React.Component {
   //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
-    /*if (this.props.collectionId === null || this.props.collectionId == '0') {
+    if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
         <p>this is not loading</p>
       )
-    }*/
+    }
     return (
       <div className='container'>
         <div className='row'>
