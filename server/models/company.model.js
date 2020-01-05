@@ -23,7 +23,7 @@ var CompanySchema = new Schema({
       jobLink: String,
   }],
 
-  question1: Number,
+  /*question1: Number,
   question2: Number,
   question3: Number,
   question4: Number,
@@ -40,7 +40,7 @@ var CompanySchema = new Schema({
   question15: Number,
   question16: Number,
   question17: Number,
-  question18: Number,
+  question18: Number,*/
 
   created_at: Date,
   updated_at: Date,
