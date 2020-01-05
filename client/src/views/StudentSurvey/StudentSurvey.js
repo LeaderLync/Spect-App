@@ -26,27 +26,30 @@ class StudentSurvey extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
-    const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
 
-    /* create JSON object to include in post request */
-    var studentData = {}
-    data.forEach(function(value, key){
-    studentData[key] = value;
-    });
+    if (this.state.skillPoints === 27) {
+      const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
 
-    studentData["id"] = this.props.collectionId;
-    studentData["selectedIndustries"] = this.state.selectedIndustries;
-    /*studentData["strongSkills"] = this.state.strongSkills;
-    studentData["weakSkills"] = this.state.weakSkills;*/
-    studentData["matches"] = []
+      /* create JSON object to include in post request */
+      var studentData = {}
+      data.forEach(function(value, key){
+      studentData[key] = value;
+      });
 
-    console.log(studentData);
+      studentData["id"] = this.props.collectionId;
+      studentData["selectedIndustries"] = this.state.selectedIndustries;
+      /*studentData["strongSkills"] = this.state.strongSkills;
+      studentData["weakSkills"] = this.state.weakSkills;*/
+      studentData["matches"] = []
 
-    /*api.collectStudentResponse(studentData).then(response => {
-      this.props.userInfoUpdate(response);
-    }); // passes JSON object to be request*/
+      console.log(studentData);
 
-    //this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+      /*api.collectStudentResponse(studentData).then(response => {
+        this.props.userInfoUpdate(response);
+      }); // passes JSON object to be request*/
+
+      //this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+    }
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
