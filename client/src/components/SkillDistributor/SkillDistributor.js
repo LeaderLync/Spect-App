@@ -9,7 +9,18 @@ class SkillDistributor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      points: 9
+      points: 9,
+      skills: {
+        leadership: 1,
+  			teamwork: 1,
+  			creativity: 1,
+  			mindfulness: 1,
+  			criticalThinking: 1,
+  			communication: 1,
+  			globalAwareness: 1,
+  			timeManagement: 1,
+  			workEthic: 1
+      }
     };
 
     this.moveSlider = this.moveSlider.bind(this);
@@ -18,24 +29,28 @@ class SkillDistributor extends React.Component {
   moveSlider(event) {
     var total = 0;
     skillData.map(skill => {
-      total += parseInt(document.getElementById(skill.name).value);
+      total += parseInt(document.getElementById(skill.id).value);
     })
 
     if (total > 27) {
-      event.target.value = parseInt(event.target.value) + 27 - total
-      total = 27
+      event.target.value = parseInt(event.target.value) + 27 - total;
+      total = 27;
     }
 
+    var updatedSkills = {...this.state.skills};
+    updatedSkills[event.target.name] = parseInt(event.target.value);
+
     this.setState({
-      points: total
-    }, () => this.props.passToParent(this.state.points))
+      points: total,
+      skills: updatedSkills
+    }, () => this.props.passToParent(this.state.points));
   }
 
   componentDidMount() {
     var total = 0;
 
     skillData.map(skill => {
-      total += parseInt(document.getElementById(skill.name).value);
+      total += parseInt(document.getElementById(skill.id).value);
     })
 
     this.setState({points : total}, () => this.props.passToParent(this.state.points))
@@ -46,7 +61,7 @@ class SkillDistributor extends React.Component {
       return (
         <div className="form-group" key={skill.key}>
           <label htmlFor="formControlRange">{skill.name}</label>
-          <input type="range" className="custom-range" name={skill.name} id={skill.name} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue={(this.props.stats ? this.props.stats[skill.name] : "1")}/>
+          <input type="range" className="custom-range" name={skill.id} id={skill.id} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue={(this.props.stats ? this.props.stats[skill.name] : "1")}/>
         </div>
       )
     })

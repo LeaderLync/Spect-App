@@ -44,9 +44,9 @@ class StudentSurvey extends React.Component {
 
       console.log(studentData);
 
-      /*api.collectStudentResponse(studentData).then(response => {
+      api.collectStudentResponse(studentData).then(response => {
         this.props.userInfoUpdate(response);
-      }); // passes JSON object to be request*/
+      }); // passes JSON object to be request
 
       //this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
     }
