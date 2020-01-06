@@ -15,13 +15,18 @@ class LoginContainer extends Component {
         try {
 
             const user = await app.auth.signInWithEmailAndPassword(email.value, password.value); //tries to sign in
+            console.log(user)
             var response = (this.props.isStudent)?
-                await api.getstudentuser(user.user.uid).then((res) => res)
+                await api.getstudentuser(user.user.uid).then((res) => {
+                    console.log(res)
+                    return res
+                })
                 : await api.getcompanyuser(user.user.uid).then((res) => res)
             this.props.userInfoUpdate(response)
             this.props.collectionIdUpdate(response.id)
             this.props.avatarURLUpdate(response.avatarUrl)
             console.log("logging from handle sign in")
+            console.log(this.props.isStudent)
             console.log(this.props.isStudent)
             if (this.props.isStudent == true) {
                 this.props.history.push("/")

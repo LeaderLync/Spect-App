@@ -28,7 +28,7 @@ UserSchema.pre('save', function(next) {
 
 /* Use your schema to instantiate a Mongoose model */
 //Check out - https://mongoosejs.com/docs/guide.html#models
-var User = mongoose.model('TestUser', UserSchema);
+var User = mongoose.model('User', UserSchema);
 
 /* Export the model to make it avaiable to other parts of your Node application */
 module.exports = User;

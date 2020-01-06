@@ -165,6 +165,7 @@ exports.studentByID = async function(req, res, next, id) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
+      console.log(user)
       req.user = user
       next()
     }
