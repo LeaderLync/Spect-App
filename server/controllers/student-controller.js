@@ -130,7 +130,6 @@ exports.read = async function(req, res) {
 exports.getall = function(req,res) {
   Student.find({}, function(err, users) {
     if (err) res.status(500).send(err)
-    console.log(users)
     users.sort((x,y) => {
       return x.firstName.localeCompare(y.firstName);
     })

@@ -17,7 +17,14 @@ exports.create = function(req, res) {
 };
 
 exports.getall = function(req,res) {
-  
+  Company.find({}, function(err, users) {
+    if (err) res.status(500).send(err)
+    console.log(users)
+    users.sort((x,y) => {
+      return x.companyName.localeCompare(y.companyName)
+    })
+    res.status(200).send(users)
+  })
 }
 
 // /* Show the current company */

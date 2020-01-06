@@ -44,7 +44,7 @@ class Companies extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            rows: rows1,
+            rows: [],
             open: false,
             editopen: false,
             selectedIndustries: [],
@@ -79,8 +79,10 @@ class Companies extends React.Component {
         })
     }
     componentDidMount() {
-        api.getallstudents().then(response => {
-            console.log(response)
+        api.getallcompanies().then(response => {
+            this.setState({
+                rows: response
+            })
         })
     }
     render() {
@@ -101,7 +103,7 @@ class Companies extends React.Component {
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
-                                primary="Single-line item"
+                                primary={row.companyName}
                             />
                             <ListItemSecondaryAction>
                                 <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose()}>
@@ -144,6 +146,7 @@ class Companies extends React.Component {
                         occasionally.
                     </DialogContentText>
                     <form onSubmit={this.handleSubmit}>
+                        <Typography variant="h5">Selected Industries</Typography>
                         <TextField
                             autoFocus
                             margin="dense"
