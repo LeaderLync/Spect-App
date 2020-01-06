@@ -38,22 +38,28 @@ class SkillDistributor extends React.Component {
     }
 
     var updatedSkills = {...this.state.skills};
-    updatedSkills[event.target.name] = parseInt(event.target.value);
+    updatedSkills[event.target.id] = parseInt(event.target.value);
 
     this.setState({
       points: total,
       skills: updatedSkills
-    }, () => this.props.passToParent(this.state.points));
+    }, () => this.props.passToParent(this.state));
   }
 
   componentDidMount() {
     var total = 0;
+    var updatedSkills = {...this.state.skills}
 
     skillData.map(skill => {
-      total += parseInt(document.getElementById(skill.id).value);
+      let curVal = parseInt(document.getElementById(skill.id).value);
+      total += curVal;
+      updatedSkills[skill.id] = curVal;
     })
 
-    this.setState({points : total}, () => this.props.passToParent(this.state.points))
+    this.setState({
+      points : total,
+      skills: updatedSkills
+    }, () => this.props.passToParent(this.state))
   }
 
   render() {
@@ -61,7 +67,7 @@ class SkillDistributor extends React.Component {
       return (
         <div className="form-group" key={skill.key}>
           <label htmlFor="formControlRange">{skill.name}</label>
-          <input type="range" className="custom-range" name={skill.id} id={skill.id} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue={(this.props.stats ? this.props.stats[skill.name] : "1")}/>
+          <input type="range" className="custom-range" id={skill.id} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue={(this.props.stats ? this.props.stats[skill.name] : "1")}/>
         </div>
       )
     })
