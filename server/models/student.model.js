@@ -10,13 +10,13 @@ var studentSchema = new Schema({
 
     email: String,
     telephone: String,
-
+    avatarUrl: String,
     /*strongSkills: {
       first: String,
       second: String,
       third: String
     },
-    // avatarUrl: String,
+    avatarUrl: String,
     weakSkills: {
     },*/
 

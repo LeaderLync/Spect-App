@@ -14,7 +14,7 @@ var CompanySchema = new Schema({
     second: String,
     third: String
   },
-  // avatarUrl: String,
+  avatarUrl: String,
 
   jobPosts: [{
       jobID: String,
