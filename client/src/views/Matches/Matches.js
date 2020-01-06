@@ -64,7 +64,14 @@ class Matches extends React.Component {
                 jobs: [],
                 morePopup: false,
                 matchButtonState: false,
-                selectedCompany: this.props.userinfo,
+                selectedCompany: {
+                    companyName: 'company1',
+                    strongSkills: {
+                        first: 'leadership',
+                        second: 'involvement',
+                        third: 'i dont know'
+                    }
+                },
             }
         // {
         //     jobs: [],
@@ -105,6 +112,7 @@ class Matches extends React.Component {
 
     componentDidMount() {
         api.getrecommendations(this.props.userinfo).then((res) => {
+            console.log(res.data)
             this.setState({
                 jobs: res.data
             })

@@ -18,7 +18,6 @@ class LoginContainer extends Component {
             console.log(user)
             var response = (this.props.isStudent)?
                 await api.getstudentuser(user.user.uid).then((res) => {
-                    console.log(res)
                     return res
                 })
                 : await api.getcompanyuser(user.user.uid).then((res) => res)
