@@ -26,7 +26,7 @@ exports.getmatches = async function(req, res) {
     if (err) res.status(500).send(err)
     var sorted = users.sort((x, y) => {
       return 1
-      // var score = 
+      // var score =
       // var absx  = 0
       // var absy = 0
 
@@ -183,4 +183,8 @@ exports.addMatch = async function(req, res){
       res.status(200).send(myuser);
     }
   })
+}
+
+exports.updateStudent = async function(req, res) {
+  Student.findOneAndUpdate({id: req.body.userId}, )
 }

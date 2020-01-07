@@ -17,6 +17,8 @@ class StudentUpdate extends React.Component {
     super(props);
     this.state = {
       selectedIndustries: [], // up to three
+      skillPoints: 0,
+      skillTree: {}
       /*strongSkills: {}, // 3 of your strongest soft skills
       weakSkills: {}    // 3 soft skills you want to work on*/
     };
@@ -25,30 +27,31 @@ class StudentUpdate extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
-    const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
+    //const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
 
     /* create JSON object to include in post request */
     var studentData = {}
-    data.forEach(function(value, key){
+    /*data.forEach(function(value, key){
     studentData[key] = value;
-    });
+    });*/
 
     studentData["id"] = this.props.collectionId;
     studentData["selectedIndustries"] = this.state.selectedIndustries;
-    /*studentData["strongSkills"] = this.state.strongSkills;
-    studentData["weakSkills"] = this.state.weakSkills;*/
-    studentData["matches"] = []
+    studentData["skills"] = this.state.skillTree;
 
     console.log(studentData);
 
-    /*api.collectStudentResponse(studentData).then(response => {
-      this.props.userInfoUpdate(response);
+    api.updateStudentProfile(studentData).then(response => {
+      //this.props.userInfoUpdate(response);
+      console.log(response);
     }); // passes JSON object to be request*/
 
-    //this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+    this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
+
+  getSkillData = (childState) => {this.setState({skillPoints: childState.points, skillTree: childState.skills}, /*() => console.log(this.state)*/)} // retireves state from child
 
   //getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
@@ -81,7 +84,7 @@ class StudentUpdate extends React.Component {
               <div className="card-body">
                 <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
-                  <SkillDistributor stats={testStudent}/>
+                  <SkillDistributor passToParent={this.getSkillData} stats={this.props.userinfo}/>
                   {/*<h3 className="card-title">Contact Information</h3>
                   <div className="form-row">
                     <div className="form-group col">
@@ -116,7 +119,7 @@ class StudentUpdate extends React.Component {
                   <label className="question">Pick the top 3 soft skills you want to work on:</label>
                   <SkillSelector passToParent={this.getWeakSkills}/>*/}
                   {/*<QuestionForm/>*/}
-                  <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
+                  <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Save</button>
                 </form>
               </div>
             </div>

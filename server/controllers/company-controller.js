@@ -49,7 +49,7 @@ exports.updatePost = function(req, res) {
     Company.findOneAndUpdate({id:req.params.companyid}, update).exec(function(err,company) {
      if(err)
        {
-         console.log('Erron on updating Job Post')
+         console.log('Error on updating Job Post')
          res.status(400).send(err);
        }
        else {

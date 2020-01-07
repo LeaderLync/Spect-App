@@ -64,6 +64,15 @@ export default {
         return null
       })
     },
+    updateStudentProfile(studentData){
+      return client.put('/student/${studentData.id}', studentData)
+      .then(response => {
+        return response.data
+      }).catch((err) => {
+        console.log(err)
+        return null
+      })
+    },
     collectCompanyResponse(companyData){ // send initial company survey responses to database
       return client.post('/company', companyData)
       .then(response => {

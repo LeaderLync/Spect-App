@@ -67,7 +67,7 @@ class SkillDistributor extends React.Component {
       return (
         <div className="form-group" key={skill.key}>
           <label htmlFor="formControlRange">{skill.name}</label>
-          <input type="range" className="custom-range" id={skill.id} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue={(this.props.stats ? this.props.stats[skill.name] : "1")}/>
+          <input type="range" className="custom-range" id={skill.id} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue={(this.props.stats ? this.props.stats.skills[skill.id] : "1")}/>
         </div>
       )
     })
