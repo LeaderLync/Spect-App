@@ -186,5 +186,12 @@ exports.addMatch = async function(req, res){
 }
 
 exports.updateStudent = async function(req, res) {
-  Student.findOneAndUpdate({id: req.body.userId}, )
+  Student.findOneAndUpdate({id: req.body.id}, {skills: req.body.skills}, {new: true}).exec(function(err, user) {
+    if (err) {
+      console.log('error on student update');
+      res.status(400).send(err);
+    } else {
+      res.json(user);
+    }
+  })
 }

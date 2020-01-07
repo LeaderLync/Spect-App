@@ -65,7 +65,7 @@ export default {
       })
     },
     updateStudentProfile(studentData){
-      return client.put('/student/${studentData.id}', studentData)
+      return client.put(`/student/${studentData.id}`, studentData)
       .then(response => {
         return response.data
       }).catch((err) => {

@@ -42,7 +42,7 @@ class StudentUpdate extends React.Component {
     console.log(studentData);
 
     api.updateStudentProfile(studentData).then(response => {
-      //this.props.userInfoUpdate(response);
+      this.props.userInfoUpdate(response);
       console.log(response);
     }); // passes JSON object to be request*/
 
@@ -58,19 +58,6 @@ class StudentUpdate extends React.Component {
   //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
-    /* FOR MANUAL TESTING */
-    const testStudent = {
-      "Leadership" : "1",
-      "Teamwork" : "2",
-      "Creativity" : "3",
-      "Mindfulness" : "4",
-      "Critical Thinking" : "5",
-      "Communication" : "4",
-      "Global Awareness" : "5",
-      "Time Management" : "2",
-      "Work Ethic" : "1"
-    }
-
     if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
         <p>this is not loading</p>
