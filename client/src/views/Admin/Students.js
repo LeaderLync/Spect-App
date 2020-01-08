@@ -40,7 +40,7 @@ var rows1 = [
     createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
   ];
 
-class Companies extends React.Component {
+class Students extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -79,7 +79,8 @@ class Companies extends React.Component {
         })
     }
     componentDidMount() {
-        api.getallcompanies().then(response => {
+        
+        api.getallstudents().then(response => {
             this.setState({
                 rows: response
             })
@@ -91,7 +92,7 @@ class Companies extends React.Component {
         return (
             <React.Fragment>
                 <Typography variant="h3" className={classes.title}>
-                    Companies
+                    Students
                 </Typography>
                 <List>
                     
@@ -103,7 +104,7 @@ class Companies extends React.Component {
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
-                                primary={row.companyName}
+                                primary={row.firstName + ' ' + row.lastName}
                             />
                             <ListItemSecondaryAction>
                                 <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose()}>
@@ -171,5 +172,5 @@ class Companies extends React.Component {
     }
 }
 
-export default withStyles(styles)(Companies);
+export default withStyles(styles)(Students);
 
