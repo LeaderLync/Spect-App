@@ -13,7 +13,8 @@ router.route('/')
 
 
 router.route('/:authid')
+    .delete(authcontroller.delete)
 
-
+router.param('authid', authcontroller.userbyID)
 
 module.exports = router

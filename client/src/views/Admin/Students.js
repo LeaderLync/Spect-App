@@ -94,7 +94,7 @@ class Students extends React.Component {
                 <Typography variant="h3" className={classes.title}>
                     Students
                 </Typography>
-                <List>
+                <List style={{maxHeight: '275px', overflowY: 'auto'}}>
                     
                     {this.state.rows.map(row => (
                         <ListItem key={row.id}>

@@ -9,7 +9,9 @@ import Students from './Students'
 const styles = theme => ({
     root: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        overflow: 'hidden',
+        maxHeight: '100%'
     },
     content: {
         flexGrow: 1,
@@ -43,7 +45,7 @@ class AdminDashboard extends Component {
             <div className={classes.root}>
                 <Navbar isStudent={false}/>
                 <main className={classes.content}>
-                    <div className={classes.appBarSpacer}/>
+                    {/* <div className={classes.appBarSpacer}/> */}
                     <Container maxWidth="lg" className={classes.container}>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>

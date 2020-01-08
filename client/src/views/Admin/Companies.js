@@ -93,7 +93,7 @@ class Companies extends React.Component {
                 <Typography variant="h3" className={classes.title}>
                     Companies
                 </Typography>
-                <List>
+                <List style={{maxHeight: '275px', overflowY: 'auto'}}>
                     
                     {this.state.rows.map(row => (
                         <ListItem key={row.id}>

@@ -109,4 +109,13 @@ export default {
                 return null
             })
     },
+    // deletefirebaseuser(payload) {
+    //     return client.delete(`/auth/${payload.authId}`, payload)
+    //         .then(response => {
+    //             return response.data
+    //         }).catch((err) => {
+    //             console.log(err)
+    //             return null
+    //         })
+    // }
 }

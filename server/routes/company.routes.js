@@ -14,7 +14,7 @@ router.route('/')
 router.route('/:companyid')
     .get(companycontroller.read)
     .put(companycontroller.updatePost)
-
+    .delete(companycontroller.delete)
 
 router.param('companyid', companycontroller.companyByID)
 
