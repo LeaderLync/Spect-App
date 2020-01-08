@@ -3,7 +3,7 @@ var companycontroller = require('../controllers/company-controller')
     router = express.Router()
 
 
-//Route to create a company inside the database    
+//Route to create a company inside the database
 router.route('/')
     .post(companycontroller.create)
     .get(companycontroller.getall)
@@ -14,6 +14,7 @@ router.route('/')
 router.route('/:companyid')
     .get(companycontroller.read)
     .put(companycontroller.updatePost)
+    .patch(companycontroller.updateCompany)
 
 
 router.param('companyid', companycontroller.companyByID)

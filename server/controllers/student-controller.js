@@ -121,7 +121,7 @@ exports.read = async function(req, res) {
 
 // /* Delete a listing */
 exports.delete = function(req, res) {
-  
+
   Student.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
     if (err) res.status(500).send(err);
     else res.status(200).send(entry);
@@ -186,7 +186,7 @@ exports.addMatch = async function(req, res){
 }
 
 exports.updateStudent = async function(req, res) {
-  Student.findOneAndUpdate({id: req.body.id}, {skills: req.body.skills}, {new: true}).exec(function(err, user) {
+  Student.findOneAndUpdate({id: req.body.id}, {skills: req.body.skills, selectedIndustries: req.body.selectedIndustries}, {new: true}).exec(function(err, user) {
     if (err) {
       console.log('error on student update');
       res.status(400).send(err);
