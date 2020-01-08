@@ -120,15 +120,15 @@ exports.read = async function(req, res) {
 // };
 
 // /* Delete a listing */
-// exports.delete = function(req, res) {
-//   var listing = req.student;
-//   Student.findOneAndRemove({id: listing.id}, (err, entry) => {
-//     if (err) res.status(500).send(err);
-//     else res.status(200).send(entry);
-//   })
-//   /* Add your code to remove the listins */
+exports.delete = function(req, res) {
+  
+  Student.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
+    if (err) res.status(500).send(err);
+    else res.status(200).send(entry);
+  })
+  /* Add your code to remove the listins */
 
-// };
+};
 
 exports.getall = function(req,res) {
   Student.find({}, function(err, users) {

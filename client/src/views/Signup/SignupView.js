@@ -47,7 +47,7 @@ class SignupView extends React.Component {
                 <div style= {{margin: '0 auto'}}>
                 <Avatar style={{width: '100px', height: '100px', marginBottom: '10px'}} src={this.state.file}></Avatar>
                 </div>
-                <label htmlFor="file-upload" class="custom-file-upload" 
+                <label htmlFor="file-upload" className="custom-file-upload" 
                 style={{border: '1px solid #ccc', display: 'inline-block', padding: '6px 12px', cursor: 'pointer'}}
                 >
                     <i className="fa fa-cloud-upload"></i> Custom Upload
