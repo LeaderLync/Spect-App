@@ -29,7 +29,7 @@ class CompanySurvey extends React.Component {
     data.forEach(function(value, key){
     companyData[key] = value;
     });
-    companyData["avatarUrl"] = this.props.avatarURL
+    //companyData["avatarUrl"] = this.props.avatarURL
     companyData["id"] = this.props.collectionId;
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
