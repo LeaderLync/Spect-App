@@ -1,5 +1,5 @@
 import React from 'react';
-import './CompanySurvey.css';
+import '../CompanySurvey/CompanySurvey.css';
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
@@ -35,9 +35,9 @@ class CompanySurvey extends React.Component {
     companyData["strongSkills"] = this.state.strongSkills;
 
     // send payload
-    api.collectCompanyResponse(companyData).then(response => {
+    /*api.collectCompanyResponse(companyData).then(response => {
       this.props.userInfoUpdate(response);
-    }); // passes JSON object to be request
+    });*/ // passes JSON object to be request
 
     this.props.history.push("/CompanyProfile"); // reroutes to student profile page upon successful survey form submission
   }
@@ -47,11 +47,11 @@ class CompanySurvey extends React.Component {
   getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
-    /*if (this.props.collectionId === null || this.props.collectionId == '0') {
+    if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
         <p>this is not loading</p>
       )
-    }*/
+    }
     return (
       <div className='container'>
         <div className='row'>
@@ -61,16 +61,17 @@ class CompanySurvey extends React.Component {
                 <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
                 <h3 className="card-title">Company Information</h3>
-                <div className="form-row">
+                {/*<div className="form-row">
                   <div className="form-group col">
                     <label htmlFor="inputCompanyName">Company name</label>
                     <input type="text" className="form-control" placeholder="Company name" name="companyName" required/>
                   </div>
-                </div>
+                </div>*/}
                 <div className="form-row">
                   <div className="form-group col">
                     <label htmlFor="inputBio">Company bio</label>
-                    <textarea type="text" className="form-control" placeholder="Company bio" name="companyBio" rows="3" required/>
+                    <textarea type="text" className="form-control" placeholder="Company bio" name="companyBio" rows="3"
+                    defaultValue={(this.props.userinfo.companyBio)} required/>
                   </div>
                 </div>
                 <br/>
@@ -80,11 +81,11 @@ class CompanySurvey extends React.Component {
                   <br/>
                   <div className="form-group">
                     <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
-                    <IndustrySelector passToParent={this.getSelectedIndustries}/>
+                    <IndustrySelector stats={this.props.userinfo} passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
                   <label className="question">Pick your top 3 strongest soft skills:</label>
-                  <SkillSelector passToParent={this.getStrongSkills}/>
+                  <SkillSelector stats={this.props.userinfo} passToParent={this.getStrongSkills}/>
                   <br/>
                   {/*<QuestionForm/>*/}
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>

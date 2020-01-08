@@ -94,11 +94,11 @@ class StudentUpdate extends React.Component {
                     </div>
                   </div>
                   <br/>*/}
-                  {/*<h3 className="card-title">Professional Interests and Skills Assessment</h3>
+                  <h3 className="card-title">Professional Interests and Skills Assessment</h3>
                   <div className="form-group">
                     <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
-                    <IndustrySelector passToParent={this.getSelectedIndustries}/>
-                  </div>*/}
+                    <IndustrySelector stats={this.props.userinfo} passToParent={this.getSelectedIndustries}/>
+                  </div>
                   {/*<br/>
                   <label className="question">Pick your top 3 strongest soft skills:</label>
                   <SkillSelector passToParent={this.getStrongSkills}/>

@@ -3,6 +3,7 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import StudentSurvey from './views/StudentSurvey/StudentSurvey';
 import StudentUpdate from './views/StudentUpdate/StudentUpdate';
 import CompanySurvey from './views/CompanySurvey/CompanySurvey';
+import CompanyUpdate from './views/CompanyUpdate/CompanyUpdate';
 import NotFound from "./views/NotFound"
 import StudentProfile from "./views/StudentProfile/StudentProfile"
 import Login from './views/Login'
@@ -113,6 +114,13 @@ class App extends Component {
             />
             <PrivateCompanyRoute exact path="/CompanySurvey"
               render={(props) => <CompanySurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
+              authenticated={this.state.authenticated}
+              user={this.state.currentUser}
+              collectionId={this.state.collectionid}
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
+            />
+            <PrivateCompanyRoute exact path="/CompanyUpdate"
+              render={(props) => <CompanyUpdate {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               collectionId={this.state.collectionid}

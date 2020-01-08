@@ -114,7 +114,7 @@ const Navbar = (props) => {
   onClose={handleClose}
   >
     <MenuItem onClick={handleOpenProfile}>
-      <Link to="/CompanyProfile" style={{ textDecoration: 'none' }}>Profile</Link>
+      <Link to="/CompanyUpdate" style={{ textDecoration: 'none' }}>Edit Profile</Link>
     </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out
