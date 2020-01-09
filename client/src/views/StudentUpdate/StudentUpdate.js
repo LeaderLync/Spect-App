@@ -42,11 +42,17 @@ class StudentUpdate extends React.Component {
     //console.log(studentData);
 
     api.updateStudentProfile(studentData).then(response => {
+      if (!this.props.editClose){
       this.props.userInfoUpdate(response);
+      }
       console.log(response);
     }); // passes JSON object to be request*/
 
+    if (this.props.editClose) {
+      this.props.editClose();
+    } else {
     this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+    }
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child

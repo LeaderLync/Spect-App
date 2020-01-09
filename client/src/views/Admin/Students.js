@@ -58,6 +58,8 @@ class Students extends React.Component {
             questionarray: []
 
         }
+
+        this.editClose = this.editClose.bind(this);
     }
     handleClose() {
         this.setState({
@@ -68,6 +70,13 @@ class Students extends React.Component {
 
     }
     editClose(row) {
+        if (!this.state.editopen) {
+          api.getallstudents().then(response => { //updates student rows when you close an editor
+              this.setState({
+                  rows: response
+              })
+          })
+        }
         this.setState({
             editopen: !this.state.editopen, currentRow: row
         });
@@ -142,7 +151,7 @@ class Students extends React.Component {
                     </DialogActions>
                 </Dialog>
                 <Dialog open={this.state.editopen} onClose={() => this.editClose()} aria-labelledby="form-dialog-title">
-                    <StudentUpdate userinfo={this.state.currentRow}/>
+                    <StudentUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
                     {/*<DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
                     <DialogContent>
                     <DialogContentText>
