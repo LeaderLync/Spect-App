@@ -38,7 +38,8 @@ class IndustrySelector extends React.Component {
     if (this.props.stats) {
       this.setState({
         industries: this.props.stats.selectedIndustries
-      });
+      },
+      () => this.props.passToParent(this.state.industries));
     }
   }
 

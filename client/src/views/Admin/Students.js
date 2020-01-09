@@ -19,6 +19,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import api from '../../api'
 import TextField from '@material-ui/core/TextField'
+import StudentUpdate from '../StudentUpdate/StudentUpdate'
 const styles = theme => ({
     root1: {
         display: 'block'
@@ -45,6 +46,7 @@ class Students extends React.Component {
         super(props)
         this.state = {
             rows: [],
+            currentRow: {},
             open: false,
             editopen: false,
             selectedIndustries: [],
@@ -65,10 +67,10 @@ class Students extends React.Component {
     handleSubmit() {
 
     }
-    editClose() {
+    editClose(row) {
         this.setState({
-            editopen: !this.state.editopen
-        })
+            editopen: !this.state.editopen, currentRow: row
+        });
     }
     onClickDelete(item) {
         console.log("hey")
@@ -79,7 +81,7 @@ class Students extends React.Component {
         })
     }
     componentDidMount() {
-        
+
         api.getallstudents().then(response => {
             this.setState({
                 rows: response
@@ -107,7 +109,7 @@ class Students extends React.Component {
                                 primary={row.firstName + ' ' + row.lastName}
                             />
                             <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose()}>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose(row)}>
                                     <EditIcon/>
                                 </IconButton>
                                 <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() => this.handleClose()}>
@@ -122,7 +124,7 @@ class Students extends React.Component {
                     open={this.state.open}
                     onClose={() => this.handleClose()}
                     aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"                
+                    aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">{"Delete?"}</DialogTitle>
                     <DialogContent>
@@ -140,7 +142,8 @@ class Students extends React.Component {
                     </DialogActions>
                 </Dialog>
                 <Dialog open={this.state.editopen} onClose={() => this.editClose()} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
+                    <StudentUpdate userinfo={this.state.currentRow}/>
+                    {/*<DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
                     <DialogContent>
                     <DialogContentText>
                         To subscribe to this website, please enter your email address here. We will send updates
@@ -165,7 +168,7 @@ class Students extends React.Component {
                     <Button onClick={() => this.editClose()} color="primary">
                         Submit
                     </Button>
-                    </DialogActions>
+                    </DialogActions>*/}
                 </Dialog>
             </React.Fragment>
         )
@@ -173,4 +176,3 @@ class Students extends React.Component {
 }
 
 export default withStyles(styles)(Students);
-

@@ -35,9 +35,9 @@ class CompanySurvey extends React.Component {
     companyData["strongSkills"] = this.state.strongSkills;
 
     // send payload
-    /*api.collectCompanyResponse(companyData).then(response => {
+    api.updateCompanyProfile(companyData).then(response => {
       this.props.userInfoUpdate(response);
-    });*/ // passes JSON object to be request
+    }); // passes JSON object to be request
 
     this.props.history.push("/CompanyProfile"); // reroutes to student profile page upon successful survey form submission
   }

@@ -39,7 +39,7 @@ class StudentUpdate extends React.Component {
     studentData["selectedIndustries"] = this.state.selectedIndustries;
     studentData["skills"] = this.state.skillTree;
 
-    console.log(studentData);
+    //console.log(studentData);
 
     api.updateStudentProfile(studentData).then(response => {
       this.props.userInfoUpdate(response);

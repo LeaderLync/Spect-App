@@ -139,3 +139,18 @@ exports.companyByID = async function(req, res, next, id) {
   })
 
 };
+
+exports.updateCompany = async function(req, res) {
+  Student.findOneAndUpdate({id: req.body.id}, {
+    strongSkills: req.body.strongSkills,
+    selectedIndustries: req.body.selectedIndustries,
+    companyBio: req.body.companyBio
+  }, {new: true}).exec(function(err, user) {
+    if (err) {
+      console.log('error on company update');
+      res.status(400).send(err);
+    } else {
+      res.json(user);
+    }
+  })
+}
