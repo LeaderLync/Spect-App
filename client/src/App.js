@@ -85,6 +85,7 @@ class App extends Component {
             *****************************************************************************/}
             <Route exact path="/admin"
               component={AdminDashboard}
+              
             />
             <PrivateRoute exact path="/"
               render={(props) => <Matches userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} userInfoUpdate={this.userInfoUpdate.bind(this)} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}

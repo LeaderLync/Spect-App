@@ -48,7 +48,13 @@ class StudentProfile extends React.Component {
         this.state =
         {
             morePopup: false,
-            selectedCompany: this.props.userinfo,
+            selectedCompany: {
+              strongSkills : {
+                first: "Leadership",
+                second: "Communication",
+                third: "Creativity"
+              }
+            },
         }
     }
 
@@ -86,7 +92,7 @@ class StudentProfile extends React.Component {
                         </Grid>
                         <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
                             <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Your Top 3 Soft Skills</Typography>
-                            <Grid container spacing = {2}>
+                            {/*<Grid container spacing = {2}>
                                 {Object.entries(person.strongSkills).map(([key, value]) => {return(
                                     <Grid key={key} item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
@@ -96,7 +102,7 @@ class StudentProfile extends React.Component {
                                         </Card>
                                     </Grid>
                                 )})}
-                                </Grid>
+                                </Grid>*/}
                             </Grid>
                         </Grid>
                      </div>
