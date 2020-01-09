@@ -26,7 +26,7 @@ exports.getmatches = async function(req, res) {
     if (err) res.status(500).send(err)
     var sorted = users.sort((x, y) => {
       return 1
-      // var score = 
+      // var score =
       // var absx  = 0
       // var absy = 0
 
@@ -121,8 +121,7 @@ exports.read = async function(req, res) {
 
 // /* Delete a listing */
 exports.delete = function(req, res) {
-  
-  Student.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
+  Student.findOneAndRemove({id: req.body.collectionid}, (err, entry) => {
     if (err) res.status(500).send(err);
     else res.status(200).send(entry);
   })
@@ -181,6 +180,17 @@ exports.addMatch = async function(req, res){
       var myuser = user
       myuser['matches'] = req.body.newArray
       res.status(200).send(myuser);
+    }
+  })
+}
+
+exports.updateStudent = async function(req, res) {
+  Student.findOneAndUpdate({id: req.body.id}, {skills: req.body.skills}, {new: true}).exec(function(err, user) {
+    if (err) {
+      console.log('error on student update');
+      res.status(400).send(err);
+    } else {
+      res.json(user);
     }
   })
 }

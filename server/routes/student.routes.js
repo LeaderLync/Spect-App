@@ -8,11 +8,12 @@ router.route('/')
     .post(studentcontroller.create)
     .patch(studentcontroller.getmatches)
     .get(studentcontroller.getall)
+    .delete(studentcontroller.delete)
 
 router.route('/:studentid')
     .get(studentcontroller.read)
     .patch(studentcontroller.addMatch)
-    .delete(studentcontroller.delete)
+    .put(studentcontroller.updateStudent)
 
 
 

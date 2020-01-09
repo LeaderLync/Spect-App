@@ -9,6 +9,7 @@ export default function PrivateCompanyRoute({
   ...rest
 })
 {
+  
   if (authenticated === false) {
     return <Route {...rest} render={() => <Redirect to="/login"/>}/>
   } else if (authenticated === true && isStudent === true) {

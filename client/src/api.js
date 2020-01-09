@@ -21,7 +21,6 @@ export default {
     },
     getallstudents(){
         return client.get('/student').then(response => {
-            console.log(response.data)
             return response.data
         }).catch((err) => {
             console.log(err)
@@ -57,6 +56,15 @@ export default {
     },
     collectStudentResponse(studentData){ //send initial student survey responses to database
       return client.post('/student', studentData)
+      .then(response => {
+        return response.data
+      }).catch((err) => {
+        console.log(err)
+        return null
+      })
+    },
+    updateStudentProfile(studentData){
+      return client.put(`/student/${studentData.id}`, studentData)
       .then(response => {
         return response.data
       }).catch((err) => {
@@ -109,13 +117,31 @@ export default {
                 return null
             })
     },
-    // deletefirebaseuser(payload) {
-    //     return client.delete(`/auth/${payload.authId}`, payload)
-    //         .then(response => {
-    //             return response.data
-    //         }).catch((err) => {
-    //             console.log(err)
-    //             return null
-    //         })
-    // }
+    deletefirebaseuser(collectionid) {
+        return client.delete(`/auth/${collectionid}`)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
+    deletecompany(payload) {
+        return client.delete(`/company`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
+    deletestudent(payload) {
+        return client.delete(`/student`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    }
 }

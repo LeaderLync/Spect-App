@@ -32,7 +32,7 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="first">1st</label>
           </div>
-          <select className="form-control custom-select" id="first" defaultValue="Choose..." onChange={this.selectSkill} required>
+          <select className="form-control custom-select" id="first" defaultValue={this.props.stats ? this.props.stats.strongSkills.first : "Choose..."} onChange={this.selectSkill} required>
             <option value="">Choose...</option>
             {skillData.filter(skill => {
               return skill.name !== this.state.second && skill.name !== this.state.third // removes already selected skills as options
@@ -45,7 +45,7 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="second">2nd</label>
           </div>
-          <select className="form-control custom-select" id="second" defaultValue="Choose..." onChange={this.selectSkill} required>
+          <select className="form-control custom-select" id="second" defaultValue={this.props.stats ? this.props.stats.strongSkills.second : "Choose..."} onChange={this.selectSkill} required>
             <option value="">Choose...</option>
             {skillData.filter(skill => {
               return skill.name !== this.state.first && skill.name !== this.state.third // removes already selected skills as options
@@ -58,7 +58,7 @@ class SkillSelector extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="third">3rd</label>
           </div>
-          <select className="form-control custom-select" id="third" defaultValue="Choose..." onChange={this.selectSkill} required>
+          <select className="form-control custom-select" id="third" defaultValue={this.props.stats ? this.props.stats.strongSkills.third : "Choose..."} onChange={this.selectSkill} required>
             <option value="">Choose...</option>
             {skillData.filter(skill => {
               return skill.name !== this.state.first && skill.name !== this.state.second // removes already selected skills as options

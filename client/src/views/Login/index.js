@@ -27,6 +27,7 @@ class LoginContainer extends Component {
             console.log("logging from handle sign in")
             console.log(this.props.isStudent)
             console.log(this.props.isStudent)
+            console.log(this.props)
             if (this.props.isStudent == true) {
                 this.props.history.push("/")
             } else {

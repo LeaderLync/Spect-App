@@ -7,6 +7,7 @@ var companycontroller = require('../controllers/company-controller')
 router.route('/')
     .post(companycontroller.create)
     .get(companycontroller.getall)
+    .delete(companycontroller.delete)
 
 //Route to retieve a single company by company id
 //router.route('/:companyid').get(companyController.findOne);
@@ -14,7 +15,6 @@ router.route('/')
 router.route('/:companyid')
     .get(companycontroller.read)
     .put(companycontroller.updatePost)
-    .delete(companycontroller.delete)
 
 router.param('companyid', companycontroller.companyByID)
 

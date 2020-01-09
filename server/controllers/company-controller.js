@@ -49,7 +49,7 @@ exports.updatePost = function(req, res) {
     Company.findOneAndUpdate({id:req.params.companyid}, update).exec(function(err,company) {
      if(err)
        {
-         console.log('Erron on updating Job Post')
+         console.log('Error on updating Job Post')
          res.status(400).send(err);
        }
        else {
@@ -59,7 +59,7 @@ exports.updatePost = function(req, res) {
    };
 
 exports.delete = function(req, res) {
-  Company.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
+  Company.findOneAndRemove({id: req.body.collectionid}, (err, entry) => {
     if (err) res.status(500).send(err);
     else res.status(200).send(entry);
   })

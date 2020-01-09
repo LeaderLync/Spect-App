@@ -88,7 +88,10 @@ const Navbar = (props) => {
   onClose={handleClose}
   >
     <MenuItem onClick={handleOpenProfile}>
-      <Link to="/studentprofile" style={{ textDecoration: 'none' }}>Profile</Link>
+      <Link to="/studentprofile" style={{ textDecoration: 'none' }}>View Profile</Link>
+    </MenuItem>
+    <MenuItem onClick={handleOpenProfile}>
+      <Link to="/StudentUpdate" style={{ textDecoration: 'none' }}>Edit Profile</Link>
     </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out
@@ -111,7 +114,7 @@ const Navbar = (props) => {
   onClose={handleClose}
   >
     <MenuItem onClick={handleOpenProfile}>
-      <Link to="/CompanyProfile" style={{ textDecoration: 'none' }}>Profile</Link>
+      <Link to="/CompanyUpdate" style={{ textDecoration: 'none' }}>Edit Profile</Link>
     </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out

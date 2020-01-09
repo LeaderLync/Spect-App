@@ -19,6 +19,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import api from '../../api'
 import TextField from '@material-ui/core/TextField'
+import Snackbar from '@material-ui/core/Snackbar'
 const styles = theme => ({
     root1: {
         display: 'block'
@@ -47,19 +48,27 @@ class Companies extends React.Component {
             rows: [],
             open: false,
             editopen: false,
-            selectedIndustries: [],
-            strongSkills: {},
-            weakSkills: {},
-            studentid: '',
-            avatarUrl: '',
-            matches: [],
-            questionarray: []
+            selectedid: '',
+            companyName: ''
+            // selectedIndustries: [],
+            // strongSkills: {},
+            // weakSkills: {},
+            // studentid: '',
+            // avatarUrl: '',
+            // matches: [],
+            // questionarray: []
 
         }
     }
     handleClose() {
         this.setState({
-            open: !this.state.open
+            open: !this.state.open,
+        })
+    }
+    updateselectedid(id , name) {
+        this.setState({
+            selectedid: id,
+            companyName: name
         })
     }
     handleSubmit() {
@@ -76,6 +85,17 @@ class Companies extends React.Component {
         this.state.rows.splice(index, 1)
         this.setState({
             rows: this.state.rows
+        })
+    }
+    deleteCompany() {
+        var payload = {
+            collectionid: this.state.collectionid
+        }
+        api.deletefirebaseuser(this.state.selectedid).then(response => {
+            console.log(response)
+        })
+        api.deletecompany(payload).then(response => {
+            console.log(response)
         })
     }
     componentDidMount() {
@@ -109,7 +129,11 @@ class Companies extends React.Component {
                                 <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose()}>
                                     <EditIcon/>
                                 </IconButton>
-                                <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() => this.handleClose()}>
+                                <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() =>
+                                    {
+                                    this.handleClose()
+                                    this.updateselectedid(row.id, row.companyName)
+                                    }}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
@@ -123,17 +147,21 @@ class Companies extends React.Component {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"                
                 >
-                    <DialogTitle id="alert-dialog-title">{"Delete?"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">Delete {this.state.companyName}?</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Are you sure you want to delete?
+                Are you sure you want to delete {this.state.companyName}?
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => this.handleClose()} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={() => this.handleClose()} color="secondary">
+                        <Button onClick={() => {
+                            this.deleteCompany()
+                            this.onClickDelete(this.state.selectedid)
+                            this.handleClose()
+                        }} color="secondary">
                             Delete
                         </Button>
                     </DialogActions>

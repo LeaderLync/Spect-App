@@ -38,8 +38,8 @@ exports.delete = async function (req,res) {
   })
 };
 
-exports.userbyID = async function(req,res) {
-  User.findOne({authuid: id}).exec(function(err, user) {
+exports.userbyID = async function(req,res, next, id) {
+  User.findOne({collectionid: id}).exec(function(err, user) {
     if (err) {
       console.log("error on user id")
       res.status(500).send(err)
