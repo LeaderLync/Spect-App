@@ -70,13 +70,18 @@ class Students extends React.Component {
 
     }
     editClose(row) {
-        if (!this.state.editopen) {
+        /*if (!this.state.editopen) {
           api.getallstudents().then(response => { //updates student rows when you close an editor
               this.setState({
                   rows: response
               })
           })
-        }
+        }*/
+        api.getallstudents().then(response => { //updates student rows when you close an editor
+            this.setState({
+                rows: response
+            }, () => console.log("THISSS"))
+        })
         this.setState({
             editopen: !this.state.editopen, currentRow: row
         });
