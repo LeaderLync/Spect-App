@@ -6,8 +6,7 @@ var authcontroller = require('../controllers/auth-controller')
 
 router.route('/')
     .post(authcontroller.create)
-
-
+    .get(authcontroller.read)
 
 
 

@@ -72,6 +72,11 @@ class Students extends React.Component {
             editopen: !this.state.editopen, currentRow: row
         });
     }
+    _editClose() {
+        this.setState({
+            editopen: !this.state.editopen
+        })
+    }
     onClickDelete(item) {
         console.log("hey")
         let index = this.state.rows.map(element => element.id).indexOf(item)
@@ -142,7 +147,7 @@ class Students extends React.Component {
                     </DialogActions>
                 </Dialog>
                 <Dialog open={this.state.editopen} onClose={() => this.editClose()} aria-labelledby="form-dialog-title">
-                    <StudentUpdate userinfo={this.state.currentRow}/>
+                    <StudentUpdate userinfo={this.state.currentRow} editClose={this._editClose.bind(this)} userInfoUpdate={this.props.userInfoUpdate}/>
                     {/*<DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
                     <DialogContent>
                     <DialogContentText>

@@ -90,6 +90,15 @@ export default {
         return null
       })
     },*/
+    getuser(userid) {
+        return client.get(`/company`, userid)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
@@ -136,6 +145,8 @@ export default {
             })
     },
     deletecompany(payload) {
+        console.log("what")
+        console.log(payload)
         return client.delete(`/company`, payload)
             .then(response => {
                 return response.data

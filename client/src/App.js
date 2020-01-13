@@ -15,7 +15,7 @@ import api from './api'
 import AdminDashboard from './views/Admin/AdminDashboard'
 import Matches from './views/Matches/Matches';
 import PrivateCompanyRoute from './components/PrivateCompanyRoute'
-
+import PrivateAdminRoute from './components/PrivateAdminRoute'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -26,7 +26,7 @@ class App extends Component {
       isStudent: false,
       userinfo: {},
       collectionid: '0',
-      avatarURL: ''
+      avatarURL: null
     }
   }
   componentDidMount() {
@@ -37,6 +37,10 @@ class App extends Component {
           authenticated: true,
           currentUser: user,
           loading: false,
+          userinfo: sessionStorage.getItem("userinfo"),
+          isStudent: sessionStorage.getItem("isStudent"),
+          collectionid: sessionStorage.getItem("collectionid"),
+          avatarURL: sessionStorage.getItem("avatarURL")
         });
       } else {
         console.log("USER NOT AUTHENTICATED")
@@ -85,12 +89,14 @@ class App extends Component {
             {/****************************************************************************
             Use render instead of component in order to pass props into the react-router
             *****************************************************************************/}
-            <Route exact path="/admin"
-              component={AdminDashboard}
-              
+            <PrivateAdminRoute exact path="/admin"
+              render={(props) => <AdminDashboard userInfoUpdate={this.userInfoUpdate.bind(this)}/>}
+              authenticated={this.state.authenticated}
+              user={this.state.currentUser}
+              isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateRoute exact path="/"
-              render={(props) => <Matches userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} userInfoUpdate={this.userInfoUpdate.bind(this)} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
+              render={(props) => <Matches userinfo={JSON.parse(sessionStorage.getItem("userinfo")) || this.props.userinfo} userInfoUpdate={this.userInfoUpdate.bind(this)} isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
@@ -102,7 +108,7 @@ class App extends Component {
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />*/}
             <PrivateRoute exact path="/StudentSurvey"
-              render={(props) => <StudentSurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
+              render={(props) => <StudentSurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={this.state.avatarURL || JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               collectionId={this.state.collectionid}
@@ -116,14 +122,14 @@ class App extends Component {
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanySurvey"
-              render={(props) => <CompanySurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
+              render={(props) => <CompanySurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={this.state.avatarURL || JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               collectionId={this.state.collectionid}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
             <PrivateCompanyRoute exact path="/CompanyUpdate"
-              render={(props) => <CompanyUpdate {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
+              render={(props) => <CompanyUpdate {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={this.state.avatarURL || JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}
               collectionId={this.state.collectionid}

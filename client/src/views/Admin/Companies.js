@@ -89,12 +89,9 @@ class Companies extends React.Component {
     }
     deleteCompany() {
         var payload = {
-            collectionid: this.state.collectionid
+            collectionid: this.state.selectedid
         }
         api.deletefirebaseuser(this.state.selectedid).then(response => {
-            console.log(response)
-        })
-        api.deletecompany(payload).then(response => {
             console.log(response)
         })
     }

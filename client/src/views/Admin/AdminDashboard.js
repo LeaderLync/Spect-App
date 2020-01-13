@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Companies from './Companies'
 import Students from './Students'
+import CompanyAdd from './CompanyAdd'
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -45,8 +46,13 @@ class AdminDashboard extends Component {
             <div className={classes.root}>
                 <Navbar isStudent={false}/>
                 <main className={classes.content}>
-                    {/* <div className={classes.appBarSpacer}/> */}
+                    
                     <Container maxWidth="lg" className={classes.container}>
+                        <Grid item xs={12}>
+                            <Paper>
+                                <CompanyAdd/>
+                            </Paper>
+                        </Grid>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
                                 <Companies/>
@@ -55,7 +61,7 @@ class AdminDashboard extends Component {
                         <div className={classes.appBarSpacer}/>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
-                                <Students/>
+                                <Students userInfoUpdate={this.props.userInfoUpdate}/>
                             </Paper>
                         </Grid>
 

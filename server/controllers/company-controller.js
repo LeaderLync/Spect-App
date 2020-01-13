@@ -59,6 +59,8 @@ exports.updatePost = function(req, res) {
    };
 
 exports.delete = function(req, res) {
+  console.log("ayeee")
+  console.log(req.body)
   Company.findOneAndRemove({id: req.body.collectionid}, (err, entry) => {
     if (err) res.status(500).send(err);
     else res.status(200).send(entry);

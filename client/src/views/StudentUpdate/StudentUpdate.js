@@ -45,8 +45,14 @@ class StudentUpdate extends React.Component {
       this.props.userInfoUpdate(response);
       console.log(response);
     }); // passes JSON object to be request*/
-
-    this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+    console.log(this.props.history)
+    if (this.props.history) {
+      this.props.history.push("/")
+    }
+    else {
+      this.props.editClose()
+    }
+     // reroutes to student profile page upon successful survey form submission
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child

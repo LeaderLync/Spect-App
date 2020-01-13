@@ -22,6 +22,7 @@ class LoginContainer extends Component {
                 })
                 : await api.getcompanyuser(user.user.uid).then((res) => res)
             this.props.userInfoUpdate(response)
+            console.log(response)
             this.props.collectionIdUpdate(response.id)
             this.props.avatarURLUpdate(response.avatarUrl)
             console.log("logging from handle sign in")
@@ -29,7 +30,10 @@ class LoginContainer extends Component {
             console.log(this.props.isStudent)
             console.log(this.props)
             if (this.props.isStudent == true) {
+                console.log(this.props.history)
                 this.props.history.push("/")
+            } else if (!this.props.isStudent && response.companyName === 'Software4c') {
+                this.props.history.push("/admin")
             } else {
                 this.props.history.push("/CompanyProfile")
             }
