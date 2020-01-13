@@ -82,15 +82,15 @@ export default {
         return null
       })
     },
-    /*updateCompanyProfile(companyData){
-      return client.put(`/company/${companyData.id}`, companyData)
+    updateCompanyProfile(companyData){
+      return client.patch(`/company/${companyData.id}`, companyData)
       .then(response => {
         return response.data
       }).catch((err) => {
         console.log(err)
         return null
       })
-    },*/
+    },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {

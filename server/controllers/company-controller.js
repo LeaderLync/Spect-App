@@ -141,7 +141,7 @@ exports.companyByID = async function(req, res, next, id) {
 };
 
 exports.updateCompany = async function(req, res) {
-  Student.findOneAndUpdate({id: req.body.id}, {
+  Company.findOneAndUpdate({id: req.body.id}, {
     strongSkills: req.body.strongSkills,
     selectedIndustries: req.body.selectedIndustries,
     companyBio: req.body.companyBio

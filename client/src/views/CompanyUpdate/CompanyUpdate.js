@@ -10,7 +10,7 @@ import logo from '../../assets/Black-logo-no-background.png'
   This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission
 */
 
-class CompanySurvey extends React.Component {
+class CompanyUpdate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +33,8 @@ class CompanySurvey extends React.Component {
     companyData["id"] = this.props.collectionId;
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
+
+    console.log(companyData);
 
     // send payload
     api.updateCompanyProfile(companyData).then(response => {
@@ -98,4 +100,4 @@ class CompanySurvey extends React.Component {
     )
   }
 }
- export default CompanySurvey;
+ export default CompanyUpdate;
