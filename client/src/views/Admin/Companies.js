@@ -19,6 +19,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import api from '../../api'
 import TextField from '@material-ui/core/TextField'
+import CompanyUpdate from '../CompanyUpdate/CompanyUpdate'
 const styles = theme => ({
     root1: {
         display: 'block'
@@ -45,6 +46,7 @@ class Companies extends React.Component {
         super(props)
         this.state = {
             rows: [],
+            currentRow: [],
             open: false,
             editopen: false,
             selectedIndustries: [],
@@ -56,6 +58,8 @@ class Companies extends React.Component {
             questionarray: []
 
         }
+
+        this.editClose = this.editClose.bind(this);
     }
     handleClose() {
         this.setState({
@@ -65,10 +69,15 @@ class Companies extends React.Component {
     handleSubmit() {
 
     }
-    editClose() {
-        this.setState({
-            editopen: !this.state.editopen
-        })
+    editClose(row) {
+      api.getallcompanies().then(response => { //updates company rows when you close an editor
+          this.setState({
+              rows: response
+          })
+      })
+      this.setState({
+          editopen: !this.state.editopen, currentRow: row
+      });
     }
     onClickDelete(item) {
         console.log("hey")
@@ -94,7 +103,7 @@ class Companies extends React.Component {
                     Companies
                 </Typography>
                 <List>
-                    
+
                     {this.state.rows.map(row => (
                         <ListItem key={row.id}>
                             <ListItemAvatar>
@@ -106,7 +115,7 @@ class Companies extends React.Component {
                                 primary={row.companyName}
                             />
                             <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose()}>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose(row)}>
                                     <EditIcon/>
                                 </IconButton>
                                 <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() => this.handleClose()}>
@@ -121,7 +130,7 @@ class Companies extends React.Component {
                     open={this.state.open}
                     onClose={() => this.handleClose()}
                     aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"                
+                    aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">{"Delete?"}</DialogTitle>
                     <DialogContent>
@@ -139,7 +148,8 @@ class Companies extends React.Component {
                     </DialogActions>
                 </Dialog>
                 <Dialog open={this.state.editopen} onClose={() => this.editClose()} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
+                    <CompanyUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
+                    {/*<DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
                     <DialogContent>
                     <DialogContentText>
                         To subscribe to this website, please enter your email address here. We will send updates
@@ -164,7 +174,7 @@ class Companies extends React.Component {
                     <Button onClick={() => this.editClose()} color="primary">
                         Submit
                     </Button>
-                    </DialogActions>
+                    </DialogActions>*/}
                 </Dialog>
             </React.Fragment>
         )
@@ -172,4 +182,3 @@ class Companies extends React.Component {
 }
 
 export default withStyles(styles)(Companies);
-

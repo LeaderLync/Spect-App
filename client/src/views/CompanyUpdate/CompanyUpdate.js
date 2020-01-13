@@ -38,10 +38,14 @@ class CompanyUpdate extends React.Component {
 
     // send payload
     api.updateCompanyProfile(companyData).then(response => {
-      this.props.userInfoUpdate(response);
-    }); // passes JSON object to be request
-
-    this.props.history.push("/CompanyProfile"); // reroutes to student profile page upon successful survey form submission
+      if (!this.props.editClose){
+        this.props.userInfoUpdate(response);
+        this.props.history.push("/CompanyProfile");
+      } else {
+        this.props.editClose();
+      }
+      console.log(response);
+    }); // passes JSON object to be request*/
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child

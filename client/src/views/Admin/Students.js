@@ -80,7 +80,7 @@ class Students extends React.Component {
         api.getallstudents().then(response => { //updates student rows when you close an editor
             this.setState({
                 rows: response
-            }, () => console.log("THISSS"))
+            })
         })
         this.setState({
             editopen: !this.state.editopen, currentRow: row
