@@ -29,7 +29,8 @@ class PostJobModal extends React.Component {
       "jobTitle":this.refs.jobTitle.value,
       "jobDescription":this.refs.jobDescription.value,
       "jobRequirements":this.refs.jobRequirements.value,
-      "jobLink" : this.refs.jobLink.value
+      "jobLink" : this.refs.jobLink.value,
+      "jobSkills": this.state.skills
     }
 
     //newData will be the new array of jobs with the new job added at the end of the current list

@@ -147,7 +147,7 @@ class Matches extends React.Component {
                                             Position: {company.jobTitle}
                                         </Typography>
                                         <Typography noWrap style={{ display: 'block' }}>
-                                            60% Match
+                                            {company.percentMatch}% Match
                                         </Typography>
                                     </CardContent>
                                     <img style={{width: '100px',height:'50px', marginBottom: '0px'}}src={company.avatarUrl}>

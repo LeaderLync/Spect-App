@@ -47,7 +47,7 @@ class SkillSelector extends React.Component {
             {skillData.filter(skill => {
               return skill.name !== this.state.second && skill.name !== this.state.third // removes already selected skills as options
             }).map(skill => {
-              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+              return <option key={skill.key} value={skill.id}>{skill.name}</option>
             })}
           </select>
         </div>
@@ -60,7 +60,7 @@ class SkillSelector extends React.Component {
             {skillData.filter(skill => {
               return skill.name !== this.state.first && skill.name !== this.state.third // removes already selected skills as options
             }).map(skill => {
-              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+              return <option key={skill.key} value={skill.id}>{skill.name}</option>
             })}
           </select>
         </div>
@@ -73,7 +73,7 @@ class SkillSelector extends React.Component {
             {skillData.filter(skill => {
               return skill.name !== this.state.first && skill.name !== this.state.second // removes already selected skills as options
             }).map(skill => {
-              return <option key={skill.id} value={skill.name}>{skill.name}</option>
+              return <option key={skill.key} value={skill.id}>{skill.name}</option>
             })}
           </select>
         </div>
