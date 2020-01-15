@@ -17,11 +17,11 @@ class CompanyProfile extends React.Component
         this.updateSelectedJobPost = this.updateSelectedJobPost.bind(this);
         this.state =
         {
-            jobs: [],
+            jobs: this.props.userinfo.jobPosts,
             postModalShow: false,
             setRemoveShow: false,
             setViewShow: false,
-            collectionid: this.props.collectionId,
+            collectionid: this.props.userinfo.id,
             // idea, have a selected job to pass to the view/edit modal:
             selectedJobPost: data[0].jobPost[0],
         }
@@ -37,7 +37,7 @@ class CompanyProfile extends React.Component
       }
 
     render() {
-       //Displays a loading screen while the page loads 
+       //Displays a loading screen while the page loads
        if (this.props.userinfo === null) {
          return <h2>Loading</h2>
        }
@@ -50,9 +50,9 @@ class CompanyProfile extends React.Component
         const cardList = this.state.jobs.map(function(jobPost)
             {
                 return(
-                    <Container 
+                    <Container
                     //Using the jobPost ID as the key
-                    key={jobPost.jobID}> 
+                    key={jobPost.jobID}>
                         <div>
                             <div>
                                 <CardGroup>
@@ -98,8 +98,8 @@ class CompanyProfile extends React.Component
                             onClick={() => this.setState({postModalShow: true})}>Post Job</Button>
                             <PostJobModal
                             //Allows the modal to pop up on screen
-                            show={this.state.postModalShow} 
-                            //Allows the modal to close 
+                            show={this.state.postModalShow}
+                            //Allows the modal to close
                             onHide={postModalClose}
                             //Function to update newJob on the front-end/back-end
                             updateNewJob={this.updateNewJob.bind(this)}

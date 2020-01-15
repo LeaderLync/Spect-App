@@ -46,6 +46,8 @@ export default {
     },
     updateJob(data){ // update when a new job post is created
         let params = data
+        console.log(params);
+        console.log(params.collectionid);
 
         client.put(`/company/${params.collectionid}`, params.jobs)
         .then(response => {

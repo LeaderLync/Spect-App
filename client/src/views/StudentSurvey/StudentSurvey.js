@@ -63,11 +63,11 @@ class StudentSurvey extends React.Component {
   //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
-    if (this.props.collectionId === null || this.props.collectionId == '0') {
+    /*if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
         <p>this is not loading</p>
       )
-    }
+    }*/
     return (
       <div className='container'>
         <div className='row'>

@@ -118,6 +118,7 @@ class Matches extends React.Component {
             })
         }
         )
+        console.log("getting matches");
         // console.log(this.props.userinfo)
         // console.log(typeof this.props.userinfo)
     }
@@ -140,7 +141,13 @@ class Matches extends React.Component {
                                 <Card className={classes.card} key={company.id}>
                                     <CardContent style={{ textalign: 'center' }}>
                                         <Typography noWrap style={{ display: 'block' }}>
-                                            {company.companyName}
+                                            Company: {company.companyName}
+                                        </Typography>
+                                        <Typography noWrap style={{ display: 'block' }}>
+                                            Position: {company.jobTitle}
+                                        </Typography>
+                                        <Typography noWrap style={{ display: 'block' }}>
+                                            60% Match
                                         </Typography>
                                     </CardContent>
                                     <img style={{width: '100px',height:'50px', marginBottom: '0px'}}src={company.avatarUrl}>
@@ -161,7 +168,7 @@ class Matches extends React.Component {
                                             Match
                                         </Button>
                                         <Button variant="contained" size="small" style={{ background: 'rgb(46, 167, 235)', color: 'white' }} onClick={() => { this.setState({ morePopup: true }); this.updateSelectedCompany(company); }}>
-                                            Profile
+                                            Details
                                         </Button>
                                         <CompanyPopup // view more company info modal
                                             show={this.state.morePopup}

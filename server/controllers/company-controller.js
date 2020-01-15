@@ -45,7 +45,8 @@ exports.updatePost = function(req, res) {
 
    const update = {jobPosts: jobData}
 
-
+   console.log(jobData);
+   console.log(req.params.companyid)
     Company.findOneAndUpdate({id:req.params.companyid}, update).exec(function(err,company) {
      if(err)
        {
@@ -53,6 +54,7 @@ exports.updatePost = function(req, res) {
          res.status(400).send(err);
        }
        else {
+         console.log(company);
          res.json(company)
        }
     });

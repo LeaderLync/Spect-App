@@ -72,10 +72,10 @@ export default function CompanyPopup(props) {
             <div className={classes.heroContent}>
                 <Grid container spacing={4} justify="center" alignItems="center">
                     <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
-                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>Most Valued Skills</Typography>     
+                            <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>{company.jobTitle}</Typography>
                             <Grid container spacing = {2}>
-                               
-                                    <Grid item xs = {12} sm={12} md={4}>
+
+                                    {/*<Grid item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
                                             <CardContent textAlign = "center">
                                                     <Typography noWrap style={{display: 'block'}}>{company.strongSkills.first}</Typography>
@@ -97,20 +97,26 @@ export default function CompanyPopup(props) {
                                                     <Typography noWrap style={{display: 'block'}}>{company.strongSkills.third}</Typography>
                                             </CardContent>
                                         </Card>
-                                    </Grid>
-                                
+                                    </Grid>*/}
+
                                 </Grid>
                         </Grid>
-                    
+
 
                 </Grid>
             </div>
 
             <div>
-            <h4><Typography>About Us:</Typography></h4>
+            <h4><Typography>About the Position:</Typography></h4>
             </div>
             <div>
-                {company.companyBio}
+                Description: {company.jobDescription}
+            </div>
+            <div>
+                Requirements: {company.jobRequirements}
+            </div>
+            <div>
+                Apply: {company.jobLink}
             </div>
         </DialogContent>
         <DialogActions>

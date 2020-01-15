@@ -22,6 +22,11 @@ var CompanySchema = new Schema({
       jobDescription: String,
       jobRequirements: String,
       jobLink: String,
+      jobSkills: {
+        first: String,
+        second: String,
+        third: String
+      }
   }],
 
   /*question1: Number,

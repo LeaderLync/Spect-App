@@ -20,11 +20,28 @@ exports.create = function(req, res) {
 
 exports.getmatches = async function(req, res) {
   const r_user = req.body
-  console.log(r_user)
+  //console.log(r_user)
 
   await Company.find({}, function (err, users) {
     if (err) res.status(500).send(err)
-    var sorted = users.sort((x, y) => {
+    var jobs = [];
+    users.forEach(company => {
+      //console.log(company.jobPosts);
+      company.jobPosts.forEach(job => {
+        var jobPackage = {
+          jobTitle: job.jobTitle,
+          jobDescription: job.jobDescription,
+          jobRequirements: job.jobRequirements,
+          jobLink: job.jobLink,
+          companyName: company.companyName,
+          companyId: company.id,
+          avatarUrl: company.avatarUrl,
+        };
+        jobs.push(jobPackage);
+      })
+    });
+    console.log(jobs);
+    var sorted = jobs.sort((x, y) => {
       return 1
       // var score =
       // var absx  = 0
