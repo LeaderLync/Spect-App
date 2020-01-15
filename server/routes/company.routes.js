@@ -18,5 +18,4 @@ router.route('/:companyid')
     .patch(companycontroller.updateCompany)
 
 router.param('companyid', companycontroller.companyByID)
-
 module.exports = router

@@ -114,7 +114,7 @@ class Matches extends React.Component {
     componentDidMount() {
         this._isMounted = true
         api.getrecommendations(this.props.userinfo).then((res) => {
-            console.log(res.data)
+            //console.log(res.data)
             if (this._isMounted) {
                 this.setState({
                     jobs: res.data
@@ -122,7 +122,7 @@ class Matches extends React.Component {
             }
         }
         )
-        console.log("getting matches");
+        // console.log("getting matches");
         // console.log(this.props.userinfo)
         // console.log(typeof this.props.userinfo)
     }

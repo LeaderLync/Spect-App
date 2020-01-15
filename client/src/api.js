@@ -66,6 +66,7 @@ export default {
       })
     },
     updateStudentProfile(studentData){
+      console.log(studentData)
       return client.put(`/student/${studentData.id}`, studentData)
       .then(response => {
         return response.data
@@ -93,13 +94,20 @@ export default {
       })
     },
     getuser(userid) {
-        return client.get(`/company`, userid)
+      return client.get(`/auth/temp/${userid}`)
             .then(response => {
-                return response.data
+              return response.data
             }).catch((err) => {
-                console.log(err)
-                return null
+              console.log(err)
+              return null
             })
+        // return client.get(`/company`, userid)
+        //     .then(response => {
+        //         return response.data
+        //     }).catch((err) => {
+        //         console.log(err)
+        //         return null
+        //     })
     },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
@@ -122,6 +130,7 @@ export default {
     getrecommendations(userinfo) {
         return client.patch('/student', userinfo)
             .then(response => {
+              console.log(response);
                 return response
             }).catch((err) => {
                 console.log(err)

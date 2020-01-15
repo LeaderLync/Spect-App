@@ -35,7 +35,7 @@ class StudentUpdate extends React.Component {
     studentData[key] = value;
     });*/
 
-    studentData["id"] = this.props.collectionId;
+    studentData["id"] = this.props.collectionId || this.props.userinfo.id;
     studentData["selectedIndustries"] = this.state.selectedIndustries;
     studentData["skills"] = this.state.skillTree;
 

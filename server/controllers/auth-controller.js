@@ -1,4 +1,4 @@
-var User = require('../models/UserSchema.js')    
+var User = require('../models/UserSchema.js')
 var Company = require('../models/company.model')
 var Student = require('../models/student.model')
 const uuid = require('uuid/v4')
@@ -26,7 +26,7 @@ exports.create = function(req, res) {
 };
 
 exports.delete = async function (req,res) {
-    
+
   await auth.auth.deleteUser(req.user.authuid)
         .then(function() {
           console.log("successful deletion")
@@ -50,6 +50,19 @@ exports.delete = async function (req,res) {
     else res.status(200).send(entry)
   })
 };
+exports.getuser = async function(req,res) {
+  if (req.user.accountType == '0') {
+    await Student.findOne({authuid: req.user.authuid}, (err, entry) => {
+      if (err) res.status(500).send(err)
+      else res.status(200).send(entry)
+    })
+  }else {
+    await Company.findOne({authuid: req.user.authuid}, (err, entry) => {
+      if (err) res.status(500).send(err)
+      else res.status(200).send(entry)
+    })
+  }
+}
 
 exports.read = async function(req, res) {
   User.findOne({authuid: req.body.uid}).exec(function(err, user) {
@@ -66,6 +79,18 @@ exports.read = async function(req, res) {
 
 exports.userbyID = async function(req,res, next, id) {
   User.findOne({collectionid: id}).exec(function(err, user) {
+    if (err) {
+      console.log("error on user id")
+      res.status(500).send(err)
+    }
+    else {
+      req.user = user
+      next()
+    }
+  })
+}
+exports.userbyauthID = async function(req, res, next, id) {
+  User.findOne({authuid: id}).exec(function(err, user) {
     if (err) {
       console.log("error on user id")
       res.status(500).send(err)

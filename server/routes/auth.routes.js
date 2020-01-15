@@ -6,14 +6,16 @@ var authcontroller = require('../controllers/auth-controller')
 
 router.route('/')
     .post(authcontroller.create)
-    .get(authcontroller.read)
+    .get(authcontroller.getuser)
 
 
-
+router.route('/temp/:firebaseid')
+    .get(authcontroller.getuser)
 
 router.route('/:authid')
     .delete(authcontroller.delete)
 
-router.param('authid', authcontroller.userbyID)
 
+router.param('authid', authcontroller.userbyID)
+router.param('firebaseid', authcontroller.userbyauthID)
 module.exports = router

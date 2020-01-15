@@ -45,7 +45,7 @@ class SkillSelector extends React.Component {
           <select className="form-control custom-select" id="first" defaultValue={this.props.stats ? this.props.stats.strongSkills.first : "Choose..."} onChange={this.selectSkill} required>
             <option value="">Choose...</option>
             {skillData.filter(skill => {
-              return skill.name !== this.state.second && skill.name !== this.state.third // removes already selected skills as options
+              return skill.id !== this.state.second && skill.id !== this.state.third // removes already selected skills as options
             }).map(skill => {
               return <option key={skill.key} value={skill.id}>{skill.name}</option>
             })}
@@ -58,7 +58,7 @@ class SkillSelector extends React.Component {
           <select className="form-control custom-select" id="second" defaultValue={this.props.stats ? this.props.stats.strongSkills.second : "Choose..."} onChange={this.selectSkill} required>
             <option value="">Choose...</option>
             {skillData.filter(skill => {
-              return skill.name !== this.state.first && skill.name !== this.state.third // removes already selected skills as options
+              return skill.id !== this.state.first && skill.id !== this.state.third // removes already selected skills as options
             }).map(skill => {
               return <option key={skill.key} value={skill.id}>{skill.name}</option>
             })}
@@ -71,7 +71,7 @@ class SkillSelector extends React.Component {
           <select className="form-control custom-select" id="third" defaultValue={this.props.stats ? this.props.stats.strongSkills.third : "Choose..."} onChange={this.selectSkill} required>
             <option value="">Choose...</option>
             {skillData.filter(skill => {
-              return skill.name !== this.state.first && skill.name !== this.state.second // removes already selected skills as options
+              return skill.id !== this.state.first && skill.id !== this.state.second // removes already selected skills as options
             }).map(skill => {
               return <option key={skill.key} value={skill.id}>{skill.name}</option>
             })}

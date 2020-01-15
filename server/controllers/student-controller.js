@@ -19,8 +19,8 @@ exports.create = function(req, res) {
 };
 
 exports.getmatches = async function(req, res) {
-  const r_user = req.body
-  //console.log(r_user)
+  const r_user = req.body;
+  console.log(r_user);
 
   await Company.find({}, function (err, users) {
     if (err) res.status(500).send(err)
@@ -30,7 +30,6 @@ exports.getmatches = async function(req, res) {
       company.jobPosts.forEach(job => {
         var score = ((1.5*r_user.skills[job.jobSkills.first]) + (1.25*r_user.skills[job.jobSkills.second]) + (1*r_user.skills[job.jobSkills.third]))/18.75;
         score = Math.round(score*1000)/10; // one decimal
-        console.log(score);
         var jobPackage = {
           jobTitle: job.jobTitle,
           jobDescription: job.jobDescription,
@@ -44,7 +43,7 @@ exports.getmatches = async function(req, res) {
         jobs.push(jobPackage);
       })
     });
-    console.log(jobs);
+  
     var sorted = jobs.sort((x, y) => {
       return (y.percentMatch - x.percentMatch);
     })

@@ -36,14 +36,22 @@ class App extends Component {
     app.auth.onAuthStateChanged((user) => {
       if (user) {
         console.log("USER IS AUTHENTICATED")
+        api.getuser(user.uid).then(response => {
+          this.setState({
+            userinfo: response.userinfo,
+            isStudent: response.isStudent,
+            collectionid: response.id,
+            avatarURL: response.avatarUrl
+          })
+        })
         this.setState({
           authenticated: true,
           currentUser: user,
           loading: false,
-          userinfo: sessionStorage.getItem("userinfo"),
-          isStudent: sessionStorage.getItem("isStudent"),
-          collectionid: sessionStorage.getItem("collectionid"),
-          avatarURL: sessionStorage.getItem("avatarURL")
+          // userinfo: sessionStorage.getItem("userinfo"),
+          // isStudent: sessionStorage.getItem("isStudent"),
+          // collectionid: sessionStorage.getItem("collectionid"),
+          // avatarURL: sessionStorage.getItem("avatarURL")
         });
       } else {
         console.log("USER NOT AUTHENTICATED")
