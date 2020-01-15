@@ -21,7 +21,6 @@ export default {
     },
     getallstudents(){
         return client.get('/student').then(response => {
-            console.log(response.data)
             return response.data
         }).catch((err) => {
             console.log(err)
@@ -93,6 +92,15 @@ export default {
         return null
       })
     },
+    getuser(userid) {
+        return client.get(`/company`, userid)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
@@ -129,4 +137,33 @@ export default {
                 return null
             })
     },
+    deleteuser(collectionid) {
+        return client.delete(`/auth/${collectionid}`)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
+    deletecompany(payload) {
+        console.log("what")
+        console.log(payload)
+        return client.delete(`/company`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
+    deletestudent(payload) {
+        return client.delete(`/student`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    }
 }

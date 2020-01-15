@@ -20,6 +20,8 @@ exports.getall = function(req,res) {
   Company.find({}, function(err, users) {
     if (err) res.status(500).send(err)
     console.log(users)
+    let index = users.map(element => element.companyName).indexOf("Software4c")
+    users.splice(index,1)
     users.sort((x,y) => {
       return x.companyName.localeCompare(y.companyName)
     })
@@ -61,7 +63,9 @@ exports.updatePost = function(req, res) {
    };
 
 exports.delete = function(req, res) {
-  Company.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
+  console.log("ayeee")
+  console.log(req.body)
+  Company.findOneAndRemove({id: req.body.collectionid}, (err, entry) => {
     if (err) res.status(500).send(err);
     else res.status(200).send(entry);
   })

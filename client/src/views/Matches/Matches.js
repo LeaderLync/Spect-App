@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import api from '../../api'
 import { CardContent, Typography } from '@material-ui/core';
-
+import ReactLoading from 'react-loading'
 import Grid from '@material-ui/core/Grid'
 import CompanyPopup from '../../components/CompanyPopup.js'
 
@@ -56,6 +56,7 @@ const styles = theme => ({
 })
 
 class Matches extends React.Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.updateSelectedCompany = this.updateSelectedCompany.bind(this);
@@ -111,16 +112,22 @@ class Matches extends React.Component {
     }
 
     componentDidMount() {
+        this._isMounted = true
         api.getrecommendations(this.props.userinfo).then((res) => {
             console.log(res.data)
-            this.setState({
-                jobs: res.data
-            })
+            if (this._isMounted) {
+                this.setState({
+                    jobs: res.data
+                })
+            }
         }
         )
         console.log("getting matches");
         // console.log(this.props.userinfo)
         // console.log(typeof this.props.userinfo)
+    }
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     updateSelectedCompany(company) { this.setState({ selectedCompany: company }) };
@@ -129,7 +136,7 @@ class Matches extends React.Component {
         const btnPrefix = "matchButton";
         const { classes } = this.props;
         if (this.props.userinfo === null) {
-            return <h1>Loading</h1>
+            return ( <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>)
         }
         return (
             <div className="App">

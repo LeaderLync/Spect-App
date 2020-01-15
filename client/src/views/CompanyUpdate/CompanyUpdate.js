@@ -5,7 +5,7 @@ import IndustrySelector from '../../components/IndustrySelector/IndustrySelector
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
-
+import ReactLoading from 'react-loading'
 /*
   This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission
 */
@@ -55,7 +55,7 @@ class CompanyUpdate extends React.Component {
   render() {
     if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
-        <p>this is not loading</p>
+        <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>
       )
     }
     return (

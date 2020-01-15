@@ -6,14 +6,14 @@ var authcontroller = require('../controllers/auth-controller')
 
 router.route('/')
     .post(authcontroller.create)
-
-
+    .get(authcontroller.read)
 
 
 
 
 router.route('/:authid')
+    .delete(authcontroller.delete)
 
-
+router.param('authid', authcontroller.userbyID)
 
 module.exports = router

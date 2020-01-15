@@ -7,7 +7,7 @@ import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import SkillDistributor from '../../components/SkillDistributor/SkillDistributor.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
-
+import ReactLoading from 'react-loading'
 /*
   This component is what a student user will be presented with upon registartion for a new account.  It pulls from several other files to compose a large form that is sent to the database upon successful submission
 */
@@ -50,12 +50,6 @@ class StudentUpdate extends React.Component {
       }
       console.log(response);
     }); // passes JSON object to be request*/
-
-    /*if (this.props.editClose) {
-      this.props.editClose();
-    } else {
-    this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
-  }*/
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
@@ -69,7 +63,7 @@ class StudentUpdate extends React.Component {
   render() {
     if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
-        <p>this is not loading</p>
+        <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>
       )
     }
     return (

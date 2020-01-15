@@ -47,11 +47,6 @@ class CompanySurvey extends React.Component {
   getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
-    /*if (this.props.collectionId === null || this.props.collectionId == '0') {
-      return (
-        <p>this is not loading</p>
-      )
-    }*/
     return (
       <div className='container'>
         <div className='row'>

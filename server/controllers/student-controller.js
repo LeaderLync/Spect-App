@@ -92,8 +92,7 @@ exports.read = async function(req, res) {
 
 // /* Delete a listing */
 exports.delete = function(req, res) {
-
-  Student.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
+  Student.findOneAndRemove({id: req.body.collectionid}, (err, entry) => {
     if (err) res.status(500).send(err);
     else res.status(200).send(entry);
   })

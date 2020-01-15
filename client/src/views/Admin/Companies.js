@@ -18,7 +18,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import api from '../../api'
-import TextField from '@material-ui/core/TextField'
 import CompanyUpdate from '../CompanyUpdate/CompanyUpdate'
 const styles = theme => ({
     root1: {
@@ -49,13 +48,15 @@ class Companies extends React.Component {
             currentRow: [],
             open: false,
             editopen: false,
-            selectedIndustries: [],
-            strongSkills: {},
-            weakSkills: {},
-            studentid: '',
-            avatarUrl: '',
-            matches: [],
-            questionarray: []
+            selectedid: '',
+            companyName: ''
+            // selectedIndustries: [],
+            // strongSkills: {},
+            // weakSkills: {},
+            // studentid: '',
+            // avatarUrl: '',
+            // matches: [],
+            // questionarray: []
 
         }
 
@@ -63,28 +64,53 @@ class Companies extends React.Component {
     }
     handleClose() {
         this.setState({
-            open: !this.state.open
+            open: !this.state.open,
+        })
+    }
+    updateselectedid(id , name) {
+        this.setState({
+            selectedid: id,
+            companyName: name
         })
     }
     handleSubmit() {
 
     }
-    editClose(row) {
+    editClose() {
       api.getallcompanies().then(response => { //updates company rows when you close an editor
           this.setState({
               rows: response
           })
       })
       this.setState({
-          editopen: !this.state.editopen, currentRow: row
+          editopen: !this.state.editopen,
       });
     }
+    _editClose(row) {
+        this.setState({
+            editopen: !this.state.editopen,
+            currentRow: row
+        })
+    }
     onClickDelete(item) {
-        console.log("hey")
         let index = this.state.rows.map(element => element.id).indexOf(item)
         this.state.rows.splice(index, 1)
         this.setState({
             rows: this.state.rows
+        })
+    }
+    dialogClose() {
+        this.setState({
+            editopen: !this.state.editopen,
+            currentRow: null
+        })
+    }
+    deleteCompany() {
+        var payload = {
+            collectionid: this.state.selectedid
+        }
+        api.deleteuser(this.state.selectedid).then(response => {
+            console.log(response)
         })
     }
     componentDidMount() {
@@ -102,8 +128,8 @@ class Companies extends React.Component {
                 <Typography variant="h3" className={classes.title}>
                     Companies
                 </Typography>
-                <List>
-
+                <List style={{maxHeight: '275px', overflowY: 'auto'}}>
+                    
                     {this.state.rows.map(row => (
                         <ListItem key={row.id}>
                             <ListItemAvatar>
@@ -115,10 +141,14 @@ class Companies extends React.Component {
                                 primary={row.companyName}
                             />
                             <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose(row)}>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this._editClose(row)}>
                                     <EditIcon/>
                                 </IconButton>
-                                <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() => this.handleClose()}>
+                                <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() =>
+                                    {
+                                    this.handleClose()
+                                    this.updateselectedid(row.id, row.companyName)
+                                    }}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
@@ -132,49 +162,27 @@ class Companies extends React.Component {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">{"Delete?"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">Delete {this.state.companyName}?</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Are you sure you want to delete?
+                Are you sure you want to delete {this.state.companyName}?
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => this.handleClose()} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={() => this.handleClose()} color="secondary">
+                        <Button onClick={() => {
+                            this.deleteCompany()
+                            this.onClickDelete(this.state.selectedid)
+                            this.handleClose()
+                        }} color="secondary">
                             Delete
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Dialog open={this.state.editopen} onClose={() => this.editClose()} aria-labelledby="form-dialog-title">
+                <Dialog open={this.state.editopen} onClose={() => this.dialogClose()} aria-labelledby="form-dialog-title">
                     <CompanyUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
-                    {/*<DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
-                    <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We will send updates
-                        occasionally.
-                    </DialogContentText>
-                    <form onSubmit={this.handleSubmit}>
-                        <Typography variant="h5">Selected Industries</Typography>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                        />
-                    </form>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={() => this.editClose()} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => this.editClose()} color="primary">
-                        Submit
-                    </Button>
-                    </DialogActions>*/}
                 </Dialog>
             </React.Fragment>
         )

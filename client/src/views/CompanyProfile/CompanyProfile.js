@@ -6,6 +6,7 @@ import ViewJobPost from './ViewJobPost'
 import RemoveModal from './RemoveModal'
 import sampleImage from '../../assets/Company Logo.png'
 import Navbar from '../../components/Navbar/Navbar'
+import ReactLoading from 'react-loading'
 import { CardGroup, Card, Container, Button, ButtonToolbar} from 'react-bootstrap'
 
 
@@ -39,7 +40,7 @@ class CompanyProfile extends React.Component
     render() {
        //Displays a loading screen while the page loads
        if (this.props.userinfo === null) {
-         return <h2>Loading</h2>
+         return (<div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>)
        }
         let postModalClose = () => this.setState({postModalShow: false});
         let removeJobModalClose = () => this.setState({setRemoveShow: false});
