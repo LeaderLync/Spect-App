@@ -56,6 +56,7 @@ const styles = theme => ({
 })
 
 class Matches extends React.Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.updateSelectedCompany = this.updateSelectedCompany.bind(this);
@@ -111,15 +112,21 @@ class Matches extends React.Component {
     }
 
     componentDidMount() {
+        this._isMounted = true
         api.getrecommendations(this.props.userinfo).then((res) => {
             console.log(res.data)
-            this.setState({
-                jobs: res.data
-            })
+            if (this._isMounted) {
+                this.setState({
+                    jobs: res.data
+                })
+            }
         }
         )
         // console.log(this.props.userinfo)
         // console.log(typeof this.props.userinfo)
+    }
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     updateSelectedCompany(company) { this.setState({ selectedCompany: company }) };

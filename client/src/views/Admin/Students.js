@@ -178,7 +178,7 @@ class Students extends React.Component {
                         </Button>
                         <Button onClick={() => {
                             this.deleteStudent()
-                            this.onClick(this.state.selectedid)
+                            this.onClickDelete(this.state.selectedid)
                             this.handleClose()
                             }} color="secondary">
                             Delete

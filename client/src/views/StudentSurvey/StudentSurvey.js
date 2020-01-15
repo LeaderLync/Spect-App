@@ -43,7 +43,7 @@ class StudentSurvey extends React.Component {
       /*studentData["strongSkills"] = this.state.strongSkills;
       studentData["weakSkills"] = this.state.weakSkills;*/
       studentData["matches"] = [];
-      studentData["avatarUrl"] = this.props.avatarUrl
+      studentData["avatarUrl"] = this.props.avatarURL
       console.log(studentData);
 
       api.collectStudentResponse(studentData).then(response => {

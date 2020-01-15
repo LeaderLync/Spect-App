@@ -57,7 +57,6 @@ class CompanyAdd extends React.Component {
         const data = new FormData(event.target);
         console.log(event.target.elements)
         const {thefile, companyName, companyEmail, companyBio, companyPassword} = event.target.elements
-        console.log(thefile)
         const imagefile = thefile.files[0]
         try {
             const newuser = await app.auth.createUserWithEmailAndPassword(companyEmail.value,companyPassword.value)
@@ -71,16 +70,21 @@ class CompanyAdd extends React.Component {
             })
             const storageref = app.storage.ref()
             const mainImage = storageref.child(response + thefile.files[0].name)
-            mainImage.put(imagefile).then((snapshot) => {
-                
-            })
-            console.log(companyName)
+            var the_url = ""
             var companyData = {}
-            data.forEach((value, key) => {
-                companyData[key] = value;
+            await mainImage.put(imagefile).then((snapshot) => {
+                mainImage.getDownloadURL().then((url) => {
+                    companyData["avatarUrl"] = url
+                })
             })
+            companyData["companyName"] = companyName.value
+            companyData["companyBio"] = companyBio.value
+            companyData["id"] = response
             companyData["selectedIndustries"] = this.state.selectedIndustries
             companyData['strongSkills'] = this.state.strongSkills
+            await api.collectCompanyResponse(companyData).then(response => {
+                console.log(response)
+            })
         } catch(error) {
             alert(error)
         }
