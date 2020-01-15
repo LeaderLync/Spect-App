@@ -18,8 +18,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import api from '../../api'
-import TextField from '@material-ui/core/TextField'
-import Snackbar from '@material-ui/core/Snackbar'
+import CompanyUpdate from '../CompanyUpdate/CompanyUpdate'
 const styles = theme => ({
     root1: {
         display: 'block'
@@ -46,6 +45,7 @@ class Companies extends React.Component {
         super(props)
         this.state = {
             rows: [],
+            currentRow: [],
             open: false,
             editopen: false,
             selectedid: '',
@@ -59,6 +59,8 @@ class Companies extends React.Component {
             // questionarray: []
 
         }
+
+        this.editClose = this.editClose.bind(this);
     }
     handleClose() {
         this.setState({
@@ -75,23 +77,39 @@ class Companies extends React.Component {
 
     }
     editClose() {
+      api.getallcompanies().then(response => { //updates company rows when you close an editor
+          this.setState({
+              rows: response
+          })
+      })
+      this.setState({
+          editopen: !this.state.editopen,
+      });
+    }
+    _editClose(row) {
         this.setState({
-            editopen: !this.state.editopen
+            editopen: !this.state.editopen,
+            currentRow: row
         })
     }
     onClickDelete(item) {
-        console.log("hey")
         let index = this.state.rows.map(element => element.id).indexOf(item)
         this.state.rows.splice(index, 1)
         this.setState({
             rows: this.state.rows
         })
     }
+    dialogClose() {
+        this.setState({
+            editopen: !this.state.editopen,
+            currentRow: null
+        })
+    }
     deleteCompany() {
         var payload = {
             collectionid: this.state.selectedid
         }
-        api.deletefirebaseuser(this.state.selectedid).then(response => {
+        api.deleteuser(this.state.selectedid).then(response => {
             console.log(response)
         })
     }
@@ -123,7 +141,7 @@ class Companies extends React.Component {
                                 primary={row.companyName}
                             />
                             <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose()}>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this._editClose(row)}>
                                     <EditIcon/>
                                 </IconButton>
                                 <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() =>
@@ -142,7 +160,7 @@ class Companies extends React.Component {
                     open={this.state.open}
                     onClose={() => this.handleClose()}
                     aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"                
+                    aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">Delete {this.state.companyName}?</DialogTitle>
                     <DialogContent>
@@ -163,33 +181,8 @@ class Companies extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Dialog open={this.state.editopen} onClose={() => this.editClose()} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
-                    <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We will send updates
-                        occasionally.
-                    </DialogContentText>
-                    <form onSubmit={this.handleSubmit}>
-                        <Typography variant="h5">Selected Industries</Typography>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                        />
-                    </form>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={() => this.editClose()} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => this.editClose()} color="primary">
-                        Submit
-                    </Button>
-                    </DialogActions>
+                <Dialog open={this.state.editopen} onClose={() => this.dialogClose()} aria-labelledby="form-dialog-title">
+                    <CompanyUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
                 </Dialog>
             </React.Fragment>
         )
@@ -197,4 +190,3 @@ class Companies extends React.Component {
 }
 
 export default withStyles(styles)(Companies);
-

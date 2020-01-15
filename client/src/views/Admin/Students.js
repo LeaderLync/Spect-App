@@ -49,6 +49,9 @@ class Students extends React.Component {
             currentRow: {},
             open: false,
             editopen: false,
+            selectedid: '',
+            firstName: '',
+            lastName: '',
             selectedIndustries: [],
             strongSkills: {},
             weakSkills: {},
@@ -58,27 +61,55 @@ class Students extends React.Component {
             questionarray: []
 
         }
+
+        this.editClose = this.editClose.bind(this);
     }
     handleClose() {
         this.setState({
             open: !this.state.open
         })
     }
+    updateselectedid(id, firstname, lastname) {
+        this.setState({
+            selectedid: id,
+            firstName: firstname,
+            lastName: lastname
+        })
+    }
     handleSubmit() {
 
     }
-    editClose(row) {
-        this.setState({
-            editopen: !this.state.editopen, currentRow: row
-        });
-    }
-    _editClose() {
+    editClose() {
+        api.getallstudents().then(response => { //updates student rows when you close an editor
+            this.setState({
+                rows: response
+            })
+        })
         this.setState({
             editopen: !this.state.editopen
+        });
+    }
+    _editClose(row) {
+        this.setState({
+            editopen: !this.state.editopen,
+            currentRow: row
+        })
+    }
+    deleteStudent() {
+        var payload = {
+            collectionid: this.state.selectedid
+        }
+        api.deleteuser(this.state.selectedid).then(response => {
+            console.log(response)
+        })
+    }
+    dialogClose() {
+        this.setState({
+            editopen: !this.state.editopen,
+            currentRow: null
         })
     }
     onClickDelete(item) {
-        console.log("hey")
         let index = this.state.rows.map(element => element.id).indexOf(item)
         this.state.rows.splice(index, 1)
         this.setState({
@@ -114,10 +145,14 @@ class Students extends React.Component {
                                 primary={row.firstName + ' ' + row.lastName}
                             />
                             <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this.editClose(row)}>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this._editClose(row)}>
                                     <EditIcon/>
                                 </IconButton>
-                                <IconButton edge="end" aria-label="delete" /*onClick={() => this.onClickDelete(row.id)}*/ onClick={() => this.handleClose()}>
+                                <IconButton edge="end" aria-label="delete" onClick={() =>
+                                    {
+                                    this.handleClose()
+                                    this.updateselectedid(row.id, row.firstName, row.lastName)
+                                    }}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
@@ -134,46 +169,24 @@ class Students extends React.Component {
                     <DialogTitle id="alert-dialog-title">{"Delete?"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Are you sure you want to delete?
+                            Are you sure you want to delete? {this.state.firstName} {this.state.lastName}?
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => this.handleClose()} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={() => this.handleClose()} color="secondary">
+                        <Button onClick={() => {
+                            this.deleteStudent()
+                            this.onClick(this.state.selectedid)
+                            this.handleClose()
+                            }} color="secondary">
                             Delete
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Dialog open={this.state.editopen} onClose={() => this.editClose()} aria-labelledby="form-dialog-title">
-                    <StudentUpdate userinfo={this.state.currentRow} editClose={this._editClose.bind(this)} userInfoUpdate={this.props.userInfoUpdate}/>
-                    {/*<DialogTitle id="form-dialog-title">Edit Form</DialogTitle>
-                    <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We will send updates
-                        occasionally.
-                    </DialogContentText>
-                    <form onSubmit={this.handleSubmit}>
-                        <Typography variant="h5">Selected Industries</Typography>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                        />
-                    </form>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={() => this.editClose()} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => this.editClose()} color="primary">
-                        Submit
-                    </Button>
-                    </DialogActions>*/}
+                <Dialog open={this.state.editopen} onClose={() => this.dialogClose()} aria-labelledby="form-dialog-title">
+                    <StudentUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
                 </Dialog>
             </React.Fragment>
         )

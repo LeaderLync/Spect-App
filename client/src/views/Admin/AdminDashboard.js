@@ -7,7 +7,14 @@ import Paper from '@material-ui/core/Paper'
 import Companies from './Companies'
 import Students from './Students'
 import CompanyAdd from './CompanyAdd'
+import SnackBar from '@material-ui/core/Snackbar'
+import MuiAlert from '@material-ui/lab/Alert'
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props}/>
+}
 const styles = theme => ({
+    
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -37,8 +44,25 @@ const styles = theme => ({
 class AdminDashboard extends Component {
     constructor(props) {
         super(props)
-
+        this.state = {
+            open: false
+        }
+        this.handleOpen = this.handleOpen.bind(this)
     }
+    handleClose(event, reason) {
+        if (reason === 'clickaway') {
+            return
+        }
+        this.setState({
+            open: false
+        })
+    }
+    handleOpen(){
+        this.setState({
+            open: true
+        })
+    }
+
     render() {
         const {classes} = this.props
 
@@ -49,23 +73,29 @@ class AdminDashboard extends Component {
                     
                     <Container maxWidth="lg" className={classes.container}>
                         <Grid item xs={12}>
-                            <Paper>
-                                <CompanyAdd/>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12}>
                             <Paper className={classes.paper}>
-                                <Companies/>
+                                <CompanyAdd handleOpen={this.handleOpen}/>
                             </Paper>
                         </Grid>
                         <div className={classes.appBarSpacer}/>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
-                                <Students userInfoUpdate={this.props.userInfoUpdate}/>
+                                <Companies handleOpen={this.handleOpen}/>
+                            </Paper>
+                        </Grid>
+                        <div className={classes.appBarSpacer}/>
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper}>
+                                <Students userInfoUpdate={this.props.userInfoUpdate} handleOpen={this.handleOpen}/>
                             </Paper>
                         </Grid>
 
                     </Container>
+                    <SnackBar open={this.state.open} autoHideDuration={6000} onClose={this.handleClose}>
+                        <Alert onClose={this.handleClose} severity="success">
+                        This is a success message!
+                        </Alert>
+                    </SnackBar>
 
                 </main>
             </div>

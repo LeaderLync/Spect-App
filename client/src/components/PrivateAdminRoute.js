@@ -13,7 +13,7 @@ export default function PrivateRoute({
   console.log(isStudent)
   if (authenticated === false) {
     return <Route {...rest} render={() => <Redirect to="/login"/>}/>
-  } else if (authenticated === true && isStudent === false && user.email === 'softwareengineering4c@gmail.com') {
+  } else if (authenticated === true && isStudent && user.email != 'softwareengineering4c@gmail.com') {
     return <Route component={NotFound}/>
   } else {
   return (

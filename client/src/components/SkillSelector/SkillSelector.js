@@ -24,6 +24,16 @@ class SkillSelector extends React.Component {
     }, () => this.props.passToParent(this.state)); // keeps parent state updated
   }
 
+  componentDidMount() {
+    if (this.props.stats) {
+      this.setState({
+        first: this.props.stats.strongSkills.first,
+        second: this.props.stats.strongSkills.second,
+        third: this.props.stats.strongSkills.third
+      }, () => this.props.passToParent(this.state));
+    }
+  }
+
   render() {
 
     return (

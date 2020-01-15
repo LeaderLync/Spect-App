@@ -10,7 +10,7 @@ import { withStyles } from  '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CompanyPopup from '../../components/CompanyPopup.js';
 import Navbar from '../../components/Navbar/Navbar';
-
+import ReactLoading from 'react-loading'
 const styles = theme => ({
 root: {
     flexGrow: 1,
@@ -72,7 +72,7 @@ class StudentProfile extends React.Component {
 
     render() {
       if (this.props.userinfo === null) {
-        return <h2>Loading</h2>
+        return ( <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>)
       }
         const { classes } = this.props;
         let morePopupClose = () => this.setState({morePopup: false});

@@ -16,6 +16,9 @@ import AdminDashboard from './views/Admin/AdminDashboard'
 import Matches from './views/Matches/Matches';
 import PrivateCompanyRoute from './components/PrivateCompanyRoute'
 import PrivateAdminRoute from './components/PrivateAdminRoute'
+import Loader from './views/Loader/Loader'
+import ReactLoading from 'react-loading'
+import './app.css'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -81,7 +84,7 @@ class App extends Component {
 
   render() {
     if(this.state.loading) {
-      return (<p>It is still loading</p>)
+      return (<div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>)
     } else {
       return (
         <div style={{height: '100%'}}>

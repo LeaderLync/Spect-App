@@ -81,15 +81,15 @@ export default {
         return null
       })
     },
-    /*updateCompanyProfile(companyData){
-      return client.put(`/company/${companyData.id}`, companyData)
+    updateCompanyProfile(companyData){
+      return client.patch(`/company/${companyData.id}`, companyData)
       .then(response => {
         return response.data
       }).catch((err) => {
         console.log(err)
         return null
       })
-    },*/
+    },
     getuser(userid) {
         return client.get(`/company`, userid)
             .then(response => {
@@ -135,7 +135,7 @@ export default {
                 return null
             })
     },
-    deletefirebaseuser(collectionid) {
+    deleteuser(collectionid) {
         return client.delete(`/auth/${collectionid}`)
             .then(response => {
                 return response.data

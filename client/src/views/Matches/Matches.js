@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import api from '../../api'
 import { CardContent, Typography } from '@material-ui/core';
-
+import ReactLoading from 'react-loading'
 import Grid from '@material-ui/core/Grid'
 import CompanyPopup from '../../components/CompanyPopup.js'
 
@@ -128,7 +128,7 @@ class Matches extends React.Component {
         const btnPrefix = "matchButton";
         const { classes } = this.props;
         if (this.props.userinfo === null) {
-            return <h1>Loading</h1>
+            return ( <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>)
         }
         return (
             <div className="App">

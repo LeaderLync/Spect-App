@@ -5,12 +5,12 @@ import IndustrySelector from '../../components/IndustrySelector/IndustrySelector
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
-
+import ReactLoading from 'react-loading'
 /*
   This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission
 */
 
-class CompanySurvey extends React.Component {
+class CompanyUpdate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,12 +34,18 @@ class CompanySurvey extends React.Component {
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
 
+    console.log(companyData);
+
     // send payload
     api.updateCompanyProfile(companyData).then(response => {
-      this.props.userInfoUpdate(response);
-    }); // passes JSON object to be request
-
-    this.props.history.push("/CompanyProfile"); // reroutes to student profile page upon successful survey form submission
+      if (!this.props.editClose){
+        this.props.userInfoUpdate(response);
+        this.props.history.push("/CompanyProfile");
+      } else {
+        this.props.editClose();
+      }
+      console.log(response);
+    }); // passes JSON object to be request*/
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
@@ -49,7 +55,7 @@ class CompanySurvey extends React.Component {
   render() {
     if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
-        <p>this is not loading</p>
+        <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>
       )
     }
     return (
@@ -98,4 +104,4 @@ class CompanySurvey extends React.Component {
     )
   }
 }
- export default CompanySurvey;
+ export default CompanyUpdate;
