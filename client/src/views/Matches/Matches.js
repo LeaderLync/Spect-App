@@ -148,10 +148,10 @@ class Matches extends React.Component {
                                 <Card className={classes.card} key={company.id}>
                                     <CardContent style={{ textalign: 'center' }}>
                                         <Typography noWrap style={{ display: 'block' }}>
-                                            Company: {company.companyName}
+                                            {company.companyName}
                                         </Typography>
                                         <Typography noWrap style={{ display: 'block' }}>
-                                            Position: {company.jobTitle}
+                                            {company.jobTitle}
                                         </Typography>
                                         <Typography noWrap style={{ display: 'block' }}>
                                             {company.percentMatch}% Match

@@ -35,6 +35,9 @@ class CompanyProfile extends React.Component
         this.setState({
           jobs: newJobs
         })
+        var newUserInfo = this.props.userinfo;
+        newUserInfo.jobPosts = newJobs;
+        this.props.userInfoUpdate(newUserInfo);
       }
 
     render() {
