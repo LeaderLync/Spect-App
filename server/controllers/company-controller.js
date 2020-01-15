@@ -20,6 +20,8 @@ exports.getall = function(req,res) {
   Company.find({}, function(err, users) {
     if (err) res.status(500).send(err)
     console.log(users)
+    let index = users.map(element => element.companyName).indexOf("Software4c")
+    users.splice(index,1)
     users.sort((x,y) => {
       return x.companyName.localeCompare(y.companyName)
     })

@@ -8,7 +8,6 @@ var CompanySchema = new Schema({
   companyName: String,
   companyBio: String,
   selectedIndustries: [String],
-  //URLtoLogo: String, // if time permits
   strongSkills: {
     first: String,
     second: String,

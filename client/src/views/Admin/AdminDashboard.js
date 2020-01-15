@@ -9,7 +9,7 @@ import Students from './Students'
 import CompanyAdd from './CompanyAdd'
 import SnackBar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
-
+import AdminNavbar from '../../components/Navbar/AdminNavbar'
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props}/>
 }
@@ -68,16 +68,10 @@ class AdminDashboard extends Component {
 
         return (
             <div className={classes.root}>
-                <Navbar isStudent={false}/>
+                <AdminNavbar isStudent={false}/>
                 <main className={classes.content}>
                     
                     <Container maxWidth="lg" className={classes.container}>
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <CompanyAdd handleOpen={this.handleOpen}/>
-                            </Paper>
-                        </Grid>
-                        <div className={classes.appBarSpacer}/>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
                                 <Companies handleOpen={this.handleOpen}/>
@@ -89,7 +83,12 @@ class AdminDashboard extends Component {
                                 <Students userInfoUpdate={this.props.userInfoUpdate} handleOpen={this.handleOpen}/>
                             </Paper>
                         </Grid>
-
+                        <div className={classes.appBarSpacer}/>
+                        <Grid item xs={12}>
+                            <Paper className={classes.paper}>
+                                <CompanyAdd handleOpen={this.handleOpen}/>
+                            </Paper>
+                        </Grid>
                     </Container>
                     <SnackBar open={this.state.open} autoHideDuration={6000} onClose={this.handleClose}>
                         <Alert onClose={this.handleClose} severity="success">
