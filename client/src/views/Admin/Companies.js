@@ -3,6 +3,7 @@ import Link from '@material-ui/core/Link'
 import {withStyles} from '@material-ui/core/styles'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
+import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import Button from '@material-ui/core/Button';
@@ -17,6 +18,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import PostJobModal from '../CompanyProfile/PostJobModal'
 import api from '../../api'
 import CompanyUpdate from '../CompanyUpdate/CompanyUpdate'
 const styles = theme => ({
@@ -129,7 +131,7 @@ class Companies extends React.Component {
                     Companies
                 </Typography>
                 <List style={{maxHeight: '275px', overflowY: 'auto'}}>
-                    
+
                     {this.state.rows.map(row => (
                         <ListItem key={row.id}>
                             <ListItemAvatar>
@@ -141,6 +143,9 @@ class Companies extends React.Component {
                                 primary={row.companyName}
                             />
                             <ListItemSecondaryAction>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this._editClose(row)}>
+                                    <AddIcon/>
+                                </IconButton>
                                 <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this._editClose(row)}>
                                     <EditIcon/>
                                 </IconButton>
@@ -183,6 +188,7 @@ class Companies extends React.Component {
                 </Dialog>
                 <Dialog open={this.state.editopen} onClose={() => this.dialogClose()} aria-labelledby="form-dialog-title">
                     <CompanyUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
+                    <PostJobModal/>
                 </Dialog>
             </React.Fragment>
         )
