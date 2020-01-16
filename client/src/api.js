@@ -101,13 +101,6 @@ export default {
               console.log(err)
               return null
             })
-        // return client.get(`/company`, userid)
-        //     .then(response => {
-        //         return response.data
-        //     }).catch((err) => {
-        //         console.log(err)
-        //         return null
-        //     })
     },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)

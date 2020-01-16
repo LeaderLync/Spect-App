@@ -58,6 +58,8 @@ class CompanyAdd extends React.Component {
         console.log(event.target.elements)
         const {thefile, companyName, companyEmail, companyBio, companyPassword} = event.target.elements
         const imagefile = thefile.files[0]
+        console.log(imagefile)
+        companyData= {}
         try {
             const newuser = await app.auth.createUserWithEmailAndPassword(companyEmail.value,companyPassword.value)
             var request = {
@@ -73,9 +75,9 @@ class CompanyAdd extends React.Component {
             var the_url = ""
             var companyData = {}
             await mainImage.put(imagefile).then((snapshot) => {
-                mainImage.getDownloadURL().then((url) => {
-                    companyData["avatarUrl"] = url
-                })
+            })
+            await mainImage.getDownloadURL().then((url) => {
+                companyData["avatarUrl"] = url
             })
             companyData["companyName"] = companyName.value
             companyData["companyBio"] = companyBio.value

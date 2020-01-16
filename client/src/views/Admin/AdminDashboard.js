@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Navbar from '../../components/Navbar/Navbar'
+import Skeleton from 'react-loading-skeleton'
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -45,7 +45,8 @@ class AdminDashboard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            open: false
+            open: false,
+            loading: true
         }
         this.handleOpen = this.handleOpen.bind(this)
     }
@@ -62,10 +63,44 @@ class AdminDashboard extends Component {
             open: true
         })
     }
+    componentDidMount() {
+        this.setState({
+            loading: false
+        })
+    }
 
     render() {
         const {classes} = this.props
+        if (this.state.loading) {
+            return (
+            <div className={classes.root}>
+            <Skeleton height="100"/>
+            <main className={classes.content}>
+                
+                <Container maxWidth="lg" className={classes.container}>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <Skeleton/>
+                        </Paper>
+                    </Grid>
+                    <div className={classes.appBarSpacer}/>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <Skeleton/>
+                        </Paper>
+                    </Grid>
+                    <div className={classes.appBarSpacer}/>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <Skeleton/>
+                        </Paper>
+                    </Grid>
+                </Container>
 
+            </main>
+        </div>
+            )
+        }
         return (
             <div className={classes.root}>
                 <AdminNavbar isStudent={false}/>

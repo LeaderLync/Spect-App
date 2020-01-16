@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '@material-ui/core/Link'
+import Skeleton from 'react-loading-skeleton'
 import {withStyles} from '@material-ui/core/styles'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -51,7 +51,8 @@ class Companies extends React.Component {
             open: false,
             editopen: false,
             selectedid: '',
-            companyName: ''
+            companyName: '',
+            loading: true
             // selectedIndustries: [],
             // strongSkills: {},
             // weakSkills: {},
@@ -118,13 +119,48 @@ class Companies extends React.Component {
     componentDidMount() {
         api.getallcompanies().then(response => {
             this.setState({
-                rows: response
+                rows: response,
+                loading: false
             })
+        })
+
+    }
+    componentWillUnmount() {
+        this.setState({
+            loading: true
         })
     }
     render() {
-
-        const {classes} = this.props
+        if (this.state.loading) {
+            const {classes} = this.props
+            const numbers = [1,2,3]
+            return (
+                <React.Fragment>
+                <Typography variant="h3" className={classes.title}>
+                    <Skeleton width={400}/>
+                </Typography>
+                <List style={{maxHeight: '275px', overflowY: 'auto'}}>
+                    
+                    {numbers.map(row => (
+                        <ListItem key={row}>
+                            <ListItemAvatar>
+                                <Skeleton circle={true} height={50} width={50}/>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                <Skeleton width={500}/>
+                            </ListItemText>
+                            <ListItemSecondaryAction>
+                                <Skeleton circle={true} height={50} width={50}/>
+                                <Skeleton circle={true} height={50} width={50}/>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ))
+                    }
+                </List>
+            </React.Fragment>
+            )
+        } else {
+            const {classes} = this.props
         return (
             <React.Fragment>
                 <Typography variant="h3" className={classes.title}>
@@ -191,7 +227,7 @@ class Companies extends React.Component {
                     <PostJobModal/>
                 </Dialog>
             </React.Fragment>
-        )
+        )}
     }
 }
 
