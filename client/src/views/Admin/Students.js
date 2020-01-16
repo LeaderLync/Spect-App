@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '@material-ui/core/Link'
+import Skeleton from 'react-loading-skeleton'
 import {withStyles} from '@material-ui/core/styles'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -58,6 +58,7 @@ class Students extends React.Component {
             studentid: '',
             avatarUrl: '',
             matches: [],
+            loading: true,
             questionarray: []
 
         }
@@ -120,13 +121,42 @@ class Students extends React.Component {
 
         api.getallstudents().then(response => {
             this.setState({
-                rows: response
+                rows: response,
+                loading: false
             })
         })
     }
     render() {
 
         const {classes} = this.props
+        if (this.state.loading) {
+            const numbers = [1,2,3]
+            return (
+                <React.Fragment>
+                <Typography variant="h3" className={classes.title}>
+                    <Skeleton width={400}/>
+                </Typography>
+                <List style={{maxHeight: '275px', overflowY: 'auto'}}>
+                    
+                    {numbers.map(row => (
+                        <ListItem key={row}>
+                            <ListItemAvatar>
+                                <Skeleton circle={true} height={50} width={50}/>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                <Skeleton width={500}/>
+                            </ListItemText>
+                            <ListItemSecondaryAction>
+                                <Skeleton circle={true} height={50} width={50}/>
+                                <Skeleton circle={true} height={50} width={50}/>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ))
+                    }
+                </List>
+            </React.Fragment>
+            )
+        }else {
         return (
             <React.Fragment>
                 <Typography variant="h3" className={classes.title}>
@@ -189,7 +219,7 @@ class Students extends React.Component {
                     <StudentUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
                 </Dialog>
             </React.Fragment>
-        )
+        )}
     }
 }
 
