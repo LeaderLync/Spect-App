@@ -1,6 +1,7 @@
 import React from 'react';
 import skillData from '../../assets/SkillData.js'
 
+
 /*
   This component allows a user to distribute points amongst 9 skills
 */
@@ -68,6 +69,13 @@ class SkillDistributor extends React.Component {
         <div className="form-group" key={skill.key}>
           <label htmlFor="formControlRange">{skill.name}</label>
           <input type="range" className="custom-range" id={skill.id} min="1" max="5" step="1" onChange={this.moveSlider} defaultValue={(this.props.stats ? this.props.stats.skills[skill.id] : "1")}/>
+          <div className = "ticks">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>4</p>
+            <p>5</p>
+          </div>
         </div>
       )
     })
@@ -82,8 +90,10 @@ class SkillDistributor extends React.Component {
 
     return (
       <div>
-        <span>{instruction}</span>
-        <div>{this.state.points}/27</div>
+        <div>{instruction}</div>
+        <br/>
+        <div>{this.state.points}/27 points</div>
+        <br/>
         <div>{skillList}</div>
       </div>
     )
