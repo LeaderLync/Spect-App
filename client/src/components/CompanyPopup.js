@@ -67,42 +67,16 @@ export default function CompanyPopup(props) {
         onClose={props.onHide}
         aria-labelledby="max-width-dialog-title"
       >
-        <DialogTitle id="max-width-dialog-title">{company.companyName}</DialogTitle>
+        <DialogTitle id="max-width-dialog-title">
+          <img style={{width: '50px', marginBottom: '0px', paddingRight: '10px', display: 'inline'}}src={company.avatarUrl}></img>
+          <span>{company.companyName}</span>
+        </DialogTitle>
         <DialogContent>
             <div className={classes.heroContent}>
                 <Grid container spacing={4} justify="center" alignItems="center">
                     <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
                             <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>{company.jobTitle}</Typography>
-                            {/*<Grid container spacing = {2}>
-
-                                    {/*<Grid item xs = {12} sm={12} md={4}>
-                                        <Card className={classes.skillCard}>
-                                            <CardContent textAlign = "center">
-                                                    <Typography noWrap style={{display: 'block'}}>{company.strongSkills.first}</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-
-                                    <Grid item xs = {12} sm={12} md={4}>
-                                        <Card className={classes.skillCard}>
-                                            <CardContent textAlign = "center">
-                                                    <Typography noWrap style={{display: 'block'}}>{company.strongSkills.second}</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-
-                                    <Grid item xs = {12} sm={12} md={4}>
-                                        <Card className={classes.skillCard}>
-                                            <CardContent textAlign = "center">
-                                                    <Typography noWrap style={{display: 'block'}}>{company.strongSkills.third}</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-
-                                </Grid>*/}
-                        </Grid>
-
-
+                    </Grid>
                 </Grid>
             </div>
             <br/>

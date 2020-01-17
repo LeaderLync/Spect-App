@@ -128,8 +128,6 @@ class AdminJobEdit extends React.Component {
         </Form.Group>
         <Form.Group>
         <Button variant="primary"
-        //Makes sure all fields have been filled in prior to completing change
-        /*onClick={() => {if (this.refs.jobTitle.value !== '' && this.refs.jobDescription.value !== '' && this.refs.jobLink.value !== '' && this.refs.jobTitle.value !== '') this.doboth()}}*/
         type="submit">Add Job</Button>
         </Form.Group>
       </Form>
