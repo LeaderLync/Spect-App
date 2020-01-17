@@ -33,6 +33,7 @@ class CompanyUpdate extends React.Component {
     companyData["id"] = this.props.collectionId;
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
+    companyData["jobPosts"] = this.props.userinfo.jobPosts;
 
     console.log(companyData);
 
