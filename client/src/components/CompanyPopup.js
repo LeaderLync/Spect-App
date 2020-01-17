@@ -73,7 +73,7 @@ export default function CompanyPopup(props) {
                 <Grid container spacing={4} justify="center" alignItems="center">
                     <Grid item xs = {12} sm={12} md={8} style={{textAlign: 'center', justifyContent: 'center'}}>
                             <Typography noWrap style={{color: "black", display: 'block'}} variant="h6" gutterBottom>{company.jobTitle}</Typography>
-                            <Grid container spacing = {2}>
+                            {/*<Grid container spacing = {2}>
 
                                     {/*<Grid item xs = {12} sm={12} md={4}>
                                         <Card className={classes.skillCard}>
@@ -97,26 +97,26 @@ export default function CompanyPopup(props) {
                                                     <Typography noWrap style={{display: 'block'}}>{company.strongSkills.third}</Typography>
                                             </CardContent>
                                         </Card>
-                                    </Grid>*/}
+                                    </Grid>
 
-                                </Grid>
+                                </Grid>*/}
                         </Grid>
 
 
                 </Grid>
             </div>
-
+            <br/>
             <div>
-            <h4><Typography>About the Position:</Typography></h4>
+                <strong>Description: </strong>
+                <span>{company.jobDescription}</span>
             </div>
             <div>
-                Description: {company.jobDescription}
+                <strong>Requirements: </strong>
+                <span>{company.jobRequirements}</span>
             </div>
             <div>
-                Requirements: {company.jobRequirements}
-            </div>
-            <div>
-                Apply: {company.jobLink}
+                <strong>Apply: </strong>
+                <a href={company.jobLink}>{company.jobLink}</a>
             </div>
         </DialogContent>
         <DialogActions>

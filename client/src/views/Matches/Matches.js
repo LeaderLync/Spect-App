@@ -150,7 +150,7 @@ class Matches extends React.Component {
                                         <Typography noWrap style={{ display: 'block' }}>
                                             {company.companyName}
                                         </Typography>
-                                        <Typography noWrap style={{ display: 'block' }}>
+                                        <Typography noWrap style={{ display: 'block', fontWeight: 'bold'}}>
                                             {company.jobTitle}
                                         </Typography>
                                         <Typography noWrap style={{ display: 'block' }}>
