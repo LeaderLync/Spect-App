@@ -61,9 +61,13 @@ var studentSchema = new Schema({
 
     matches: [
       {
-        companyId: String,
+        jobId: String,
         companyName: String,
-        companyTopSkills: [],
+				jobTitle: String,
+				jobDescription: String,
+				jobRequirements: String,
+				jobLink: String,
+				avatarUrl: String
     }],
 
     updated_at: Date

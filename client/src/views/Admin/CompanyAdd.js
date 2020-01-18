@@ -46,7 +46,7 @@ class CompanyAdd extends React.Component {
         this.setState({
             companyName: event.target.value
         })
-    }   
+    }
     handlefileChange(event) {
         this.setState({
             file: URL.createObjectURL(event.target.files[0])
@@ -91,7 +91,7 @@ class CompanyAdd extends React.Component {
             alert(error)
         }
     }
-    
+
     render() {
         const {classes} = this.props
         return (
@@ -151,8 +151,8 @@ class CompanyAdd extends React.Component {
                                 <IndustrySelector passToParent={this.getSelectedIndustries}/>
                             </div>
                             <br/>
-                            <label className="question">Pick your top 3 strongest soft skills:</label>
-                            <SkillSelector passToParent={this.getStrongSkills}/>
+                            {/*<label className="question">Pick your top 3 strongest soft skills:</label>
+                            <SkillSelector passToParent={this.getStrongSkills}/>*/}
                             <br/>
                             {/*<QuestionForm/>*/}
                             <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>

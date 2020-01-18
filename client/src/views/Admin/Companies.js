@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import {withStyles} from '@material-ui/core/styles'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
+import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import Button from '@material-ui/core/Button';
@@ -17,6 +18,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import PostJobModal from '../CompanyProfile/PostJobModal'
+import AdminJobEdit from './AdminJobEdit.js'
+import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
+import {Modal, Form} from 'react-bootstrap'
 import api from '../../api'
 import CompanyUpdate from '../CompanyUpdate/CompanyUpdate'
 const styles = theme => ({
@@ -48,9 +53,10 @@ class Companies extends React.Component {
             currentRow: [],
             open: false,
             editopen: false,
+            addopen:false,
             selectedid: '',
             companyName: '',
-            loading: true
+            loading: true,
             // selectedIndustries: [],
             // strongSkills: {},
             // weakSkills: {},
@@ -58,10 +64,12 @@ class Companies extends React.Component {
             // avatarUrl: '',
             // matches: [],
             // questionarray: []
+            postModalShow: true
 
         }
 
         this.editClose = this.editClose.bind(this);
+        this.addClose = this.addClose.bind(this);
     }
     handleClose() {
         this.setState({
@@ -87,11 +95,33 @@ class Companies extends React.Component {
           editopen: !this.state.editopen,
       });
     }
+    addClose() {
+      api.getallcompanies().then(response => { //updates company rows when you close an editor
+          this.setState({
+              rows: response
+          })
+      })
+      this.setState({
+          addopen: !this.state.addopen,
+      });
+    }
     _editClose(row) {
         this.setState({
             editopen: !this.state.editopen,
             currentRow: row
         })
+    }
+    _addClose(row) {
+        this.setState({
+            addopen: !this.state.addopen,
+            currentRow: row
+        })
+    }
+    jobClose() {
+      this.setState({
+          addopen: !this.state.addopen,
+          currentRow: null
+      })
     }
     onClickDelete(item) {
         let index = this.state.rows.map(element => element.id).indexOf(item)
@@ -106,6 +136,7 @@ class Companies extends React.Component {
             currentRow: null
         })
     }
+
     deleteCompany() {
         var payload = {
             collectionid: this.state.selectedid
@@ -138,7 +169,7 @@ class Companies extends React.Component {
                     <Skeleton width={400}/>
                 </Typography>
                 <List style={{maxHeight: '275px', overflowY: 'auto'}}>
-                    
+
                     {numbers.map(row => (
                         <ListItem key={row}>
                             <ListItemAvatar>
@@ -165,7 +196,7 @@ class Companies extends React.Component {
                     Companies
                 </Typography>
                 <List style={{maxHeight: '275px', overflowY: 'auto'}}>
-                    
+
                     {this.state.rows.map(row => (
                         <ListItem key={row.id}>
                             <ListItemAvatar>
@@ -177,6 +208,12 @@ class Companies extends React.Component {
                                 primary={row.companyName}
                             />
                             <ListItemSecondaryAction>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => {
+                                  this._addClose(row)
+                                  this.updateselectedid(row.id, row.companyName)
+                                }}>
+                                    <AddIcon/>
+                                </IconButton>
                                 <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this._editClose(row)}>
                                     <EditIcon/>
                                 </IconButton>
@@ -219,6 +256,13 @@ class Companies extends React.Component {
                 </Dialog>
                 <Dialog open={this.state.editopen} onClose={() => this.dialogClose()} aria-labelledby="form-dialog-title">
                     <CompanyUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
+                </Dialog>
+                <Dialog open={this.state.addopen} onClose={() => this.jobClose()} aria-labelledby="form-dialog-title">
+                    {/*<CompanyUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>*/}
+                    <DialogTitle id="alert-dialog-title">Add Job for {this.state.companyName}</DialogTitle>
+                    <DialogContent>
+                      <AdminJobEdit userinfo={this.state.currentRow} addClose={this.addClose}/>
+                    </DialogContent>
                 </Dialog>
             </React.Fragment>
         )}

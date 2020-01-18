@@ -48,7 +48,7 @@ export default {
         console.log(params);
         console.log(params.collectionid);
 
-        client.put(`/company/${params.collectionid}`, params.jobs)
+        return client.put(`/company/${params.collectionid}`, params.jobs)
         .then(response => {
             return response
         }).catch((err) => {

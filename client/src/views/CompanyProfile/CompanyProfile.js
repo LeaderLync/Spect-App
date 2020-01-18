@@ -83,14 +83,6 @@ class CompanyProfile extends React.Component
                     <div className="info-rectangle">
                         <h3 className="company-name">{this.props.userinfo.companyName}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
                         <img src={this.props.avatarURL} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
-                        <div className='topSkills'>
-                            <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "whitesmoke", fontFamily: 'Montserrat', color: 'black'}}>Top Three Desired Skills</h5>
-                            <div style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1.5vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal', color: 'black'}}>
-                                {this.props.userinfo.strongSkills.first} | {"    "}
-                                {this.props.userinfo.strongSkills.second} | {" "}
-                                {this.props.userinfo.strongSkills.third}  {" "}
-                            </div>
-                        </div>
                     </div>
                     <div>
                         <h4 style={{fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal' , fontSize: '1.5vw'}}>Recently Posted Content and Resources</h4>

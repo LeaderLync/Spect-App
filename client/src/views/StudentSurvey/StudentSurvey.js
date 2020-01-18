@@ -76,8 +76,6 @@ class StudentSurvey extends React.Component {
               <div className="card-body">
                 <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
-                  <h3>{this.state.skillPoints}</h3>
-                  <SkillDistributor passToParent={this.getSkillData}/>
                   <h3 className="card-title">Contact Information</h3>
                   <div className="form-row">
                     <div className="form-group col">
@@ -101,6 +99,7 @@ class StudentSurvey extends React.Component {
                   </div>
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills Assessment</h3>
+                  <SkillDistributor passToParent={this.getSkillData}/>
                   <div className="form-group">
                     <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector passToParent={this.getSelectedIndustries}/>

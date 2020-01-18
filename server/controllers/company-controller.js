@@ -148,9 +148,9 @@ exports.companyByID = async function(req, res, next, id) {
 
 exports.updateCompany = async function(req, res) {
   Company.findOneAndUpdate({id: req.body.id}, {
-    strongSkills: req.body.strongSkills,
     selectedIndustries: req.body.selectedIndustries,
-    companyBio: req.body.companyBio
+    companyBio: req.body.companyBio,
+    jobPosts: req.body.jobPosts
   }, {new: true}).exec(function(err, user) {
     if (err) {
       console.log('error on company update');

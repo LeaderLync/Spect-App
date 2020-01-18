@@ -33,6 +33,7 @@ class CompanyUpdate extends React.Component {
     companyData["id"] = this.props.collectionId;
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
+    companyData["jobPosts"] = this.props.userinfo.jobPosts;
 
     console.log(companyData);
 
@@ -90,8 +91,8 @@ class CompanyUpdate extends React.Component {
                     <IndustrySelector stats={this.props.userinfo} passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
-                  <label className="question">Pick your top 3 strongest soft skills:</label>
-                  <SkillSelector stats={this.props.userinfo} passToParent={this.getStrongSkills}/>
+                  {/*<label className="question">Pick your top 3 strongest soft skills:</label>
+                  <SkillSelector stats={this.props.userinfo} passToParent={this.getStrongSkills}/>*/}
                   <br/>
                   {/*<QuestionForm/>*/}
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>

@@ -67,11 +67,6 @@ class Matches extends React.Component {
                 matchButtonState: false,
                 selectedCompany: {
                     companyName: 'company1',
-                    strongSkills: {
-                        first: 'leadership',
-                        second: 'involvement',
-                        third: 'i dont know'
-                    }
                 },
             }
         // {
@@ -92,23 +87,29 @@ class Matches extends React.Component {
     }
 
     matchButtonClicked(companyARG) {
-        var newArray = this.props.userinfo.matches;
-        newArray.push({
-            companyID: companyARG.id,
-            companyName: companyARG.companyName,
-            companyTopSkills: [companyARG.strongSkills],
-        })
-        var newinfo = this.props.userinfo
-        newinfo.matches = newArray
+        if ((this.props.userinfo.matches.filter(job => {return job.jobTitle == companyARG.jobTitle}).length <= 0)){
+          var newArray = this.props.userinfo.matches;
+          newArray.push({
+              jobId: companyARG.jobId,
+              companyName: companyARG.companyName,
+              jobTitle: companyARG.jobTitle,
+              jobDescription: companyARG.jobDescription,
+              jobRequirements: companyARG.jobRequirements,
+              jobLink: companyARG.jobLink,
+              avatarUrl: companyARG.avatarUrl
+          })
+          var newinfo = this.props.userinfo
+          newinfo.matches = newArray
 
-        const payload = {
-            userId: this.props.userinfo.id,
-            newArray:  newArray,
-        };
-        api.updatematch(payload).then(response => {
-            console.log(response)
-            this.props.userInfoUpdate(response);
-        })
+          const payload = {
+              userId: this.props.userinfo.id,
+              newArray:  newArray,
+          };
+          api.updatematch(payload).then(response => {
+              console.log(response)
+              this.props.userInfoUpdate(response);
+          })
+        }
     }
 
     componentDidMount() {
@@ -150,14 +151,14 @@ class Matches extends React.Component {
                                         <Typography noWrap style={{ display: 'block' }}>
                                             {company.companyName}
                                         </Typography>
-                                        <Typography noWrap style={{ display: 'block' }}>
+                                        <Typography noWrap style={{ display: 'block', fontWeight: 'bold'}}>
                                             {company.jobTitle}
                                         </Typography>
                                         <Typography noWrap style={{ display: 'block' }}>
                                             {company.percentMatch}% Match
                                         </Typography>
                                     </CardContent>
-                                    <img style={{width: '100px',height:'50px', marginBottom: '0px'}}src={company.avatarUrl}>
+                                    <img style={{width: '75px', marginBottom: '0px'}}src={company.avatarUrl}>
                                     </img>
                                     <CardActions className={classes.actions}>
                                         <Button
@@ -167,8 +168,8 @@ class Matches extends React.Component {
                                             startIcon={<FavoriteIcon />}
                                             onClick={() => {this.matchButtonClicked(company)}}
                                             style={
-                                                company.matched ?
-                                                    { background: 'linear-gradient(45deg, #FA4616 30%, #FA0700 90%)', margin: '5px' }
+                                                (this.props.userinfo.matches.filter(job => {return job.jobTitle == company.jobTitle}).length <= 0) ?
+                                                    { background: '#2EA7EB', margin: '5px' }
                                                     : { background: 'black', margin: '5px' }
                                             }
                                         >

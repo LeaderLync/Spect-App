@@ -35,6 +35,7 @@ exports.getmatches = async function(req, res) {
           jobDescription: job.jobDescription,
           jobRequirements: job.jobRequirements,
           jobLink: job.jobLink,
+          jobId: job.jobID,
           companyName: company.companyName,
           companyId: company.id,
           avatarUrl: company.avatarUrl,
@@ -43,7 +44,7 @@ exports.getmatches = async function(req, res) {
         jobs.push(jobPackage);
       })
     });
-  
+
     var sorted = jobs.sort((x, y) => {
       return (y.percentMatch - x.percentMatch);
     })
