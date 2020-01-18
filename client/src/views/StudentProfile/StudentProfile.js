@@ -16,15 +16,12 @@ const styles = theme => ({
 root: {
     flexGrow: 1,
   },
-  companyCard: {
-    textAlign: 'center',
-    color: 'black',
-    backgroundColor: 'white',
+  card: {
     minWidth: '200px',
     maxWidth: '50%',
-    border: '1px solid #dfe1e5',
     margin: 30,
-  },
+    border: '1px solid #dfe1e5',
+},
   skillCard: {
       color: 'black',
       marginRight: 30,
@@ -85,23 +82,6 @@ class StudentProfile extends React.Component {
                 <Grid container spacing={4} style={{ paddingTop: '4%' }}>
                     {person.matches.map(function (company, index) {
                         return (
-                            /*<Grid key={index} item xs={12} sm={6} md={4} align="center">
-                                <Card className={classes.companyCard}>
-                                    <CardContent>
-                                        <Typography variant="h5" component="h2">
-                                            {item.companyName}
-                                        </Typography>
-                                        <Typography variant="h5" component="h2">
-                                            {item.jobTitle}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions style={{ textAlign: 'center', justifyContent: 'center' }}>
-                                        <Button variant="contained" size="small" style={{background: 'rgb(46, 167, 235)', color: 'white'}} onClick={() => {this.setState({morePopup : true}); this.updateSelectedCompany(item);}}>
-                                            Profile
-                                    </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>*/
                             <Grid key={index} item xs={12} sm={6} md={4} align="center">
                                 <Card className={classes.card} key={company.id}>
                                     <CardContent style={{ textalign: 'center' }}>
@@ -115,7 +95,7 @@ class StudentProfile extends React.Component {
                                     <img style={{width: '75px', marginBottom: '0px'}}src={company.avatarUrl}>
                                     </img>
                                     <CardActions className={classes.actions}>
-                                        <Button variant="contained" size="small" style={{ background: 'rgb(46, 167, 235)', color: 'white' }} onClick={() => { this.setState({ morePopup: true }); this.updateSelectedCompany(company); }}>
+                                        <Button variant="contained" size="small" style={{ background: 'rgb(46, 167, 235)', color: 'white', margin: '0 auto' }} onClick={() => { this.setState({ morePopup: true }); this.updateSelectedCompany(company); }}>
                                             Details
                                         </Button>
                                         <CompanyPopup // view more company info modal

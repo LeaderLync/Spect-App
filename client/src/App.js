@@ -16,6 +16,7 @@ import AdminDashboard from './views/Admin/AdminDashboard'
 import Matches from './views/Matches/Matches';
 import PrivateCompanyRoute from './components/PrivateCompanyRoute'
 import PrivateAdminRoute from './components/PrivateAdminRoute'
+import SearchPage from './views/Search/SearchPage'
 import Loader from './views/Loader/Loader'
 import ReactLoading from 'react-loading'
 import './app.css'
@@ -112,12 +113,13 @@ class App extends Component {
               user={this.state.currentUser}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
             />
-            {/*<PrivateCompanyRoute exact path="/admin"
-              render={(props) => <AdminDashboard></AdminDashboard>}
+            <PrivateRoute exact path="/Search"
+              render={(props) => <SearchPage/>}
+              authenticated={this.state.authenticated}
               user={this.state.currentUser}
-              collectionId={this.state.collectionid}
               isStudent={JSON.parse(sessionStorage.getItem("isStudent"))}
-            />*/}
+            />
+
             <PrivateRoute exact path="/StudentSurvey"
               render={(props) => <StudentSurvey {...props} userInfoUpdate={this.userInfoUpdate.bind(this)} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} avatarURL={this.state.avatarURL || JSON.parse(sessionStorage.getItem("avatarURL"))}/>}
               authenticated={this.state.authenticated}

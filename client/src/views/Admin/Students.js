@@ -126,10 +126,15 @@ class Students extends React.Component {
             })
         })
     }
+    componentWillUnmount() {
+        this.setState({
+            loading: true
+        })
+    }
     render() {
-
-        const {classes} = this.props
         if (this.state.loading) {
+
+            const {classes} = this.props
             const numbers = [1,2,3]
             return (
                 <React.Fragment>
@@ -157,7 +162,10 @@ class Students extends React.Component {
             </React.Fragment>
             )
         }else {
+
+        const {classes} = this.props
         return (
+            
             <React.Fragment>
                 <Typography variant="h3" className={classes.title}>
                     Students
