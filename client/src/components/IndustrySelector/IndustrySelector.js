@@ -34,6 +34,15 @@ class IndustrySelector extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (this.props.stats) {
+      this.setState({
+        industries: this.props.stats.selectedIndustries
+      },
+      () => this.props.passToParent(this.state.industries));
+    }
+  }
+
   render() {
     const industryList = industryData.map(industry => {
       return (

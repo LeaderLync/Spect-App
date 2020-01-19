@@ -4,9 +4,10 @@ import './StudentSurvey.css';
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
+import SkillDistributor from '../../components/SkillDistributor/SkillDistributor.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
-
+import ReactLoading from 'react-loading'
 /*
   This component is what a student user will be presented with upon registartion for a new account.  It pulls from several other files to compose a large form that is sent to the database upon successful submission
 */
@@ -16,45 +17,47 @@ class StudentSurvey extends React.Component {
     super(props);
     this.state = {
       selectedIndustries: [], // up to three
-      strongSkills: {}, // 3 of your strongest soft skills
-      weakSkills: {}    // 3 soft skills you want to work on
+      skillPoints: 0,
+      skillTree: {}
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
-    const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
 
-    /* create JSON object to include in post request */
-    var studentData = {}
-    data.forEach(function(value, key){
-    studentData[key] = value;
-    });
+    if (this.state.skillPoints === 27) {
+      const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
 
-    studentData["id"] = this.props.collectionId;
-    studentData["selectedIndustries"] = this.state.selectedIndustries;
-    studentData["strongSkills"] = this.state.strongSkills;
-    studentData["weakSkills"] = this.state.weakSkills;
-    studentData["matches"] = []
+      /* create JSON object to include in post request */
+      var studentData = {}
+      data.forEach(function(value, key){
+      studentData[key] = value;
+      });
 
-    api.collectStudentResponse(studentData).then(response => {
-      this.props.userInfoUpdate(response);
-    }); // passes JSON object to be request
+      studentData["id"] = this.props.collectionId;
+      studentData["selectedIndustries"] = this.state.selectedIndustries;
+      studentData["skills"] = this.state.skillTree;
+      studentData["matches"] = [];
+      studentData["avatarUrl"] = this.props.avatarURL
+      console.log(studentData);
 
-    this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+      api.collectStudentResponse(studentData).then(response => { // send to database
+        this.props.userInfoUpdate(response);
+      }); // passes JSON object to be request
+
+      this.props.history.push("/"); // reroutes to student profile page upon successful survey form submission
+    }
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
 
-  getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
-
-  getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
+  getSkillData = (childState) => {this.setState({skillPoints: childState.points, skillTree: childState.skills}, /*() => console.log(this.state)*/)} // retireves state from child
 
   render() {
     if (this.props.collectionId === null || this.props.collectionId == '0') {
       return (
-        <p>this is not loading</p>
+        <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>
       )
     }
     return (
@@ -88,17 +91,11 @@ class StudentSurvey extends React.Component {
                   </div>
                   <br/>
                   <h3 className="card-title">Professional Interests and Skills Assessment</h3>
+                  <SkillDistributor passToParent={this.getSkillData}/>
                   <div className="form-group">
                     <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector passToParent={this.getSelectedIndustries}/>
                   </div>
-                  <br/>
-                  <label className="question">Pick your top 3 strongest soft skills:</label>
-                  <SkillSelector passToParent={this.getStrongSkills}/>
-                  <br/>
-                  <label className="question">Pick the top 3 soft skills you want to work on:</label>
-                  <SkillSelector passToParent={this.getWeakSkills}/>
-                  <QuestionForm/>
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
                 <h3 className="card-title">Self-Assessment Survey</h3>

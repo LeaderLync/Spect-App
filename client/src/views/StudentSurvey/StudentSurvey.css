@@ -26,5 +26,29 @@ h3 {
 
 img {
   display: block;
-  margin-bottom: 20px
+
+}
+
+.custom-range::-webkit-slider-thumb {
+  background: #2EA7EB;
+}
+
+.custom-range {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom: 0px;
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+}
+
+.ticks p {
+  font-weight: lighter;
+  font-style: oblique;
+  font-size: 12px;
 }

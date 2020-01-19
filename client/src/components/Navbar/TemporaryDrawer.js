@@ -40,6 +40,7 @@ export default function TemporaryDrawer(props) {
   const menuitems = (props.isStudent)?
     <List >
       <ListItem button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
+      {/*<ListItem button><Link to="/Search" style={{ textDecoration: 'none' }}>Search</Link></ListItem>*/}
     </List>
     :
     <List >

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import NotFound from '../views/NotFound'
-export default function PrivateCompanyRoute({
+export default function PrivateRoute({
   render: Component,
   authenticated,
   user,
@@ -9,10 +9,11 @@ export default function PrivateCompanyRoute({
   ...rest
 })
 {
-  
+  console.log(user)
+  console.log(isStudent)
   if (authenticated === false) {
     return <Route {...rest} render={() => <Redirect to="/login"/>}/>
-  } else if (authenticated === true && isStudent === true) {
+  } else if (authenticated === true && isStudent && user.email != 'softwareengineering4c@gmail.com') {
     return <Route component={NotFound}/>
   } else {
   return (

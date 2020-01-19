@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Modal, Row, Col, Form} from 'react-bootstrap'
-import data from './CompanyData'
+import { Button, Modal, Form} from 'react-bootstrap'
 import api from '../../api'
+import SkillSelector from '../../components/SkillSelector/SkillSelector'
 const uuid = require('uuid/v4')
 
 
@@ -9,50 +9,53 @@ class PostJobModal extends React.Component {
   constructor(props)
   {
     super(props)
-
-    console.log(props.jobs)
-
-    // props.jobs = props.jobs.bind(this)
+    this.state = {
+      skills: {}
+    }
   }
+
+  getStrongSkills = (skills) => {this.setState({skills: skills}, /*console.log(skills)*/)}
+
+  //Allows button use both the update job method and close at the same time
   doboth() {
     this.updateNewJob()
     this.props.onHide()
   }
 
-  //Will just update the entire jobPost Field inside mogo after
-  updateNewJob(){ 
+  updateNewJob(){
+    //New job variable based on the user inserts into the form
     const newJob = {
       "jobID":uuid(),
       "jobTitle":this.refs.jobTitle.value,
       "jobDescription":this.refs.jobDescription.value,
       "jobRequirements":this.refs.jobRequirements.value,
-      "jobLink" : this.refs.jobLink.value
+      "jobLink" : this.refs.jobLink.value,
+      "jobSkills": this.state.skills
     }
 
-    console.log(newJob);
-    console.log("Job ID" , newJob.jobID);
+    //newData will be the new array of jobs with the new job added at the end of the current list
     const newData = this.props.jobs.concat(newJob);
-    console.log(newData);
 
+    //Reverts value of forms inputs back to empty
     this.refs.jobTitle.value = '';
     this.refs.jobDescription.value = '';
     this.refs.jobRequirements.value = '';
     this.refs.jobLink.value = '';
 
     const payload = {
-           jobs: newData,
-           collectionid: this.props.collectionId
+    jobs: newData,
+    collectionid: this.props.collectionId
     }
+    //Passes the new job array along with the company ID to the api call, to update on the back-end side
     api.updateJob(payload);
 
+    //Passes the new job array to the company profile to update on the front-end side
     this.props.updateNewJob(newData);
 
   }
 
   render(){
 
-    console.log("Post Job Modal" , this.props.collectionId)
-  
   return (
     <Modal
       {...this.props}
@@ -78,6 +81,8 @@ class PostJobModal extends React.Component {
                 ref="jobDescription"
                 required
                 placeholder="Type New Job Description"/>
+                <Form.Label>Pick top 3 important soft skills:</Form.Label>
+                <SkillSelector passToParent={this.getStrongSkills}/>
                 <Form.Label>Job Requirements</Form.Label>
                 <Form.Control
                 type="text"
@@ -92,7 +97,10 @@ class PostJobModal extends React.Component {
                 placeholder="Type New Job Link"/>
                 </Form.Group>
                 <Form.Group>
-                <Button variant="primary" onClick={() => {if (this.refs.jobTitle.value !== '') this.doboth()}} type="submit">Add Job</Button>
+                <Button variant="primary"
+                //Makes sure all fields have been filled in prior to completing change
+                onClick={() => {if (this.refs.jobTitle.value !== '' && this.refs.jobDescription.value !== '' && this.refs.jobLink.value !== '' && this.refs.jobTitle.value !== '') this.doboth()}}
+                type="submit">Add Job</Button>
                 </Form.Group>
               </Form>
       </Modal.Body>

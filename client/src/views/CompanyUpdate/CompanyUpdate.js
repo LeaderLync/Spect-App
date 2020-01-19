@@ -1,16 +1,16 @@
 import React from 'react';
-import './CompanySurvey.css';
+import '../CompanySurvey/CompanySurvey.css';
 import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 import QuestionForm from '../../components/QuestionForm/QuestionForm.js'
 import api from '../../api.js'
 import logo from '../../assets/Black-logo-no-background.png'
-
+import ReactLoading from 'react-loading'
 /*
   This component is what a company user will be presented with upon registartion for a new account.  It pulls from several other files to comose a large form that is sent to the database upon successful submission
 */
 
-class CompanySurvey extends React.Component {
+class CompanyUpdate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,17 +29,24 @@ class CompanySurvey extends React.Component {
     data.forEach(function(value, key){
     companyData[key] = value;
     });
-    companyData["avatarUrl"] = this.props.avatarURL
+    //companyData["avatarUrl"] = this.props.avatarURL
     companyData["id"] = this.props.collectionId;
     companyData["selectedIndustries"] = this.state.selectedIndustries;
     companyData["strongSkills"] = this.state.strongSkills;
+    companyData["jobPosts"] = this.props.userinfo.jobPosts;
+
+    console.log(companyData);
 
     // send payload
-    api.collectCompanyResponse(companyData).then(response => {
-      this.props.userInfoUpdate(response);
-    }); // passes JSON object to be request
-
-    this.props.history.push("/CompanyProfile"); // reroutes to student profile page upon successful survey form submission
+    api.updateCompanyProfile(companyData).then(response => {
+      if (!this.props.editClose){
+        this.props.userInfoUpdate(response);
+        this.props.history.push("/CompanyProfile");
+      } else {
+        this.props.editClose();
+      }
+      console.log(response);
+    }); // passes JSON object to be request*/
   }
 
   getSelectedIndustries = (industries) => {this.setState({selectedIndustries: industries}, /*console.log(industries)*/)} // retireves state from child
@@ -47,6 +54,11 @@ class CompanySurvey extends React.Component {
   getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
+    if (this.props.collectionId === null || this.props.collectionId == '0') {
+      return (
+        <div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>
+      )
+    }
     return (
       <div className='container'>
         <div className='row'>
@@ -58,14 +70,9 @@ class CompanySurvey extends React.Component {
                 <h3 className="card-title">Company Information</h3>
                 <div className="form-row">
                   <div className="form-group col">
-                    <label htmlFor="inputCompanyName">Company name</label>
-                    <input type="text" className="form-control" placeholder="Company name" name="companyName" required/>
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group col">
                     <label htmlFor="inputBio">Company bio</label>
-                    <textarea type="text" className="form-control" placeholder="Company bio" name="companyBio" rows="3" required/>
+                    <textarea type="text" className="form-control" placeholder="Company bio" name="companyBio" rows="3"
+                    defaultValue={(this.props.userinfo.companyBio)} required/>
                   </div>
                 </div>
                 <br/>
@@ -75,13 +82,10 @@ class CompanySurvey extends React.Component {
                   <br/>
                   <div className="form-group">
                     <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
-                    <IndustrySelector passToParent={this.getSelectedIndustries}/>
+                    <IndustrySelector stats={this.props.userinfo} passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
-                  <label className="question">Pick your top 3 strongest soft skills:</label>
-                  <SkillSelector passToParent={this.getStrongSkills}/>
                   <br/>
-                  {/*<QuestionForm/>*/}
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
               </div>
@@ -92,4 +96,4 @@ class CompanySurvey extends React.Component {
     )
   }
 }
- export default CompanySurvey;
+ export default CompanyUpdate;

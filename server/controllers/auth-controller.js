@@ -1,6 +1,8 @@
-var User = require('../models/UserSchema.js')    
+var User = require('../models/UserSchema.js')
+var Company = require('../models/company.model')
+var Student = require('../models/student.model')
 const uuid = require('uuid/v4')
-
+const auth = require('../config/firebaseadmin')
 exports.create = function(req, res) {
   var id = uuid()
 
@@ -23,77 +25,79 @@ exports.create = function(req, res) {
   });
 };
 
-// /* Show the current listing */
-// exports.read = function(req, res) {
-//   /* send back the listing as json from the request */
-//   res.json(req.body);
-// };
+exports.delete = async function (req,res) {
 
-// /* Update a listing - note the order in which this function is called by the router*/
-// exports.update = function(req, res) {
-//   if (!req.body.updatedStudent) {
-//     return res.status(400).send({
-//       message: "Updated content cannot be empty"
-//     })
-//   }
-//   List
-//   var updatedStudent = new Listing(req.body);
-//   if(req.results) {
-//     updatelisting.coordinates = {
-//       latitude: req.results.lat, 
-//       longitude: req.results.lng
-//     };
-//   }
-//   updatelisting.save(function(err) {
-//     if(err) {
-//       console.log(err);
-//       res.status(400).send(err);
-//     } else {
-//       res.json(updatelisting);
-//       console.log(updatelisting)
-//     }
-//   });
-// };
+  await auth.auth.deleteUser(req.user.authuid)
+        .then(function() {
+          console.log("successful deletion")
+        }).catch(function(error) {
+          console.log(error)
+          res.status(500).send(err)
+        })
+  if (req.user.accountType == '0') {
+    await Student.findOneAndRemove({id: req.user.collectionid}, (err,entry) => {
+      if (err) res.status(500).send(err)
+      else console.log(entry)
+    })
+  }else {
+    await Company.findOneAndRemove({id: req.user.collectionid}, (err, entry) => {
+      if (err) res.status(500).send(err)
+      else console.log(entry)
+    })
+  }
+  await User.findOneAndRemove({collectionid: req.user.collectionid}, (err,entry) => {
+    if (err) res.status(500).send(err);
+    else res.status(200).send(entry)
+  })
+};
+exports.getuser = async function(req,res) {
+  if (req.user.accountType == '0') {
+    await Student.findOne({authuid: req.user.authuid}, (err, entry) => {
+      if (err) res.status(500).send(err)
+      else res.status(200).send(entry)
+    })
+  }else {
+    await Company.findOne({authuid: req.user.authuid}, (err, entry) => {
+      if (err) res.status(500).send(err)
+      else res.status(200).send(entry)
+    })
+  }
+}
 
-// /* Delete a listing */
-// exports.delete = function(req, res) {
-//   var listing = req.auth;
-//   Student.findOneAndRemove({id: listing.id}, (err, entry) => {
-//     if (err) res.status(500).send(err);
-//     else res.status(200).send(entry);
-//   })
-  /* Add your code to remove the listins */
+exports.read = async function(req, res) {
+  User.findOne({authuid: req.body.uid}).exec(function(err, user) {
+    if (err) {
+      console.log("error on uid")
+      res.status(500).send(err)
+    }
+    else {
+      res.status(200).send(user)
+    }
 
-// };
+  })
+};
 
-// /* Retreive all the directory listings, sorted alphabetically by listing code */
-// exports.list = function(req, res) {
-//   Listing.find({}, function (err, users) {
-//     if (err) res.status(500).send(err)
-//     users.sort((x, y) => {
-//       return x.name.localeCompare(y.name);
-//     })
-//     console.log(users.length)
-//     res.status(200).send(users)
-//   })
-// };
-
-// /* 
-//   Middleware: find a listing by its ID, then pass it to the next request handler. 
-
-//   HINT: Find the listing using a mongoose query, 
-//         bind it to the request object as the property 'listing', 
-//         then finally call next
-//  */
-// exports.listingByID = function(req, res, next, id) {
-//   Listing.findById(id).exec(function(err, listing) {
-//     if(err) {
-//       console.log('error on listing by id')
-//       res.status(400).send(err);
-//     } else {
-//       console.log('worked for listing by id')
-//       req.listing = listing;
-//       next();
-//     }
-//   });
-// };
+exports.userbyID = async function(req,res, next, id) {
+  User.findOne({collectionid: id}).exec(function(err, user) {
+    if (err) {
+      console.log("error on user id")
+      res.status(500).send(err)
+    }
+    else {
+      req.user = user
+      next()
+    }
+  })
+}
+exports.userbyauthID = async function(req, res, next, id) {
+  User.findOne({authuid: id}).exec(function(err, user) {
+    if (err) {
+      console.log("error on user id")
+      res.status(500).send(err)
+    }
+    else {
+      req.user = user
+      next()
+    }
+  })
+}

@@ -1,46 +1,42 @@
 import React from 'react';
-import { Button, Modal, Row, Col, Form} from 'react-bootstrap'
-import data from './CompanyData'
+import { Button, Modal} from 'react-bootstrap'
 import api from '../../api'
-
 
 class RemoveModal extends React.Component {
   constructor(props)
   {
     super(props)
-
-    console.log(props.jobs)
-
-    // props.jobs = props.jobs.bind(this)
   }
 
+  //Allows button use both the update job method and close at the same time
   doboth() {
     this.updateNewJob()
     this.props.onHide()
   }
 
+
   updateNewJob(){
-      console.log("Job ID", this.props.jobID)
-      const jobID = this.props.jobID;
-      console.log("Company ID", this.props.collectionId)
-      console.log("Jobs", this.props.jobs)
+      
+    //Variable for jobID of the selected job to be removed
+    const jobID = this.props.jobID;
 
-      const updatedJobs = this.props.jobs.filter(job => jobID != job.jobID)
-      console.log(updatedJobs)
+    //Filters the list of current jobs and creates a new list with all jobs except the one specified for removal
+    const updatedJobs = this.props.jobs.filter(job => jobID != job.jobID)
 
-      const payload = {
+    const payload = {
         jobs: updatedJobs,
         collectionid: this.props.collectionId
     }
-        api.updateJob(payload);
+    
+    //Passes the new job array along with the company ID to the api call, to update on the back-end side
+    api.updateJob(payload);
 
-        this.props.updateNewJob(updatedJobs);
+    //Passes the new job array to the company profile to update on the front-end side
+    this.props.updateNewJob(updatedJobs);
+
   }
 
   render(){
-
-    console.log("Remove Job Modal" , this.props.collectionId)
-    console.log("Remove Job Modal Job ID" , this.props.jobID)
   
   return (
     <Modal
