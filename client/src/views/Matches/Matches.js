@@ -67,6 +67,7 @@ class Matches extends React.Component {
                 selectedCompany: {
                     companyName: 'company1',
                 },
+                filterText: ''
             }
         this.matchButtonClicked = this.matchButtonClicked.bind(this);
     }
@@ -105,6 +106,14 @@ class Matches extends React.Component {
         }
     }
 
+    filterUpdate() {
+		//Here you will need to update the value of the filter with the value from the textbox
+		const val = this.myValue.value;
+		this.setState({
+      filterText: val
+    }, () => console.log(this.state.filterText))
+	  }
+
     componentDidMount() {
         this._isMounted = true
         api.getrecommendations(this.props.userinfo).then((res) => {
@@ -134,8 +143,18 @@ class Matches extends React.Component {
         return (
             <div className="App">
                 <Navbar isStudent={this.props.isStudent} />
-                <Grid container spacing={4} style={{ paddingTop: '4%' }}>
-                    {this.state.jobs.map(function(company,index) {
+                <br/>
+                <br/>
+                <div className="form-row justify-content-md-center">
+                  <div className="form-group col-6">
+                    <input type="search" className="form-control" placeholder="Search..." name="searchBar" ref={(value) => this.myValue = value} onChange={this.filterUpdate.bind(this)}/>
+                  </div>
+                </div>
+                <Grid container spacing={4} style={{ paddingTop: '1%' }}>
+                    {this.state.jobs.filter(job => {
+                      return (job.jobTitle.toLowerCase().indexOf(this.state.filterText.toLowerCase()) >= 0 || job.companyName.toLowerCase().indexOf(this.state.filterText.toLowerCase()) >= 0)
+                    }).
+                      map(function(company,index) {
                         return (
                             <Grid key={index} item xs={12} sm={6} md={4} align="center">
                                 <Card className={classes.card} key={company.id}>
