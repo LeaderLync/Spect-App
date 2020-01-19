@@ -1,16 +1,10 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
 import api from '../../api'
 import Button from '@material-ui/core/Button'
 import app from "../../config/firebaseauth"
-import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
-import FormControl from '@material-ui/core/FormControl'
-import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
 import IndustrySelector from '../../components/IndustrySelector/IndustrySelector.js'
 const styles = theme => ({
     root: {
