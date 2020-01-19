@@ -3,7 +3,6 @@ import logo from '../../assets/logo.svg';
 import app from '../../config/firebaseauth'
 import Button from '@material-ui/core/Button'
 import Navbar from '../../components/Navbar/Navbar'
-import CompanyCard from '../../components/CompanyCard'
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -69,12 +68,6 @@ class Matches extends React.Component {
                     companyName: 'company1',
                 },
             }
-        // {
-        //     jobs: [],
-        //     postModalShow: false,
-        //     editShow: false,
-        //     matchButtonState: false,
-        // }
         this.matchButtonClicked = this.matchButtonClicked.bind(this);
     }
 
@@ -115,7 +108,6 @@ class Matches extends React.Component {
     componentDidMount() {
         this._isMounted = true
         api.getrecommendations(this.props.userinfo).then((res) => {
-            //console.log(res.data)
             if (this._isMounted) {
                 this.setState({
                     jobs: res.data

@@ -18,10 +18,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import PostJobModal from '../CompanyProfile/PostJobModal'
 import AdminJobEdit from './AdminJobEdit.js'
-import SkillSelector from '../../components/SkillSelector/SkillSelector.js'
-import {Modal, Form} from 'react-bootstrap'
 import api from '../../api'
 import CompanyUpdate from '../CompanyUpdate/CompanyUpdate'
 const styles = theme => ({
@@ -37,13 +34,6 @@ function createData(id, date, name, shipTo, paymentMethod, amount) {
     return { id, date, name, shipTo, paymentMethod, amount };
   }
 
-var rows1 = [
-    createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-    createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-    createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-    createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-    createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
-  ];
 
 class Companies extends React.Component {
     constructor(props){
@@ -57,13 +47,7 @@ class Companies extends React.Component {
             selectedid: '',
             companyName: '',
             loading: true,
-            // selectedIndustries: [],
-            // strongSkills: {},
-            // weakSkills: {},
-            // studentid: '',
-            // avatarUrl: '',
-            // matches: [],
-            // questionarray: []
+
             postModalShow: true
 
         }
@@ -138,9 +122,6 @@ class Companies extends React.Component {
     }
 
     deleteCompany() {
-        var payload = {
-            collectionid: this.state.selectedid
-        }
         api.deleteuser(this.state.selectedid).then(response => {
             console.log(response)
         })
