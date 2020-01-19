@@ -47,13 +47,7 @@ class Companies extends React.Component {
             selectedid: '',
             companyName: '',
             loading: true,
-            // selectedIndustries: [],
-            // strongSkills: {},
-            // weakSkills: {},
-            // studentid: '',
-            // avatarUrl: '',
-            // matches: [],
-            // questionarray: []
+
             postModalShow: true
 
         }
