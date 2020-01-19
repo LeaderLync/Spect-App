@@ -124,9 +124,6 @@ class Matches extends React.Component {
             }
         }
         )
-        // console.log("getting matches");
-        // console.log(this.props.userinfo)
-        // console.log(typeof this.props.userinfo)
     }
     componentWillUnmount() {
         this._isMounted = false;

@@ -3,7 +3,7 @@ import skillData from '../../assets/SkillData.js'
 
 
 /*
-  This component allows a user to distribute points amongst 9 skills
+  This component allows a user to distribute 27 points amongst 9 skills, with a skill ranging from 1-5
 */
 
 class SkillDistributor extends React.Component {

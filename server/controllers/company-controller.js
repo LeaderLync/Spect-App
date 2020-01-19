@@ -89,50 +89,6 @@ exports.update = function(req,res) {
 }
 
 
-// };
-// // /* Update a listing - note the order in which this function is called by the router*/
-// exports.update = function(req, res) {
-//   if (!req.body.updatedStudent) {
-//     return res.status(400).send({
-//       message: "Updated content cannot be empty"
-//     })
-//   }
-//   List
-//   var updatedStudent = new Listing(req.body);
-//   if(req.results) {
-//     updatelisting.coordinates = {
-//       latitude: req.results.lat,
-//       longitude: req.results.lng
-//     };
-//   }
-//   updatelisting.save(function(err) {
-//     if(err) {
-//       console.log(err);
-//       res.status(400).send(err);
-//     } else {
-//       res.json(updatelisting);
-//       console.log(updatelisting)
-//     }
-//   });
-// };
-
-
-
-// /* Retreive all the directory listings, sorted alphabetically by listing code */
-// exports.list = function(req, res) {
-//   Listing.find({}, function (err, users) {
-//     if (err) res.status(500).send(err)
-//     users.sort((x, y) => {
-//       return x.name.localeCompare(y.name);
-//     })
-//     console.log(users.length)
-//     res.status(200).send(users)
-//   })
-// };
-
-// /*
-//   Middleware: find a listing by its ID, then pass it to the next request handler.
-
 exports.companyByID = async function(req, res, next, id) {
   User.findOne({authuid: id}).exec(function(err, user) {
     if (err) {

@@ -152,7 +152,7 @@ class App extends Component {
               // <CompanyProfile {...props} collectionId={this.state.collectionid} userinfo={JSON.parse(sessionStorage.getItem("userinfo"))}/>}
               // authenticated={this.state.authenticated}
               <CompanyProfile {...props} avatarURL={JSON.parse(sessionStorage.getItem("avatarURL"))}
-              userinfo={JSON.parse(sessionStorage.getItem("userinfo"))} userInfoUpdate={this.userInfoUpdate.bind(this)}
+              userinfo={JSON.parse(sessionStorage.getItem("userinfo")) || this.props.userinfo} userInfoUpdate={this.userInfoUpdate.bind(this)}
               />}
               authenticated={this.state.authenticated}
               user={this.state.currentUser}

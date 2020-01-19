@@ -12,6 +12,7 @@ import CompanyPopup from '../../components/CompanyPopup.js';
 import Navbar from '../../components/Navbar/Navbar';
 import ReactLoading from 'react-loading'
 import FavoriteIcon from '@material-ui/icons/Favorite';
+/* This component is the profile page for the student.  It dipslays their name, icon, and any jobs they have favorited */
 const styles = theme => ({
 root: {
     flexGrow: 1,
@@ -50,7 +51,7 @@ class StudentProfile extends React.Component {
         }
     }
 
-    updateSelectedCompany(company){
+    updateSelectedCompany(company){ // stores the data for the job the user clicks on
         this.setState(
         {
             selectedCompany: company

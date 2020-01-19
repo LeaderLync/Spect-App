@@ -25,8 +25,8 @@ exports.getmatches = async function(req, res) {
   await Company.find({}, function (err, users) {
     if (err) res.status(500).send(err)
     var jobs = [];
+    // matching algorithm implemented here
     users.forEach(company => {
-      //console.log(company.jobPosts);
       company.jobPosts.forEach(job => {
         var score = ((1.5*r_user.skills[job.jobSkills.first]) + (1.25*r_user.skills[job.jobSkills.second]) + (1*r_user.skills[job.jobSkills.third]))/18.75;
         score = Math.round(score*1000)/10; // one decimal
@@ -64,39 +64,12 @@ exports.read = async function(req, res) {
   });
 };
 
-// /* Update a listing - note the order in which this function is called by the router*/
-// exports.update = function(req, res) {
-//   if (!req.body.updatedStudent) {
-//     return res.status(400).send({
-//       message: "Updated content cannot be empty"
-//     })
-//   }
-//   List
-//   var updatedStudent = new Listing(req.body);
-//   if(req.results) {
-//     updatelisting.coordinates = {
-//       latitude: req.results.lat,
-//       longitude: req.results.lng
-//     };
-//   }
-//   updatelisting.save(function(err) {
-//     if(err) {
-//       console.log(err);
-//       res.status(400).send(err);
-//     } else {
-//       res.json(updatelisting);
-//       console.log(updatelisting)
-//     }
-//   });
-// };
-
 // /* Delete a listing */
 exports.delete = function(req, res) {
   Student.findOneAndRemove({id: req.body.collectionid}, (err, entry) => {
     if (err) res.status(500).send(err);
     else res.status(200).send(entry);
   })
-  /* Add your code to remove the listins */
 
 };
 
@@ -109,25 +82,6 @@ exports.getall = function(req,res) {
     res.status(200).send(users)
   })
 }
-// /* Retreive all the directory listings, sorted alphabetically by listing code */
-// exports.list = function(req, res) {
-//   Listing.find({}, function (err, users) {
-//     if (err) res.status(500).send(err)
-//     users.sort((x, y) => {
-//       return x.name.localeCompare(y.name);
-//     })
-//     console.log(users.length)
-//     res.status(200).send(users)
-//   })
-// };
-
-// /*
-//   Middleware: find a listing by its ID, then pass it to the next request handler.
-
-//   HINT: Find the listing using a mongoose query,
-//         bind it to the request object as the property 'listing',
-//         then finally call next
-//  */
 
 exports.studentByID = async function(req, res, next, id) {
   User.findOne({authuid: id}).exec(function(err, user) {

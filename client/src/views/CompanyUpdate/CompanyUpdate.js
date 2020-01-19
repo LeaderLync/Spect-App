@@ -68,12 +68,6 @@ class CompanyUpdate extends React.Component {
                 <img src={logo} className="col-3 mx-auto"/>
                 <form onSubmit={this.handleSubmit}>
                 <h3 className="card-title">Company Information</h3>
-                {/*<div className="form-row">
-                  <div className="form-group col">
-                    <label htmlFor="inputCompanyName">Company name</label>
-                    <input type="text" className="form-control" placeholder="Company name" name="companyName" required/>
-                  </div>
-                </div>*/}
                 <div className="form-row">
                   <div className="form-group col">
                     <label htmlFor="inputBio">Company bio</label>
@@ -91,10 +85,7 @@ class CompanyUpdate extends React.Component {
                     <IndustrySelector stats={this.props.userinfo} passToParent={this.getSelectedIndustries}/>
                   </div>
                   <br/>
-                  {/*<label className="question">Pick your top 3 strongest soft skills:</label>
-                  <SkillSelector stats={this.props.userinfo} passToParent={this.getStrongSkills}/>*/}
                   <br/>
-                  {/*<QuestionForm/>*/}
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Submit</button>
                 </form>
               </div>

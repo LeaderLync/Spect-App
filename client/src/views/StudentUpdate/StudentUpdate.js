@@ -27,13 +27,9 @@ class StudentUpdate extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault(); // prevent page refresh during testing, might prevent post
-    //const data = new FormData(event.target); // collects info from all text fields and multiple choice questions
 
     /* create JSON object to include in post request */
     var studentData = {}
-    /*data.forEach(function(value, key){
-    studentData[key] = value;
-    });*/
 
     studentData["id"] = this.props.collectionId || this.props.userinfo.id;
     studentData["selectedIndustries"] = this.state.selectedIndustries;
@@ -56,9 +52,6 @@ class StudentUpdate extends React.Component {
 
   getSkillData = (childState) => {this.setState({skillPoints: childState.points, skillTree: childState.skills}, /*() => console.log(this.state)*/)} // retireves state from child
 
-  //getStrongSkills = (skills) => {this.setState({strongSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
-
-  //getWeakSkills = (skills) => {this.setState({weakSkills: skills}, /*console.log(skills)*/)} // retrieves state from child
 
   render() {
     if (this.props.collectionId === null || this.props.collectionId == '0') {
@@ -76,39 +69,10 @@ class StudentUpdate extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                   <h3 className="card-title">Professional Interests and Skills Assessment</h3>
                   <SkillDistributor passToParent={this.getSkillData} stats={this.props.userinfo}/>
-                  {/*<h3 className="card-title">Contact Information</h3>
-                  <div className="form-row">
-                    <div className="form-group col">
-                      <label htmlFor="inputFirstName">First name</label>
-                      <input type="text" className="form-control" placeholder="First name" name="firstName" required/>
-                    </div>
-                    <div className="form-group col">
-                      <label htmlFor="inputLastName">Last name</label>
-                      <input type="text" className="form-control" placeholder="Last name" name="lastName" required/>
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group col">
-                      <label htmlFor="inputEmail">Email</label>
-                      <input type="email" className="form-control" placeholder="Email" name="email" required/>
-                    </div>
-                    <div className="form-group col">
-                      <label htmlFor="inputNumber">Telephone</label>
-                      <input type="tel" className="form-control" placeholder="(xxx)xxx-xxxx" name="telephone" required/>
-                    </div>
-                  </div>
-                  <br/>*/}
                   <div className="form-group">
                     <label htmlFor="selectIndustry" className="question">What job sector(s) are you looking for an internship/full time job? (pick a maximum of 3)</label>
                     <IndustrySelector stats={this.props.userinfo} passToParent={this.getSelectedIndustries}/>
                   </div>
-                  {/*<br/>
-                  <label className="question">Pick your top 3 strongest soft skills:</label>
-                  <SkillSelector passToParent={this.getStrongSkills}/>
-                  <br/>
-                  <label className="question">Pick the top 3 soft skills you want to work on:</label>
-                  <SkillSelector passToParent={this.getWeakSkills}/>*/}
-                  {/*<QuestionForm/>*/}
                   <button type="submit" className="btn btn-primary" style={{marginBottom:'5vh', marginTop: '3vh',}}>Save</button>
                 </form>
               </div>
