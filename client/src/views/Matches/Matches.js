@@ -81,8 +81,9 @@ class Matches extends React.Component {
     }
 
     matchButtonClicked(companyARG) {
-        if ((this.props.userinfo.matches.filter(job => {return job.jobTitle == companyARG.jobTitle}).length <= 0)){
-          var newArray = this.props.userinfo.matches;
+      var newArray = [];  
+      if ((this.props.userinfo.matches.filter(job => {return job.jobTitle == companyARG.jobTitle}).length <= 0)){
+          newArray = this.props.userinfo.matches;
           newArray.push({
               jobId: companyARG.jobId,
               companyName: companyARG.companyName,
@@ -92,18 +93,21 @@ class Matches extends React.Component {
               jobLink: companyARG.jobLink,
               avatarUrl: companyARG.avatarUrl
           })
-          var newinfo = this.props.userinfo
-          newinfo.matches = newArray
-
-          const payload = {
-              userId: this.props.userinfo.id,
-              newArray:  newArray,
-          };
-          api.updatematch(payload).then(response => {
-              console.log(response)
-              this.props.userInfoUpdate(response);
-          })
         }
+      else {
+          newArray = this.props.userinfo.matches.filter(job => {return job.jobTitle != companyARG.jobTitle});
+      }
+      var newinfo = this.props.userinfo
+      newinfo.matches = newArray
+
+      const payload = {
+          userId: this.props.userinfo.id,
+          newArray:  newArray,
+      };
+      api.updatematch(payload).then(response => {
+          console.log(response)
+          this.props.userInfoUpdate(response);
+      })
     }
 
     filterUpdate() {
