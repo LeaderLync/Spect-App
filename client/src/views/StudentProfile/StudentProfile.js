@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import CompanyPopup from '../../components/CompanyPopup.js';
 import Navbar from '../../components/Navbar/Navbar';
 import ReactLoading from 'react-loading'
-import FavoriteIcon from '@material-ui/icons/Favorite';
 /* This component is the profile page for the student.  It dipslays their name, icon, and any jobs they have favorited */
 const styles = theme => ({
 root: {
