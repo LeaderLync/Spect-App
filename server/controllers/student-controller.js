@@ -19,60 +19,34 @@ exports.create = function(req, res) {
 };
 
 exports.getmatches = async function(req, res) {
-  const r_user = req.body
-
+  const r_user = req.body;
+  console.log(r_user);
 
   await Company.find({}, function (err, users) {
     if (err) res.status(500).send(err)
-    var sorted = users.sort((x, y) => {
-      var absx  = 0
-      var absy = 0
-      absx += Math.abs(x.question1 - r_user.question1)
-      absx += Math.abs(x.question2 - r_user.question2)
-      absx += Math.abs(x.question3 - r_user.question3)
-      absx += Math.abs(x.question4 - r_user.question4)
-      absx += Math.abs(x.question5 - r_user.question5)
-      absx += Math.abs(x.question6 - r_user.question6)
-      absx += Math.abs(x.question1 - r_user.question1)
-      absx += Math.abs(x.question2 - r_user.question2)
-      absx += Math.abs(x.question3 - r_user.question3)
-      absx += Math.abs(x.question4 - r_user.question4)
-      absx += Math.abs(x.question5 - r_user.question5)
-      absx += Math.abs(x.question6 - r_user.question6)
-      absx += Math.abs(x.question7 - r_user.question7)
-      absx += Math.abs(x.question8 - r_user.question8)
-      absx += Math.abs(x.question9 - r_user.question9)
-      absx += Math.abs(x.question10 - r_user.question10)
-      absx += Math.abs(x.question11 - r_user.question11)
-      absx += Math.abs(x.question12 - r_user.question12)
-      absx += Math.abs(x.question13 - r_user.question13)
-      absx += Math.abs(x.question14 - r_user.question14)
-      absx += Math.abs(x.question15 - r_user.question15)
-      absx += Math.abs(x.question16 - r_user.question16)
-      absx += Math.abs(x.question17 - r_user.question17)
-      absx += Math.abs(x.question18 - r_user.question18)
+    var jobs = [];
+    // matching algorithm implemented here
+    users.forEach(company => {
+      company.jobPosts.forEach(job => {
+        var score = ((1.5*r_user.skills[job.jobSkills.first]) + (1.25*r_user.skills[job.jobSkills.second]) + (1*r_user.skills[job.jobSkills.third]))/18.75;
+        score = Math.round(score*1000)/10; // one decimal
+        var jobPackage = {
+          jobTitle: job.jobTitle,
+          jobDescription: job.jobDescription,
+          jobRequirements: job.jobRequirements,
+          jobLink: job.jobLink,
+          jobId: job.jobID,
+          companyName: company.companyName,
+          companyId: company.id,
+          avatarUrl: company.avatarUrl,
+          percentMatch: score
+        };
+        jobs.push(jobPackage);
+      })
+    });
 
-      absy += Math.abs(y.question1 - r_user.question1)
-      absy += Math.abs(y.question2 - r_user.question2)
-      absy += Math.abs(y.question3 - r_user.question3)
-      absy += Math.abs(y.question4 - r_user.question4)
-      absy += Math.abs(y.question5 - r_user.question5)
-      absy += Math.abs(y.question6 - r_user.question6)
-      absy += Math.abs(y.question7 - r_user.question7)
-      absy += Math.abs(y.question8 - r_user.question8)
-      absy += Math.abs(y.question9 - r_user.question9)
-      absy += Math.abs(y.question10 - r_user.question10)
-      absy += Math.abs(y.question11 - r_user.question11)
-      absy += Math.abs(y.question12 - r_user.question12)
-      absy += Math.abs(y.question13 - r_user.question13)
-      absy += Math.abs(y.question14 - r_user.question14)
-      absy += Math.abs(y.question15 - r_user.question15)
-      absy += Math.abs(y.question16 - r_user.question16)
-      absy += Math.abs(y.question17 - r_user.question17)
-      absy += Math.abs(y.question18 - r_user.question18)
-      if (absx < absy) return -1
-      else if (absx > absy) return 1
-      else return 0
+    var sorted = jobs.sort((x, y) => {
+      return (y.percentMatch - x.percentMatch);
     })
     res.status(200).send(sorted)
   })
@@ -90,6 +64,24 @@ exports.read = async function(req, res) {
   });
 };
 
+// /* Delete a listing */
+exports.delete = function(req, res) {
+  Student.findOneAndRemove({id: req.body.collectionid}, (err, entry) => {
+    if (err) res.status(500).send(err);
+    else res.status(200).send(entry);
+  })
+
+};
+
+exports.getall = function(req,res) {
+  Student.find({}, function(err, users) {
+    if (err) res.status(500).send(err)
+    users.sort((x,y) => {
+      return x.firstName.localeCompare(y.firstName);
+    })
+    res.status(200).send(users)
+  })
+}
 
 exports.studentByID = async function(req, res, next, id) {
   User.findOne({authuid: id}).exec(function(err, user) {
@@ -97,6 +89,7 @@ exports.studentByID = async function(req, res, next, id) {
       console.log('error on student by id')
       res.status(400).send(err);
     }else {
+      console.log(user)
       req.user = user
       next()
     }
@@ -112,6 +105,17 @@ exports.addMatch = async function(req, res){
       var myuser = user
       myuser['matches'] = req.body.newArray
       res.status(200).send(myuser);
+    }
+  })
+}
+
+exports.updateStudent = async function(req, res) {
+  Student.findOneAndUpdate({id: req.body.id}, {skills: req.body.skills, selectedIndustries: req.body.selectedIndustries}, {new: true}).exec(function(err, user) {
+    if (err) {
+      console.log('error on student update');
+      res.status(400).send(err);
+    } else {
+      res.json(user);
     }
   })
 }

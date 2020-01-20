@@ -2,18 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
 import app from '../../config/firebaseauth'
-import { Link, Route, Redirect  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import spectLogo from '../../assets/Black-logo-no-background.png';
 
 
@@ -50,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Navbar = (props) => {
+const AdminNavbar = (props) => {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -87,12 +82,6 @@ const Navbar = (props) => {
   open={open}
   onClose={handleClose}
   >
-    <MenuItem onClick={handleOpenProfile}>
-      <Link to="/studentprofile" style={{ textDecoration: 'none' }}>View Profile</Link>
-    </MenuItem>
-    <MenuItem onClick={handleOpenProfile}>
-      <Link to="/StudentUpdate" style={{ textDecoration: 'none' }}>Edit Profile</Link>
-    </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out
     </MenuItem>
@@ -113,9 +102,6 @@ const Navbar = (props) => {
   open={open}
   onClose={handleClose}
   >
-    <MenuItem onClick={handleOpenProfile}>
-      <Link to="/CompanyUpdate" style={{ textDecoration: 'none' }}>Edit Profile</Link>
-    </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out
     </MenuItem>
@@ -125,7 +111,6 @@ const Navbar = (props) => {
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
-          <TemporaryDrawer className="drawer" isStudent= {props.isStudent}/>
           <div>
             <img src={spectLogo} className = {classes.spect}/>
           </div>
@@ -148,4 +133,4 @@ const Navbar = (props) => {
     </div>
   );
 }
-export default Navbar;
+export default AdminNavbar;

@@ -6,31 +6,40 @@
 
 export default [
   {
-    id: 0,
-    name: "Leadership"
+    key: 0,
+    id: 'leadership',
+    name: 'Leadership'
   }, {
-    id: 1,
-    name: "Teamwork"
+    key: 1,
+    id: 'teamwork',
+    name: 'Teamwork'
   }, {
-    id: 2,
-    name: "Creativity"
+    key: 2,
+    id: 'creativity',
+    name: 'Creativity'
   }, {
-    id: 3,
-    name: "Mindfulness"
+    key: 3,
+    id: 'mindfulness',
+    name: 'Mindfulness'
   }, {
-    id: 4,
-    name: "Critical Thinking"
+    key: 4,
+    id: 'criticalThinking',
+    name: 'Critical Thinking'
   }, {
-    id: 5,
-    name: "Communication"
+    key: 5,
+    id: 'communication',
+    name: 'Communication'
   }, {
-    id: 6,
-    name: "Global Awareness"
+    key: 6,
+    id: 'globalAwareness',
+    name: 'Global Awareness'
   }, {
-    id: 7,
-    name: "Time Management"
+    key: 7,
+    id: 'timeManagement',
+    name: 'Time Management'
   }, {
-    id: 8,
-    name: "Work Ethic"
+    key: 8,
+    id: 'workEthic',
+    name: 'Work Ethic'
   }
 ]

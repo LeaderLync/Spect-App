@@ -4,8 +4,8 @@ import data from './CompanyData'
 import PostJobModal from './PostJobModal'
 import ViewJobPost from './ViewJobPost'
 import RemoveModal from './RemoveModal'
-import sampleImage from '../../assets/Company Logo.png'
 import Navbar from '../../components/Navbar/Navbar'
+import ReactLoading from 'react-loading'
 import { CardGroup, Card, Container, Button, ButtonToolbar} from 'react-bootstrap'
 
 
@@ -17,11 +17,11 @@ class CompanyProfile extends React.Component
         this.updateSelectedJobPost = this.updateSelectedJobPost.bind(this);
         this.state =
         {
-            jobs: [],
+            jobs: this.props.userinfo.jobPosts,
             postModalShow: false,
             setRemoveShow: false,
             setViewShow: false,
-            collectionid: this.props.collectionId,
+            collectionid: this.props.userinfo.id,
             // idea, have a selected job to pass to the view/edit modal:
             selectedJobPost: data[0].jobPost[0],
         }
@@ -34,12 +34,15 @@ class CompanyProfile extends React.Component
         this.setState({
           jobs: newJobs
         })
+        var newUserInfo = this.props.userinfo;
+        newUserInfo.jobPosts = newJobs;
+        this.props.userInfoUpdate(newUserInfo);
       }
 
     render() {
-       //Displays a loading screen while the page loads 
+       //Displays a loading screen while the page loads
        if (this.props.userinfo === null) {
-         return <h2>Loading</h2>
+         return (<div style={{margin: '0 auto'}}><ReactLoading type="spin" color="#28a4eb" height={"10%"} width={"10%"} className="the-loader"/></div>)
        }
         let postModalClose = () => this.setState({postModalShow: false});
         let removeJobModalClose = () => this.setState({setRemoveShow: false});
@@ -50,9 +53,9 @@ class CompanyProfile extends React.Component
         const cardList = this.state.jobs.map(function(jobPost)
             {
                 return(
-                    <Container 
+                    <Container
                     //Using the jobPost ID as the key
-                    key={jobPost.jobID}> 
+                    key={jobPost.jobID}>
                         <div>
                             <div>
                                 <CardGroup>
@@ -79,15 +82,7 @@ class CompanyProfile extends React.Component
                     <Navbar isStudent={this.props.isStudent}/>
                     <div className="info-rectangle">
                         <h3 className="company-name">{this.props.userinfo.companyName}</h3> {/*Company Name, styled by CompanyProfile.css page*/}
-                        <img src={sampleImage} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
-                        <div className='topSkills'>
-                            <h5 style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "2vw", backgroundColor: "whitesmoke", fontFamily: 'Montserrat', color: 'black'}}>Top Three Desired Skills</h5> {/*Company Skills are pulled from test.company collection in mongoDB, based on the company's answer to survey*/}
-                            <body style={{textAlign: "center", marginTop: "5px", textShadow: "black", fontSize: "1.5vw", backgroundColor: "whitesmoke", fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal', color: 'black'}}>
-                                {this.props.userinfo.strongSkills.first} | {"    "}
-                                {this.props.userinfo.strongSkills.second} | {" "}
-                                {this.props.userinfo.strongSkills.third}  {" "}
-                            </body>
-                        </div>
+                        <img src={this.props.avatarURL} className="logo-border" /> {/*Company Logo imported from assets, styled by CompanyProfile.css page*/}
                     </div>
                     <div>
                         <h4 style={{fontFamily: 'GlacialIndifferenceRegular', fontWeight: 'normal', fontStyle: 'normal' , fontSize: '1.5vw'}}>Recently Posted Content and Resources</h4>
@@ -98,8 +93,8 @@ class CompanyProfile extends React.Component
                             onClick={() => this.setState({postModalShow: true})}>Post Job</Button>
                             <PostJobModal
                             //Allows the modal to pop up on screen
-                            show={this.state.postModalShow} 
-                            //Allows the modal to close 
+                            show={this.state.postModalShow}
+                            //Allows the modal to close
                             onHide={postModalClose}
                             //Function to update newJob on the front-end/back-end
                             updateNewJob={this.updateNewJob.bind(this)}

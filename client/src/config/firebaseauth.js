@@ -11,7 +11,15 @@ const appconfig = {
     measurementId: (process.env.MEASUREMENT_ID || require('./config').default.measurementId)
 }
 
+
 const app = firebase.initializeApp(appconfig)
 const auth = app.auth()
+const storage = app.storage()
+// const superadmin = app.ad
+
 auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-export default auth
+
+export default {
+    auth: auth,
+    storage: storage
+}

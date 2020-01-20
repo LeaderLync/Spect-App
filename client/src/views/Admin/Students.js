@@ -1,0 +1,222 @@
+import React from 'react'
+import Skeleton from 'react-loading-skeleton'
+import {withStyles} from '@material-ui/core/styles'
+import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
+import IconButton from '@material-ui/core/IconButton'
+import List from '@material-ui/core/List'
+import Button from '@material-ui/core/Button';
+import ListItem from '@material-ui/core/ListItem'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Avatar from '@material-ui/core/Avatar'
+import Typography from '@material-ui/core/Typography'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import api from '../../api'
+import StudentUpdate from '../StudentUpdate/StudentUpdate'
+const styles = theme => ({
+    root1: {
+        display: 'block'
+    },
+    title: {
+        margin: theme.spacing(4, 0, 2),
+    },
+})
+
+function createData(id, date, name, shipTo, paymentMethod, amount) {
+    return { id, date, name, shipTo, paymentMethod, amount };
+  }
+
+class Students extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            rows: [],
+            currentRow: {},
+            open: false,
+            editopen: false,
+            selectedid: '',
+            firstName: '',
+            lastName: '',
+            selectedIndustries: [],
+            strongSkills: {},
+            weakSkills: {},
+            studentid: '',
+            avatarUrl: '',
+            matches: [],
+            loading: true,
+            questionarray: []
+
+        }
+
+        this.editClose = this.editClose.bind(this);
+    }
+    handleClose() {
+        this.setState({
+            open: !this.state.open
+        })
+    }
+    updateselectedid(id, firstname, lastname) {
+        this.setState({
+            selectedid: id,
+            firstName: firstname,
+            lastName: lastname
+        })
+    }
+    handleSubmit() {
+
+    }
+    editClose() {
+        api.getallstudents().then(response => { //updates student rows when you close an editor
+            this.setState({
+                rows: response
+            })
+        })
+        this.setState({
+            editopen: !this.state.editopen
+        });
+    }
+    _editClose(row) {
+        this.setState({
+            editopen: !this.state.editopen,
+            currentRow: row
+        })
+    }
+    deleteStudent() {
+        api.deleteuser(this.state.selectedid).then(response => {
+            console.log(response)
+        })
+    }
+    dialogClose() {
+        this.setState({
+            editopen: !this.state.editopen,
+            currentRow: null
+        })
+    }
+    onClickDelete(item) {
+        let index = this.state.rows.map(element => element.id).indexOf(item)
+        this.state.rows.splice(index, 1)
+        this.setState({
+            rows: this.state.rows
+        })
+    }
+    componentDidMount() {
+
+        api.getallstudents().then(response => {
+            this.setState({
+                rows: response,
+                loading: false
+            })
+        })
+    }
+    componentWillUnmount() {
+        this.setState({
+            loading: true
+        })
+    }
+    render() {
+        if (this.state.loading) {
+
+            const {classes} = this.props
+            const numbers = [1,2,3]
+            return (
+                <React.Fragment>
+                <Typography variant="h3" className={classes.title}>
+                    <Skeleton width={400}/>
+                </Typography>
+                <List style={{maxHeight: '275px', overflowY: 'auto'}}>
+                    
+                    {numbers.map(row => (
+                        <ListItem key={row}>
+                            <ListItemAvatar>
+                                <Skeleton circle={true} height={50} width={50}/>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                <Skeleton width={500}/>
+                            </ListItemText>
+                            <ListItemSecondaryAction>
+                                <Skeleton circle={true} height={50} width={50}/>
+                                <Skeleton circle={true} height={50} width={50}/>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ))
+                    }
+                </List>
+            </React.Fragment>
+            )
+        }else {
+
+        const {classes} = this.props
+        return (
+            
+            <React.Fragment>
+                <Typography variant="h3" className={classes.title}>
+                    Students
+                </Typography>
+                <List style={{maxHeight: '275px', overflowY: 'auto'}}>
+                    
+                    {this.state.rows.map(row => (
+                        <ListItem key={row.id}>
+                            <ListItemAvatar>
+                                <Avatar src={row.avatarUrl}>
+                                    <EditIcon/>
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={row.firstName + ' ' + row.lastName}
+                            />
+                            <ListItemSecondaryAction>
+                                <IconButton edge="end" aria-label="edit" style={{marginRight: '5px'}} onClick ={() => this._editClose(row)}>
+                                    <EditIcon/>
+                                </IconButton>
+                                <IconButton edge="end" aria-label="delete" onClick={() =>
+                                    {
+                                    this.handleClose()
+                                    this.updateselectedid(row.id, row.firstName, row.lastName)
+                                    }}>
+                                    <DeleteIcon/>
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ))
+                    }
+                </List>
+                <Dialog
+                    open={this.state.open}
+                    onClose={() => this.handleClose()}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Delete?"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Are you sure you want to delete? {this.state.firstName} {this.state.lastName}?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => this.handleClose()} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={() => {
+                            this.deleteStudent()
+                            this.onClickDelete(this.state.selectedid)
+                            this.handleClose()
+                            }} color="secondary">
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <Dialog open={this.state.editopen} onClose={() => this.dialogClose()} aria-labelledby="form-dialog-title">
+                    <StudentUpdate userinfo={this.state.currentRow} editClose={this.editClose} collectionId={this.state.currentRow ? this.state.currentRow.id : null}/>
+                </Dialog>
+            </React.Fragment>
+        )}
+    }
+}
+
+export default withStyles(styles)(Students);

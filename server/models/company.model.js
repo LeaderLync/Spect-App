@@ -8,12 +8,12 @@ var CompanySchema = new Schema({
   companyName: String,
   companyBio: String,
   selectedIndustries: [String],
-  //URLtoLogo: String, // if time permits
   strongSkills: {
     first: String,
     second: String,
     third: String
   },
+  avatarUrl: String,
 
   jobPosts: [{
       jobID: String,
@@ -21,26 +21,14 @@ var CompanySchema = new Schema({
       jobDescription: String,
       jobRequirements: String,
       jobLink: String,
+      jobSkills: {
+        first: String,
+        second: String,
+        third: String
+      }
   }],
 
-  question1: Number,
-  question2: Number,
-  question3: Number,
-  question4: Number,
-  question5: Number,
-  question6: Number,
-  question7: Number,
-  question8: Number,
-  question9: Number,
-  question10: Number,
-  question11: Number,
-  question12: Number,
-  question13: Number,
-  question14: Number,
-  question15: Number,
-  question16: Number,
-  question17: Number,
-  question18: Number,
+
 
   created_at: Date,
   updated_at: Date,
