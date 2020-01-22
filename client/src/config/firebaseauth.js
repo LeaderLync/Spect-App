@@ -16,6 +16,7 @@ const app = firebase.initializeApp(appconfig)
 const auth = app.auth()
 const storage = app.storage()
 // const superadmin = app.ad
+console.log(appconfig)
 
 auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
