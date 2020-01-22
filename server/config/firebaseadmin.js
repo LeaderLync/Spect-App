@@ -5,8 +5,8 @@ var firebase_admin = require('firebase-admin')
 //     databaseURL: require('./config').databaseURL
 // })
 
-admin.initializeApp({
-    credential: admin.credential.cert({
+var app = firebase_admin.initializeApp({
+    credential: firebase_admin.credential.cert({
       projectId: (process.env.PROJECT_ID || require('./config').projectid),
       clientEmail: (process.env.CLIENT_EMAIL || require('./config').client_email),
       privateKey: (process.env.PRIVATE_KEY || require('./config').privateKey)
