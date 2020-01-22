@@ -2,7 +2,8 @@ import axios from 'axios'
 
 
 const client = axios.create({
-    baseURL: 'https://spectapp.herokuapp.com/api',
+    // baseURL: 'http://localhost:5000/api',
+    baseURl: 'https://testapp-spect.herokuapp.com/api',
     headers: {
       'accept': 'application/json',
       'content-type': 'application/json',
@@ -11,17 +12,25 @@ const client = axios.create({
 })
 
 export default {
-    /*inputdata(arraydata) {
-        let params = arraydata
-        client.post('/students',params)
-        .then((response) => {
-            console.log(response)
+    getallcompanies() {
+        return client.get('/company')
+        .then(response => {
+            return response.data
+        }).catch((err) => {
+            console.log(err)
         })
-    },*/
+    },
+    getallstudents(){
+        return client.get('/student').then(response => {
+            return response.data
+        }).catch((err) => {
+            console.log(err)
+        })
+    },
     getdata(){
         client.get('/students')
         .then(response => {
-            return response
+            return response.data
         }).catch((err) => {
             console.log(err)
         })
@@ -29,8 +38,6 @@ export default {
     registernewuser(userid){
         return client.post('/auth', userid)
         .then(response => {
-            console.log(response)
-            console.log(response.data)
             return response.data
         }).catch((err) => {
             console.log(err)
@@ -39,42 +46,66 @@ export default {
     },
     updateJob(data){ // update when a new job post is created
         let params = data
+        console.log(params);
+        console.log(params.collectionid);
 
-        console.log("API logging CollectionID", params.collectionid)
-
-        client.put(`/company/${params.collectionid}`, params.jobs)
+        return client.put(`/company/${params.collectionid}`, params.jobs)
         .then(response => {
-            console.log(response)
             return response
         }).catch((err) => {
             console.log(err)
             return null;
         })
     },
-    collectStudentResponse(studentData){ // collecting initial reponses from the student survey
+    collectStudentResponse(studentData){ //send initial student survey responses to database
       return client.post('/student', studentData)
       .then(response => {
-        //console.log(response.data)
         return response.data
       }).catch((err) => {
         console.log(err)
         return null
       })
     },
-    collectCompanyResponse(companyData){ // collecting initial responses from the job posting survey
-      return client.post('/company', companyData)
+    updateStudentProfile(studentData){
+      console.log(studentData)
+      return client.put(`/student/${studentData.id}`, studentData)
       .then(response => {
-        //console.log("put response here")
         return response.data
       }).catch((err) => {
         console.log(err)
         return null
       })
+    },
+    collectCompanyResponse(companyData){ // send initial company survey responses to database
+      return client.post('/company', companyData)
+      .then(response => {
+        return response.data
+      }).catch((err) => {
+        console.log(err)
+        return null
+      })
+    },
+    updateCompanyProfile(companyData){
+      return client.patch(`/company/${companyData.id}`, companyData)
+      .then(response => {
+        return response.data
+      }).catch((err) => {
+        console.log(err)
+        return null
+      })
+    },
+    getuser(userid) {
+      return client.get(`/auth/temp/${userid}`)
+            .then(response => {
+              return response.data
+            }).catch((err) => {
+              console.log(err)
+              return null
+            })
     },
     getcompanyuser(userid) {
         return client.get(`/company/${userid}`)
             .then(response => {
-                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -84,7 +115,6 @@ export default {
     getstudentuser(userid) {
         return client.get(`/student/${userid}`)
             .then(response => {
-                // console.log(response.data)
                 return response.data
             }).catch((err) => {
                 console.log(err)
@@ -92,21 +122,16 @@ export default {
             })
     },
     getrecommendations(userinfo) {
-        console.log(userinfo)
-        console.log(userinfo)
         return client.patch('/student', userinfo)
             .then(response => {
-                // console.log(response)
-                // console.log(response.data)
+              console.log(response);
                 return response
-                // return response.data
             }).catch((err) => {
                 console.log(err)
                 return null
             })
     },
     updatematch(payload) {
-        console.log(payload);
         return client.patch(`/student/${payload.userId}`, payload)
             .then(response => {
                 return response.data
@@ -115,4 +140,33 @@ export default {
                 return null
             })
     },
+    deleteuser(collectionid) {
+        return client.delete(`/auth/${collectionid}`)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
+    deletecompany(payload) {
+        console.log("what")
+        console.log(payload)
+        return client.delete(`/company`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    },
+    deletestudent(payload) {
+        return client.delete(`/student`, payload)
+            .then(response => {
+                return response.data
+            }).catch((err) => {
+                console.log(err)
+                return null
+            })
+    }
 }

@@ -12,13 +12,13 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import TemporaryDrawer from "./TemporaryDrawer"
-import auth from '../../config/firebaseauth'
+import app from '../../config/firebaseauth'
 import { Link, Route, Redirect  } from 'react-router-dom';
 import spectLogo from '../../assets/Black-logo-no-background.png';
 
 
 const signout = () => {
-  auth.signOut().then(()=> {
+  app.auth.signOut().then(()=> {
       alert('Signed Out')
   }).catch((error) => {
       alert('Cant sign out')
@@ -69,7 +69,7 @@ const Navbar = (props) => {
   };
 
   const handleOpenProfile = () => {
-    handleClose();    
+    handleClose();
   }
   const menuItems = (props.isStudent)?
   <Menu
@@ -88,7 +88,10 @@ const Navbar = (props) => {
   onClose={handleClose}
   >
     <MenuItem onClick={handleOpenProfile}>
-      <Link to="/studentprofile" style={{ textDecoration: 'none' }}>Profile</Link>
+      <Link to="/studentprofile" style={{ textDecoration: 'none' }}>View Profile</Link>
+    </MenuItem>
+    <MenuItem onClick={handleOpenProfile}>
+      <Link to="/StudentUpdate" style={{ textDecoration: 'none' }}>Edit Profile</Link>
     </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out
@@ -111,22 +114,20 @@ const Navbar = (props) => {
   onClose={handleClose}
   >
     <MenuItem onClick={handleOpenProfile}>
-      <Link to="/CompanyProfile" style={{ textDecoration: 'none' }}>Profile</Link>
+      <Link to="/CompanyUpdate" style={{ textDecoration: 'none' }}>Edit Profile</Link>
     </MenuItem>
     <MenuItem onClick={signout}>
       Sign Out
     </MenuItem>
   </Menu>;
 
-  console.log("LOGGING IS STUDENT")
-  console.log(props.isStudent)
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Toolbar>
           <TemporaryDrawer className="drawer" isStudent= {props.isStudent}/>
           <div>
-            <img src={spectLogo} className = {classes.spect}/> 
+            <img src={spectLogo} className = {classes.spect}/>
           </div>
           {auth && (
             <div>
@@ -136,7 +137,7 @@ const Navbar = (props) => {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-              > 
+              >
                 <AccountCircle />
               </IconButton>
               {menuItems}

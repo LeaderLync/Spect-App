@@ -27,7 +27,7 @@ export default function TemporaryDrawer(props) {
   });
 
   const handleClick = (name)=> {
-    console.log(name);
+    // console.log(name);
   }
 
   const toggleDrawer = (side, open) => event => {
@@ -37,9 +37,10 @@ export default function TemporaryDrawer(props) {
 
     setState({ ...state, [side]: open });
   };
-  const menuitems = (props.isStudent)? 
+  const menuitems = (props.isStudent)?
     <List >
       <ListItem button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></ListItem>
+      {/*<ListItem button><Link to="/Search" style={{ textDecoration: 'none' }}>Search</Link></ListItem>*/}
     </List>
     :
     <List >
